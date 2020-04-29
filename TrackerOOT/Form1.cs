@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -79,24 +80,13 @@ namespace TrackerOOT
         bool deadBiggoron = false;
         bool deadFrogs = false;
 
+        bool chronoRunning = false;
+
+        Stopwatch chrono = new Stopwatch();
+
         public Form1()
         {
             InitializeComponent();
-
-            Array.Sort(places);
-            comboBox_woth1.Items.AddRange(places);
-            comboBox_woth2.Items.AddRange(places);
-            comboBox_woth3.Items.AddRange(places);
-            comboBox_woth4.Items.AddRange(places);
-            comboBox_woth5.Items.AddRange(places);
-
-            comboBox_barren1.Items.AddRange(places);
-            comboBox_barren2.Items.AddRange(places);
-            comboBox_barren3.Items.AddRange(places);
-
-            comboBox_oot.Items.AddRange(songs);
-
-            autocomplete();
         }
 
         private void autocomplete()
@@ -143,7 +133,21 @@ namespace TrackerOOT
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Array.Sort(places);
+            comboBox_woth1.Items.AddRange(places);
+            comboBox_woth2.Items.AddRange(places);
+            comboBox_woth3.Items.AddRange(places);
+            comboBox_woth4.Items.AddRange(places);
+            comboBox_woth5.Items.AddRange(places);
 
+            comboBox_barren1.Items.AddRange(places);
+            comboBox_barren2.Items.AddRange(places);
+            comboBox_barren3.Items.AddRange(places);
+
+            comboBox_oot.Items.AddRange(songs);
+
+            autocomplete();
+            timer1.Start();
         }
 
         void comboBox_woth1_DropDownClosed(object sender, EventArgs e)
@@ -271,6 +275,28 @@ namespace TrackerOOT
             }
 
             deadFrogs = !deadFrogs;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            TimeSpan time = chrono.Elapsed;
+            label1.Text = time.ToString(@"hh\:mm\:ss\.fff");
+        }
+
+        private void button_chrono_Click(object sender, EventArgs e)
+        {
+            if (chronoRunning)
+            {
+                chrono.Stop();
+                button_chrono.Text = "Start";
+            }
+            else
+            {
+                chrono.Start();
+                button_chrono.Text = "Stop";
+            }
+
+            chronoRunning = !chronoRunning;
         }
     }
 }
