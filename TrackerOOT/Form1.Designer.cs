@@ -98,7 +98,7 @@ namespace TrackerOOT
             this.comboBox_woth1.Location = new System.Drawing.Point(6, 26);
             this.comboBox_woth1.MaxDropDownItems = 60;
             this.comboBox_woth1.Name = "comboBox_woth1";
-            this.comboBox_woth1.Size = new System.Drawing.Size(140, 23);
+            this.comboBox_woth1.Size = new System.Drawing.Size(157, 23);
             this.comboBox_woth1.TabIndex = 2;
             this.comboBox_woth1.DropDownClosed += new System.EventHandler(this.comboBox_woth1_DropDownClosed);
             // 
@@ -111,7 +111,7 @@ namespace TrackerOOT
             this.comboBox_woth2.Location = new System.Drawing.Point(6, 55);
             this.comboBox_woth2.MaxDropDownItems = 60;
             this.comboBox_woth2.Name = "comboBox_woth2";
-            this.comboBox_woth2.Size = new System.Drawing.Size(140, 23);
+            this.comboBox_woth2.Size = new System.Drawing.Size(157, 23);
             this.comboBox_woth2.TabIndex = 3;
             this.comboBox_woth2.DropDownClosed += new System.EventHandler(this.comboBox_woth2_DropDownClosed);
             // 
@@ -124,7 +124,7 @@ namespace TrackerOOT
             this.comboBox_woth3.Location = new System.Drawing.Point(6, 84);
             this.comboBox_woth3.MaxDropDownItems = 60;
             this.comboBox_woth3.Name = "comboBox_woth3";
-            this.comboBox_woth3.Size = new System.Drawing.Size(140, 23);
+            this.comboBox_woth3.Size = new System.Drawing.Size(157, 23);
             this.comboBox_woth3.TabIndex = 4;
             this.comboBox_woth3.DropDownClosed += new System.EventHandler(this.comboBox_woth3_DropDownClosed);
             // 
@@ -137,7 +137,7 @@ namespace TrackerOOT
             this.comboBox_woth4.Location = new System.Drawing.Point(6, 113);
             this.comboBox_woth4.MaxDropDownItems = 60;
             this.comboBox_woth4.Name = "comboBox_woth4";
-            this.comboBox_woth4.Size = new System.Drawing.Size(140, 23);
+            this.comboBox_woth4.Size = new System.Drawing.Size(157, 23);
             this.comboBox_woth4.TabIndex = 5;
             this.comboBox_woth4.DropDownClosed += new System.EventHandler(this.comboBox_woth4_DropDownClosed);
             // 
@@ -150,7 +150,7 @@ namespace TrackerOOT
             this.comboBox_woth5.Location = new System.Drawing.Point(6, 142);
             this.comboBox_woth5.MaxDropDownItems = 60;
             this.comboBox_woth5.Name = "comboBox_woth5";
-            this.comboBox_woth5.Size = new System.Drawing.Size(140, 23);
+            this.comboBox_woth5.Size = new System.Drawing.Size(157, 23);
             this.comboBox_woth5.TabIndex = 6;
             this.comboBox_woth5.DropDownClosed += new System.EventHandler(this.comboBox_woth5_DropDownClosed);
             // 
@@ -164,7 +164,7 @@ namespace TrackerOOT
             this.comboBox_barren1.Location = new System.Drawing.Point(6, 26);
             this.comboBox_barren1.MaxDropDownItems = 60;
             this.comboBox_barren1.Name = "comboBox_barren1";
-            this.comboBox_barren1.Size = new System.Drawing.Size(140, 23);
+            this.comboBox_barren1.Size = new System.Drawing.Size(157, 23);
             this.comboBox_barren1.TabIndex = 7;
             // 
             // comboBox_barren2
@@ -177,7 +177,7 @@ namespace TrackerOOT
             this.comboBox_barren2.Location = new System.Drawing.Point(6, 55);
             this.comboBox_barren2.MaxDropDownItems = 60;
             this.comboBox_barren2.Name = "comboBox_barren2";
-            this.comboBox_barren2.Size = new System.Drawing.Size(140, 23);
+            this.comboBox_barren2.Size = new System.Drawing.Size(157, 23);
             this.comboBox_barren2.TabIndex = 9;
             // 
             // comboBox_barren3
@@ -190,7 +190,7 @@ namespace TrackerOOT
             this.comboBox_barren3.Location = new System.Drawing.Point(6, 84);
             this.comboBox_barren3.MaxDropDownItems = 60;
             this.comboBox_barren3.Name = "comboBox_barren3";
-            this.comboBox_barren3.Size = new System.Drawing.Size(140, 23);
+            this.comboBox_barren3.Size = new System.Drawing.Size(157, 23);
             this.comboBox_barren3.TabIndex = 10;
             // 
             // label3
@@ -595,7 +595,7 @@ namespace TrackerOOT
             this.groupBox3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(213, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(155, 178);
+            this.groupBox3.Size = new System.Drawing.Size(173, 178);
             this.groupBox3.TabIndex = 51;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "WotH";
@@ -608,7 +608,7 @@ namespace TrackerOOT
             this.groupBox4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(213, 241);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(153, 120);
+            this.groupBox4.Size = new System.Drawing.Size(173, 120);
             this.groupBox4.TabIndex = 52;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Barren";
@@ -621,15 +621,16 @@ namespace TrackerOOT
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(267, 371);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 15);
+            this.label1.Size = new System.Drawing.Size(59, 23);
             this.label1.TabIndex = 53;
             this.label1.Text = "label1";
             // 
             // button_chrono
             // 
-            this.button_chrono.Location = new System.Drawing.Point(219, 367);
+            this.button_chrono.Location = new System.Drawing.Point(219, 373);
             this.button_chrono.Name = "button_chrono";
             this.button_chrono.Size = new System.Drawing.Size(42, 23);
             this.button_chrono.TabIndex = 54;
@@ -642,7 +643,7 @@ namespace TrackerOOT
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(376, 427);
+            this.ClientSize = new System.Drawing.Size(396, 427);
             this.Controls.Add(this.button_chrono);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox4);

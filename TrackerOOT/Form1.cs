@@ -150,6 +150,7 @@ namespace TrackerOOT
             timer1.Start();
         }
 
+        #region combobow DropDownClosed
         void comboBox_woth1_DropDownClosed(object sender, EventArgs e)
         {
             this.BeginInvoke(new Action(() => { comboBox_woth1.Select(0, 0); }));
@@ -174,7 +175,8 @@ namespace TrackerOOT
         {
             this.BeginInvoke(new Action(() => { comboBox_woth5.Select(0, 0); }));
         }
-
+        #endregion
+        #region dead click
         private void button_dead30skulls_Click(object sender, EventArgs e)
         {
             textBox_30skulls.Enabled = dead30skulls;
@@ -276,7 +278,8 @@ namespace TrackerOOT
 
             deadFrogs = !deadFrogs;
         }
-
+        #endregion
+        #region chrono and timer
         private void timer1_Tick(object sender, EventArgs e)
         {
             TimeSpan time = chrono.Elapsed;
@@ -298,5 +301,6 @@ namespace TrackerOOT
 
             chronoRunning = !chronoRunning;
         }
+        #endregion
     }
 }
