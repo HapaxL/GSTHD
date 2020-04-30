@@ -1366,7 +1366,7 @@ namespace TrackerOOT
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.ShowIcon = false;
-            this.Text = "OOTR : Gossip Stones Tracker v1.2";
+            this.Text = "OOTR : Gossip Stones Tracker v1.2.a";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
