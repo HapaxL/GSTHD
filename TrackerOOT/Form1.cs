@@ -20,21 +20,6 @@ namespace TrackerOOT
         HashSet<String> placesByCategories = new HashSet<String>();
         SortedSet<String> placesAlphabeticalOrder = new SortedSet<String>();
 
-        String[] songs = {
-            "Zelda's Lullaby",
-            "Epona's Song",
-            "Saria's Song",
-            "Sun's Song",
-            "Song of Time",
-            "Song of Storms",
-            "Minuet of Forest",
-            "Bolero of Fire",
-            "Serenade of Water",
-            "Requiem of Spirit",
-            "Nocturne of Shadow",
-            "Prelude of Light"
-        };
-
         bool dead30skulls = false;
         bool dead40skulls = false;
         bool dead50skulls = false;
@@ -160,31 +145,31 @@ namespace TrackerOOT
         void comboBox_woth1_DropDownClosed(object sender, EventArgs e)
         {
             this.BeginInvoke(new Action(() => { comboBox_woth1.Select(0, 0); }));
-            if (comboBox_woth1.SelectedIndex == 0) label_woth1.Text = "0"; else label_woth1.Text = "1";
+            if (comboBox_woth1.SelectedIndex <= 0) label_woth1.Text = "0"; else label_woth1.Text = "1";
         }
 
         void comboBox_woth2_DropDownClosed(object sender, EventArgs e)
         {
             this.BeginInvoke(new Action(() => { comboBox_woth2.Select(0, 0); }));
-            if (comboBox_woth2.SelectedIndex == 0) label_woth2.Text = "0"; else label_woth2.Text = "1";
+            if (comboBox_woth2.SelectedIndex <= 0) label_woth2.Text = "0"; else label_woth2.Text = "1";
         }
 
         void comboBox_woth3_DropDownClosed(object sender, EventArgs e)
         {
             this.BeginInvoke(new Action(() => { comboBox_woth3.Select(0, 0); }));
-            if (comboBox_woth2.SelectedIndex == 0) label_woth3.Text = "0"; else label_woth3.Text = "1";
+            if (comboBox_woth3.SelectedIndex <= 0) label_woth3.Text = "0"; else label_woth3.Text = "1";
         }
 
         void comboBox_woth4_DropDownClosed(object sender, EventArgs e)
         {
             this.BeginInvoke(new Action(() => { comboBox_woth4.Select(0, 0); }));
-            if (comboBox_woth4.SelectedIndex == 0) label_woth4.Text = "0"; else label_woth4.Text = "1";
+            if (comboBox_woth4.SelectedIndex <= 0) label_woth4.Text = "0"; else label_woth4.Text = "1";
         }
 
         void comboBox_woth5_DropDownClosed(object sender, EventArgs e)
         {
             this.BeginInvoke(new Action(() => { comboBox_woth5.Select(0, 0); }));
-            if (comboBox_woth5.SelectedIndex == 0) label_woth5.Text = "0"; else label_woth5.Text = "1";
+            if (comboBox_woth5.SelectedIndex <= 0) label_woth5.Text = "0"; else label_woth5.Text = "1";
         }
 
         void comboBox_barren1_DropDownClosed(object sender, EventArgs e)
@@ -289,34 +274,6 @@ namespace TrackerOOT
             alphabeticalOrder = !alphabeticalOrder;
         }
 
-        #region label_woth click
-        private void label_woth1_Click(object sender, EventArgs e)
-        {
-            label_woth1.Text = (Convert.ToInt32(label_woth1.Text) + 1).ToString();
-        }
-
-        private void label_woth2_Click(object sender, EventArgs e)
-        {
-            label_woth2.Text = (Convert.ToInt32(label_woth2.Text) + 1).ToString();
-        }
-
-        private void label_woth3_Click(object sender, EventArgs e)
-        {
-            label_woth3.Text = (Convert.ToInt32(label_woth3.Text) + 1).ToString();
-        }
-
-        private void label_woth4_Click(object sender, EventArgs e)
-        {
-            label_woth4.Text = (Convert.ToInt32(label_woth4.Text) + 1).ToString();
-        }
-
-        private void label_woth5_Click(object sender, EventArgs e)
-        {
-            label_woth5.Text = (Convert.ToInt32(label_woth5.Text) + 1).ToString();
-        }
-
-        #endregion
-
         #region DragEnter
         private void pictureBox_oot_hint_DragEnter(object sender, DragEventArgs e)
         {
@@ -375,6 +332,38 @@ namespace TrackerOOT
         #endregion
 
         #region DragDrop
+        private void imageWoth1_RightClick(object sender, MouseEventArgs e)
+        {
+            var image = ((PictureBox)sender);
+            if (e.Button == MouseButtons.Right)
+                panel_item_woth1.Controls.Remove(image);
+        }
+
+        private void imageWoth2_RightClick(object sender, MouseEventArgs e)
+        {
+            var image = ((PictureBox)sender);
+            if (e.Button == MouseButtons.Right)
+                panel_item_woth2.Controls.Remove(image);
+        }
+        private void imageWoth3_RightClick(object sender, MouseEventArgs e)
+        {
+            var image = ((PictureBox)sender);
+            if (e.Button == MouseButtons.Right)
+                panel_item_woth3.Controls.Remove(image);
+        }
+        private void imageWoth4_RightClick(object sender, MouseEventArgs e)
+        {
+            var image = ((PictureBox)sender);
+            if (e.Button == MouseButtons.Right)
+                panel_item_woth4.Controls.Remove(image);
+        }
+        private void imageWoth5_RightClick(object sender, MouseEventArgs e)
+        {
+            var image = ((PictureBox)sender);
+            if (e.Button == MouseButtons.Right)
+                panel_item_woth5.Controls.Remove(image);
+        }
+
         private void panel1_DragDrop(object sender, DragEventArgs e)
         {
             var coord = new Point();
@@ -388,6 +377,8 @@ namespace TrackerOOT
             image.Size = new Size(32, 32);
             image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
             image.Location = coord;
+            image.MouseClick += new MouseEventHandler(imageWoth1_RightClick);
+
             panel_item_woth1.Controls.Add(image);
         }
         private void panel_item_woth2_DragDrop(object sender, DragEventArgs e)
@@ -403,6 +394,8 @@ namespace TrackerOOT
             image.Size = new Size(32, 32);
             image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
             image.Location = coord;
+            image.MouseClick += new MouseEventHandler(imageWoth2_RightClick);
+
             panel_item_woth2.Controls.Add(image);
         }
         private void panel_item_woth3_DragDrop(object sender, DragEventArgs e)
@@ -418,6 +411,8 @@ namespace TrackerOOT
             image.Size = new Size(32, 32);
             image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
             image.Location = coord;
+            image.MouseClick += new MouseEventHandler(imageWoth3_RightClick);
+
             panel_item_woth3.Controls.Add(image);
         }
         private void panel_item_woth4_DragDrop(object sender, DragEventArgs e)
@@ -433,6 +428,8 @@ namespace TrackerOOT
             image.Size = new Size(32, 32);
             image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
             image.Location = coord;
+            image.MouseClick += new MouseEventHandler(imageWoth4_RightClick);
+
             panel_item_woth4.Controls.Add(image);
         }
         private void panel_item_woth5_DragDrop(object sender, DragEventArgs e)
@@ -448,6 +445,8 @@ namespace TrackerOOT
             image.Size = new Size(32, 32);
             image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
             image.Location = coord;
+            image.MouseClick += new MouseEventHandler(imageWoth5_RightClick);
+
             panel_item_woth5.Controls.Add(image);
         }
         private void pictureBox_oot_hint_DragDrop(object sender, DragEventArgs e)
@@ -547,8 +546,6 @@ namespace TrackerOOT
         {
             pictureBox_prelude.DoDragDrop(pictureBox_prelude.Image, DragDropEffects.Copy);
         }
-
-        #endregion
 
         private void pictureBox_dins_fire_MouseDown(object sender, MouseEventArgs e)
         {
@@ -684,5 +681,48 @@ namespace TrackerOOT
         {
             pictureBox_magic_meter.DoDragDrop(pictureBox_magic_meter.Image, DragDropEffects.Copy);
         }
+        #endregion
+
+        #region LabelMouseClick
+        private void label_woth1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+                label_woth1.Text = (Convert.ToInt32(label_woth1.Text) + 1).ToString();
+            if(e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth1.Text) > 0))
+                label_woth1.Text = (Convert.ToInt32(label_woth1.Text) - 1).ToString();
+        }
+
+        private void label_woth2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                label_woth2.Text = (Convert.ToInt32(label_woth2.Text) + 1).ToString();
+            if (e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth2.Text) > 0))
+                label_woth2.Text = (Convert.ToInt32(label_woth2.Text) - 1).ToString();
+        }
+
+        private void label_woth3_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                label_woth3.Text = (Convert.ToInt32(label_woth3.Text) + 1).ToString();
+            if (e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth3.Text) > 0))
+                label_woth3.Text = (Convert.ToInt32(label_woth3.Text) - 1).ToString();
+        }
+
+        private void label_woth4_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                label_woth4.Text = (Convert.ToInt32(label_woth4.Text) + 1).ToString();
+            if (e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth4.Text) > 0))
+                label_woth4.Text = (Convert.ToInt32(label_woth4.Text) - 1).ToString();
+        }
+
+        private void label_woth5_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                label_woth5.Text = (Convert.ToInt32(label_woth5.Text) + 1).ToString();
+            if (e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth5.Text) > 0))
+                label_woth5.Text = (Convert.ToInt32(label_woth5.Text) - 1).ToString();
+        }
+        #endregion
     }
 }

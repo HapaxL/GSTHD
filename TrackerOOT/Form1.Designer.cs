@@ -69,6 +69,13 @@ namespace TrackerOOT
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox_oot_hint = new System.Windows.Forms.PictureBox();
+            this.pictureBox_frogs = new System.Windows.Forms.PictureBox();
+            this.pictureBox_biggoron = new System.Windows.Forms.PictureBox();
+            this.pictureBox_skullMask = new System.Windows.Forms.PictureBox();
+            this.pictureBox_50skulls = new System.Windows.Forms.PictureBox();
+            this.pictureBox_40skulls = new System.Windows.Forms.PictureBox();
+            this.pictureBox_30skulls = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel_item_woth3 = new System.Windows.Forms.Panel();
@@ -128,14 +135,14 @@ namespace TrackerOOT
             this.pictureBox_fire_arrow = new System.Windows.Forms.PictureBox();
             this.pictureBox_bow = new System.Windows.Forms.PictureBox();
             this.pictureBox_bombs = new System.Windows.Forms.PictureBox();
-            this.pictureBox_oot_hint = new System.Windows.Forms.PictureBox();
-            this.pictureBox_frogs = new System.Windows.Forms.PictureBox();
-            this.pictureBox_biggoron = new System.Windows.Forms.PictureBox();
-            this.pictureBox_skullMask = new System.Windows.Forms.PictureBox();
-            this.pictureBox_50skulls = new System.Windows.Forms.PictureBox();
-            this.pictureBox_40skulls = new System.Windows.Forms.PictureBox();
-            this.pictureBox_30skulls = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oot_hint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_frogs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_biggoron)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_skullMask)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_50skulls)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_40skulls)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_30skulls)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -180,13 +187,6 @@ namespace TrackerOOT
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fire_arrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bombs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oot_hint)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_frogs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_biggoron)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_skullMask)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_50skulls)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_40skulls)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_30skulls)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_woth1
@@ -594,6 +594,90 @@ namespace TrackerOOT
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Guaranteed Hints";
             // 
+            // pictureBox_oot_hint
+            // 
+            this.pictureBox_oot_hint.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_oot_hint.Image")));
+            this.pictureBox_oot_hint.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_oot_hint.InitialImage")));
+            this.pictureBox_oot_hint.Location = new System.Drawing.Point(48, 223);
+            this.pictureBox_oot_hint.Name = "pictureBox_oot_hint";
+            this.pictureBox_oot_hint.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_oot_hint.TabIndex = 91;
+            this.pictureBox_oot_hint.TabStop = false;
+            this.pictureBox_oot_hint.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_oot_hint_DragDrop);
+            this.pictureBox_oot_hint.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_oot_hint_DragEnter);
+            // 
+            // pictureBox_frogs
+            // 
+            this.pictureBox_frogs.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_frogs.Image")));
+            this.pictureBox_frogs.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_frogs.InitialImage")));
+            this.pictureBox_frogs.Location = new System.Drawing.Point(111, 189);
+            this.pictureBox_frogs.Name = "pictureBox_frogs";
+            this.pictureBox_frogs.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_frogs.TabIndex = 90;
+            this.pictureBox_frogs.TabStop = false;
+            this.pictureBox_frogs.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_frogs_DragDrop);
+            this.pictureBox_frogs.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_frogs_DragEnter);
+            // 
+            // pictureBox_biggoron
+            // 
+            this.pictureBox_biggoron.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_biggoron.Image")));
+            this.pictureBox_biggoron.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_biggoron.InitialImage")));
+            this.pictureBox_biggoron.Location = new System.Drawing.Point(111, 155);
+            this.pictureBox_biggoron.Name = "pictureBox_biggoron";
+            this.pictureBox_biggoron.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_biggoron.TabIndex = 89;
+            this.pictureBox_biggoron.TabStop = false;
+            this.pictureBox_biggoron.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_biggoron_DragDrop);
+            this.pictureBox_biggoron.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_biggoron_DragEnter);
+            // 
+            // pictureBox_skullMask
+            // 
+            this.pictureBox_skullMask.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_skullMask.Image")));
+            this.pictureBox_skullMask.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_skullMask.InitialImage")));
+            this.pictureBox_skullMask.Location = new System.Drawing.Point(111, 121);
+            this.pictureBox_skullMask.Name = "pictureBox_skullMask";
+            this.pictureBox_skullMask.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_skullMask.TabIndex = 88;
+            this.pictureBox_skullMask.TabStop = false;
+            this.pictureBox_skullMask.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_skullMask_DragDrop);
+            this.pictureBox_skullMask.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_skullMask_DragEnter);
+            // 
+            // pictureBox_50skulls
+            // 
+            this.pictureBox_50skulls.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_50skulls.Image")));
+            this.pictureBox_50skulls.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_50skulls.InitialImage")));
+            this.pictureBox_50skulls.Location = new System.Drawing.Point(111, 87);
+            this.pictureBox_50skulls.Name = "pictureBox_50skulls";
+            this.pictureBox_50skulls.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_50skulls.TabIndex = 87;
+            this.pictureBox_50skulls.TabStop = false;
+            this.pictureBox_50skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_50skulls_DragDrop);
+            this.pictureBox_50skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_50skulls_DragEnter);
+            // 
+            // pictureBox_40skulls
+            // 
+            this.pictureBox_40skulls.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_40skulls.Image")));
+            this.pictureBox_40skulls.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_40skulls.InitialImage")));
+            this.pictureBox_40skulls.Location = new System.Drawing.Point(111, 53);
+            this.pictureBox_40skulls.Name = "pictureBox_40skulls";
+            this.pictureBox_40skulls.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_40skulls.TabIndex = 86;
+            this.pictureBox_40skulls.TabStop = false;
+            this.pictureBox_40skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_40skulls_DragDrop);
+            this.pictureBox_40skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_40skulls_DragEnter);
+            // 
+            // pictureBox_30skulls
+            // 
+            this.pictureBox_30skulls.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_30skulls.Image")));
+            this.pictureBox_30skulls.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_30skulls.InitialImage")));
+            this.pictureBox_30skulls.Location = new System.Drawing.Point(111, 19);
+            this.pictureBox_30skulls.Name = "pictureBox_30skulls";
+            this.pictureBox_30skulls.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_30skulls.TabIndex = 85;
+            this.pictureBox_30skulls.TabStop = false;
+            this.pictureBox_30skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_30skulls_DragDrop);
+            this.pictureBox_30skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_30skulls_DragEnter);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBox10);
@@ -697,57 +781,62 @@ namespace TrackerOOT
             // label_woth5
             // 
             this.label_woth5.AutoSize = true;
+            this.label_woth5.BackColor = System.Drawing.Color.Gainsboro;
             this.label_woth5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_woth5.Location = new System.Drawing.Point(168, 154);
             this.label_woth5.Name = "label_woth5";
             this.label_woth5.Size = new System.Drawing.Size(17, 19);
             this.label_woth5.TabIndex = 11;
             this.label_woth5.Text = "0";
-            this.label_woth5.Click += new System.EventHandler(this.label_woth5_Click);
+            this.label_woth5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label_woth5_MouseClick);
             // 
             // label_woth1
             // 
             this.label_woth1.AutoSize = true;
+            this.label_woth1.BackColor = System.Drawing.Color.Gainsboro;
             this.label_woth1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_woth1.Location = new System.Drawing.Point(168, 23);
             this.label_woth1.Name = "label_woth1";
             this.label_woth1.Size = new System.Drawing.Size(17, 19);
             this.label_woth1.TabIndex = 7;
             this.label_woth1.Text = "0";
-            this.label_woth1.Click += new System.EventHandler(this.label_woth1_Click);
+            this.label_woth1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label_woth1_MouseClick);
             // 
             // label_woth2
             // 
             this.label_woth2.AutoSize = true;
+            this.label_woth2.BackColor = System.Drawing.Color.Gainsboro;
             this.label_woth2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_woth2.Location = new System.Drawing.Point(168, 55);
             this.label_woth2.Name = "label_woth2";
             this.label_woth2.Size = new System.Drawing.Size(17, 19);
             this.label_woth2.TabIndex = 8;
             this.label_woth2.Text = "0";
-            this.label_woth2.Click += new System.EventHandler(this.label_woth2_Click);
+            this.label_woth2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label_woth2_MouseClick);
             // 
             // label_woth4
             // 
             this.label_woth4.AutoSize = true;
+            this.label_woth4.BackColor = System.Drawing.Color.Gainsboro;
             this.label_woth4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_woth4.Location = new System.Drawing.Point(168, 121);
             this.label_woth4.Name = "label_woth4";
             this.label_woth4.Size = new System.Drawing.Size(17, 19);
             this.label_woth4.TabIndex = 10;
             this.label_woth4.Text = "0";
-            this.label_woth4.Click += new System.EventHandler(this.label_woth4_Click);
+            this.label_woth4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label_woth4_MouseClick);
             // 
             // label_woth3
             // 
             this.label_woth3.AutoSize = true;
+            this.label_woth3.BackColor = System.Drawing.Color.Gainsboro;
             this.label_woth3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_woth3.Location = new System.Drawing.Point(168, 89);
             this.label_woth3.Name = "label_woth3";
             this.label_woth3.Size = new System.Drawing.Size(17, 19);
             this.label_woth3.TabIndex = 9;
             this.label_woth3.Text = "0";
-            this.label_woth3.Click += new System.EventHandler(this.label_woth3_Click);
+            this.label_woth3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label_woth3_MouseClick);
             // 
             // groupBox4
             // 
@@ -809,7 +898,7 @@ namespace TrackerOOT
             // 
             // pictureBox_prelude
             // 
-            this.pictureBox_prelude.Image = global::TrackerOOT.Properties.Resources.prelude;
+            this.pictureBox_prelude.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_prelude.Image")));
             this.pictureBox_prelude.Location = new System.Drawing.Point(132, 544);
             this.pictureBox_prelude.Name = "pictureBox_prelude";
             this.pictureBox_prelude.Size = new System.Drawing.Size(32, 32);
@@ -819,7 +908,7 @@ namespace TrackerOOT
             // 
             // pictureBox_nocturne
             // 
-            this.pictureBox_nocturne.Image = global::TrackerOOT.Properties.Resources.nocturne;
+            this.pictureBox_nocturne.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_nocturne.Image")));
             this.pictureBox_nocturne.Location = new System.Drawing.Point(94, 544);
             this.pictureBox_nocturne.Name = "pictureBox_nocturne";
             this.pictureBox_nocturne.Size = new System.Drawing.Size(32, 32);
@@ -829,7 +918,7 @@ namespace TrackerOOT
             // 
             // pictureBox_requiem
             // 
-            this.pictureBox_requiem.Image = global::TrackerOOT.Properties.Resources.requiem;
+            this.pictureBox_requiem.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_requiem.Image")));
             this.pictureBox_requiem.Location = new System.Drawing.Point(56, 544);
             this.pictureBox_requiem.Name = "pictureBox_requiem";
             this.pictureBox_requiem.Size = new System.Drawing.Size(32, 32);
@@ -839,7 +928,7 @@ namespace TrackerOOT
             // 
             // pictureBox_serenade
             // 
-            this.pictureBox_serenade.Image = global::TrackerOOT.Properties.Resources.serenade;
+            this.pictureBox_serenade.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_serenade.Image")));
             this.pictureBox_serenade.Location = new System.Drawing.Point(18, 544);
             this.pictureBox_serenade.Name = "pictureBox_serenade";
             this.pictureBox_serenade.Size = new System.Drawing.Size(32, 32);
@@ -849,7 +938,7 @@ namespace TrackerOOT
             // 
             // pictureBox_bolero
             // 
-            this.pictureBox_bolero.Image = global::TrackerOOT.Properties.Resources.bolero;
+            this.pictureBox_bolero.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_bolero.Image")));
             this.pictureBox_bolero.Location = new System.Drawing.Point(132, 506);
             this.pictureBox_bolero.Name = "pictureBox_bolero";
             this.pictureBox_bolero.Size = new System.Drawing.Size(32, 32);
@@ -859,7 +948,7 @@ namespace TrackerOOT
             // 
             // pictureBox_minuet
             // 
-            this.pictureBox_minuet.Image = global::TrackerOOT.Properties.Resources.minuet;
+            this.pictureBox_minuet.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_minuet.Image")));
             this.pictureBox_minuet.Location = new System.Drawing.Point(94, 506);
             this.pictureBox_minuet.Name = "pictureBox_minuet";
             this.pictureBox_minuet.Size = new System.Drawing.Size(32, 32);
@@ -869,7 +958,7 @@ namespace TrackerOOT
             // 
             // pictureBox_song_of_storms
             // 
-            this.pictureBox_song_of_storms.Image = global::TrackerOOT.Properties.Resources.song_of_storms;
+            this.pictureBox_song_of_storms.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_song_of_storms.Image")));
             this.pictureBox_song_of_storms.Location = new System.Drawing.Point(56, 506);
             this.pictureBox_song_of_storms.Name = "pictureBox_song_of_storms";
             this.pictureBox_song_of_storms.Size = new System.Drawing.Size(32, 32);
@@ -879,7 +968,7 @@ namespace TrackerOOT
             // 
             // pictureBox_song_of_time
             // 
-            this.pictureBox_song_of_time.Image = global::TrackerOOT.Properties.Resources.song_of_time1;
+            this.pictureBox_song_of_time.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_song_of_time.Image")));
             this.pictureBox_song_of_time.Location = new System.Drawing.Point(18, 506);
             this.pictureBox_song_of_time.Name = "pictureBox_song_of_time";
             this.pictureBox_song_of_time.Size = new System.Drawing.Size(32, 32);
@@ -889,7 +978,7 @@ namespace TrackerOOT
             // 
             // pictureBox_suns_song
             // 
-            this.pictureBox_suns_song.Image = global::TrackerOOT.Properties.Resources.suns_song;
+            this.pictureBox_suns_song.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_suns_song.Image")));
             this.pictureBox_suns_song.Location = new System.Drawing.Point(132, 468);
             this.pictureBox_suns_song.Name = "pictureBox_suns_song";
             this.pictureBox_suns_song.Size = new System.Drawing.Size(32, 32);
@@ -899,7 +988,7 @@ namespace TrackerOOT
             // 
             // pictureBox_saria
             // 
-            this.pictureBox_saria.Image = global::TrackerOOT.Properties.Resources.saria;
+            this.pictureBox_saria.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_saria.Image")));
             this.pictureBox_saria.Location = new System.Drawing.Point(94, 468);
             this.pictureBox_saria.Name = "pictureBox_saria";
             this.pictureBox_saria.Size = new System.Drawing.Size(32, 32);
@@ -909,7 +998,7 @@ namespace TrackerOOT
             // 
             // pictureBox_epona
             // 
-            this.pictureBox_epona.Image = global::TrackerOOT.Properties.Resources.epona;
+            this.pictureBox_epona.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_epona.Image")));
             this.pictureBox_epona.Location = new System.Drawing.Point(56, 468);
             this.pictureBox_epona.Name = "pictureBox_epona";
             this.pictureBox_epona.Size = new System.Drawing.Size(32, 32);
@@ -929,7 +1018,7 @@ namespace TrackerOOT
             // 
             // pictureBox_magic_meter
             // 
-            this.pictureBox_magic_meter.Image = global::TrackerOOT.Properties.Resources.large_magic_jarpng;
+            this.pictureBox_magic_meter.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_magic_meter.Image")));
             this.pictureBox_magic_meter.Location = new System.Drawing.Point(343, 544);
             this.pictureBox_magic_meter.Name = "pictureBox_magic_meter";
             this.pictureBox_magic_meter.Size = new System.Drawing.Size(32, 32);
@@ -939,7 +1028,7 @@ namespace TrackerOOT
             // 
             // pictureBox_wallet
             // 
-            this.pictureBox_wallet.Image = global::TrackerOOT.Properties.Resources.wallet;
+            this.pictureBox_wallet.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_wallet.Image")));
             this.pictureBox_wallet.Location = new System.Drawing.Point(460, 506);
             this.pictureBox_wallet.Name = "pictureBox_wallet";
             this.pictureBox_wallet.Size = new System.Drawing.Size(32, 32);
@@ -949,7 +1038,7 @@ namespace TrackerOOT
             // 
             // pictureBox_prescription
             // 
-            this.pictureBox_prescription.Image = global::TrackerOOT.Properties.Resources.prescription;
+            this.pictureBox_prescription.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_prescription.Image")));
             this.pictureBox_prescription.Location = new System.Drawing.Point(343, 506);
             this.pictureBox_prescription.Name = "pictureBox_prescription";
             this.pictureBox_prescription.Size = new System.Drawing.Size(32, 32);
@@ -959,7 +1048,7 @@ namespace TrackerOOT
             // 
             // pictureBox_lens
             // 
-            this.pictureBox_lens.Image = global::TrackerOOT.Properties.Resources.lens;
+            this.pictureBox_lens.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_lens.Image")));
             this.pictureBox_lens.Location = new System.Drawing.Point(343, 468);
             this.pictureBox_lens.Name = "pictureBox_lens";
             this.pictureBox_lens.Size = new System.Drawing.Size(32, 32);
@@ -969,7 +1058,7 @@ namespace TrackerOOT
             // 
             // pictureBox_rutos_letter
             // 
-            this.pictureBox_rutos_letter.Image = global::TrackerOOT.Properties.Resources.rutos_letter;
+            this.pictureBox_rutos_letter.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_rutos_letter.Image")));
             this.pictureBox_rutos_letter.Location = new System.Drawing.Point(229, 506);
             this.pictureBox_rutos_letter.Name = "pictureBox_rutos_letter";
             this.pictureBox_rutos_letter.Size = new System.Drawing.Size(32, 32);
@@ -979,7 +1068,7 @@ namespace TrackerOOT
             // 
             // pictureBox_big_poe
             // 
-            this.pictureBox_big_poe.Image = global::TrackerOOT.Properties.Resources.big_poe;
+            this.pictureBox_big_poe.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_big_poe.Image")));
             this.pictureBox_big_poe.Location = new System.Drawing.Point(267, 506);
             this.pictureBox_big_poe.Name = "pictureBox_big_poe";
             this.pictureBox_big_poe.Size = new System.Drawing.Size(32, 32);
@@ -989,7 +1078,7 @@ namespace TrackerOOT
             // 
             // pictureBox_strength
             // 
-            this.pictureBox_strength.Image = global::TrackerOOT.Properties.Resources.strength;
+            this.pictureBox_strength.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_strength.Image")));
             this.pictureBox_strength.Location = new System.Drawing.Point(305, 468);
             this.pictureBox_strength.Name = "pictureBox_strength";
             this.pictureBox_strength.Size = new System.Drawing.Size(32, 32);
@@ -999,7 +1088,7 @@ namespace TrackerOOT
             // 
             // pictureBox_slingshot
             // 
-            this.pictureBox_slingshot.Image = global::TrackerOOT.Properties.Resources.slingshot;
+            this.pictureBox_slingshot.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_slingshot.Image")));
             this.pictureBox_slingshot.Location = new System.Drawing.Point(191, 468);
             this.pictureBox_slingshot.Name = "pictureBox_slingshot";
             this.pictureBox_slingshot.Size = new System.Drawing.Size(32, 32);
@@ -1009,7 +1098,7 @@ namespace TrackerOOT
             // 
             // pictureBox_bottle
             // 
-            this.pictureBox_bottle.Image = global::TrackerOOT.Properties.Resources.bottle;
+            this.pictureBox_bottle.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_bottle.Image")));
             this.pictureBox_bottle.Location = new System.Drawing.Point(305, 506);
             this.pictureBox_bottle.Name = "pictureBox_bottle";
             this.pictureBox_bottle.Size = new System.Drawing.Size(32, 32);
@@ -1019,7 +1108,7 @@ namespace TrackerOOT
             // 
             // pictureBox_goron_tunic
             // 
-            this.pictureBox_goron_tunic.Image = global::TrackerOOT.Properties.Resources.goron_tunic;
+            this.pictureBox_goron_tunic.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_goron_tunic.Image")));
             this.pictureBox_goron_tunic.Location = new System.Drawing.Point(460, 468);
             this.pictureBox_goron_tunic.Name = "pictureBox_goron_tunic";
             this.pictureBox_goron_tunic.Size = new System.Drawing.Size(32, 32);
@@ -1029,7 +1118,7 @@ namespace TrackerOOT
             // 
             // pictureBox_zora_tunic
             // 
-            this.pictureBox_zora_tunic.Image = global::TrackerOOT.Properties.Resources.zora_tunic;
+            this.pictureBox_zora_tunic.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_zora_tunic.Image")));
             this.pictureBox_zora_tunic.Location = new System.Drawing.Point(422, 468);
             this.pictureBox_zora_tunic.Name = "pictureBox_zora_tunic";
             this.pictureBox_zora_tunic.Size = new System.Drawing.Size(32, 32);
@@ -1039,7 +1128,7 @@ namespace TrackerOOT
             // 
             // pictureBox_bgs
             // 
-            this.pictureBox_bgs.Image = global::TrackerOOT.Properties.Resources.bgs;
+            this.pictureBox_bgs.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_bgs.Image")));
             this.pictureBox_bgs.Location = new System.Drawing.Point(384, 468);
             this.pictureBox_bgs.Name = "pictureBox_bgs";
             this.pictureBox_bgs.Size = new System.Drawing.Size(32, 32);
@@ -1049,7 +1138,7 @@ namespace TrackerOOT
             // 
             // pictureBox_scale
             // 
-            this.pictureBox_scale.Image = global::TrackerOOT.Properties.Resources.scale;
+            this.pictureBox_scale.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_scale.Image")));
             this.pictureBox_scale.Location = new System.Drawing.Point(305, 544);
             this.pictureBox_scale.Name = "pictureBox_scale";
             this.pictureBox_scale.Size = new System.Drawing.Size(32, 32);
@@ -1059,7 +1148,7 @@ namespace TrackerOOT
             // 
             // pictureBox_hover_boots
             // 
-            this.pictureBox_hover_boots.Image = global::TrackerOOT.Properties.Resources.hover_boots;
+            this.pictureBox_hover_boots.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_hover_boots.Image")));
             this.pictureBox_hover_boots.Location = new System.Drawing.Point(384, 506);
             this.pictureBox_hover_boots.Name = "pictureBox_hover_boots";
             this.pictureBox_hover_boots.Size = new System.Drawing.Size(32, 32);
@@ -1069,7 +1158,7 @@ namespace TrackerOOT
             // 
             // pictureBox_hammer
             // 
-            this.pictureBox_hammer.Image = global::TrackerOOT.Properties.Resources.hammer;
+            this.pictureBox_hammer.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_hammer.Image")));
             this.pictureBox_hammer.Location = new System.Drawing.Point(267, 468);
             this.pictureBox_hammer.Name = "pictureBox_hammer";
             this.pictureBox_hammer.Size = new System.Drawing.Size(32, 32);
@@ -1079,7 +1168,7 @@ namespace TrackerOOT
             // 
             // pictureBox_farores_wind
             // 
-            this.pictureBox_farores_wind.Image = global::TrackerOOT.Properties.Resources.farores_wind;
+            this.pictureBox_farores_wind.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_farores_wind.Image")));
             this.pictureBox_farores_wind.Location = new System.Drawing.Point(305, 430);
             this.pictureBox_farores_wind.Name = "pictureBox_farores_wind";
             this.pictureBox_farores_wind.Size = new System.Drawing.Size(32, 32);
@@ -1089,7 +1178,7 @@ namespace TrackerOOT
             // 
             // pictureBox_dins_fire
             // 
-            this.pictureBox_dins_fire.Image = global::TrackerOOT.Properties.Resources.dins_fire;
+            this.pictureBox_dins_fire.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_dins_fire.Image")));
             this.pictureBox_dins_fire.Location = new System.Drawing.Point(267, 430);
             this.pictureBox_dins_fire.Name = "pictureBox_dins_fire";
             this.pictureBox_dins_fire.Size = new System.Drawing.Size(32, 32);
@@ -1099,7 +1188,7 @@ namespace TrackerOOT
             // 
             // pictureBox_hookshot
             // 
-            this.pictureBox_hookshot.Image = global::TrackerOOT.Properties.Resources.hookshot;
+            this.pictureBox_hookshot.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_hookshot.Image")));
             this.pictureBox_hookshot.Location = new System.Drawing.Point(229, 468);
             this.pictureBox_hookshot.Name = "pictureBox_hookshot";
             this.pictureBox_hookshot.Size = new System.Drawing.Size(32, 32);
@@ -1109,7 +1198,7 @@ namespace TrackerOOT
             // 
             // pictureBox_boomerang
             // 
-            this.pictureBox_boomerang.Image = global::TrackerOOT.Properties.Resources.boomerang;
+            this.pictureBox_boomerang.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_boomerang.Image")));
             this.pictureBox_boomerang.Location = new System.Drawing.Point(191, 506);
             this.pictureBox_boomerang.Name = "pictureBox_boomerang";
             this.pictureBox_boomerang.Size = new System.Drawing.Size(32, 32);
@@ -1119,7 +1208,7 @@ namespace TrackerOOT
             // 
             // pictureBox_mirror_shield
             // 
-            this.pictureBox_mirror_shield.Image = global::TrackerOOT.Properties.Resources.mirror_shield;
+            this.pictureBox_mirror_shield.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_mirror_shield.Image")));
             this.pictureBox_mirror_shield.Location = new System.Drawing.Point(460, 430);
             this.pictureBox_mirror_shield.Name = "pictureBox_mirror_shield";
             this.pictureBox_mirror_shield.Size = new System.Drawing.Size(32, 32);
@@ -1129,7 +1218,7 @@ namespace TrackerOOT
             // 
             // pictureBox_hylian_shield
             // 
-            this.pictureBox_hylian_shield.Image = global::TrackerOOT.Properties.Resources.hylian_shield;
+            this.pictureBox_hylian_shield.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_hylian_shield.Image")));
             this.pictureBox_hylian_shield.Location = new System.Drawing.Point(422, 430);
             this.pictureBox_hylian_shield.Name = "pictureBox_hylian_shield";
             this.pictureBox_hylian_shield.Size = new System.Drawing.Size(32, 32);
@@ -1139,7 +1228,7 @@ namespace TrackerOOT
             // 
             // pictureBox_kokiri_shield
             // 
-            this.pictureBox_kokiri_shield.Image = global::TrackerOOT.Properties.Resources.kokiri_shield;
+            this.pictureBox_kokiri_shield.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_kokiri_shield.Image")));
             this.pictureBox_kokiri_shield.Location = new System.Drawing.Point(384, 430);
             this.pictureBox_kokiri_shield.Name = "pictureBox_kokiri_shield";
             this.pictureBox_kokiri_shield.Size = new System.Drawing.Size(32, 32);
@@ -1149,7 +1238,7 @@ namespace TrackerOOT
             // 
             // pictureBox_bchu
             // 
-            this.pictureBox_bchu.Image = global::TrackerOOT.Properties.Resources.bomb_chu;
+            this.pictureBox_bchu.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_bchu.Image")));
             this.pictureBox_bchu.Location = new System.Drawing.Point(343, 430);
             this.pictureBox_bchu.Name = "pictureBox_bchu";
             this.pictureBox_bchu.Size = new System.Drawing.Size(32, 32);
@@ -1159,7 +1248,7 @@ namespace TrackerOOT
             // 
             // pictureBox_iron_boots
             // 
-            this.pictureBox_iron_boots.Image = global::TrackerOOT.Properties.Resources.iron_boots;
+            this.pictureBox_iron_boots.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_iron_boots.Image")));
             this.pictureBox_iron_boots.Location = new System.Drawing.Point(422, 506);
             this.pictureBox_iron_boots.Name = "pictureBox_iron_boots";
             this.pictureBox_iron_boots.Size = new System.Drawing.Size(32, 32);
@@ -1169,7 +1258,7 @@ namespace TrackerOOT
             // 
             // pictureBox_light_arrow
             // 
-            this.pictureBox_light_arrow.Image = global::TrackerOOT.Properties.Resources.light_arrow;
+            this.pictureBox_light_arrow.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_light_arrow.Image")));
             this.pictureBox_light_arrow.Location = new System.Drawing.Point(267, 544);
             this.pictureBox_light_arrow.Name = "pictureBox_light_arrow";
             this.pictureBox_light_arrow.Size = new System.Drawing.Size(32, 32);
@@ -1179,7 +1268,7 @@ namespace TrackerOOT
             // 
             // pictureBox_ice_arrow
             // 
-            this.pictureBox_ice_arrow.Image = global::TrackerOOT.Properties.Resources.ice_arrow;
+            this.pictureBox_ice_arrow.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_ice_arrow.Image")));
             this.pictureBox_ice_arrow.Location = new System.Drawing.Point(229, 544);
             this.pictureBox_ice_arrow.Name = "pictureBox_ice_arrow";
             this.pictureBox_ice_arrow.Size = new System.Drawing.Size(32, 32);
@@ -1189,7 +1278,7 @@ namespace TrackerOOT
             // 
             // pictureBox_fire_arrow
             // 
-            this.pictureBox_fire_arrow.Image = global::TrackerOOT.Properties.Resources.fire_arrow;
+            this.pictureBox_fire_arrow.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_fire_arrow.Image")));
             this.pictureBox_fire_arrow.Location = new System.Drawing.Point(191, 544);
             this.pictureBox_fire_arrow.Name = "pictureBox_fire_arrow";
             this.pictureBox_fire_arrow.Size = new System.Drawing.Size(32, 32);
@@ -1200,7 +1289,7 @@ namespace TrackerOOT
             // pictureBox_bow
             // 
             this.pictureBox_bow.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_bow.Image = global::TrackerOOT.Properties.Resources.bow;
+            this.pictureBox_bow.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_bow.Image")));
             this.pictureBox_bow.Location = new System.Drawing.Point(229, 430);
             this.pictureBox_bow.Name = "pictureBox_bow";
             this.pictureBox_bow.Size = new System.Drawing.Size(32, 32);
@@ -1210,97 +1299,13 @@ namespace TrackerOOT
             // 
             // pictureBox_bombs
             // 
-            this.pictureBox_bombs.Image = global::TrackerOOT.Properties.Resources.bombs;
+            this.pictureBox_bombs.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_bombs.Image")));
             this.pictureBox_bombs.Location = new System.Drawing.Point(191, 430);
             this.pictureBox_bombs.Name = "pictureBox_bombs";
             this.pictureBox_bombs.Size = new System.Drawing.Size(32, 32);
             this.pictureBox_bombs.TabIndex = 57;
             this.pictureBox_bombs.TabStop = false;
             this.pictureBox_bombs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown_1);
-            // 
-            // pictureBox_oot_hint
-            // 
-            this.pictureBox_oot_hint.Image = global::TrackerOOT.Properties.Resources.gossip_stone_2;
-            this.pictureBox_oot_hint.InitialImage = global::TrackerOOT.Properties.Resources.gossip_stone;
-            this.pictureBox_oot_hint.Location = new System.Drawing.Point(48, 223);
-            this.pictureBox_oot_hint.Name = "pictureBox_oot_hint";
-            this.pictureBox_oot_hint.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_oot_hint.TabIndex = 91;
-            this.pictureBox_oot_hint.TabStop = false;
-            this.pictureBox_oot_hint.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_oot_hint_DragDrop);
-            this.pictureBox_oot_hint.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_oot_hint_DragEnter);
-            // 
-            // pictureBox_frogs
-            // 
-            this.pictureBox_frogs.Image = global::TrackerOOT.Properties.Resources.gossip_stone_2;
-            this.pictureBox_frogs.InitialImage = global::TrackerOOT.Properties.Resources.gossip_stone;
-            this.pictureBox_frogs.Location = new System.Drawing.Point(111, 189);
-            this.pictureBox_frogs.Name = "pictureBox_frogs";
-            this.pictureBox_frogs.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_frogs.TabIndex = 90;
-            this.pictureBox_frogs.TabStop = false;
-            this.pictureBox_frogs.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_frogs_DragDrop);
-            this.pictureBox_frogs.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_frogs_DragEnter);
-            // 
-            // pictureBox_biggoron
-            // 
-            this.pictureBox_biggoron.Image = global::TrackerOOT.Properties.Resources.gossip_stone_2;
-            this.pictureBox_biggoron.InitialImage = global::TrackerOOT.Properties.Resources.gossip_stone;
-            this.pictureBox_biggoron.Location = new System.Drawing.Point(111, 155);
-            this.pictureBox_biggoron.Name = "pictureBox_biggoron";
-            this.pictureBox_biggoron.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_biggoron.TabIndex = 89;
-            this.pictureBox_biggoron.TabStop = false;
-            this.pictureBox_biggoron.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_biggoron_DragDrop);
-            this.pictureBox_biggoron.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_biggoron_DragEnter);
-            // 
-            // pictureBox_skullMask
-            // 
-            this.pictureBox_skullMask.Image = global::TrackerOOT.Properties.Resources.gossip_stone_2;
-            this.pictureBox_skullMask.InitialImage = global::TrackerOOT.Properties.Resources.gossip_stone;
-            this.pictureBox_skullMask.Location = new System.Drawing.Point(111, 121);
-            this.pictureBox_skullMask.Name = "pictureBox_skullMask";
-            this.pictureBox_skullMask.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_skullMask.TabIndex = 88;
-            this.pictureBox_skullMask.TabStop = false;
-            this.pictureBox_skullMask.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_skullMask_DragDrop);
-            this.pictureBox_skullMask.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_skullMask_DragEnter);
-            // 
-            // pictureBox_50skulls
-            // 
-            this.pictureBox_50skulls.Image = global::TrackerOOT.Properties.Resources.gossip_stone_2;
-            this.pictureBox_50skulls.InitialImage = global::TrackerOOT.Properties.Resources.gossip_stone;
-            this.pictureBox_50skulls.Location = new System.Drawing.Point(111, 87);
-            this.pictureBox_50skulls.Name = "pictureBox_50skulls";
-            this.pictureBox_50skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_50skulls.TabIndex = 87;
-            this.pictureBox_50skulls.TabStop = false;
-            this.pictureBox_50skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_50skulls_DragDrop);
-            this.pictureBox_50skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_50skulls_DragEnter);
-            // 
-            // pictureBox_40skulls
-            // 
-            this.pictureBox_40skulls.Image = global::TrackerOOT.Properties.Resources.gossip_stone_2;
-            this.pictureBox_40skulls.InitialImage = global::TrackerOOT.Properties.Resources.gossip_stone;
-            this.pictureBox_40skulls.Location = new System.Drawing.Point(111, 53);
-            this.pictureBox_40skulls.Name = "pictureBox_40skulls";
-            this.pictureBox_40skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_40skulls.TabIndex = 86;
-            this.pictureBox_40skulls.TabStop = false;
-            this.pictureBox_40skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_40skulls_DragDrop);
-            this.pictureBox_40skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_40skulls_DragEnter);
-            // 
-            // pictureBox_30skulls
-            // 
-            this.pictureBox_30skulls.Image = global::TrackerOOT.Properties.Resources.gossip_stone_2;
-            this.pictureBox_30skulls.InitialImage = global::TrackerOOT.Properties.Resources.gossip_stone;
-            this.pictureBox_30skulls.Location = new System.Drawing.Point(111, 19);
-            this.pictureBox_30skulls.Name = "pictureBox_30skulls";
-            this.pictureBox_30skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_30skulls.TabIndex = 85;
-            this.pictureBox_30skulls.TabStop = false;
-            this.pictureBox_30skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_30skulls_DragDrop);
-            this.pictureBox_30skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_30skulls_DragEnter);
             // 
             // Form1
             // 
@@ -1365,6 +1370,13 @@ namespace TrackerOOT
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oot_hint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_frogs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_biggoron)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_skullMask)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_50skulls)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_40skulls)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_30skulls)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1411,13 +1423,6 @@ namespace TrackerOOT
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fire_arrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bombs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oot_hint)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_frogs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_biggoron)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_skullMask)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_50skulls)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_40skulls)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_30skulls)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
