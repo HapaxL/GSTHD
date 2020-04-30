@@ -7,7 +7,7 @@
     <ProjectGuid>{20F88CAF-011B-40C2-85AC-D21255C0876B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>TrackerOOT</RootNamespace>
-    <AssemblyName>OotGossipStonesTracker_v1.1</AssemblyName>
+    <AssemblyName>OotGossipStonesTracker_v1.2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -82,6 +85,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -91,12 +95,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\oot_places.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\noix.png" />
+    <None Include="Resources\img\noix.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -109,6 +114,144 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\sticks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\bombs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\bow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\fire_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\ice_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\light_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\boomerang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\hookshot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\dins_fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\farores_wind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\strength.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\slingshot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\bottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\big_poe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\rutos_letter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\hammer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\iron_boots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\hover_boots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\kokiri_shield.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\hylian_shield.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\mirror_shield.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\zora_tunic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\goron_tunic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\bomb_chu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\scale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\bgs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\lens.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\prescription.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\large-magic-jarpng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\gossip_stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\gossip_stone_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\zeldas_lullaby.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\epona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\saria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\suns_song.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\song_of_time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\song_of_time1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\song_of_storms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\minuet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\bolero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\serenade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\requiem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\nocturne.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\prelude.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\dead.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

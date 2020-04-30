@@ -1,0 +1,48 @@
+{
+	"============= DESERT" : [
+		"Gerudo Valley",
+		"Gerudo Fortress",
+		"Gerudo Training Grounds",
+		"Haunted Wasteland",
+		"Desert Colossus",
+		"Spirit Temple"
+	],
+	"============= FOREST" : [
+		"Kokiri Forest",
+		"Lost Woods",            
+		"Sacred Forest Meadow",
+		"Deku Tree",
+		"Forest Temple"  
+	],
+	"============= GANON" : [
+		"Outside Ganon's Castle",
+		"Ganon's Castle"
+	],
+	"============= HYRULE" : [
+		"Hyrule Field",
+		"Hyrule Castle",
+		"Market",
+		"Lon Lon Ranch",
+		"Temple of Time"
+	],
+	"============= MOUNTAIN" : [
+		"Kakariko",
+		"Bottom of the Well",
+		"Graveyard",
+		"Goron City",
+		"Death Mountain Trails",
+		"Death Mountain Crater",
+		"Dodongo's Cavern",
+		"Fire Temple",
+		"Shadow Temple"
+	],
+	"============= ZORA" : [
+		"Zora's River",
+		"Zora's Domain",
+		"Zora's Fountain",            
+		"Ice Cavern",
+		"Lake Hylia",
+		"Jabu Jabu's Belly",
+		"Water Temple",
+	]	
+}
