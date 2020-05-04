@@ -19,6 +19,20 @@ namespace TrackerOOT
     {
         HashSet<String> placesByCategories = new HashSet<String>();
         SortedSet<String> placesAlphabeticalOrder = new SortedSet<String>();
+        List<String> listDungeons = new List<string>();
+
+        List<Image> bottleUpgrade = new List<Image>();
+        List<Image> strengthUpgrade = new List<Image>();
+        List<Image> hookUpgrade = new List<Image>();
+        List<Image> scaleUpgrade = new List<Image>();
+        List<Image> ocarinaUpgrade = new List<Image>();
+        List<Image> biggoronQuestUpgrade = new List<Image>();
+        List<Image> maskQuestUpgrade = new List<Image>();
+        List<Image> magicUpgrade = new List<Image>();
+        List<Image> walletUpgrade = new List<Image>();
+
+
+        bool isMouseDown = false;
 
         bool dead30skulls = false;
         bool dead40skulls = false;
@@ -26,6 +40,16 @@ namespace TrackerOOT
         bool deadSkullMask = false;
         bool deadBiggoron = false;
         bool deadFrogs = false;
+
+        bool isColoredGreenMedaillon = false;
+        bool isColoredRedMedaillon = false;
+        bool isColoredBlueMedaillon = false;
+        bool isColoredOrangeMedaillon = false;
+        bool isColoredPurpleMedaillon = false;
+        bool isColoredYellowMedaillon = false;
+        bool isColoredKokiriStone = false;
+        bool isColoredGoronStone = false;
+        bool isColoredZoraStone = false;
 
         bool chronoRunning = false;
 
@@ -79,6 +103,21 @@ namespace TrackerOOT
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            listDungeons = new List<string>
+            {
+                "????",
+                "FREE",
+                "DEKU",
+                "DC",
+                "JABU",
+                "FOREST",
+                "FIRE",
+                "WATER",
+                "SPIRIT",
+                "SHADOW"
+            };
+            this.label_green_medaillon.Text = listDungeons[0];
+
             placesAlphabeticalOrder.Add("");
             placesByCategories.Add("");
 
@@ -105,15 +144,196 @@ namespace TrackerOOT
             pictureBox_skullMask.AllowDrop = true;
             pictureBox_biggoron.AllowDrop = true;
             pictureBox_frogs.AllowDrop = true;
-
             
             panel_item_woth1.AllowDrop = true;
             panel_item_woth2.AllowDrop = true;
             panel_item_woth3.AllowDrop = true;
             panel_item_woth4.AllowDrop = true;
             panel_item_woth5.AllowDrop = true;
+
+            setListUpgrade();
+            setPictureBoxTag();
         }
 
+        private void setListUpgrade()
+        {
+            bottleUpgrade = new List<Image>
+            {
+                Properties.Resources.bottle_empty_bw,
+                Properties.Resources.bottle_empty,
+                Properties.Resources.bottle_big_poe,
+                Properties.Resources.bottle_blue_fire,
+                Properties.Resources.bottle_bugs,
+                Properties.Resources.bottle_poe,
+                Properties.Resources.bottle_fairy,
+                Properties.Resources.bottle_milk,
+                Properties.Resources.bottle_green,
+                Properties.Resources.bottle_red,
+                Properties.Resources.bottle_blue
+            };
+            this.pictureBox_bottle2.Image = bottleUpgrade[0];
+            this.pictureBox_bottle3.Image = bottleUpgrade[0];
+            this.pictureBox_bottle4.Image = bottleUpgrade[0];
+
+            strengthUpgrade = new List<Image>
+            {
+                Properties.Resources.strength_bw,
+                Properties.Resources.strength,
+                Properties.Resources.strength2,
+                Properties.Resources.strength3
+            };
+            this.pictureBox_strength.Image = strengthUpgrade[0];
+
+            hookUpgrade = new List<Image>
+            {
+                Properties.Resources.hookshot_bw,
+                Properties.Resources.hookshot,
+                Properties.Resources.longshot,
+            };
+            this.pictureBox_hookshot.Image = hookUpgrade[0];
+
+            scaleUpgrade = new List<Image>
+            {
+                Properties.Resources.scale_bw,
+                Properties.Resources.scale,
+                Properties.Resources.golden_scale
+            };
+            this.pictureBox_scale.Image = scaleUpgrade[0];
+
+            ocarinaUpgrade = new List<Image>
+            {
+                Properties.Resources.ocarina_bw,
+                Properties.Resources.ocarina,
+                Properties.Resources.ocarina_of_time,
+            };
+            this.pictureBox_ocarina.Image = ocarinaUpgrade[0];
+
+            biggoronQuestUpgrade = new List<Image>
+            {
+                Properties.Resources.egg_bw,
+                Properties.Resources.egg,
+                Properties.Resources.chicken,
+                Properties.Resources.blue_chicken,
+                Properties.Resources.mushroom_powder,
+                Properties.Resources.saw,
+                Properties.Resources.broken_bgs,
+                Properties.Resources.prescription,
+                Properties.Resources.kz_frog,
+                Properties.Resources.eye_drops,
+                Properties.Resources.claim_check
+            };
+            this.pictureBox_egg_biggoron.Image = biggoronQuestUpgrade[0];
+
+            maskQuestUpgrade = new List<Image>
+            {
+                Properties.Resources.egg_bw,
+                Properties.Resources.egg,
+                Properties.Resources.chicken,
+                Properties.Resources.zeldas_letter,
+                Properties.Resources.keaton_mask,
+                Properties.Resources.skull_mask2,
+                Properties.Resources.spooky_mask,
+                Properties.Resources.bunny_hood,
+                Properties.Resources.mask_of_truth,
+                Properties.Resources.goron_mask,
+                Properties.Resources.zora_mask,
+                Properties.Resources.gerudo_mask
+            };
+            this.pictureBox_egg_masks.Image = maskQuestUpgrade[0];
+
+            magicUpgrade = new List<Image>
+            { 
+                Properties.Resources.magic_bw,
+                Properties.Resources.magic,
+                Properties.Resources.double_magic,
+            };
+            this.pictureBox_magic.Image = magicUpgrade[0];
+
+            walletUpgrade = new List<Image>
+            {
+                 Properties.Resources.wallet,
+                 Properties.Resources.wallet2,
+                 Properties.Resources.wallet3,
+            };
+            this.pictureBox_wallet.Image = walletUpgrade[0];
+        }
+        private void setPictureBoxTag()
+        {
+            //row1
+            pictureBox_sticks.Image.Tag = "sticks";
+            pictureBox_nuts.Image.Tag = "nuts";
+            pictureBox_bombs.Image.Tag = "bombs";
+            pictureBox_bow.Image.Tag = "bow";
+            pictureBox_fire_arrow.Image.Tag = "fire_arrow";
+            pictureBox_dins_fire.Image.Tag = "dins_fire";
+            //row2
+            pictureBox_slingshot.Image.Tag = "slingshot";
+            pictureBox_ocarina.Image.Tag = "ocarina";
+            pictureBox_bchu.Image.Tag = "bomb_chu";
+            pictureBox_hookshot.Image.Tag = "hookshot";
+            pictureBox_ice_arrow.Image.Tag = "ice_arrow";
+            pictureBox_farores_wind.Image.Tag = "farores_wind";
+            //row3
+            pictureBox_boomerang.Image.Tag = "boomerang";
+            pictureBox_lens.Image.Tag = "lens";
+            pictureBox_beans.Image.Tag = "beans";
+            pictureBox_hammer.Image.Tag = "hammer";
+            pictureBox_light_arrow.Image.Tag = "light_arrow";
+            pictureBox_nairus_love.Image.Tag = "nairus_love";
+            //row4
+            pictureBox_bottle1.Image.Tag = "bottle_rutos_letter";
+            pictureBox_bottle2.Image.Tag = "bottle2";
+            pictureBox_bottle3.Image.Tag = "bottle3";
+            pictureBox_bottle4.Image.Tag = "bottle4";
+            pictureBox_egg_biggoron.Image.Tag = "egg_biggoron";
+            pictureBox_egg_masks.Image.Tag = "egg_masks";
+
+            //column1
+            pictureBox_kokiri_sword.Image.Tag = "kokiri_sword";
+            pictureBox_master_sword.Image.Tag = "master_sword";
+            pictureBox_bgs.Image.Tag = "bgs";
+            pictureBox_kokiri_shield.Image.Tag = "kokiri_shield";
+            pictureBox_hylian_shield.Image.Tag = "hylian_shield";
+            pictureBox_mirror_shield.Image.Tag = "mirror_shield";
+            pictureBox_green_tunic.Image.Tag = "green_tunic";
+            pictureBox_goron_tunic.Image.Tag = "goron_tunic";
+            pictureBox_zora_tunic.Image.Tag = "zora_tunic";
+            pictureBox_boots.Image.Tag = "boots";
+            pictureBox_iron_boots.Image.Tag = "iron_boots";
+            pictureBox_hover_boots.Image.Tag = "hover_boots";
+            //column2
+            pictureBox_magic.Image.Tag = "magic";
+            pictureBox_wallet.Image.Tag = "wallet";
+            pictureBox_gerudo_card.Image.Tag = "gerudo_card";
+            pictureBox_stone_of_agony.Image.Tag = "stone_of_agony";
+            pictureBox_scale.Image.Tag = "scale";
+            pictureBox_strength.Image.Tag = "strength";
+            pictureBox_kokiri_stone.Image.Tag = "kokiri_stone";
+            pictureBox_goron_stone.Image.Tag = "goron_stone";
+            pictureBox_zora_stone.Image.Tag = "zora_stone";
+
+            //songs
+            pictureBox_ZL.Image.Tag = "zeldas_lullaby";
+            pictureBox_epona.Image.Tag = "epona";
+            pictureBox_saria.Image.Tag = "saria";
+            pictureBox_suns_song.Image.Tag = "suns_song";
+            pictureBox_song_of_time.Image.Tag = "song_of_time";
+            pictureBox_song_of_storms.Image.Tag = "song_of_storms";
+            pictureBox_minuet.Image.Tag = "minuet";
+            pictureBox_bolero.Image.Tag = "bolero";
+            pictureBox_serenade.Image.Tag = "serenade";
+            pictureBox_requiem.Image.Tag = "requiem";
+            pictureBox_nocturne.Image.Tag = "nocturne";
+            pictureBox_prelude.Image.Tag = "prelude";
+
+            //medaillons
+            pictureBox_green_medaillon.Image.Tag = "green_medaillon";
+            pictureBox_red_medaillon.Image.Tag = "red_medaillon";
+            pictureBox_blue_medaillon.Image.Tag = "blue_medaillon";
+            pictureBox_orange_medaillon.Image.Tag = "orange_medaillon";
+            pictureBox_purple_medaillon.Image.Tag = "purple_medaillon";
+            pictureBox_yellow_medaillon.Image.Tag = "yellow_medaillon";
+        }
         private void loadComboBoxData(String[] data)
         {
             comboBox_woth1.Items.Clear();
@@ -172,19 +392,9 @@ namespace TrackerOOT
             if (comboBox_woth5.SelectedIndex <= 0) label_woth5.Text = "0"; else label_woth5.Text = "1";
         }
 
-        void comboBox_barren1_DropDownClosed(object sender, EventArgs e)
+        void comboBox_barren_DropDownClosed(object sender, EventArgs e)
         {
-            this.BeginInvoke(new Action(() => { comboBox_barren1.Select(0, 0); }));
-        }
-
-        void comboBox_barren2_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() => { comboBox_barren2.Select(0, 0); }));
-        }
-
-        void comboBox_barren3_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() => { comboBox_barren3.Select(0, 0); }));
+            this.BeginInvoke(new Action(() => { ((ComboBox)sender).Select(0, 0); }));
         }
         #endregion
 
@@ -275,454 +485,227 @@ namespace TrackerOOT
         }
 
         #region DragEnter
-        private void pictureBox_oot_hint_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-
-        private void panel1_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-        private void panel_item_woth2_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-        private void panel_item_woth3_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-        private void panel_item_woth4_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-        private void panel_item_woth5_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-        private void pictureBox_30skulls_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-
-        private void pictureBox_40skulls_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-
-        private void pictureBox_50skulls_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-
-        private void pictureBox_skullMask_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-
-        private void pictureBox_biggoron_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = e.AllowedEffect;
-        }
-
-        private void pictureBox_frogs_DragEnter(object sender, DragEventArgs e)
+        private void object_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
         }
         #endregion
 
         #region DragDrop
-        private void imageWoth1_RightClick(object sender, MouseEventArgs e)
-        {
-            var image = ((PictureBox)sender);
-            if (e.Button == MouseButtons.Right)
-                panel_item_woth1.Controls.Remove(image);
-        }
-
-        private void imageWoth2_RightClick(object sender, MouseEventArgs e)
-        {
-            var image = ((PictureBox)sender);
-            if (e.Button == MouseButtons.Right)
-                panel_item_woth2.Controls.Remove(image);
-        }
-        private void imageWoth3_RightClick(object sender, MouseEventArgs e)
-        {
-            var image = ((PictureBox)sender);
-            if (e.Button == MouseButtons.Right)
-                panel_item_woth3.Controls.Remove(image);
-        }
-        private void imageWoth4_RightClick(object sender, MouseEventArgs e)
-        {
-            var image = ((PictureBox)sender);
-            if (e.Button == MouseButtons.Right)
-                panel_item_woth4.Controls.Remove(image);
-        }
-        private void imageWoth5_RightClick(object sender, MouseEventArgs e)
-        {
-            var image = ((PictureBox)sender);
-            if (e.Button == MouseButtons.Right)
-                panel_item_woth5.Controls.Remove(image);
-        }
-
-        private void panel1_DragDrop(object sender, DragEventArgs e)
+        private void panel_DragDrop(object sender, DragEventArgs e)
         {
             var coord = new Point();
+            var panel = (Panel)sender;
 
-            for (int i = 0; i < panel_item_woth1.Controls.Count; i++)
+            for (int i = 0; i < panel.Controls.Count; i++)
             {
-                coord = new Point(panel_item_woth1.Controls[i].Location.X + 32, panel_item_woth1.Controls[i].Location.Y);
+                coord = new Point(panel.Controls[i].Location.X + 32, panel.Controls[i].Location.Y);
             }
 
             var image = new PictureBox();
+            var tag = ((Bitmap)e.Data.GetData(DataFormats.Bitmap)).Tag.ToString().Replace("_bw", "");
             image.Size = new Size(32, 32);
-            image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
+            image.Image = (Image)Properties.Resources.ResourceManager.GetObject(tag);
+            image.Tag = tag;
             image.Location = coord;
-            image.MouseClick += new MouseEventHandler(imageWoth1_RightClick);
+            
+            image.MouseClick += new MouseEventHandler(imageWoth_RightClick);
 
-            panel_item_woth1.Controls.Add(image);
+            panel.Controls.Add(image);
         }
-        private void panel_item_woth2_DragDrop(object sender, DragEventArgs e)
+        private void imageWoth_RightClick(object sender, MouseEventArgs e)
         {
-            var coord = new Point();
-
-            for (int i = 0; i < panel_item_woth2.Controls.Count; i++)
-            {
-                coord = new Point(panel_item_woth2.Controls[i].Location.X + 32, panel_item_woth2.Controls[i].Location.Y);
-            }
-
-            var image = new PictureBox();
-            image.Size = new Size(32, 32);
-            image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-            image.Location = coord;
-            image.MouseClick += new MouseEventHandler(imageWoth2_RightClick);
-
-            panel_item_woth2.Controls.Add(image);
+            var image = ((PictureBox)sender);
+            if (e.Button == MouseButtons.Right)
+                image.Parent.Controls.Remove(image);
         }
-        private void panel_item_woth3_DragDrop(object sender, DragEventArgs e)
-        {
-            var coord = new Point();
 
-            for (int i = 0; i < panel_item_woth3.Controls.Count; i++)
-            {
-                coord = new Point(panel_item_woth3.Controls[i].Location.X + 32, panel_item_woth3.Controls[i].Location.Y);
-            }
-
-            var image = new PictureBox();
-            image.Size = new Size(32, 32);
-            image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-            image.Location = coord;
-            image.MouseClick += new MouseEventHandler(imageWoth3_RightClick);
-
-            panel_item_woth3.Controls.Add(image);
-        }
-        private void panel_item_woth4_DragDrop(object sender, DragEventArgs e)
+        private void pictureBox_DragDrop(object sender, DragEventArgs e)
         {
-            var coord = new Point();
-
-            for (int i = 0; i < panel_item_woth4.Controls.Count; i++)
-            {
-                coord = new Point(panel_item_woth4.Controls[i].Location.X + 32, panel_item_woth4.Controls[i].Location.Y);
-            }
-
-            var image = new PictureBox();
-            image.Size = new Size(32, 32);
-            image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-            image.Location = coord;
-            image.MouseClick += new MouseEventHandler(imageWoth4_RightClick);
-
-            panel_item_woth4.Controls.Add(image);
-        }
-        private void panel_item_woth5_DragDrop(object sender, DragEventArgs e)
-        {
-            var coord = new Point();
-
-            for (int i = 0; i < panel_item_woth5.Controls.Count; i++)
-            {
-                coord = new Point(panel_item_woth5.Controls[i].Location.X + 32, panel_item_woth5.Controls[i].Location.Y);
-            }
-
-            var image = new PictureBox();
-            image.Size = new Size(32, 32);
-            image.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-            image.Location = coord;
-            image.MouseClick += new MouseEventHandler(imageWoth5_RightClick);
-
-            panel_item_woth5.Controls.Add(image);
-        }
-        private void pictureBox_oot_hint_DragDrop(object sender, DragEventArgs e)
-        {
-            pictureBox_oot_hint.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-        }
-        private void pictureBox_30skulls_DragDrop(object sender, DragEventArgs e)
-        {
-            pictureBox_30skulls.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-        }
-        private void pictureBox_40skulls_DragDrop(object sender, DragEventArgs e)
-        {
-            pictureBox_40skulls.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-        }
-        private void pictureBox_50skulls_DragDrop(object sender, DragEventArgs e)
-        {
-            pictureBox_50skulls.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-        }
-        private void pictureBox_skullMask_DragDrop(object sender, DragEventArgs e)
-        {
-            pictureBox_skullMask.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-        }
-        private void pictureBox_biggoron_DragDrop(object sender, DragEventArgs e)
-        {
-            pictureBox_biggoron.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-        }
-        private void pictureBox_frogs_DragDrop(object sender, DragEventArgs e)
-        {
-            pictureBox_frogs.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
+            var imageTag = ((Bitmap)e.Data.GetData(DataFormats.Bitmap)).Tag.ToString().Replace("_bw", "");
+            var imageColor = (Image)Properties.Resources.ResourceManager.GetObject(imageTag);
+            ((PictureBox)sender).Image = imageColor;
         }
         #endregion
 
         #region MouseDown
-        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            pictureBox_bow.DoDragDrop(pictureBox_bow.Image, DragDropEffects.Copy);
+            if(e.Clicks != 1)
+                isMouseDown = false;
+            else isMouseDown = true;
         }
-        private void pictureBox1_MouseDown_1(object sender, MouseEventArgs e)
+        #endregion
+
+        #region MouseUp
+        private void pictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            pictureBox_bombs.DoDragDrop(pictureBox_bombs.Image, DragDropEffects.Copy);
-        }
-        private void pictureBox_ZL_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_ZL.DoDragDrop(pictureBox_ZL.Image, DragDropEffects.Copy);
-        }
-        private void pictureBox_epona_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_epona.DoDragDrop(pictureBox_epona.Image, DragDropEffects.Copy);
+            var pBox = (PictureBox)sender;
+            var imageTag = pBox.Image.Tag.ToString();
+            var imageColor = (Image)Properties.Resources.ResourceManager.GetObject(imageTag);
+            var imageBlackWhite = (Image)Properties.Resources.ResourceManager.GetObject(imageTag + "_bw");
+            isMouseDown = false;
+            
+            if (e.Button == MouseButtons.Left)
+            {
+                pBox.Image = imageColor;
+            }
+            if (e.Button == MouseButtons.Right)
+                pBox.Image = imageBlackWhite;
+
+            pBox.Image.Tag = imageTag;
         }
 
-        private void pictureBox_saria_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_MouseUp_Upgrade(PictureBox pBox, MouseButtons mouseButton, List<Image> listUpgrade)
         {
-            pictureBox_saria.DoDragDrop(pictureBox_saria.Image, DragDropEffects.Copy);
+            var imageTag = pBox.Image.Tag.ToString();
+            isMouseDown = false;
+
+            if (mouseButton == MouseButtons.Left)
+            {
+                var index = listUpgrade.IndexOf(pBox.Image);
+                if (index == listUpgrade.Count - 1)
+                    pBox.Image = listUpgrade[0];
+                else pBox.Image = listUpgrade[index + 1];
+            }
+            if (mouseButton == MouseButtons.Right)
+            {
+                var index = listUpgrade.IndexOf(pBox.Image);
+                if (index == 0)
+                    pBox.Image = listUpgrade[listUpgrade.Count - 1];
+                else pBox.Image = listUpgrade[index - 1];
+            }
+            pBox.Image.Tag = imageTag;
         }
 
-        private void pictureBox_suns_song_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_bottle_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
-            pictureBox_suns_song.DoDragDrop(pictureBox_suns_song.Image, DragDropEffects.Copy);
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, bottleUpgrade); 
         }
 
-        private void pictureBox_song_of_time_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_strength_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
-            pictureBox_song_of_time.DoDragDrop(pictureBox_song_of_time.Image, DragDropEffects.Copy);
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, strengthUpgrade);
         }
 
-        private void pictureBox_song_of_storms_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_scale_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
-            pictureBox_song_of_storms.DoDragDrop(pictureBox_song_of_storms.Image, DragDropEffects.Copy);
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, scaleUpgrade);
         }
 
-        private void pictureBox_minuet_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_ocarina_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
-            pictureBox_minuet.DoDragDrop(pictureBox_minuet.Image, DragDropEffects.Copy);
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, ocarinaUpgrade);
         }
 
-        private void pictureBox_bolero_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_hookshot_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
-            pictureBox_bolero.DoDragDrop(pictureBox_bolero.Image, DragDropEffects.Copy);
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, hookUpgrade);
         }
 
-        private void pictureBox_serenade_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_magic_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
-            pictureBox_serenade.DoDragDrop(pictureBox_serenade.Image, DragDropEffects.Copy);
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, magicUpgrade);
         }
 
-        private void pictureBox_requiem_MouseDown(object sender, MouseEventArgs e)
+        private void pictureBox_wallet_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
-            pictureBox_requiem.DoDragDrop(pictureBox_requiem.Image, DragDropEffects.Copy);
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, walletUpgrade);
+        }
+        private void pictureBox_biggoronQuest_MouseUp_Upgrade(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, biggoronQuestUpgrade);
+        }
+        private void pictureBox_maskQuest_MouseUp_Upgrade(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, maskQuestUpgrade);
         }
 
-        private void pictureBox_nocturne_MouseDown(object sender, MouseEventArgs e)
+        private void medaillons_MouseUp(PictureBox pBox, MouseButtons mouseButton, ref bool isColored, Label label_medaillon)
         {
-            pictureBox_nocturne.DoDragDrop(pictureBox_nocturne.Image, DragDropEffects.Copy);
-        }
+            var imageTag = pBox.Image.Tag.ToString();
+            var imageColor = (Image)Properties.Resources.ResourceManager.GetObject(imageTag);
+            var imageBlackWhite = (Image)Properties.Resources.ResourceManager.GetObject(imageTag + "_bw");
+            isMouseDown = false;
 
-        private void pictureBox_prelude_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_prelude.DoDragDrop(pictureBox_prelude.Image, DragDropEffects.Copy);
-        }
+            if (mouseButton == MouseButtons.Left)
+            {
+                if (isColored) pBox.Image = imageBlackWhite;
+                else pBox.Image = imageColor;
+                isColored = !isColored;
+            }
+            if (mouseButton == MouseButtons.Right)
+            {
+                var index = listDungeons.IndexOf(label_medaillon.Text);
+                if (index == listDungeons.Count-1)
+                    label_medaillon.Text = listDungeons[0];
+                else label_medaillon.Text = listDungeons[index + 1];
+            }
 
-        private void pictureBox_dins_fire_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_dins_fire.DoDragDrop(pictureBox_dins_fire.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_farores_wind_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_farores_wind.DoDragDrop(pictureBox_farores_wind.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_bchu_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_bchu.DoDragDrop(pictureBox_bchu.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_kokiri_shield_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_kokiri_shield.DoDragDrop(pictureBox_kokiri_shield.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_hylian_shield_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_hylian_shield.DoDragDrop(pictureBox_hylian_shield.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_mirror_shield_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_mirror_shield.DoDragDrop(pictureBox_mirror_shield.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_slingshot_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_slingshot.DoDragDrop(pictureBox_slingshot.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_hookshot_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_hookshot.DoDragDrop(pictureBox_hookshot.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_hammer_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_hammer.DoDragDrop(pictureBox_hammer.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_strength_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_strength.DoDragDrop(pictureBox_strength.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_lens_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_lens.DoDragDrop(pictureBox_lens.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_bgs_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_bgs.DoDragDrop(pictureBox_bgs.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_zora_tunic_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_zora_tunic.DoDragDrop(pictureBox_zora_tunic.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_goron_tunic_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_goron_tunic.DoDragDrop(pictureBox_goron_tunic.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_boomerang_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_boomerang.DoDragDrop(pictureBox_boomerang.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_rutos_letter_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_rutos_letter.DoDragDrop(pictureBox_rutos_letter.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_big_poe_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_big_poe.DoDragDrop(pictureBox_big_poe.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_bottle_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_bottle.DoDragDrop(pictureBox_bottle.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_prescription_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_prescription.DoDragDrop(pictureBox_prescription.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_hover_boots_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_hover_boots.DoDragDrop(pictureBox_hover_boots.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_iron_boots_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_iron_boots.DoDragDrop(pictureBox_iron_boots.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_wallet_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_wallet.DoDragDrop(pictureBox_wallet.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_fire_arrow_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_fire_arrow.DoDragDrop(pictureBox_fire_arrow.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_ice_arrow_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_ice_arrow.DoDragDrop(pictureBox_ice_arrow.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_light_arrow_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_light_arrow.DoDragDrop(pictureBox_light_arrow.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_scale_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_scale.DoDragDrop(pictureBox_scale.Image, DragDropEffects.Copy);
-        }
-
-        private void pictureBox_magic_meter_MouseDown(object sender, MouseEventArgs e)
-        {
-            pictureBox_magic_meter.DoDragDrop(pictureBox_magic_meter.Image, DragDropEffects.Copy);
+            pBox.Image.Tag = imageTag;
         }
         #endregion
 
         #region LabelMouseClick
-        private void label_woth1_MouseClick(object sender, MouseEventArgs e)
+        private void label_woth_MouseClick(object sender, MouseEventArgs e)
         {
+            var label = (Label)sender;
             if(e.Button == MouseButtons.Left)
-                label_woth1.Text = (Convert.ToInt32(label_woth1.Text) + 1).ToString();
-            if(e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth1.Text) > 0))
-                label_woth1.Text = (Convert.ToInt32(label_woth1.Text) - 1).ToString();
-        }
-
-        private void label_woth2_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-                label_woth2.Text = (Convert.ToInt32(label_woth2.Text) + 1).ToString();
-            if (e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth2.Text) > 0))
-                label_woth2.Text = (Convert.ToInt32(label_woth2.Text) - 1).ToString();
-        }
-
-        private void label_woth3_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-                label_woth3.Text = (Convert.ToInt32(label_woth3.Text) + 1).ToString();
-            if (e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth3.Text) > 0))
-                label_woth3.Text = (Convert.ToInt32(label_woth3.Text) - 1).ToString();
-        }
-
-        private void label_woth4_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-                label_woth4.Text = (Convert.ToInt32(label_woth4.Text) + 1).ToString();
-            if (e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth4.Text) > 0))
-                label_woth4.Text = (Convert.ToInt32(label_woth4.Text) - 1).ToString();
-        }
-
-        private void label_woth5_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-                label_woth5.Text = (Convert.ToInt32(label_woth5.Text) + 1).ToString();
-            if (e.Button == MouseButtons.Right && (Convert.ToInt32(label_woth5.Text) > 0))
-                label_woth5.Text = (Convert.ToInt32(label_woth5.Text) - 1).ToString();
+                label.Text = (Convert.ToInt32(label.Text) + 1).ToString();
+            if(e.Button == MouseButtons.Right && (Convert.ToInt32(label.Text) > 0))
+                label.Text = (Convert.ToInt32(label.Text) - 1).ToString();
         }
         #endregion
+
+        #region MouseMove for DragAndDrop
+        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            var pBox = (PictureBox)sender;
+            if (e.Button == MouseButtons.Left && isMouseDown)
+            {
+                pBox.DoDragDrop(pBox.Image, DragDropEffects.Copy);
+                isMouseDown = false;
+            }
+        }
+
+
+        #endregion
+
+        private void pictureBox_medaillons_green_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredGreenMedaillon, label_green_medaillon);
+        }
+        private void pictureBox_medaillons_red_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredRedMedaillon, label_red_medaillon);
+        }
+        private void pictureBox_medaillons_blue_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredBlueMedaillon, label_blue_medaillon);
+        }
+        private void pictureBox_medaillons_orange_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredOrangeMedaillon, label_orange_medaillon);
+        }
+        private void pictureBox_medaillons_purple_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredPurpleMedaillon, label_purple_medaillon);
+        }
+        private void pictureBox_medaillons_yellow_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredYellowMedaillon, label_yellow_medaillon);
+        }
+        private void pictureBox_stones_kokiri_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredKokiriStone, label_kokiri_stone);
+        }
+        private void pictureBox_stones_goron_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredGoronStone, label_goron_stone);
+        }
+        private void pictureBox_stones_zora_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredZoraStone, label_zora_stone);
+        }
     }
 }
