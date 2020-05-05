@@ -512,7 +512,9 @@ namespace TrackerOOT
             if (mouseButton == MouseButtons.Right)
             {
                 var index = listUpgrade.IndexOf(pBox.Image);
-                if (index == 0)
+                if(index < 0)
+                    pBox.Image = listUpgrade[0];
+                else if (index == 0)
                     pBox.Image = listUpgrade[listUpgrade.Count - 1];
                 else pBox.Image = listUpgrade[index - 1];
             }
@@ -637,7 +639,7 @@ namespace TrackerOOT
                     item2 = false;
                 }
             }
-
+            
             pBox.Image = (Image)Properties.Resources.ResourceManager.GetObject(imageTag);
             pBox.Image.Tag = imageTag;
 

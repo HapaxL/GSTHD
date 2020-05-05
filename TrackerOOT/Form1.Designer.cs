@@ -1017,7 +1017,7 @@ namespace TrackerOOT
             // pictureBox_fire_light_arrow
             // 
             this.pictureBox_fire_light_arrow.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_fire_light_arrow.Image = global::TrackerOOT.Properties.Resources.fire_light_arrow_dw;
+            this.pictureBox_fire_light_arrow.Image = global::TrackerOOT.Properties.Resources.fire_light_arrow_bw;
             this.pictureBox_fire_light_arrow.Location = new System.Drawing.Point(196, 6);
             this.pictureBox_fire_light_arrow.Name = "pictureBox_fire_light_arrow";
             this.pictureBox_fire_light_arrow.Size = new System.Drawing.Size(32, 32);

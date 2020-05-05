@@ -818,9 +818,6 @@
     <None Include="Resources\fire_light_arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fire_light_arrow_dw.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\key.png" />
   </ItemGroup>
   <ItemGroup>
@@ -831,6 +828,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\skulltulas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fire_light_arrow_dw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

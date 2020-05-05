@@ -643,9 +643,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fire_light_arrow_dw {
+        internal static System.Drawing.Bitmap fire_light_arrow_bw {
             get {
-                object obj = ResourceManager.GetObject("fire_light_arrow_dw", resourceCulture);
+                object obj = ResourceManager.GetObject("fire_light_arrow_bw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
