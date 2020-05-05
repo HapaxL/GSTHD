@@ -17,7 +17,6 @@ namespace TrackerOOT
 {
     public partial class Form1 : Form
     {
-        HashSet<String> placesByCategories = new HashSet<String>();
         SortedSet<String> placesAlphabeticalOrder = new SortedSet<String>();
         List<String> listDungeons = new List<string>();
 
@@ -30,16 +29,15 @@ namespace TrackerOOT
         List<Image> maskQuestUpgrade = new List<Image>();
         List<Image> magicUpgrade = new List<Image>();
         List<Image> walletUpgrade = new List<Image>();
+        List<Image> guarenteedHintsUpgrade = new List<Image>();
+        List<Image> sometimesHintsUpgrade = new List<Image>();
+
+        Dictionary<Label, int> wothPosition = new Dictionary<Label, int>();
+        List<Label> barrenPosition = new List<Label>();
+        
 
 
         bool isMouseDown = false;
-
-        bool dead30skulls = false;
-        bool dead40skulls = false;
-        bool dead50skulls = false;
-        bool deadSkullMask = false;
-        bool deadBiggoron = false;
-        bool deadFrogs = false;
 
         bool isColoredGreenMedaillon = false;
         bool isColoredRedMedaillon = false;
@@ -51,9 +49,48 @@ namespace TrackerOOT
         bool isColoredGoronStone = false;
         bool isColoredZoraStone = false;
 
-        bool chronoRunning = false;
+        bool isColoredDinsFire = false;
+        bool isColoredFaroresWind = false;
+        String[] imageTagList_dins_farores =
+        {
+            "dins_farores_bw",
+            "half_dins_fire",
+            "half_farores_wind",
+            "dins_farores"            
+        };
 
-        bool alphabeticalOrder = true;
+        bool isColoredIronBoots = false;
+        bool isColoredHoverBoots = false;
+        String[] imageTagList_iron_hover_boots =
+        {
+            "iron_hover_boots_bw",
+            "half_iron_boots",
+            "half_hover_boots",
+            "iron_hover_boots"
+        };
+
+        bool isColoredGoronTunic = false;
+        bool isColoredZoraTunic = false;
+        String[] imageTagList_goron_zora_tunic =
+        {
+            "goron_zora_tunic_bw",
+            "half_goron_tunic",
+            "half_zora_tunic",
+            "goron_zora_tunic"
+        };
+
+        bool isColoredFireArrow = false;
+        bool isColoredLightArrow = false;
+        String[] imageTagList_fire_light_arrow =
+        {
+            "fire_light_arrow_bw",
+            "half_fire_arrow",
+            "half_light_arrow",
+            "fire_light_arrow"
+        };
+
+
+        bool chronoRunning = false;
 
         Stopwatch chrono = new Stopwatch();
 
@@ -68,37 +105,9 @@ namespace TrackerOOT
             var source = new AutoCompleteStringCollection();
             source.AddRange(placesAlphabeticalOrder.ToArray());
 
-            comboBox_woth1.AutoCompleteCustomSource = source;
-            comboBox_woth1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_woth1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            comboBox_woth2.AutoCompleteCustomSource = source;
-            comboBox_woth2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_woth2.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            comboBox_woth3.AutoCompleteCustomSource = source;
-            comboBox_woth3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_woth3.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            comboBox_woth4.AutoCompleteCustomSource = source;
-            comboBox_woth4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_woth4.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            comboBox_woth5.AutoCompleteCustomSource = source;
-            comboBox_woth5.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_woth5.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            comboBox_barren1.AutoCompleteCustomSource = source;
-            comboBox_barren1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_barren1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            comboBox_barren2.AutoCompleteCustomSource = source;
-            comboBox_barren2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_barren2.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            comboBox_barren3.AutoCompleteCustomSource = source;
-            comboBox_barren3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_barren3.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboBox_places.AutoCompleteCustomSource = source;
+            comboBox_places.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox_places.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -119,15 +128,11 @@ namespace TrackerOOT
             this.label_green_medaillon.Text = listDungeons[0];
 
             placesAlphabeticalOrder.Add("");
-            placesByCategories.Add("");
-
             JObject json = JObject.Parse(File.ReadAllText(@"oot_places.json"));
             foreach(var categorie in json)
             {
-                placesByCategories.Add(categorie.Key.ToString());
                 foreach(var name in categorie.Value)
                 {
-                    placesByCategories.Add(name.ToString());
                     placesAlphabeticalOrder.Add(name.ToString());
                 }
             }
@@ -144,15 +149,53 @@ namespace TrackerOOT
             pictureBox_skullMask.AllowDrop = true;
             pictureBox_biggoron.AllowDrop = true;
             pictureBox_frogs.AllowDrop = true;
-            
-            panel_item_woth1.AllowDrop = true;
-            panel_item_woth2.AllowDrop = true;
-            panel_item_woth3.AllowDrop = true;
-            panel_item_woth4.AllowDrop = true;
-            panel_item_woth5.AllowDrop = true;
+
+            pictureBox_sometimesHint1.AllowDrop = true;
+            pictureBox_sometimesHint2.AllowDrop = true;
+            pictureBox_sometimesHint3.AllowDrop = true;
+            pictureBox_sometimesHint4.AllowDrop = true;
+            pictureBox_sometimesHint5.AllowDrop = true;
 
             setListUpgrade();
             setPictureBoxTag();
+
+            //Count Skulltulas
+            Label nb_skulls = new Label
+            {
+                Anchor = AnchorStyles.Top | AnchorStyles.Left,
+                Dock = DockStyle.None,
+                Margin = new Padding(0,0,0,0),
+                BackColor = Color.Transparent,
+                BorderStyle = BorderStyle.FixedSingle,
+                Text = "00",
+                Font = new Font("Consolas", 18, FontStyle.Bold),
+                ForeColor = Color.White,
+                Width = 42,
+                Height = 32,
+                AutoSize = false,
+                Location = new Point(-3, -5),
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+            nb_skulls.MouseDown += new MouseEventHandler(label_collectedSkulls_MouseDown);
+            
+            pictureBox_collectedSkulls.Controls.Add(nb_skulls);
+
+            comboBox_places.KeyDown += changeCollectedSkulls;
+            textBox1.KeyDown += changeCollectedSkulls;
+            textBox2.KeyDown += changeCollectedSkulls;
+            textBox3.KeyDown += changeCollectedSkulls;
+            textBox4.KeyDown += changeCollectedSkulls;
+            textBox5.KeyDown += changeCollectedSkulls;
+        }
+
+        private void changeCollectedSkulls(object sender, KeyEventArgs k)
+        {
+            if(k.KeyCode == Keys.F11)
+            {
+                label_collectedSkulls_MouseDown(pictureBox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
+            }
+            if (k.KeyCode == Keys.F12)
+                label_collectedSkulls_MouseDown(pictureBox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Right, 1, 0, 0, 0));
         }
 
         private void setListUpgrade()
@@ -171,9 +214,6 @@ namespace TrackerOOT
                 Properties.Resources.bottle_red,
                 Properties.Resources.bottle_blue
             };
-            this.pictureBox_bottle2.Image = bottleUpgrade[0];
-            this.pictureBox_bottle3.Image = bottleUpgrade[0];
-            this.pictureBox_bottle4.Image = bottleUpgrade[0];
 
             strengthUpgrade = new List<Image>
             {
@@ -206,7 +246,6 @@ namespace TrackerOOT
                 Properties.Resources.ocarina,
                 Properties.Resources.ocarina_of_time,
             };
-            this.pictureBox_ocarina.Image = ocarinaUpgrade[0];
 
             biggoronQuestUpgrade = new List<Image>
             {
@@ -222,7 +261,6 @@ namespace TrackerOOT
                 Properties.Resources.eye_drops,
                 Properties.Resources.claim_check
             };
-            this.pictureBox_egg_biggoron.Image = biggoronQuestUpgrade[0];
 
             maskQuestUpgrade = new List<Image>
             {
@@ -239,7 +277,6 @@ namespace TrackerOOT
                 Properties.Resources.zora_mask,
                 Properties.Resources.gerudo_mask
             };
-            this.pictureBox_egg_masks.Image = maskQuestUpgrade[0];
 
             magicUpgrade = new List<Image>
             { 
@@ -256,61 +293,55 @@ namespace TrackerOOT
                  Properties.Resources.wallet3,
             };
             this.pictureBox_wallet.Image = walletUpgrade[0];
+
+            guarenteedHintsUpgrade = new List<Image>
+            {
+                Properties.Resources.gossip_stone_2,
+                Properties.Resources.sold_out
+            };
+            this.pictureBox_30skulls.Image = guarenteedHintsUpgrade[0];
+            this.pictureBox_40skulls.Image = guarenteedHintsUpgrade[0];
+            this.pictureBox_50skulls.Image = guarenteedHintsUpgrade[0];
+            this.pictureBox_skullMask.Image = guarenteedHintsUpgrade[0];
+            this.pictureBox_biggoron.Image = guarenteedHintsUpgrade[0];
+            this.pictureBox_frogs.Image = guarenteedHintsUpgrade[0];
+
+            sometimesHintsUpgrade = new List<Image>
+            {
+                Properties.Resources.gossip_stone_2,
+                Properties.Resources.sold_out,
+                Properties.Resources.key,
+                Properties.Resources.bk
+            };
+            this.pictureBox_sometimesHint1.Image = sometimesHintsUpgrade[0];
+            this.pictureBox_sometimesHint2.Image = sometimesHintsUpgrade[0];
+            this.pictureBox_sometimesHint3.Image = sometimesHintsUpgrade[0];
+            this.pictureBox_sometimesHint4.Image = sometimesHintsUpgrade[0];
+            this.pictureBox_sometimesHint5.Image = sometimesHintsUpgrade[0];
         }
         private void setPictureBoxTag()
         {
-            //row1
-            pictureBox_sticks.Image.Tag = "sticks";
-            pictureBox_nuts.Image.Tag = "nuts";
             pictureBox_bombs.Image.Tag = "bombs";
             pictureBox_bow.Image.Tag = "bow";
-            pictureBox_fire_arrow.Image.Tag = "fire_arrow";
+            pictureBox_fire_light_arrow.Image.Tag = "fire_arrow";
             pictureBox_dins_fire.Image.Tag = "dins_fire";
-            //row2
             pictureBox_slingshot.Image.Tag = "slingshot";
-            pictureBox_ocarina.Image.Tag = "ocarina";
             pictureBox_bchu.Image.Tag = "bomb_chu";
             pictureBox_hookshot.Image.Tag = "hookshot";
-            pictureBox_ice_arrow.Image.Tag = "ice_arrow";
-            pictureBox_farores_wind.Image.Tag = "farores_wind";
-            //row3
             pictureBox_boomerang.Image.Tag = "boomerang";
-            pictureBox_lens.Image.Tag = "lens";
-            pictureBox_beans.Image.Tag = "beans";
             pictureBox_hammer.Image.Tag = "hammer";
-            pictureBox_light_arrow.Image.Tag = "light_arrow";
-            pictureBox_nairus_love.Image.Tag = "nairus_love";
-            //row4
             pictureBox_bottle1.Image.Tag = "bottle_rutos_letter";
-            pictureBox_bottle2.Image.Tag = "bottle2";
-            pictureBox_bottle3.Image.Tag = "bottle3";
-            pictureBox_bottle4.Image.Tag = "bottle4";
-            pictureBox_egg_biggoron.Image.Tag = "egg_biggoron";
-            pictureBox_egg_masks.Image.Tag = "egg_masks";
-
-            //column1
-            pictureBox_kokiri_sword.Image.Tag = "kokiri_sword";
-            pictureBox_master_sword.Image.Tag = "master_sword";
-            pictureBox_bgs.Image.Tag = "bgs";
-            pictureBox_kokiri_shield.Image.Tag = "kokiri_shield";
-            pictureBox_hylian_shield.Image.Tag = "hylian_shield";
+            pictureBox_lens.Image.Tag = "lens";
             pictureBox_mirror_shield.Image.Tag = "mirror_shield";
-            pictureBox_green_tunic.Image.Tag = "green_tunic";
-            pictureBox_goron_tunic.Image.Tag = "goron_tunic";
-            pictureBox_zora_tunic.Image.Tag = "zora_tunic";
-            pictureBox_boots.Image.Tag = "boots";
-            pictureBox_iron_boots.Image.Tag = "iron_boots";
-            pictureBox_hover_boots.Image.Tag = "hover_boots";
-            //column2
+            pictureBox_goron_zora_tunic.Image.Tag = "goron_tunic";
+            pictureBox_iron_hover_boots.Image.Tag = "iron_boots";
             pictureBox_magic.Image.Tag = "magic";
-            pictureBox_wallet.Image.Tag = "wallet";
-            pictureBox_gerudo_card.Image.Tag = "gerudo_card";
-            pictureBox_stone_of_agony.Image.Tag = "stone_of_agony";
             pictureBox_scale.Image.Tag = "scale";
             pictureBox_strength.Image.Tag = "strength";
             pictureBox_kokiri_stone.Image.Tag = "kokiri_stone";
             pictureBox_goron_stone.Image.Tag = "goron_stone";
             pictureBox_zora_stone.Image.Tag = "zora_stone";
+            pictureBox_wallet.Image.Tag = "wallet";
 
             //songs
             pictureBox_ZL.Image.Tag = "zeldas_lullaby";
@@ -333,107 +364,32 @@ namespace TrackerOOT
             pictureBox_orange_medaillon.Image.Tag = "orange_medaillon";
             pictureBox_purple_medaillon.Image.Tag = "purple_medaillon";
             pictureBox_yellow_medaillon.Image.Tag = "yellow_medaillon";
+
+            //guarantedHints
+            pictureBox_30skulls.Image.Tag = "gossip_stone_2";
+            pictureBox_40skulls.Image.Tag = "gossip_stone_2";
+            pictureBox_50skulls.Image.Tag = "gossip_stone_2";
+            pictureBox_skullMask.Image.Tag = "gossip_stone_2";
+            pictureBox_biggoron.Image.Tag = "gossip_stone_2";
+            pictureBox_frogs.Image.Tag = "gossip_stone_2";
+
+            //sometimesHints
+            pictureBox_sometimesHint1.Image.Tag = "gossip_stone_2";
+            pictureBox_sometimesHint2.Image.Tag = "gossip_stone_2";
+            pictureBox_sometimesHint3.Image.Tag = "gossip_stone_2";
+            pictureBox_sometimesHint4.Image.Tag = "gossip_stone_2";
+            pictureBox_sometimesHint5.Image.Tag = "gossip_stone_2";
         }
         private void loadComboBoxData(String[] data)
         {
-            comboBox_woth1.Items.Clear();
-            comboBox_woth1.Items.AddRange(data);
-
-            comboBox_woth2.Items.Clear();
-            comboBox_woth2.Items.AddRange(data);
-
-            comboBox_woth3.Items.Clear();
-            comboBox_woth3.Items.AddRange(data);
-
-            comboBox_woth4.Items.Clear();
-            comboBox_woth4.Items.AddRange(data);
-
-            comboBox_woth5.Items.Clear();
-            comboBox_woth5.Items.AddRange(data);
-
-            comboBox_barren1.Items.Clear();
-            comboBox_barren1.Items.AddRange(data);
-
-            comboBox_barren2.Items.Clear();
-            comboBox_barren2.Items.AddRange(data);
-
-            comboBox_barren3.Items.Clear();
-            comboBox_barren3.Items.AddRange(data);
+            comboBox_places.Items.Clear();
+            comboBox_places.Items.AddRange(data);
         }
 
         #region combobox DropDownClosed
         void comboBox_woth1_DropDownClosed(object sender, EventArgs e)
         {
-            this.BeginInvoke(new Action(() => { comboBox_woth1.Select(0, 0); }));
-            if (comboBox_woth1.SelectedIndex <= 0) label_woth1.Text = "0"; else label_woth1.Text = "1";
-        }
-
-        void comboBox_woth2_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() => { comboBox_woth2.Select(0, 0); }));
-            if (comboBox_woth2.SelectedIndex <= 0) label_woth2.Text = "0"; else label_woth2.Text = "1";
-        }
-
-        void comboBox_woth3_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() => { comboBox_woth3.Select(0, 0); }));
-            if (comboBox_woth3.SelectedIndex <= 0) label_woth3.Text = "0"; else label_woth3.Text = "1";
-        }
-
-        void comboBox_woth4_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() => { comboBox_woth4.Select(0, 0); }));
-            if (comboBox_woth4.SelectedIndex <= 0) label_woth4.Text = "0"; else label_woth4.Text = "1";
-        }
-
-        void comboBox_woth5_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() => { comboBox_woth5.Select(0, 0); }));
-            if (comboBox_woth5.SelectedIndex <= 0) label_woth5.Text = "0"; else label_woth5.Text = "1";
-        }
-
-        void comboBox_barren_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() => { ((ComboBox)sender).Select(0, 0); }));
-        }
-        #endregion
-
-        #region dead click
-        private bool eval_dead_hint(bool isDead, PictureBox picture)
-        {
-            if (isDead) picture.Image = Properties.Resources.gossip_stone_2;
-            else picture.Image = Properties.Resources.dead;
-            return !isDead;
-            
-        }
-        private void button_dead30skulls_Click(object sender, EventArgs e)
-        {
-            dead30skulls = eval_dead_hint(dead30skulls, pictureBox_30skulls);
-        }
-
-        private void button_dead40skulls_Click(object sender, EventArgs e)
-        {
-            dead40skulls = eval_dead_hint(dead40skulls, pictureBox_40skulls);
-        }
-
-        private void button_dead50skulls_Click(object sender, EventArgs e)
-        {
-            dead50skulls = eval_dead_hint(dead50skulls, pictureBox_50skulls);
-        }
-
-        private void button_deadSkullMask_Click(object sender, EventArgs e)
-        {
-            deadSkullMask = eval_dead_hint(deadSkullMask, pictureBox_skullMask);
-        }
-
-        private void button_deadBiggoron_Click(object sender, EventArgs e)
-        {
-            deadBiggoron = eval_dead_hint(deadBiggoron, pictureBox_biggoron);
-        }
-
-        private void button_deadFrogs_Click(object sender, EventArgs e)
-        {
-            deadFrogs = eval_dead_hint(deadFrogs, pictureBox_frogs);
+            this.BeginInvoke(new Action(() => { comboBox_places.Select(0, 0); }));
         }
         #endregion
 
@@ -467,22 +423,6 @@ namespace TrackerOOT
             button_chrono.Text = "Start";
         }
         #endregion
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if(alphabeticalOrder)
-            {
-                loadComboBoxData(placesByCategories.ToArray());
-                button1.Text = "Order : Categories";
-            }
-            else
-            {
-                loadComboBoxData(placesAlphabeticalOrder.ToArray());
-                button1.Text = "Order : Alphabetical";
-            }
-
-            alphabeticalOrder = !alphabeticalOrder;
-        }
 
         #region DragEnter
         private void object_DragEnter(object sender, DragEventArgs e)
@@ -525,6 +465,7 @@ namespace TrackerOOT
             var imageTag = ((Bitmap)e.Data.GetData(DataFormats.Bitmap)).Tag.ToString().Replace("_bw", "");
             var imageColor = (Image)Properties.Resources.ResourceManager.GetObject(imageTag);
             ((PictureBox)sender).Image = imageColor;
+            ((PictureBox)sender).Image.Tag = imageTag;
         }
         #endregion
 
@@ -644,6 +585,83 @@ namespace TrackerOOT
 
             pBox.Image.Tag = imageTag;
         }
+
+        private void doubleItems_MouseUp(PictureBox pBox, MouseButtons mouseButton, ref bool item1, ref bool item2, String[] imageTagList)
+        {
+            String imageTag = string.Empty;          
+
+            if (mouseButton == MouseButtons.Left)
+            {
+                if (!item1 && !item2)
+                {
+                    imageTag = imageTagList[1];
+                    item1 = true;
+                }
+                else if (item1 && !item2)
+                {
+                    imageTag = imageTagList[0];
+                    item1 = false;
+                }
+                else if (!item1 && item2)
+                {
+                    imageTag = imageTagList[3];
+                    item1 = true;
+                }
+                else if (item1 && item2)
+                {
+                    imageTag = imageTagList[2];
+                    item1 = false;
+                }
+
+            }
+            if (mouseButton == MouseButtons.Right)
+            {
+                if (!item1 && !item2)
+                {
+                    imageTag = imageTagList[2];
+                    item2 = true;
+                }
+                else if (item1 && !item2)
+                {
+                    imageTag = imageTagList[3];
+                    item2 = true;
+                }
+                else if (!item1 && item2)
+                {
+                    imageTag = imageTagList[0];
+                    item2 = false;
+                }
+                else if (item1 && item2)
+                {
+                    imageTag = imageTagList[1];
+                    item2 = false;
+                }
+            }
+
+            pBox.Image = (Image)Properties.Resources.ResourceManager.GetObject(imageTag);
+            pBox.Image.Tag = imageTag;
+
+        }
+
+        private void pictureBox_fire_light_arrow_MouseUp(object sender, MouseEventArgs e)
+        {
+            doubleItems_MouseUp((PictureBox)sender, e.Button, ref isColoredFireArrow, ref isColoredLightArrow, imageTagList_fire_light_arrow);
+        }
+
+        private void pictureBox_goron_zora_tunic_MouseUp(object sender, MouseEventArgs e)
+        {
+            doubleItems_MouseUp((PictureBox)sender, e.Button, ref isColoredGoronTunic, ref isColoredZoraTunic, imageTagList_goron_zora_tunic);
+        }
+
+        private void pictureBox_iron_hover_boots_MouseUp(object sender, MouseEventArgs e)
+        {
+            doubleItems_MouseUp((PictureBox)sender, e.Button, ref isColoredIronBoots, ref isColoredHoverBoots, imageTagList_iron_hover_boots);
+        }
+
+        private void pictureBox_dins_farores_MouseUp(object sender, MouseEventArgs e)
+        {
+            doubleItems_MouseUp((PictureBox)sender, e.Button, ref isColoredDinsFire, ref isColoredFaroresWind, imageTagList_dins_farores);
+        }
         #endregion
 
         #region LabelMouseClick
@@ -671,6 +689,7 @@ namespace TrackerOOT
 
         #endregion
 
+        #region stones & medallions
         private void pictureBox_medaillons_green_MouseUp(object sender, MouseEventArgs e)
         {
             medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredGreenMedaillon, label_green_medaillon);
@@ -706,6 +725,163 @@ namespace TrackerOOT
         private void pictureBox_stones_zora_MouseUp(object sender, MouseEventArgs e)
         {
             medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredZoraStone, label_zora_stone);
+        }
+        #endregion
+
+        private void button_woth_Click(object sender, EventArgs e)
+        {
+            if(comboBox_places.Text != string.Empty)
+            {
+                var existingWoth = wothPosition.Where(x => x.Key.Text == comboBox_places.Text).ToList();
+                if (existingWoth.Count > 0 && existingWoth[0].Value == 1)
+                {
+                    existingWoth[0].Key.Font = new Font("Corbel", 10, FontStyle.Bold | FontStyle.Underline);
+                    wothPosition[existingWoth[0].Key]++;
+                }
+                else if(existingWoth.Count > 0 && existingWoth[0].Value == 2)
+                {
+                    existingWoth[0].Key.ForeColor = Color.MidnightBlue;
+                    wothPosition[existingWoth[0].Key]++;
+                }
+                else if(existingWoth.Count == 0)
+                {
+                    Label newLabel = new Label
+                    {
+                        Text = comboBox_places.Text,
+                        ForeColor = Color.White,
+                        BackColor = Color.CadetBlue,
+                        Font = new Font("Corbel", 10, FontStyle.Bold),
+                        Width = 192,
+                        Height = 32,
+                        TextAlign = ContentAlignment.MiddleLeft
+                    };
+                    newLabel.Location = new Point(2, (wothPosition.Count * newLabel.Height));
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        PictureBox newPictureBox = new PictureBox
+                        {
+                            Image = Properties.Resources.gossip_stone_2,
+                            Name = "pictureBox_wothA"+i,
+                            Size = new Size(32, 32),
+                            TabStop = false,
+                            AllowDrop = true
+                        };
+
+                        newPictureBox.DragDrop += new DragEventHandler(pictureBox_DragDrop);
+                        newPictureBox.DragEnter += new DragEventHandler(object_DragEnter);
+                        newPictureBox.MouseUp += new MouseEventHandler(pictureBox_woth_MouseUp);
+
+                        switch(i)
+                        {
+                            case 0: newPictureBox.Location = new Point(newLabel.Width, newLabel.Location.Y); break;
+                            case 1: newPictureBox.Location = new Point(newLabel.Width+32, newLabel.Location.Y); break;
+                            case 2: newPictureBox.Location = new Point(newLabel.Width+64, newLabel.Location.Y); break;
+                            case 3: newPictureBox.Location = new Point(newLabel.Width+96, newLabel.Location.Y); break;
+                            default:break;
+                        }
+
+                        panel_woth.Controls.Add(newPictureBox);
+                    }
+                    wothPosition.Add(newLabel, 1);
+                    panel_woth.Controls.Add(newLabel);
+                }
+            }
+        }
+        
+        private void pictureBox_woth_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void button_barren_Click(object sender, EventArgs e)
+        {
+            if (comboBox_places.Text != string.Empty)
+            {
+                Label newLabel = new Label
+                {
+                    Text = comboBox_places.Text,
+                    ForeColor = Color.White,
+                    BackColor = Color.IndianRed,
+                    Font = new Font("Corbel", 11, FontStyle.Bold),
+                    Width = 192,
+                    TextAlign = ContentAlignment.MiddleLeft
+                };
+                newLabel.Location = new Point(2, (barrenPosition.Count * newLabel.Height));
+                barrenPosition.Add(newLabel);
+                panel_barren.Controls.Add(newLabel);
+            }
+        }
+
+        private void pictureBox_30skulls_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, guarenteedHintsUpgrade);
+        }
+
+        private void pictureBox_40skulls_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, guarenteedHintsUpgrade);
+        }
+
+        private void pictureBox_sometimesHint1_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, sometimesHintsUpgrade);
+        }
+
+        private void pictureBox_sometimesHint2_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, sometimesHintsUpgrade);
+        }
+
+        private void pictureBox_sometimesHint3_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, sometimesHintsUpgrade);
+        }
+
+        private void pictureBox_sometimesHint4_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, sometimesHintsUpgrade);
+        }
+
+        private void pictureBox_sometimesHint5_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, sometimesHintsUpgrade);
+        }
+
+        private void pictureBox_50skulls_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, guarenteedHintsUpgrade);
+        }
+
+        private void pictureBox_skullMask_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, guarenteedHintsUpgrade);
+        }
+
+        private void pictureBox_biggoron_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, guarenteedHintsUpgrade);
+        }
+
+        private void pictureBox_frogs_MouseUp(object sender, MouseEventArgs e)
+        {
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, guarenteedHintsUpgrade);
+        }
+
+        private void label_collectedSkulls_MouseDown(object sender, MouseEventArgs e)
+        {
+            var label_collectedSkulls = (Label)sender;
+            var intLabelText = Convert.ToInt32(label_collectedSkulls.Text);
+            if(e.Button == MouseButtons.Left)
+                intLabelText++;
+            if (e.Button == MouseButtons.Right && intLabelText > 0)
+                intLabelText--;
+            
+            if(intLabelText < 10) 
+                label_collectedSkulls.Text = "0" + intLabelText.ToString();
+            else 
+                label_collectedSkulls.Text = intLabelText.ToString();
+
         }
     }
 }

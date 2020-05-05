@@ -7,7 +7,7 @@
     <ProjectGuid>{20F88CAF-011B-40C2-85AC-D21255C0876B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>TrackerOOT</RootNamespace>
-    <AssemblyName>OotGossipStonesTracker_v1.3</AssemblyName>
+    <AssemblyName>OotGossipStonesTracker_v1.4_LE</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -70,7 +70,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -651,15 +650,6 @@
     <None Include="Resources\gold_skulltula.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\30_gold_skulltula.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\50_gold_skulltula.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\40_gold_skulltula.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\biggoron.png" />
   </ItemGroup>
   <ItemGroup>
@@ -766,6 +756,81 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zeldas_letter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50_gold_skulltula.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\30_gold_skulltula.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\40_gold_skulltula.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dins_farores.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_farores_wind_bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_dins_fire_bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dins_fire_bw1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_dins_fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_farores_wind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iron__hover_boots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iron_hover_boots_bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_hover_boots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_iron_boots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_zora_tunic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\goron_zora_tunic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\goron_zora_tunic_bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_goron_tunic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_fire_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\half_light_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fire_light_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fire_light_arrow_dw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sold_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skulltulas.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

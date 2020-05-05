@@ -565,15 +565,6 @@
   <data name="zora_tunic_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zora_tunic_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_30_gold_skulltula" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\30_gold_skulltula.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_40_gold_skulltula" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\40_gold_skulltula.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_50_gold_skulltula" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\50_gold_skulltula.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="blue_chicken" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blue_chicken.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -633,5 +624,74 @@
   </data>
   <data name="zora_mask" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zora_mask.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dins_farores" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dins_farores.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dins_farores_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dins_fire_bw1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fire_light_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fire_light_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fire_light_arrow_dw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fire_light_arrow_dw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="goron_zora_tunic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goron_zora_tunic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="goron_zora_tunic_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goron_zora_tunic_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="half_dins_fire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\half_dins_fire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="half_farores_wind" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\half_farores_wind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="half_fire_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\half_fire_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="half_goron_tunic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\half_goron_tunic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="half_hover_boots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\half_hover_boots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="half_iron_boots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\half_iron_boots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="half_light_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\half_light_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="half_zora_tunic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\half_zora_tunic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iron_hover_boots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iron__hover_boots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iron_hover_boots_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iron_hover_boots_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="skulltulas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\skulltulas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sold_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sold_out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_30_gold_skulltula" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\30_gold_skulltula.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_40_gold_skulltula" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\40_gold_skulltula.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_50_gold_skulltula" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\50_gold_skulltula.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
