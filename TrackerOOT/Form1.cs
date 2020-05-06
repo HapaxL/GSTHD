@@ -28,6 +28,7 @@ namespace TrackerOOT
         List<Image> walletUpgrade = new List<Image>();
         List<Image> guarenteedHintsUpgrade = new List<Image>();
         List<Image> sometimesHintsUpgrade = new List<Image>();
+        List<Image> wothItems = new List<Image>();
 
         Dictionary<Label, int> wothPosition = new Dictionary<Label, int>();
         List<Label> barrenPosition = new List<Label>();
@@ -275,7 +276,10 @@ namespace TrackerOOT
             guarenteedHintsUpgrade = new List<Image>
             {
                 Properties.Resources.gossip_stone_2,
-                Properties.Resources.sold_out
+                Properties.Resources.sold_out,
+                Properties.Resources.bottle_empty,
+                Properties.Resources.bottle_big_poe
+                
             };
             this.pictureBox_30skulls.Image = guarenteedHintsUpgrade[0];
             this.pictureBox_40skulls.Image = guarenteedHintsUpgrade[0];
@@ -289,13 +293,23 @@ namespace TrackerOOT
                 Properties.Resources.gossip_stone_2,
                 Properties.Resources.sold_out,
                 Properties.Resources.key,
-                Properties.Resources.bk
+                Properties.Resources.bk,
+                Properties.Resources.bottle_empty,
+                Properties.Resources.bottle_big_poe
             };
             this.pictureBox_sometimesHint1.Image = sometimesHintsUpgrade[0];
             this.pictureBox_sometimesHint2.Image = sometimesHintsUpgrade[0];
             this.pictureBox_sometimesHint3.Image = sometimesHintsUpgrade[0];
             this.pictureBox_sometimesHint4.Image = sometimesHintsUpgrade[0];
             this.pictureBox_sometimesHint5.Image = sometimesHintsUpgrade[0];
+
+            wothItems = new List<Image>
+            {
+                Properties.Resources.gossip_stone_2,
+                Properties.Resources.bottle_empty,
+                Properties.Resources.bottle_big_poe
+            };
+
         }
         private void setPictureBoxTag()
         {
@@ -780,13 +794,14 @@ namespace TrackerOOT
                         {
                             PictureBox newPictureBox = new PictureBox
                             {
-                                Image = Properties.Resources.gossip_stone_2,
+                                Image = wothItems[0],
                                 Name = newLabel.Name + i,
                                 Size = new Size(32, 32),
                                 TabStop = false,
                                 AllowDrop = true
                             };
 
+                            newPictureBox.Image.Tag = "gossip_stone_2";
                             newPictureBox.DragDrop += new DragEventHandler(pictureBox_DragDrop);
                             newPictureBox.DragEnter += new DragEventHandler(object_DragEnter);
                             newPictureBox.MouseClick += new MouseEventHandler(woth_pictureBox_MouseClick);
@@ -811,11 +826,7 @@ namespace TrackerOOT
 
         private void woth_pictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                ((PictureBox)sender).Image = Properties.Resources.gossip_stone_2;
-                ((PictureBox)sender).Image.Tag = "gossip_stone_2";
-            }
+            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, wothItems);
         }
 
         private void label_woth_MouseClick(object sender, MouseEventArgs e)

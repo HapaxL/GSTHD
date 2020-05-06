@@ -213,6 +213,26 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bottle_big_poe {
+            get {
+                object obj = ResourceManager.GetObject("bottle_big_poe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bottle_empty {
+            get {
+                object obj = ResourceManager.GetObject("bottle_empty", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bottle_rutos_letter {
             get {
                 object obj = ResourceManager.GetObject("bottle_rutos_letter", resourceCulture);

@@ -463,5 +463,38 @@
   <ItemGroup>
     <None Include="Resources\go_mode.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_fairy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_fish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_milk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_poe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_blue_fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_bugs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bottle_big_poe.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
