@@ -343,6 +343,8 @@ namespace TrackerOOT
             pictureBox_purple_medaillon.Image.Tag = "purple_medaillon";
             pictureBox_yellow_medaillon.Image.Tag = "yellow_medaillon";
 
+            pictureBox_go_mode.Image.Tag = "go_mode";
+
             //guarantedHints
             pictureBox_30skulls.Image.Tag = "gossip_stone_2";
             pictureBox_40skulls.Image.Tag = "gossip_stone_2";

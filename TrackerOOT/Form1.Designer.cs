@@ -59,6 +59,16 @@ namespace TrackerOOT
             this.button_woth = new System.Windows.Forms.Button();
             this.button_barren = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel_woth = new System.Windows.Forms.Panel();
+            this.panel_barren = new System.Windows.Forms.Panel();
+            this.pictureBox_go_mode = new System.Windows.Forms.PictureBox();
+            this.pictureBox_collectedSkulls = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_wallet = new System.Windows.Forms.PictureBox();
             this.pictureBox_ZL = new System.Windows.Forms.PictureBox();
             this.pictureBox_epona = new System.Windows.Forms.PictureBox();
             this.pictureBox_saria = new System.Windows.Forms.PictureBox();
@@ -71,15 +81,6 @@ namespace TrackerOOT
             this.pictureBox_requiem = new System.Windows.Forms.PictureBox();
             this.pictureBox_nocturne = new System.Windows.Forms.PictureBox();
             this.pictureBox_prelude = new System.Windows.Forms.PictureBox();
-            this.panel_woth = new System.Windows.Forms.Panel();
-            this.panel_barren = new System.Windows.Forms.Panel();
-            this.pictureBox_collectedSkulls = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_wallet = new System.Windows.Forms.PictureBox();
             this.pictureBox_oot_hint = new System.Windows.Forms.PictureBox();
             this.pictureBox_imageOot = new System.Windows.Forms.PictureBox();
             this.pictureBox_strength = new System.Windows.Forms.PictureBox();
@@ -121,6 +122,14 @@ namespace TrackerOOT
             this.pictureBox_scale = new System.Windows.Forms.PictureBox();
             this.pictureBox_magic = new System.Windows.Forms.PictureBox();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_go_mode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_collectedSkulls)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wallet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ZL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_epona)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_saria)).BeginInit();
@@ -133,13 +142,6 @@ namespace TrackerOOT
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_requiem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_nocturne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prelude)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_collectedSkulls)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wallet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oot_hint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imageOot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_strength)).BeginInit();
@@ -512,6 +514,123 @@ namespace TrackerOOT
             this.panel4.Size = new System.Drawing.Size(246, 81);
             this.panel4.TabIndex = 339;
             // 
+            // panel_woth
+            // 
+            this.panel_woth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel_woth.Location = new System.Drawing.Point(6, 359);
+            this.panel_woth.Name = "panel_woth";
+            this.panel_woth.Size = new System.Drawing.Size(336, 160);
+            this.panel_woth.TabIndex = 352;
+            // 
+            // panel_barren
+            // 
+            this.panel_barren.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel_barren.Location = new System.Drawing.Point(170, 526);
+            this.panel_barren.Name = "panel_barren";
+            this.panel_barren.Size = new System.Drawing.Size(172, 70);
+            this.panel_barren.TabIndex = 353;
+            // 
+            // pictureBox_go_mode
+            // 
+            this.pictureBox_go_mode.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_go_mode.Image = global::TrackerOOT.Properties.Resources.go_mode_bw;
+            this.pictureBox_go_mode.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_go_mode.InitialImage")));
+            this.pictureBox_go_mode.Location = new System.Drawing.Point(287, 185);
+            this.pictureBox_go_mode.Name = "pictureBox_go_mode";
+            this.pictureBox_go_mode.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_go_mode.TabIndex = 380;
+            this.pictureBox_go_mode.TabStop = false;
+            this.pictureBox_go_mode.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_collectedSkulls
+            // 
+            this.pictureBox_collectedSkulls.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_collectedSkulls.Image = global::TrackerOOT.Properties.Resources.skulltulas;
+            this.pictureBox_collectedSkulls.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_collectedSkulls.InitialImage")));
+            this.pictureBox_collectedSkulls.Location = new System.Drawing.Point(305, 245);
+            this.pictureBox_collectedSkulls.Name = "pictureBox_collectedSkulls";
+            this.pictureBox_collectedSkulls.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_collectedSkulls.TabIndex = 354;
+            this.pictureBox_collectedSkulls.TabStop = false;
+            // 
+            // pictureBox_sometimesHint5
+            // 
+            this.pictureBox_sometimesHint5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint5.Image")));
+            this.pictureBox_sometimesHint5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint5.InitialImage")));
+            this.pictureBox_sometimesHint5.Location = new System.Drawing.Point(133, 662);
+            this.pictureBox_sometimesHint5.Name = "pictureBox_sometimesHint5";
+            this.pictureBox_sometimesHint5.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_sometimesHint5.TabIndex = 355;
+            this.pictureBox_sometimesHint5.TabStop = false;
+            this.pictureBox_sometimesHint5.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
+            this.pictureBox_sometimesHint5.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
+            this.pictureBox_sometimesHint5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint5_MouseUp);
+            // 
+            // pictureBox_sometimesHint4
+            // 
+            this.pictureBox_sometimesHint4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint4.Image")));
+            this.pictureBox_sometimesHint4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint4.InitialImage")));
+            this.pictureBox_sometimesHint4.Location = new System.Drawing.Point(133, 628);
+            this.pictureBox_sometimesHint4.Name = "pictureBox_sometimesHint4";
+            this.pictureBox_sometimesHint4.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_sometimesHint4.TabIndex = 356;
+            this.pictureBox_sometimesHint4.TabStop = false;
+            this.pictureBox_sometimesHint4.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
+            this.pictureBox_sometimesHint4.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
+            this.pictureBox_sometimesHint4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint4_MouseUp);
+            // 
+            // pictureBox_sometimesHint3
+            // 
+            this.pictureBox_sometimesHint3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint3.Image")));
+            this.pictureBox_sometimesHint3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint3.InitialImage")));
+            this.pictureBox_sometimesHint3.Location = new System.Drawing.Point(133, 594);
+            this.pictureBox_sometimesHint3.Name = "pictureBox_sometimesHint3";
+            this.pictureBox_sometimesHint3.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_sometimesHint3.TabIndex = 357;
+            this.pictureBox_sometimesHint3.TabStop = false;
+            this.pictureBox_sometimesHint3.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
+            this.pictureBox_sometimesHint3.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
+            this.pictureBox_sometimesHint3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint3_MouseUp);
+            // 
+            // pictureBox_sometimesHint2
+            // 
+            this.pictureBox_sometimesHint2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint2.Image")));
+            this.pictureBox_sometimesHint2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint2.InitialImage")));
+            this.pictureBox_sometimesHint2.Location = new System.Drawing.Point(133, 560);
+            this.pictureBox_sometimesHint2.Name = "pictureBox_sometimesHint2";
+            this.pictureBox_sometimesHint2.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_sometimesHint2.TabIndex = 358;
+            this.pictureBox_sometimesHint2.TabStop = false;
+            this.pictureBox_sometimesHint2.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
+            this.pictureBox_sometimesHint2.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
+            this.pictureBox_sometimesHint2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint2_MouseUp);
+            // 
+            // pictureBox_sometimesHint1
+            // 
+            this.pictureBox_sometimesHint1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint1.Image")));
+            this.pictureBox_sometimesHint1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint1.InitialImage")));
+            this.pictureBox_sometimesHint1.Location = new System.Drawing.Point(133, 526);
+            this.pictureBox_sometimesHint1.Name = "pictureBox_sometimesHint1";
+            this.pictureBox_sometimesHint1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_sometimesHint1.TabIndex = 359;
+            this.pictureBox_sometimesHint1.TabStop = false;
+            this.pictureBox_sometimesHint1.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
+            this.pictureBox_sometimesHint1.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
+            this.pictureBox_sometimesHint1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint1_MouseUp);
+            // 
+            // pictureBox_wallet
+            // 
+            this.pictureBox_wallet.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_wallet.Image = global::TrackerOOT.Properties.Resources.wallet;
+            this.pictureBox_wallet.Location = new System.Drawing.Point(234, 43);
+            this.pictureBox_wallet.Name = "pictureBox_wallet";
+            this.pictureBox_wallet.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_wallet.TabIndex = 360;
+            this.pictureBox_wallet.TabStop = false;
+            this.pictureBox_wallet.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_wallet.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_wallet.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_wallet_MouseUp_Upgrade);
+            // 
             // pictureBox_ZL
             // 
             this.pictureBox_ZL.Image = global::TrackerOOT.Properties.Resources.zeldas_lullaby_bw;
@@ -655,111 +774,6 @@ namespace TrackerOOT
             this.pictureBox_prelude.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_prelude.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             this.pictureBox_prelude.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // panel_woth
-            // 
-            this.panel_woth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel_woth.Location = new System.Drawing.Point(6, 359);
-            this.panel_woth.Name = "panel_woth";
-            this.panel_woth.Size = new System.Drawing.Size(336, 160);
-            this.panel_woth.TabIndex = 352;
-            // 
-            // panel_barren
-            // 
-            this.panel_barren.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel_barren.Location = new System.Drawing.Point(170, 526);
-            this.panel_barren.Name = "panel_barren";
-            this.panel_barren.Size = new System.Drawing.Size(172, 70);
-            this.panel_barren.TabIndex = 353;
-            // 
-            // pictureBox_collectedSkulls
-            // 
-            this.pictureBox_collectedSkulls.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_collectedSkulls.Image = global::TrackerOOT.Properties.Resources.skulltulas;
-            this.pictureBox_collectedSkulls.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_collectedSkulls.InitialImage")));
-            this.pictureBox_collectedSkulls.Location = new System.Drawing.Point(305, 245);
-            this.pictureBox_collectedSkulls.Name = "pictureBox_collectedSkulls";
-            this.pictureBox_collectedSkulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_collectedSkulls.TabIndex = 354;
-            this.pictureBox_collectedSkulls.TabStop = false;
-            // 
-            // pictureBox_sometimesHint5
-            // 
-            this.pictureBox_sometimesHint5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint5.Image")));
-            this.pictureBox_sometimesHint5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint5.InitialImage")));
-            this.pictureBox_sometimesHint5.Location = new System.Drawing.Point(133, 662);
-            this.pictureBox_sometimesHint5.Name = "pictureBox_sometimesHint5";
-            this.pictureBox_sometimesHint5.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint5.TabIndex = 355;
-            this.pictureBox_sometimesHint5.TabStop = false;
-            this.pictureBox_sometimesHint5.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
-            this.pictureBox_sometimesHint5.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
-            this.pictureBox_sometimesHint5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint5_MouseUp);
-            // 
-            // pictureBox_sometimesHint4
-            // 
-            this.pictureBox_sometimesHint4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint4.Image")));
-            this.pictureBox_sometimesHint4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint4.InitialImage")));
-            this.pictureBox_sometimesHint4.Location = new System.Drawing.Point(133, 628);
-            this.pictureBox_sometimesHint4.Name = "pictureBox_sometimesHint4";
-            this.pictureBox_sometimesHint4.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint4.TabIndex = 356;
-            this.pictureBox_sometimesHint4.TabStop = false;
-            this.pictureBox_sometimesHint4.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
-            this.pictureBox_sometimesHint4.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
-            this.pictureBox_sometimesHint4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint4_MouseUp);
-            // 
-            // pictureBox_sometimesHint3
-            // 
-            this.pictureBox_sometimesHint3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint3.Image")));
-            this.pictureBox_sometimesHint3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint3.InitialImage")));
-            this.pictureBox_sometimesHint3.Location = new System.Drawing.Point(133, 594);
-            this.pictureBox_sometimesHint3.Name = "pictureBox_sometimesHint3";
-            this.pictureBox_sometimesHint3.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint3.TabIndex = 357;
-            this.pictureBox_sometimesHint3.TabStop = false;
-            this.pictureBox_sometimesHint3.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
-            this.pictureBox_sometimesHint3.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
-            this.pictureBox_sometimesHint3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint3_MouseUp);
-            // 
-            // pictureBox_sometimesHint2
-            // 
-            this.pictureBox_sometimesHint2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint2.Image")));
-            this.pictureBox_sometimesHint2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint2.InitialImage")));
-            this.pictureBox_sometimesHint2.Location = new System.Drawing.Point(133, 560);
-            this.pictureBox_sometimesHint2.Name = "pictureBox_sometimesHint2";
-            this.pictureBox_sometimesHint2.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint2.TabIndex = 358;
-            this.pictureBox_sometimesHint2.TabStop = false;
-            this.pictureBox_sometimesHint2.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
-            this.pictureBox_sometimesHint2.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
-            this.pictureBox_sometimesHint2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint2_MouseUp);
-            // 
-            // pictureBox_sometimesHint1
-            // 
-            this.pictureBox_sometimesHint1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint1.Image")));
-            this.pictureBox_sometimesHint1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint1.InitialImage")));
-            this.pictureBox_sometimesHint1.Location = new System.Drawing.Point(133, 526);
-            this.pictureBox_sometimesHint1.Name = "pictureBox_sometimesHint1";
-            this.pictureBox_sometimesHint1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint1.TabIndex = 359;
-            this.pictureBox_sometimesHint1.TabStop = false;
-            this.pictureBox_sometimesHint1.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
-            this.pictureBox_sometimesHint1.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
-            this.pictureBox_sometimesHint1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_sometimesHint1_MouseUp);
-            // 
-            // pictureBox_wallet
-            // 
-            this.pictureBox_wallet.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_wallet.Image = global::TrackerOOT.Properties.Resources.wallet;
-            this.pictureBox_wallet.Location = new System.Drawing.Point(234, 43);
-            this.pictureBox_wallet.Name = "pictureBox_wallet";
-            this.pictureBox_wallet.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_wallet.TabIndex = 360;
-            this.pictureBox_wallet.TabStop = false;
-            this.pictureBox_wallet.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_wallet.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_wallet.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_wallet_MouseUp_Upgrade);
             // 
             // pictureBox_oot_hint
             // 
@@ -1252,6 +1266,7 @@ namespace TrackerOOT
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(349, 771);
+            this.Controls.Add(this.pictureBox_go_mode);
             this.Controls.Add(this.pictureBox_collectedSkulls);
             this.Controls.Add(this.pictureBox_sometimesHint5);
             this.Controls.Add(this.pictureBox_sometimesHint4);
@@ -1333,6 +1348,14 @@ namespace TrackerOOT
             this.Text = "Gossip Stones Tracker v1.5 (Ladder Edition)";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_go_mode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_collectedSkulls)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wallet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ZL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_epona)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_saria)).EndInit();
@@ -1345,13 +1368,6 @@ namespace TrackerOOT
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_requiem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_nocturne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prelude)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_collectedSkulls)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wallet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oot_hint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imageOot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_strength)).EndInit();
@@ -1486,5 +1502,6 @@ namespace TrackerOOT
         private System.Windows.Forms.PictureBox pictureBox_sometimesHint5;
         private System.Windows.Forms.PictureBox pictureBox_sometimesHint4;
         private System.Windows.Forms.PictureBox pictureBox_collectedSkulls;
+        private System.Windows.Forms.PictureBox pictureBox_go_mode;
     }
 }

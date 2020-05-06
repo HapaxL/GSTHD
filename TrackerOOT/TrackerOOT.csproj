@@ -457,5 +457,11 @@
   <ItemGroup>
     <None Include="Resources\iron_hover_boots.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go_mode_bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go_mode.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
