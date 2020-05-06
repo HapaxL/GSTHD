@@ -59,15 +59,6 @@ namespace TrackerOOT
             this.button_woth = new System.Windows.Forms.Button();
             this.button_barren = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel_woth = new System.Windows.Forms.Panel();
-            this.panel_barren = new System.Windows.Forms.Panel();
-            this.pictureBox_collectedSkulls = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_sometimesHint1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_wallet = new System.Windows.Forms.PictureBox();
             this.pictureBox_ZL = new System.Windows.Forms.PictureBox();
             this.pictureBox_epona = new System.Windows.Forms.PictureBox();
             this.pictureBox_saria = new System.Windows.Forms.PictureBox();
@@ -80,6 +71,15 @@ namespace TrackerOOT
             this.pictureBox_requiem = new System.Windows.Forms.PictureBox();
             this.pictureBox_nocturne = new System.Windows.Forms.PictureBox();
             this.pictureBox_prelude = new System.Windows.Forms.PictureBox();
+            this.panel_woth = new System.Windows.Forms.Panel();
+            this.panel_barren = new System.Windows.Forms.Panel();
+            this.pictureBox_collectedSkulls = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_sometimesHint1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_wallet = new System.Windows.Forms.PictureBox();
             this.pictureBox_oot_hint = new System.Windows.Forms.PictureBox();
             this.pictureBox_imageOot = new System.Windows.Forms.PictureBox();
             this.pictureBox_strength = new System.Windows.Forms.PictureBox();
@@ -100,7 +100,7 @@ namespace TrackerOOT
             this.pictureBox_40skulls = new System.Windows.Forms.PictureBox();
             this.pictureBox_bow = new System.Windows.Forms.PictureBox();
             this.pictureBox_30skulls = new System.Windows.Forms.PictureBox();
-            this.pictureBox_dins_fire = new System.Windows.Forms.PictureBox();
+            this.pictureBox_dins_farores = new System.Windows.Forms.PictureBox();
             this.pictureBox_fire_light_arrow = new System.Windows.Forms.PictureBox();
             this.pictureBox_slingshot = new System.Windows.Forms.PictureBox();
             this.pictureBox_boomerang = new System.Windows.Forms.PictureBox();
@@ -121,13 +121,6 @@ namespace TrackerOOT
             this.pictureBox_scale = new System.Windows.Forms.PictureBox();
             this.pictureBox_magic = new System.Windows.Forms.PictureBox();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_collectedSkulls)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wallet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ZL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_epona)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_saria)).BeginInit();
@@ -140,6 +133,13 @@ namespace TrackerOOT
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_requiem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_nocturne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prelude)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_collectedSkulls)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wallet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oot_hint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imageOot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_strength)).BeginInit();
@@ -160,7 +160,7 @@ namespace TrackerOOT
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_40skulls)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_30skulls)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_dins_fire)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_dins_farores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fire_light_arrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slingshot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_boomerang)).BeginInit();
@@ -194,7 +194,7 @@ namespace TrackerOOT
             this.comboBox_places.MaxDropDownItems = 60;
             this.comboBox_places.Name = "comboBox_places";
             this.comboBox_places.Size = new System.Drawing.Size(157, 23);
-            this.comboBox_places.TabIndex = 2;
+            this.comboBox_places.TabIndex = 200;
             this.comboBox_places.DropDownClosed += new System.EventHandler(this.comboBox_woth1_DropDownClosed);
             // 
             // textBox1
@@ -204,8 +204,8 @@ namespace TrackerOOT
             this.textBox1.ForeColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(6, 532);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(90, 23);
-            this.textBox1.TabIndex = 34;
+            this.textBox1.Size = new System.Drawing.Size(115, 23);
+            this.textBox1.TabIndex = 203;
             // 
             // textBox2
             // 
@@ -214,8 +214,8 @@ namespace TrackerOOT
             this.textBox2.ForeColor = System.Drawing.Color.White;
             this.textBox2.Location = new System.Drawing.Point(6, 565);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(90, 23);
-            this.textBox2.TabIndex = 36;
+            this.textBox2.Size = new System.Drawing.Size(115, 23);
+            this.textBox2.TabIndex = 204;
             // 
             // textBox3
             // 
@@ -224,8 +224,8 @@ namespace TrackerOOT
             this.textBox3.ForeColor = System.Drawing.Color.White;
             this.textBox3.Location = new System.Drawing.Point(6, 599);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(90, 23);
-            this.textBox3.TabIndex = 38;
+            this.textBox3.Size = new System.Drawing.Size(115, 23);
+            this.textBox3.TabIndex = 205;
             // 
             // textBox4
             // 
@@ -234,8 +234,8 @@ namespace TrackerOOT
             this.textBox4.ForeColor = System.Drawing.Color.White;
             this.textBox4.Location = new System.Drawing.Point(6, 632);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(90, 23);
-            this.textBox4.TabIndex = 40;
+            this.textBox4.Size = new System.Drawing.Size(115, 23);
+            this.textBox4.TabIndex = 206;
             // 
             // textBox5
             // 
@@ -244,18 +244,18 @@ namespace TrackerOOT
             this.textBox5.ForeColor = System.Drawing.Color.White;
             this.textBox5.Location = new System.Drawing.Point(6, 665);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(90, 23);
-            this.textBox5.TabIndex = 42;
+            this.textBox5.Size = new System.Drawing.Size(115, 23);
+            this.textBox5.TabIndex = 207;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(96, 533);
+            this.label11.Location = new System.Drawing.Point(122, 533);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(13, 19);
-            this.label11.TabIndex = 44;
+            this.label11.TabIndex = 321;
             this.label11.Text = ":";
             // 
             // label12
@@ -263,10 +263,10 @@ namespace TrackerOOT
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(96, 565);
+            this.label12.Location = new System.Drawing.Point(122, 565);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(13, 19);
-            this.label12.TabIndex = 45;
+            this.label12.TabIndex = 322;
             this.label12.Text = ":";
             // 
             // label13
@@ -274,10 +274,10 @@ namespace TrackerOOT
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(96, 599);
+            this.label13.Location = new System.Drawing.Point(122, 599);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(13, 19);
-            this.label13.TabIndex = 46;
+            this.label13.TabIndex = 324;
             this.label13.Text = ":";
             // 
             // label14
@@ -285,10 +285,10 @@ namespace TrackerOOT
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(96, 632);
+            this.label14.Location = new System.Drawing.Point(122, 632);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(13, 19);
-            this.label14.TabIndex = 47;
+            this.label14.TabIndex = 325;
             this.label14.Text = ":";
             // 
             // label15
@@ -296,10 +296,10 @@ namespace TrackerOOT
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(96, 665);
+            this.label15.Location = new System.Drawing.Point(122, 665);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(13, 19);
-            this.label15.TabIndex = 48;
+            this.label15.TabIndex = 326;
             this.label15.Text = ":";
             // 
             // timer1
@@ -315,7 +315,7 @@ namespace TrackerOOT
             this.label1.Location = new System.Drawing.Point(69, 702);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(256, 59);
-            this.label1.TabIndex = 53;
+            this.label1.TabIndex = 327;
             this.label1.Text = "00:00:00.00";
             // 
             // button_chrono
@@ -325,7 +325,7 @@ namespace TrackerOOT
             this.button_chrono.Location = new System.Drawing.Point(11, 709);
             this.button_chrono.Name = "button_chrono";
             this.button_chrono.Size = new System.Drawing.Size(52, 23);
-            this.button_chrono.TabIndex = 54;
+            this.button_chrono.TabIndex = 328;
             this.button_chrono.Text = "Start";
             this.button_chrono.UseVisualStyleBackColor = false;
             this.button_chrono.Click += new System.EventHandler(this.button_chrono_Click);
@@ -337,7 +337,7 @@ namespace TrackerOOT
             this.button_chrono_reset.Location = new System.Drawing.Point(11, 738);
             this.button_chrono_reset.Name = "button_chrono_reset";
             this.button_chrono_reset.Size = new System.Drawing.Size(52, 23);
-            this.button_chrono_reset.TabIndex = 56;
+            this.button_chrono_reset.TabIndex = 329;
             this.button_chrono_reset.Text = "Reset";
             this.button_chrono_reset.UseVisualStyleBackColor = false;
             this.button_chrono_reset.Click += new System.EventHandler(this.button_chrono_reset_Click);
@@ -352,7 +352,7 @@ namespace TrackerOOT
             this.label_green_medaillon.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_green_medaillon.Name = "label_green_medaillon";
             this.label_green_medaillon.Size = new System.Drawing.Size(43, 13);
-            this.label_green_medaillon.TabIndex = 112;
+            this.label_green_medaillon.TabIndex = 330;
             this.label_green_medaillon.Text = "????";
             this.label_green_medaillon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -366,7 +366,7 @@ namespace TrackerOOT
             this.label_red_medaillon.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_red_medaillon.Name = "label_red_medaillon";
             this.label_red_medaillon.Size = new System.Drawing.Size(43, 13);
-            this.label_red_medaillon.TabIndex = 113;
+            this.label_red_medaillon.TabIndex = 331;
             this.label_red_medaillon.Text = "????";
             this.label_red_medaillon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -380,7 +380,7 @@ namespace TrackerOOT
             this.label_blue_medaillon.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_blue_medaillon.Name = "label_blue_medaillon";
             this.label_blue_medaillon.Size = new System.Drawing.Size(43, 13);
-            this.label_blue_medaillon.TabIndex = 114;
+            this.label_blue_medaillon.TabIndex = 332;
             this.label_blue_medaillon.Text = "????";
             this.label_blue_medaillon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -394,7 +394,7 @@ namespace TrackerOOT
             this.label_orange_medaillon.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_orange_medaillon.Name = "label_orange_medaillon";
             this.label_orange_medaillon.Size = new System.Drawing.Size(43, 13);
-            this.label_orange_medaillon.TabIndex = 115;
+            this.label_orange_medaillon.TabIndex = 333;
             this.label_orange_medaillon.Text = "????";
             this.label_orange_medaillon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -408,7 +408,7 @@ namespace TrackerOOT
             this.label_purple_medaillon.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_purple_medaillon.Name = "label_purple_medaillon";
             this.label_purple_medaillon.Size = new System.Drawing.Size(43, 13);
-            this.label_purple_medaillon.TabIndex = 116;
+            this.label_purple_medaillon.TabIndex = 334;
             this.label_purple_medaillon.Text = "????";
             this.label_purple_medaillon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -422,7 +422,7 @@ namespace TrackerOOT
             this.label_yellow_medaillon.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_yellow_medaillon.Name = "label_yellow_medaillon";
             this.label_yellow_medaillon.Size = new System.Drawing.Size(43, 13);
-            this.label_yellow_medaillon.TabIndex = 117;
+            this.label_yellow_medaillon.TabIndex = 335;
             this.label_yellow_medaillon.Text = "????";
             this.label_yellow_medaillon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -436,7 +436,7 @@ namespace TrackerOOT
             this.label_kokiri_stone.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_kokiri_stone.Name = "label_kokiri_stone";
             this.label_kokiri_stone.Size = new System.Drawing.Size(43, 13);
-            this.label_kokiri_stone.TabIndex = 118;
+            this.label_kokiri_stone.TabIndex = 336;
             this.label_kokiri_stone.Text = "????";
             this.label_kokiri_stone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -450,7 +450,7 @@ namespace TrackerOOT
             this.label_zora_stone.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_zora_stone.Name = "label_zora_stone";
             this.label_zora_stone.Size = new System.Drawing.Size(43, 13);
-            this.label_zora_stone.TabIndex = 119;
+            this.label_zora_stone.TabIndex = 337;
             this.label_zora_stone.Text = "????";
             this.label_zora_stone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -464,7 +464,7 @@ namespace TrackerOOT
             this.label_goron_stone.MinimumSize = new System.Drawing.Size(43, 13);
             this.label_goron_stone.Name = "label_goron_stone";
             this.label_goron_stone.Size = new System.Drawing.Size(43, 13);
-            this.label_goron_stone.TabIndex = 120;
+            this.label_goron_stone.TabIndex = 338;
             this.label_goron_stone.Text = "????";
             this.label_goron_stone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -472,10 +472,10 @@ namespace TrackerOOT
             // 
             this.button_woth.BackColor = System.Drawing.Color.DimGray;
             this.button_woth.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button_woth.Location = new System.Drawing.Point(185, 321);
+            this.button_woth.Location = new System.Drawing.Point(184, 321);
             this.button_woth.Name = "button_woth";
-            this.button_woth.Size = new System.Drawing.Size(75, 23);
-            this.button_woth.TabIndex = 121;
+            this.button_woth.Size = new System.Drawing.Size(77, 23);
+            this.button_woth.TabIndex = 201;
             this.button_woth.Text = "add WotH";
             this.button_woth.UseVisualStyleBackColor = false;
             this.button_woth.Click += new System.EventHandler(this.button_woth_Click);
@@ -484,10 +484,10 @@ namespace TrackerOOT
             // 
             this.button_barren.BackColor = System.Drawing.Color.DimGray;
             this.button_barren.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button_barren.Location = new System.Drawing.Point(266, 321);
+            this.button_barren.Location = new System.Drawing.Point(265, 321);
             this.button_barren.Name = "button_barren";
-            this.button_barren.Size = new System.Drawing.Size(75, 23);
-            this.button_barren.TabIndex = 122;
+            this.button_barren.Size = new System.Drawing.Size(77, 23);
+            this.button_barren.TabIndex = 202;
             this.button_barren.Text = "add Barren";
             this.button_barren.UseVisualStyleBackColor = false;
             this.button_barren.Click += new System.EventHandler(this.button_barren_Click);
@@ -510,7 +510,151 @@ namespace TrackerOOT
             this.panel4.Location = new System.Drawing.Point(6, 82);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(246, 81);
-            this.panel4.TabIndex = 123;
+            this.panel4.TabIndex = 339;
+            // 
+            // pictureBox_ZL
+            // 
+            this.pictureBox_ZL.Image = global::TrackerOOT.Properties.Resources.zeldas_lullaby_bw;
+            this.pictureBox_ZL.Location = new System.Drawing.Point(13, 3);
+            this.pictureBox_ZL.Name = "pictureBox_ZL";
+            this.pictureBox_ZL.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_ZL.TabIndex = 340;
+            this.pictureBox_ZL.TabStop = false;
+            this.pictureBox_ZL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_ZL.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_ZL.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_epona
+            // 
+            this.pictureBox_epona.Image = global::TrackerOOT.Properties.Resources.epona_bw;
+            this.pictureBox_epona.Location = new System.Drawing.Point(51, 3);
+            this.pictureBox_epona.Name = "pictureBox_epona";
+            this.pictureBox_epona.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_epona.TabIndex = 341;
+            this.pictureBox_epona.TabStop = false;
+            this.pictureBox_epona.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_epona.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_epona.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_saria
+            // 
+            this.pictureBox_saria.Image = global::TrackerOOT.Properties.Resources.saria_bw;
+            this.pictureBox_saria.Location = new System.Drawing.Point(89, 3);
+            this.pictureBox_saria.Name = "pictureBox_saria";
+            this.pictureBox_saria.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_saria.TabIndex = 342;
+            this.pictureBox_saria.TabStop = false;
+            this.pictureBox_saria.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_saria.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_saria.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_suns_song
+            // 
+            this.pictureBox_suns_song.Image = global::TrackerOOT.Properties.Resources.suns_song_bw;
+            this.pictureBox_suns_song.Location = new System.Drawing.Point(127, 3);
+            this.pictureBox_suns_song.Name = "pictureBox_suns_song";
+            this.pictureBox_suns_song.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_suns_song.TabIndex = 343;
+            this.pictureBox_suns_song.TabStop = false;
+            this.pictureBox_suns_song.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_suns_song.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_suns_song.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_song_of_time
+            // 
+            this.pictureBox_song_of_time.Image = global::TrackerOOT.Properties.Resources.song_of_time_bw;
+            this.pictureBox_song_of_time.Location = new System.Drawing.Point(165, 3);
+            this.pictureBox_song_of_time.Name = "pictureBox_song_of_time";
+            this.pictureBox_song_of_time.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_song_of_time.TabIndex = 344;
+            this.pictureBox_song_of_time.TabStop = false;
+            this.pictureBox_song_of_time.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_song_of_time.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_song_of_time.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_song_of_storms
+            // 
+            this.pictureBox_song_of_storms.Image = global::TrackerOOT.Properties.Resources.song_of_storms_bw;
+            this.pictureBox_song_of_storms.Location = new System.Drawing.Point(203, 3);
+            this.pictureBox_song_of_storms.Name = "pictureBox_song_of_storms";
+            this.pictureBox_song_of_storms.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_song_of_storms.TabIndex = 345;
+            this.pictureBox_song_of_storms.TabStop = false;
+            this.pictureBox_song_of_storms.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_song_of_storms.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_song_of_storms.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_minuet
+            // 
+            this.pictureBox_minuet.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_minuet.Image")));
+            this.pictureBox_minuet.Location = new System.Drawing.Point(13, 43);
+            this.pictureBox_minuet.Name = "pictureBox_minuet";
+            this.pictureBox_minuet.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_minuet.TabIndex = 346;
+            this.pictureBox_minuet.TabStop = false;
+            this.pictureBox_minuet.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_minuet.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_minuet.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_bolero
+            // 
+            this.pictureBox_bolero.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_bolero.Image")));
+            this.pictureBox_bolero.Location = new System.Drawing.Point(51, 43);
+            this.pictureBox_bolero.Name = "pictureBox_bolero";
+            this.pictureBox_bolero.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_bolero.TabIndex = 347;
+            this.pictureBox_bolero.TabStop = false;
+            this.pictureBox_bolero.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_bolero.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_bolero.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_serenade
+            // 
+            this.pictureBox_serenade.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_serenade.Image")));
+            this.pictureBox_serenade.Location = new System.Drawing.Point(89, 43);
+            this.pictureBox_serenade.Name = "pictureBox_serenade";
+            this.pictureBox_serenade.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_serenade.TabIndex = 348;
+            this.pictureBox_serenade.TabStop = false;
+            this.pictureBox_serenade.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_serenade.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_serenade.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_requiem
+            // 
+            this.pictureBox_requiem.Image = global::TrackerOOT.Properties.Resources.requiem_bw;
+            this.pictureBox_requiem.Location = new System.Drawing.Point(127, 43);
+            this.pictureBox_requiem.Name = "pictureBox_requiem";
+            this.pictureBox_requiem.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_requiem.TabIndex = 349;
+            this.pictureBox_requiem.TabStop = false;
+            this.pictureBox_requiem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_requiem.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_requiem.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_nocturne
+            // 
+            this.pictureBox_nocturne.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_nocturne.Image")));
+            this.pictureBox_nocturne.Location = new System.Drawing.Point(165, 43);
+            this.pictureBox_nocturne.Name = "pictureBox_nocturne";
+            this.pictureBox_nocturne.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_nocturne.TabIndex = 350;
+            this.pictureBox_nocturne.TabStop = false;
+            this.pictureBox_nocturne.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_nocturne.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_nocturne.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
+            // 
+            // pictureBox_prelude
+            // 
+            this.pictureBox_prelude.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_prelude.Image")));
+            this.pictureBox_prelude.Location = new System.Drawing.Point(203, 43);
+            this.pictureBox_prelude.Name = "pictureBox_prelude";
+            this.pictureBox_prelude.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_prelude.TabIndex = 351;
+            this.pictureBox_prelude.TabStop = false;
+            this.pictureBox_prelude.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_prelude.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_prelude.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // panel_woth
             // 
@@ -518,35 +662,35 @@ namespace TrackerOOT
             this.panel_woth.Location = new System.Drawing.Point(6, 359);
             this.panel_woth.Name = "panel_woth";
             this.panel_woth.Size = new System.Drawing.Size(336, 160);
-            this.panel_woth.TabIndex = 124;
+            this.panel_woth.TabIndex = 352;
             // 
             // panel_barren
             // 
             this.panel_barren.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel_barren.Location = new System.Drawing.Point(158, 526);
+            this.panel_barren.Location = new System.Drawing.Point(170, 526);
             this.panel_barren.Name = "panel_barren";
-            this.panel_barren.Size = new System.Drawing.Size(184, 70);
-            this.panel_barren.TabIndex = 125;
+            this.panel_barren.Size = new System.Drawing.Size(172, 70);
+            this.panel_barren.TabIndex = 353;
             // 
             // pictureBox_collectedSkulls
             // 
             this.pictureBox_collectedSkulls.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_collectedSkulls.Image = global::TrackerOOT.Properties.Resources.skulltulas;
             this.pictureBox_collectedSkulls.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_collectedSkulls.InitialImage")));
-            this.pictureBox_collectedSkulls.Location = new System.Drawing.Point(287, 245);
+            this.pictureBox_collectedSkulls.Location = new System.Drawing.Point(305, 245);
             this.pictureBox_collectedSkulls.Name = "pictureBox_collectedSkulls";
             this.pictureBox_collectedSkulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_collectedSkulls.TabIndex = 131;
+            this.pictureBox_collectedSkulls.TabIndex = 354;
             this.pictureBox_collectedSkulls.TabStop = false;
             // 
             // pictureBox_sometimesHint5
             // 
             this.pictureBox_sometimesHint5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint5.Image")));
             this.pictureBox_sometimesHint5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint5.InitialImage")));
-            this.pictureBox_sometimesHint5.Location = new System.Drawing.Point(110, 663);
+            this.pictureBox_sometimesHint5.Location = new System.Drawing.Point(133, 662);
             this.pictureBox_sometimesHint5.Name = "pictureBox_sometimesHint5";
             this.pictureBox_sometimesHint5.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint5.TabIndex = 130;
+            this.pictureBox_sometimesHint5.TabIndex = 355;
             this.pictureBox_sometimesHint5.TabStop = false;
             this.pictureBox_sometimesHint5.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_sometimesHint5.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -556,10 +700,10 @@ namespace TrackerOOT
             // 
             this.pictureBox_sometimesHint4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint4.Image")));
             this.pictureBox_sometimesHint4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint4.InitialImage")));
-            this.pictureBox_sometimesHint4.Location = new System.Drawing.Point(110, 629);
+            this.pictureBox_sometimesHint4.Location = new System.Drawing.Point(133, 628);
             this.pictureBox_sometimesHint4.Name = "pictureBox_sometimesHint4";
             this.pictureBox_sometimesHint4.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint4.TabIndex = 129;
+            this.pictureBox_sometimesHint4.TabIndex = 356;
             this.pictureBox_sometimesHint4.TabStop = false;
             this.pictureBox_sometimesHint4.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_sometimesHint4.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -569,10 +713,10 @@ namespace TrackerOOT
             // 
             this.pictureBox_sometimesHint3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint3.Image")));
             this.pictureBox_sometimesHint3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint3.InitialImage")));
-            this.pictureBox_sometimesHint3.Location = new System.Drawing.Point(110, 595);
+            this.pictureBox_sometimesHint3.Location = new System.Drawing.Point(133, 594);
             this.pictureBox_sometimesHint3.Name = "pictureBox_sometimesHint3";
             this.pictureBox_sometimesHint3.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint3.TabIndex = 128;
+            this.pictureBox_sometimesHint3.TabIndex = 357;
             this.pictureBox_sometimesHint3.TabStop = false;
             this.pictureBox_sometimesHint3.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_sometimesHint3.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -582,10 +726,10 @@ namespace TrackerOOT
             // 
             this.pictureBox_sometimesHint2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint2.Image")));
             this.pictureBox_sometimesHint2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint2.InitialImage")));
-            this.pictureBox_sometimesHint2.Location = new System.Drawing.Point(110, 561);
+            this.pictureBox_sometimesHint2.Location = new System.Drawing.Point(133, 560);
             this.pictureBox_sometimesHint2.Name = "pictureBox_sometimesHint2";
             this.pictureBox_sometimesHint2.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint2.TabIndex = 127;
+            this.pictureBox_sometimesHint2.TabIndex = 358;
             this.pictureBox_sometimesHint2.TabStop = false;
             this.pictureBox_sometimesHint2.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_sometimesHint2.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -595,10 +739,10 @@ namespace TrackerOOT
             // 
             this.pictureBox_sometimesHint1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint1.Image")));
             this.pictureBox_sometimesHint1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_sometimesHint1.InitialImage")));
-            this.pictureBox_sometimesHint1.Location = new System.Drawing.Point(110, 527);
+            this.pictureBox_sometimesHint1.Location = new System.Drawing.Point(133, 526);
             this.pictureBox_sometimesHint1.Name = "pictureBox_sometimesHint1";
             this.pictureBox_sometimesHint1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_sometimesHint1.TabIndex = 126;
+            this.pictureBox_sometimesHint1.TabIndex = 359;
             this.pictureBox_sometimesHint1.TabStop = false;
             this.pictureBox_sometimesHint1.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_sometimesHint1.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -611,155 +755,11 @@ namespace TrackerOOT
             this.pictureBox_wallet.Location = new System.Drawing.Point(234, 43);
             this.pictureBox_wallet.Name = "pictureBox_wallet";
             this.pictureBox_wallet.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_wallet.TabIndex = 125;
+            this.pictureBox_wallet.TabIndex = 360;
             this.pictureBox_wallet.TabStop = false;
             this.pictureBox_wallet.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_wallet.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             this.pictureBox_wallet.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_wallet_MouseUp_Upgrade);
-            // 
-            // pictureBox_ZL
-            // 
-            this.pictureBox_ZL.Image = global::TrackerOOT.Properties.Resources.zeldas_lullaby_bw;
-            this.pictureBox_ZL.Location = new System.Drawing.Point(13, 3);
-            this.pictureBox_ZL.Name = "pictureBox_ZL";
-            this.pictureBox_ZL.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_ZL.TabIndex = 85;
-            this.pictureBox_ZL.TabStop = false;
-            this.pictureBox_ZL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_ZL.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_ZL.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_epona
-            // 
-            this.pictureBox_epona.Image = global::TrackerOOT.Properties.Resources.epona_bw;
-            this.pictureBox_epona.Location = new System.Drawing.Point(51, 3);
-            this.pictureBox_epona.Name = "pictureBox_epona";
-            this.pictureBox_epona.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_epona.TabIndex = 86;
-            this.pictureBox_epona.TabStop = false;
-            this.pictureBox_epona.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_epona.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_epona.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_saria
-            // 
-            this.pictureBox_saria.Image = global::TrackerOOT.Properties.Resources.saria_bw;
-            this.pictureBox_saria.Location = new System.Drawing.Point(89, 3);
-            this.pictureBox_saria.Name = "pictureBox_saria";
-            this.pictureBox_saria.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_saria.TabIndex = 87;
-            this.pictureBox_saria.TabStop = false;
-            this.pictureBox_saria.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_saria.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_saria.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_suns_song
-            // 
-            this.pictureBox_suns_song.Image = global::TrackerOOT.Properties.Resources.suns_song_bw;
-            this.pictureBox_suns_song.Location = new System.Drawing.Point(127, 3);
-            this.pictureBox_suns_song.Name = "pictureBox_suns_song";
-            this.pictureBox_suns_song.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_suns_song.TabIndex = 88;
-            this.pictureBox_suns_song.TabStop = false;
-            this.pictureBox_suns_song.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_suns_song.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_suns_song.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_song_of_time
-            // 
-            this.pictureBox_song_of_time.Image = global::TrackerOOT.Properties.Resources.song_of_time_bw;
-            this.pictureBox_song_of_time.Location = new System.Drawing.Point(165, 3);
-            this.pictureBox_song_of_time.Name = "pictureBox_song_of_time";
-            this.pictureBox_song_of_time.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_song_of_time.TabIndex = 89;
-            this.pictureBox_song_of_time.TabStop = false;
-            this.pictureBox_song_of_time.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_song_of_time.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_song_of_time.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_song_of_storms
-            // 
-            this.pictureBox_song_of_storms.Image = global::TrackerOOT.Properties.Resources.song_of_storms_bw;
-            this.pictureBox_song_of_storms.Location = new System.Drawing.Point(203, 3);
-            this.pictureBox_song_of_storms.Name = "pictureBox_song_of_storms";
-            this.pictureBox_song_of_storms.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_song_of_storms.TabIndex = 90;
-            this.pictureBox_song_of_storms.TabStop = false;
-            this.pictureBox_song_of_storms.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_song_of_storms.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_song_of_storms.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_minuet
-            // 
-            this.pictureBox_minuet.Image = global::TrackerOOT.Properties.Resources.minuet_bw;
-            this.pictureBox_minuet.Location = new System.Drawing.Point(13, 43);
-            this.pictureBox_minuet.Name = "pictureBox_minuet";
-            this.pictureBox_minuet.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_minuet.TabIndex = 91;
-            this.pictureBox_minuet.TabStop = false;
-            this.pictureBox_minuet.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_minuet.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_minuet.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_bolero
-            // 
-            this.pictureBox_bolero.Image = global::TrackerOOT.Properties.Resources.bolero_bw;
-            this.pictureBox_bolero.Location = new System.Drawing.Point(51, 43);
-            this.pictureBox_bolero.Name = "pictureBox_bolero";
-            this.pictureBox_bolero.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_bolero.TabIndex = 92;
-            this.pictureBox_bolero.TabStop = false;
-            this.pictureBox_bolero.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_bolero.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_bolero.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_serenade
-            // 
-            this.pictureBox_serenade.Image = global::TrackerOOT.Properties.Resources.serenade_bw;
-            this.pictureBox_serenade.Location = new System.Drawing.Point(89, 43);
-            this.pictureBox_serenade.Name = "pictureBox_serenade";
-            this.pictureBox_serenade.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_serenade.TabIndex = 93;
-            this.pictureBox_serenade.TabStop = false;
-            this.pictureBox_serenade.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_serenade.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_serenade.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_requiem
-            // 
-            this.pictureBox_requiem.Image = global::TrackerOOT.Properties.Resources.requiem_bw;
-            this.pictureBox_requiem.Location = new System.Drawing.Point(127, 43);
-            this.pictureBox_requiem.Name = "pictureBox_requiem";
-            this.pictureBox_requiem.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_requiem.TabIndex = 94;
-            this.pictureBox_requiem.TabStop = false;
-            this.pictureBox_requiem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_requiem.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_requiem.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_nocturne
-            // 
-            this.pictureBox_nocturne.Image = global::TrackerOOT.Properties.Resources.nocturne_bw;
-            this.pictureBox_nocturne.Location = new System.Drawing.Point(165, 43);
-            this.pictureBox_nocturne.Name = "pictureBox_nocturne";
-            this.pictureBox_nocturne.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_nocturne.TabIndex = 95;
-            this.pictureBox_nocturne.TabStop = false;
-            this.pictureBox_nocturne.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_nocturne.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_nocturne.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
-            // 
-            // pictureBox_prelude
-            // 
-            this.pictureBox_prelude.Image = global::TrackerOOT.Properties.Resources.prelude_bw;
-            this.pictureBox_prelude.Location = new System.Drawing.Point(203, 43);
-            this.pictureBox_prelude.Name = "pictureBox_prelude";
-            this.pictureBox_prelude.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_prelude.TabIndex = 96;
-            this.pictureBox_prelude.TabStop = false;
-            this.pictureBox_prelude.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_prelude.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_prelude.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseUp);
             // 
             // pictureBox_oot_hint
             // 
@@ -768,7 +768,7 @@ namespace TrackerOOT
             this.pictureBox_oot_hint.Location = new System.Drawing.Point(226, 245);
             this.pictureBox_oot_hint.Name = "pictureBox_oot_hint";
             this.pictureBox_oot_hint.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_oot_hint.TabIndex = 91;
+            this.pictureBox_oot_hint.TabIndex = 361;
             this.pictureBox_oot_hint.TabStop = false;
             this.pictureBox_oot_hint.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_oot_hint.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -780,7 +780,7 @@ namespace TrackerOOT
             this.pictureBox_imageOot.Location = new System.Drawing.Point(188, 245);
             this.pictureBox_imageOot.Name = "pictureBox_imageOot";
             this.pictureBox_imageOot.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_imageOot.TabIndex = 111;
+            this.pictureBox_imageOot.TabIndex = 362;
             this.pictureBox_imageOot.TabStop = false;
             // 
             // pictureBox_strength
@@ -790,7 +790,7 @@ namespace TrackerOOT
             this.pictureBox_strength.Location = new System.Drawing.Point(82, 43);
             this.pictureBox_strength.Name = "pictureBox_strength";
             this.pictureBox_strength.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_strength.TabIndex = 104;
+            this.pictureBox_strength.TabIndex = 363;
             this.pictureBox_strength.TabStop = false;
             this.pictureBox_strength.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_strength.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -803,7 +803,7 @@ namespace TrackerOOT
             this.pictureBox_imageFrogs.Location = new System.Drawing.Point(95, 321);
             this.pictureBox_imageFrogs.Name = "pictureBox_imageFrogs";
             this.pictureBox_imageFrogs.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_imageFrogs.TabIndex = 97;
+            this.pictureBox_imageFrogs.TabIndex = 364;
             this.pictureBox_imageFrogs.TabStop = false;
             // 
             // pictureBox_imageSkullMask
@@ -813,7 +813,7 @@ namespace TrackerOOT
             this.pictureBox_imageSkullMask.Location = new System.Drawing.Point(95, 245);
             this.pictureBox_imageSkullMask.Name = "pictureBox_imageSkullMask";
             this.pictureBox_imageSkullMask.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_imageSkullMask.TabIndex = 96;
+            this.pictureBox_imageSkullMask.TabIndex = 365;
             this.pictureBox_imageSkullMask.TabStop = false;
             // 
             // pictureBox_imageBiggoron
@@ -823,7 +823,7 @@ namespace TrackerOOT
             this.pictureBox_imageBiggoron.Location = new System.Drawing.Point(95, 283);
             this.pictureBox_imageBiggoron.Name = "pictureBox_imageBiggoron";
             this.pictureBox_imageBiggoron.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_imageBiggoron.TabIndex = 95;
+            this.pictureBox_imageBiggoron.TabIndex = 366;
             this.pictureBox_imageBiggoron.TabStop = false;
             // 
             // pictureBox_image50skulls
@@ -833,7 +833,7 @@ namespace TrackerOOT
             this.pictureBox_image50skulls.Location = new System.Drawing.Point(6, 321);
             this.pictureBox_image50skulls.Name = "pictureBox_image50skulls";
             this.pictureBox_image50skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_image50skulls.TabIndex = 94;
+            this.pictureBox_image50skulls.TabIndex = 367;
             this.pictureBox_image50skulls.TabStop = false;
             // 
             // pictureBox_zora_stone
@@ -843,10 +843,9 @@ namespace TrackerOOT
             this.pictureBox_zora_stone.Location = new System.Drawing.Point(310, 131);
             this.pictureBox_zora_stone.Name = "pictureBox_zora_stone";
             this.pictureBox_zora_stone.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_zora_stone.TabIndex = 103;
+            this.pictureBox_zora_stone.TabIndex = 368;
             this.pictureBox_zora_stone.TabStop = false;
             this.pictureBox_zora_stone.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_zora_stone.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             this.pictureBox_zora_stone.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_stones_zora_MouseUp);
             // 
             // pictureBox_image30skulls
@@ -857,7 +856,7 @@ namespace TrackerOOT
             this.pictureBox_image30skulls.Location = new System.Drawing.Point(6, 245);
             this.pictureBox_image30skulls.Name = "pictureBox_image30skulls";
             this.pictureBox_image30skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_image30skulls.TabIndex = 92;
+            this.pictureBox_image30skulls.TabIndex = 369;
             this.pictureBox_image30skulls.TabStop = false;
             // 
             // pictureBox_image40skulls
@@ -867,7 +866,7 @@ namespace TrackerOOT
             this.pictureBox_image40skulls.Location = new System.Drawing.Point(6, 283);
             this.pictureBox_image40skulls.Name = "pictureBox_image40skulls";
             this.pictureBox_image40skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_image40skulls.TabIndex = 93;
+            this.pictureBox_image40skulls.TabIndex = 370;
             this.pictureBox_image40skulls.TabStop = false;
             // 
             // pictureBox_goron_stone
@@ -877,10 +876,9 @@ namespace TrackerOOT
             this.pictureBox_goron_stone.Location = new System.Drawing.Point(258, 131);
             this.pictureBox_goron_stone.Name = "pictureBox_goron_stone";
             this.pictureBox_goron_stone.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_goron_stone.TabIndex = 102;
+            this.pictureBox_goron_stone.TabIndex = 371;
             this.pictureBox_goron_stone.TabStop = false;
             this.pictureBox_goron_stone.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_goron_stone.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             this.pictureBox_goron_stone.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_stones_goron_MouseUp);
             // 
             // pictureBox_frogs
@@ -890,7 +888,7 @@ namespace TrackerOOT
             this.pictureBox_frogs.Location = new System.Drawing.Point(133, 321);
             this.pictureBox_frogs.Name = "pictureBox_frogs";
             this.pictureBox_frogs.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_frogs.TabIndex = 90;
+            this.pictureBox_frogs.TabIndex = 372;
             this.pictureBox_frogs.TabStop = false;
             this.pictureBox_frogs.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_frogs.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -903,7 +901,7 @@ namespace TrackerOOT
             this.pictureBox_biggoron.Location = new System.Drawing.Point(133, 283);
             this.pictureBox_biggoron.Name = "pictureBox_biggoron";
             this.pictureBox_biggoron.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_biggoron.TabIndex = 89;
+            this.pictureBox_biggoron.TabIndex = 373;
             this.pictureBox_biggoron.TabStop = false;
             this.pictureBox_biggoron.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_biggoron.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -916,7 +914,7 @@ namespace TrackerOOT
             this.pictureBox_iron_hover_boots.Location = new System.Drawing.Point(310, 6);
             this.pictureBox_iron_hover_boots.Name = "pictureBox_iron_hover_boots";
             this.pictureBox_iron_hover_boots.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_iron_hover_boots.TabIndex = 100;
+            this.pictureBox_iron_hover_boots.TabIndex = 374;
             this.pictureBox_iron_hover_boots.TabStop = false;
             this.pictureBox_iron_hover_boots.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_iron_hover_boots.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -929,7 +927,7 @@ namespace TrackerOOT
             this.pictureBox_skullMask.Location = new System.Drawing.Point(133, 245);
             this.pictureBox_skullMask.Name = "pictureBox_skullMask";
             this.pictureBox_skullMask.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_skullMask.TabIndex = 88;
+            this.pictureBox_skullMask.TabIndex = 375;
             this.pictureBox_skullMask.TabStop = false;
             this.pictureBox_skullMask.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_skullMask.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -942,7 +940,7 @@ namespace TrackerOOT
             this.pictureBox_bombs.Location = new System.Drawing.Point(44, 6);
             this.pictureBox_bombs.Name = "pictureBox_bombs";
             this.pictureBox_bombs.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_bombs.TabIndex = 57;
+            this.pictureBox_bombs.TabIndex = 376;
             this.pictureBox_bombs.TabStop = false;
             this.pictureBox_bombs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_bombs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -955,7 +953,7 @@ namespace TrackerOOT
             this.pictureBox_50skulls.Location = new System.Drawing.Point(44, 321);
             this.pictureBox_50skulls.Name = "pictureBox_50skulls";
             this.pictureBox_50skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_50skulls.TabIndex = 87;
+            this.pictureBox_50skulls.TabIndex = 377;
             this.pictureBox_50skulls.TabStop = false;
             this.pictureBox_50skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_50skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -968,7 +966,7 @@ namespace TrackerOOT
             this.pictureBox_40skulls.Location = new System.Drawing.Point(44, 283);
             this.pictureBox_40skulls.Name = "pictureBox_40skulls";
             this.pictureBox_40skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_40skulls.TabIndex = 86;
+            this.pictureBox_40skulls.TabIndex = 378;
             this.pictureBox_40skulls.TabStop = false;
             this.pictureBox_40skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_40skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
@@ -981,7 +979,7 @@ namespace TrackerOOT
             this.pictureBox_bow.Location = new System.Drawing.Point(158, 6);
             this.pictureBox_bow.Name = "pictureBox_bow";
             this.pictureBox_bow.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_bow.TabIndex = 58;
+            this.pictureBox_bow.TabIndex = 379;
             this.pictureBox_bow.TabStop = false;
             this.pictureBox_bow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_bow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -994,25 +992,25 @@ namespace TrackerOOT
             this.pictureBox_30skulls.Location = new System.Drawing.Point(44, 245);
             this.pictureBox_30skulls.Name = "pictureBox_30skulls";
             this.pictureBox_30skulls.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_30skulls.TabIndex = 85;
+            this.pictureBox_30skulls.TabIndex = 300;
             this.pictureBox_30skulls.TabStop = false;
             this.pictureBox_30skulls.Tag = "30skulls";
             this.pictureBox_30skulls.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_DragDrop);
             this.pictureBox_30skulls.DragEnter += new System.Windows.Forms.DragEventHandler(this.object_DragEnter);
             this.pictureBox_30skulls.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_30skulls_MouseUp);
             // 
-            // pictureBox_dins_fire
+            // pictureBox_dins_farores
             // 
-            this.pictureBox_dins_fire.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_dins_fire.Image = global::TrackerOOT.Properties.Resources.dins_fire_bw;
-            this.pictureBox_dins_fire.Location = new System.Drawing.Point(234, 6);
-            this.pictureBox_dins_fire.Name = "pictureBox_dins_fire";
-            this.pictureBox_dins_fire.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_dins_fire.TabIndex = 69;
-            this.pictureBox_dins_fire.TabStop = false;
-            this.pictureBox_dins_fire.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_dins_fire.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
-            this.pictureBox_dins_fire.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_dins_farores_MouseUp);
+            this.pictureBox_dins_farores.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_dins_farores.Image = global::TrackerOOT.Properties.Resources.dins_farores_bw;
+            this.pictureBox_dins_farores.Location = new System.Drawing.Point(234, 6);
+            this.pictureBox_dins_farores.Name = "pictureBox_dins_farores";
+            this.pictureBox_dins_farores.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_dins_farores.TabIndex = 301;
+            this.pictureBox_dins_farores.TabStop = false;
+            this.pictureBox_dins_farores.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox_dins_farores.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
+            this.pictureBox_dins_farores.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_dins_farores_MouseUp);
             // 
             // pictureBox_fire_light_arrow
             // 
@@ -1021,7 +1019,7 @@ namespace TrackerOOT
             this.pictureBox_fire_light_arrow.Location = new System.Drawing.Point(196, 6);
             this.pictureBox_fire_light_arrow.Name = "pictureBox_fire_light_arrow";
             this.pictureBox_fire_light_arrow.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_fire_light_arrow.TabIndex = 59;
+            this.pictureBox_fire_light_arrow.TabIndex = 302;
             this.pictureBox_fire_light_arrow.TabStop = false;
             this.pictureBox_fire_light_arrow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_fire_light_arrow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1034,7 +1032,7 @@ namespace TrackerOOT
             this.pictureBox_slingshot.Location = new System.Drawing.Point(6, 6);
             this.pictureBox_slingshot.Name = "pictureBox_slingshot";
             this.pictureBox_slingshot.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_slingshot.TabIndex = 77;
+            this.pictureBox_slingshot.TabIndex = 303;
             this.pictureBox_slingshot.TabStop = false;
             this.pictureBox_slingshot.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_slingshot.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1047,7 +1045,7 @@ namespace TrackerOOT
             this.pictureBox_boomerang.Location = new System.Drawing.Point(6, 43);
             this.pictureBox_boomerang.Name = "pictureBox_boomerang";
             this.pictureBox_boomerang.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_boomerang.TabIndex = 67;
+            this.pictureBox_boomerang.TabIndex = 304;
             this.pictureBox_boomerang.TabStop = false;
             this.pictureBox_boomerang.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_boomerang.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1060,10 +1058,9 @@ namespace TrackerOOT
             this.pictureBox_kokiri_stone.Location = new System.Drawing.Point(287, 81);
             this.pictureBox_kokiri_stone.Name = "pictureBox_kokiri_stone";
             this.pictureBox_kokiri_stone.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_kokiri_stone.TabIndex = 99;
+            this.pictureBox_kokiri_stone.TabIndex = 305;
             this.pictureBox_kokiri_stone.TabStop = false;
             this.pictureBox_kokiri_stone.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox_kokiri_stone.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             this.pictureBox_kokiri_stone.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_stones_kokiri_MouseUp);
             // 
             // pictureBox_hammer
@@ -1073,7 +1070,7 @@ namespace TrackerOOT
             this.pictureBox_hammer.Location = new System.Drawing.Point(158, 43);
             this.pictureBox_hammer.Name = "pictureBox_hammer";
             this.pictureBox_hammer.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_hammer.TabIndex = 71;
+            this.pictureBox_hammer.TabIndex = 306;
             this.pictureBox_hammer.TabStop = false;
             this.pictureBox_hammer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_hammer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1086,7 +1083,7 @@ namespace TrackerOOT
             this.pictureBox_mirror_shield.Location = new System.Drawing.Point(310, 43);
             this.pictureBox_mirror_shield.Name = "pictureBox_mirror_shield";
             this.pictureBox_mirror_shield.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_mirror_shield.TabIndex = 99;
+            this.pictureBox_mirror_shield.TabIndex = 307;
             this.pictureBox_mirror_shield.TabStop = false;
             this.pictureBox_mirror_shield.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_mirror_shield.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1099,7 +1096,7 @@ namespace TrackerOOT
             this.pictureBox_lens.Location = new System.Drawing.Point(120, 43);
             this.pictureBox_lens.Name = "pictureBox_lens";
             this.pictureBox_lens.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_lens.TabIndex = 82;
+            this.pictureBox_lens.TabIndex = 308;
             this.pictureBox_lens.TabStop = false;
             this.pictureBox_lens.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_lens.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1112,7 +1109,7 @@ namespace TrackerOOT
             this.pictureBox_hookshot.Location = new System.Drawing.Point(120, 6);
             this.pictureBox_hookshot.Name = "pictureBox_hookshot";
             this.pictureBox_hookshot.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_hookshot.TabIndex = 68;
+            this.pictureBox_hookshot.TabIndex = 309;
             this.pictureBox_hookshot.TabStop = false;
             this.pictureBox_hookshot.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_hookshot.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1125,7 +1122,7 @@ namespace TrackerOOT
             this.pictureBox_yellow_medaillon.Location = new System.Drawing.Point(234, 185);
             this.pictureBox_yellow_medaillon.Name = "pictureBox_yellow_medaillon";
             this.pictureBox_yellow_medaillon.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_yellow_medaillon.TabIndex = 110;
+            this.pictureBox_yellow_medaillon.TabIndex = 310;
             this.pictureBox_yellow_medaillon.TabStop = false;
             this.pictureBox_yellow_medaillon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_medaillons_yellow_MouseUp);
             // 
@@ -1136,7 +1133,7 @@ namespace TrackerOOT
             this.pictureBox_bchu.Location = new System.Drawing.Point(82, 6);
             this.pictureBox_bchu.Name = "pictureBox_bchu";
             this.pictureBox_bchu.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_bchu.TabIndex = 63;
+            this.pictureBox_bchu.TabIndex = 311;
             this.pictureBox_bchu.TabStop = false;
             this.pictureBox_bchu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_bchu.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1149,7 +1146,7 @@ namespace TrackerOOT
             this.pictureBox_bottle1.Location = new System.Drawing.Point(272, 43);
             this.pictureBox_bottle1.Name = "pictureBox_bottle1";
             this.pictureBox_bottle1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_bottle1.TabIndex = 77;
+            this.pictureBox_bottle1.TabIndex = 312;
             this.pictureBox_bottle1.TabStop = false;
             this.pictureBox_bottle1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_bottle1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1162,7 +1159,7 @@ namespace TrackerOOT
             this.pictureBox_purple_medaillon.Location = new System.Drawing.Point(188, 185);
             this.pictureBox_purple_medaillon.Name = "pictureBox_purple_medaillon";
             this.pictureBox_purple_medaillon.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_purple_medaillon.TabIndex = 109;
+            this.pictureBox_purple_medaillon.TabIndex = 313;
             this.pictureBox_purple_medaillon.TabStop = false;
             this.pictureBox_purple_medaillon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_medaillons_purple_MouseUp);
             // 
@@ -1173,7 +1170,7 @@ namespace TrackerOOT
             this.pictureBox_orange_medaillon.Location = new System.Drawing.Point(142, 185);
             this.pictureBox_orange_medaillon.Name = "pictureBox_orange_medaillon";
             this.pictureBox_orange_medaillon.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_orange_medaillon.TabIndex = 108;
+            this.pictureBox_orange_medaillon.TabIndex = 314;
             this.pictureBox_orange_medaillon.TabStop = false;
             this.pictureBox_orange_medaillon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_medaillons_orange_MouseUp);
             // 
@@ -1184,7 +1181,7 @@ namespace TrackerOOT
             this.pictureBox_blue_medaillon.Location = new System.Drawing.Point(96, 185);
             this.pictureBox_blue_medaillon.Name = "pictureBox_blue_medaillon";
             this.pictureBox_blue_medaillon.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_blue_medaillon.TabIndex = 107;
+            this.pictureBox_blue_medaillon.TabIndex = 315;
             this.pictureBox_blue_medaillon.TabStop = false;
             this.pictureBox_blue_medaillon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_medaillons_blue_MouseUp);
             // 
@@ -1195,7 +1192,7 @@ namespace TrackerOOT
             this.pictureBox_red_medaillon.Location = new System.Drawing.Point(50, 185);
             this.pictureBox_red_medaillon.Name = "pictureBox_red_medaillon";
             this.pictureBox_red_medaillon.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_red_medaillon.TabIndex = 106;
+            this.pictureBox_red_medaillon.TabIndex = 316;
             this.pictureBox_red_medaillon.TabStop = false;
             this.pictureBox_red_medaillon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_medaillons_red_MouseUp);
             // 
@@ -1206,7 +1203,7 @@ namespace TrackerOOT
             this.pictureBox_goron_zora_tunic.Location = new System.Drawing.Point(196, 43);
             this.pictureBox_goron_zora_tunic.Name = "pictureBox_goron_zora_tunic";
             this.pictureBox_goron_zora_tunic.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_goron_zora_tunic.TabIndex = 81;
+            this.pictureBox_goron_zora_tunic.TabIndex = 317;
             this.pictureBox_goron_zora_tunic.TabStop = false;
             this.pictureBox_goron_zora_tunic.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_goron_zora_tunic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1219,7 +1216,7 @@ namespace TrackerOOT
             this.pictureBox_green_medaillon.Location = new System.Drawing.Point(6, 185);
             this.pictureBox_green_medaillon.Name = "pictureBox_green_medaillon";
             this.pictureBox_green_medaillon.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_green_medaillon.TabIndex = 105;
+            this.pictureBox_green_medaillon.TabIndex = 318;
             this.pictureBox_green_medaillon.TabStop = false;
             this.pictureBox_green_medaillon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox_medaillons_green_MouseUp);
             // 
@@ -1230,7 +1227,7 @@ namespace TrackerOOT
             this.pictureBox_scale.Location = new System.Drawing.Point(44, 43);
             this.pictureBox_scale.Name = "pictureBox_scale";
             this.pictureBox_scale.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_scale.TabIndex = 61;
+            this.pictureBox_scale.TabIndex = 319;
             this.pictureBox_scale.TabStop = false;
             this.pictureBox_scale.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_scale.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1243,7 +1240,7 @@ namespace TrackerOOT
             this.pictureBox_magic.Location = new System.Drawing.Point(272, 6);
             this.pictureBox_magic.Name = "pictureBox_magic";
             this.pictureBox_magic.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox_magic.TabIndex = 68;
+            this.pictureBox_magic.TabIndex = 320;
             this.pictureBox_magic.TabStop = false;
             this.pictureBox_magic.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
             this.pictureBox_magic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
@@ -1303,7 +1300,7 @@ namespace TrackerOOT
             this.Controls.Add(this.pictureBox_40skulls);
             this.Controls.Add(this.pictureBox_bow);
             this.Controls.Add(this.pictureBox_30skulls);
-            this.Controls.Add(this.pictureBox_dins_fire);
+            this.Controls.Add(this.pictureBox_dins_farores);
             this.Controls.Add(this.label_orange_medaillon);
             this.Controls.Add(this.pictureBox_fire_light_arrow);
             this.Controls.Add(this.pictureBox_slingshot);
@@ -1333,16 +1330,9 @@ namespace TrackerOOT
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Gossip Stones Tracker v1.4 (Ladder Edition)";
+            this.Text = "Gossip Stones Tracker v1.5 (Ladder Edition)";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_collectedSkulls)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wallet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ZL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_epona)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_saria)).EndInit();
@@ -1355,6 +1345,13 @@ namespace TrackerOOT
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_requiem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_nocturne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prelude)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_collectedSkulls)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_sometimesHint1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wallet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_oot_hint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_imageOot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_strength)).EndInit();
@@ -1375,7 +1372,7 @@ namespace TrackerOOT
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_40skulls)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_30skulls)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_dins_fire)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_dins_farores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fire_light_arrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_slingshot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_boomerang)).EndInit();
@@ -1422,7 +1419,7 @@ namespace TrackerOOT
         private System.Windows.Forms.PictureBox pictureBox_bchu;
         private System.Windows.Forms.PictureBox pictureBox_boomerang;
         private System.Windows.Forms.PictureBox pictureBox_hookshot;
-        private System.Windows.Forms.PictureBox pictureBox_dins_fire;
+        private System.Windows.Forms.PictureBox pictureBox_dins_farores;
         private System.Windows.Forms.PictureBox pictureBox_hammer;
         private System.Windows.Forms.PictureBox pictureBox_bottle1;
         private System.Windows.Forms.PictureBox pictureBox_slingshot;

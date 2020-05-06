@@ -18,15 +18,12 @@ namespace TrackerOOT
     public partial class Form1 : Form
     {
         SortedSet<String> placesAlphabeticalOrder = new SortedSet<String>();
+        SortedSet<String> sometimesHints = new SortedSet<string>();
         List<String> listDungeons = new List<string>();
 
-        List<Image> bottleUpgrade = new List<Image>();
         List<Image> strengthUpgrade = new List<Image>();
         List<Image> hookUpgrade = new List<Image>();
         List<Image> scaleUpgrade = new List<Image>();
-        List<Image> ocarinaUpgrade = new List<Image>();
-        List<Image> biggoronQuestUpgrade = new List<Image>();
-        List<Image> maskQuestUpgrade = new List<Image>();
         List<Image> magicUpgrade = new List<Image>();
         List<Image> walletUpgrade = new List<Image>();
         List<Image> guarenteedHintsUpgrade = new List<Image>();
@@ -108,10 +105,35 @@ namespace TrackerOOT
             comboBox_places.AutoCompleteCustomSource = source;
             comboBox_places.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             comboBox_places.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            var source_hints = new AutoCompleteStringCollection();
+            source_hints.AddRange(sometimesHints.ToArray());
+
+            textBox1.AutoCompleteCustomSource = source_hints;
+            textBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            textBox2.AutoCompleteCustomSource = source_hints;
+            textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            textBox3.AutoCompleteCustomSource = source_hints;
+            textBox3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBox3.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            textBox4.AutoCompleteCustomSource = source_hints;
+            textBox4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBox4.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            textBox5.AutoCompleteCustomSource = source_hints;
+            textBox5.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBox5.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Start();
+
             listDungeons = new List<string>
             {
                 "????",
@@ -128,19 +150,26 @@ namespace TrackerOOT
             this.label_green_medaillon.Text = listDungeons[0];
 
             placesAlphabeticalOrder.Add("");
-            JObject json = JObject.Parse(File.ReadAllText(@"oot_places.json"));
-            foreach(var categorie in json)
+            JObject json_places = JObject.Parse(File.ReadAllText(@"oot_places.json"));
+            foreach(var categorie in json_places)
             {
                 foreach(var name in categorie.Value)
                 {
                     placesAlphabeticalOrder.Add(name.ToString());
                 }
             }
-
             loadComboBoxData(placesAlphabeticalOrder.ToArray());
 
+            JObject json_hints = JObject.Parse(File.ReadAllText(@"sometimes_hints.json"));
+            foreach (var categorie in json_hints)
+            {
+                foreach (var hint in categorie.Value)
+                {
+                    sometimesHints.Add(hint.ToString());
+                }
+            }
+
             autocomplete();
-            timer1.Start();
 
             pictureBox_oot_hint.AllowDrop = true;
             pictureBox_30skulls.AllowDrop = true;
@@ -186,6 +215,8 @@ namespace TrackerOOT
             textBox3.KeyDown += changeCollectedSkulls;
             textBox4.KeyDown += changeCollectedSkulls;
             textBox5.KeyDown += changeCollectedSkulls;
+            button_woth.KeyDown += changeCollectedSkulls;
+            button_barren.KeyDown += changeCollectedSkulls;
         }
 
         private void changeCollectedSkulls(object sender, KeyEventArgs k)
@@ -200,21 +231,6 @@ namespace TrackerOOT
 
         private void setListUpgrade()
         {
-            bottleUpgrade = new List<Image>
-            {
-                Properties.Resources.bottle_empty_bw,
-                Properties.Resources.bottle_empty,
-                Properties.Resources.bottle_big_poe,
-                Properties.Resources.bottle_blue_fire,
-                Properties.Resources.bottle_bugs,
-                Properties.Resources.bottle_poe,
-                Properties.Resources.bottle_fairy,
-                Properties.Resources.bottle_milk,
-                Properties.Resources.bottle_green,
-                Properties.Resources.bottle_red,
-                Properties.Resources.bottle_blue
-            };
-
             strengthUpgrade = new List<Image>
             {
                 Properties.Resources.strength_bw,
@@ -227,8 +243,8 @@ namespace TrackerOOT
             hookUpgrade = new List<Image>
             {
                 Properties.Resources.hookshot_bw,
-                Properties.Resources.hookshot,
-                Properties.Resources.longshot,
+                Properties.Resources.hookshot_,
+                Properties.Resources.longshot_,
             };
             this.pictureBox_hookshot.Image = hookUpgrade[0];
 
@@ -239,44 +255,6 @@ namespace TrackerOOT
                 Properties.Resources.golden_scale
             };
             this.pictureBox_scale.Image = scaleUpgrade[0];
-
-            ocarinaUpgrade = new List<Image>
-            {
-                Properties.Resources.ocarina_bw,
-                Properties.Resources.ocarina,
-                Properties.Resources.ocarina_of_time,
-            };
-
-            biggoronQuestUpgrade = new List<Image>
-            {
-                Properties.Resources.egg_bw,
-                Properties.Resources.egg,
-                Properties.Resources.chicken,
-                Properties.Resources.blue_chicken,
-                Properties.Resources.mushroom_powder,
-                Properties.Resources.saw,
-                Properties.Resources.broken_bgs,
-                Properties.Resources.prescription,
-                Properties.Resources.kz_frog,
-                Properties.Resources.eye_drops,
-                Properties.Resources.claim_check
-            };
-
-            maskQuestUpgrade = new List<Image>
-            {
-                Properties.Resources.egg_bw,
-                Properties.Resources.egg,
-                Properties.Resources.chicken,
-                Properties.Resources.zeldas_letter,
-                Properties.Resources.keaton_mask,
-                Properties.Resources.skull_mask2,
-                Properties.Resources.spooky_mask,
-                Properties.Resources.bunny_hood,
-                Properties.Resources.mask_of_truth,
-                Properties.Resources.goron_mask,
-                Properties.Resources.zora_mask,
-                Properties.Resources.gerudo_mask
-            };
 
             magicUpgrade = new List<Image>
             { 
@@ -323,8 +301,8 @@ namespace TrackerOOT
         {
             pictureBox_bombs.Image.Tag = "bombs";
             pictureBox_bow.Image.Tag = "bow";
-            pictureBox_fire_light_arrow.Image.Tag = "fire_arrow";
-            pictureBox_dins_fire.Image.Tag = "dins_fire";
+            pictureBox_fire_light_arrow.Image.Tag = "fire_light_arrow";
+            pictureBox_dins_farores.Image.Tag = "dins_farores";
             pictureBox_slingshot.Image.Tag = "slingshot";
             pictureBox_bchu.Image.Tag = "bomb_chu";
             pictureBox_hookshot.Image.Tag = "hookshot";
@@ -333,8 +311,8 @@ namespace TrackerOOT
             pictureBox_bottle1.Image.Tag = "bottle_rutos_letter";
             pictureBox_lens.Image.Tag = "lens";
             pictureBox_mirror_shield.Image.Tag = "mirror_shield";
-            pictureBox_goron_zora_tunic.Image.Tag = "goron_tunic";
-            pictureBox_iron_hover_boots.Image.Tag = "iron_boots";
+            pictureBox_goron_zora_tunic.Image.Tag = "goron_zora_tunic";
+            pictureBox_iron_hover_boots.Image.Tag = "iron_hover_boots";
             pictureBox_magic.Image.Tag = "magic";
             pictureBox_scale.Image.Tag = "scale";
             pictureBox_strength.Image.Tag = "strength";
@@ -520,12 +498,7 @@ namespace TrackerOOT
             }
             pBox.Image.Tag = imageTag;
         }
-
-        private void pictureBox_bottle_MouseUp_Upgrade(object sender, MouseEventArgs e)
-        {
-            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, bottleUpgrade); 
-        }
-
+        
         private void pictureBox_strength_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
             pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, strengthUpgrade);
@@ -535,12 +508,7 @@ namespace TrackerOOT
         {
             pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, scaleUpgrade);
         }
-
-        private void pictureBox_ocarina_MouseUp_Upgrade(object sender, MouseEventArgs e)
-        {
-            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, ocarinaUpgrade);
-        }
-
+             
         private void pictureBox_hookshot_MouseUp_Upgrade(object sender, MouseEventArgs e)
         {
             pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, hookUpgrade);
@@ -555,15 +523,7 @@ namespace TrackerOOT
         {
             pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, walletUpgrade);
         }
-        private void pictureBox_biggoronQuest_MouseUp_Upgrade(object sender, MouseEventArgs e)
-        {
-            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, biggoronQuestUpgrade);
-        }
-        private void pictureBox_maskQuest_MouseUp_Upgrade(object sender, MouseEventArgs e)
-        {
-            pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, maskQuestUpgrade);
-        }
-
+        
         private void medaillons_MouseUp(PictureBox pBox, MouseButtons mouseButton, ref bool isColored, Label label_medaillon)
         {
             var imageTag = pBox.Image.Tag.ToString();
@@ -664,156 +624,6 @@ namespace TrackerOOT
         {
             doubleItems_MouseUp((PictureBox)sender, e.Button, ref isColoredDinsFire, ref isColoredFaroresWind, imageTagList_dins_farores);
         }
-        #endregion
-
-        #region LabelMouseClick
-        private void label_woth_MouseClick(object sender, MouseEventArgs e)
-        {
-            var label = (Label)sender;
-            if(e.Button == MouseButtons.Left)
-                label.Text = (Convert.ToInt32(label.Text) + 1).ToString();
-            if(e.Button == MouseButtons.Right && (Convert.ToInt32(label.Text) > 0))
-                label.Text = (Convert.ToInt32(label.Text) - 1).ToString();
-        }
-        #endregion
-
-        #region MouseMove for DragAndDrop
-        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
-        {
-            var pBox = (PictureBox)sender;
-            if (e.Button == MouseButtons.Left && isMouseDown)
-            {
-                pBox.DoDragDrop(pBox.Image, DragDropEffects.Copy);
-                isMouseDown = false;
-            }
-        }
-
-
-        #endregion
-
-        #region stones & medallions
-        private void pictureBox_medaillons_green_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredGreenMedaillon, label_green_medaillon);
-        }
-        private void pictureBox_medaillons_red_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredRedMedaillon, label_red_medaillon);
-        }
-        private void pictureBox_medaillons_blue_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredBlueMedaillon, label_blue_medaillon);
-        }
-        private void pictureBox_medaillons_orange_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredOrangeMedaillon, label_orange_medaillon);
-        }
-        private void pictureBox_medaillons_purple_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredPurpleMedaillon, label_purple_medaillon);
-        }
-        private void pictureBox_medaillons_yellow_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredYellowMedaillon, label_yellow_medaillon);
-        }
-        private void pictureBox_stones_kokiri_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredKokiriStone, label_kokiri_stone);
-        }
-        private void pictureBox_stones_goron_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredGoronStone, label_goron_stone);
-        }
-        private void pictureBox_stones_zora_MouseUp(object sender, MouseEventArgs e)
-        {
-            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredZoraStone, label_zora_stone);
-        }
-        #endregion
-
-        private void button_woth_Click(object sender, EventArgs e)
-        {
-            if(comboBox_places.Text != string.Empty)
-            {
-                var existingWoth = wothPosition.Where(x => x.Key.Text == comboBox_places.Text).ToList();
-                if (existingWoth.Count > 0 && existingWoth[0].Value == 1)
-                {
-                    existingWoth[0].Key.Font = new Font("Corbel", 10, FontStyle.Bold | FontStyle.Underline);
-                    wothPosition[existingWoth[0].Key]++;
-                }
-                else if(existingWoth.Count > 0 && existingWoth[0].Value == 2)
-                {
-                    existingWoth[0].Key.ForeColor = Color.MidnightBlue;
-                    wothPosition[existingWoth[0].Key]++;
-                }
-                else if(existingWoth.Count == 0)
-                {
-                    Label newLabel = new Label
-                    {
-                        Text = comboBox_places.Text,
-                        ForeColor = Color.White,
-                        BackColor = Color.CadetBlue,
-                        Font = new Font("Corbel", 10, FontStyle.Bold),
-                        Width = 192,
-                        Height = 32,
-                        TextAlign = ContentAlignment.MiddleLeft
-                    };
-                    newLabel.Location = new Point(2, (wothPosition.Count * newLabel.Height));
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        PictureBox newPictureBox = new PictureBox
-                        {
-                            Image = Properties.Resources.gossip_stone_2,
-                            Name = "pictureBox_wothA"+i,
-                            Size = new Size(32, 32),
-                            TabStop = false,
-                            AllowDrop = true
-                        };
-
-                        newPictureBox.DragDrop += new DragEventHandler(pictureBox_DragDrop);
-                        newPictureBox.DragEnter += new DragEventHandler(object_DragEnter);
-                        newPictureBox.MouseUp += new MouseEventHandler(pictureBox_woth_MouseUp);
-
-                        switch(i)
-                        {
-                            case 0: newPictureBox.Location = new Point(newLabel.Width, newLabel.Location.Y); break;
-                            case 1: newPictureBox.Location = new Point(newLabel.Width+32, newLabel.Location.Y); break;
-                            case 2: newPictureBox.Location = new Point(newLabel.Width+64, newLabel.Location.Y); break;
-                            case 3: newPictureBox.Location = new Point(newLabel.Width+96, newLabel.Location.Y); break;
-                            default:break;
-                        }
-
-                        panel_woth.Controls.Add(newPictureBox);
-                    }
-                    wothPosition.Add(newLabel, 1);
-                    panel_woth.Controls.Add(newLabel);
-                }
-            }
-        }
-        
-        private void pictureBox_woth_MouseUp(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void button_barren_Click(object sender, EventArgs e)
-        {
-            if (comboBox_places.Text != string.Empty)
-            {
-                Label newLabel = new Label
-                {
-                    Text = comboBox_places.Text,
-                    ForeColor = Color.White,
-                    BackColor = Color.IndianRed,
-                    Font = new Font("Corbel", 11, FontStyle.Bold),
-                    Width = 192,
-                    TextAlign = ContentAlignment.MiddleLeft
-                };
-                newLabel.Location = new Point(2, (barrenPosition.Count * newLabel.Height));
-                barrenPosition.Add(newLabel);
-                panel_barren.Controls.Add(newLabel);
-            }
-        }
 
         private void pictureBox_30skulls_MouseUp(object sender, MouseEventArgs e)
         {
@@ -869,6 +679,224 @@ namespace TrackerOOT
         {
             pictureBox_MouseUp_Upgrade((PictureBox)sender, e.Button, guarenteedHintsUpgrade);
         }
+        #endregion
+
+        #region MouseMove for DragAndDrop
+        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            var pBox = (PictureBox)sender;
+            var image = pBox.Image;
+            if (e.Button == MouseButtons.Left && isMouseDown)
+            {
+                if (pBox.Image.Tag.ToString() == "wallet")
+                {
+                    image = Properties.Resources.wallet2;
+                    image.Tag = "wallet2";
+                }
+                pBox.DoDragDrop(image, DragDropEffects.Copy);
+                isMouseDown = false;
+            }
+        }
+
+
+        #endregion
+
+        #region stones & medallions
+        private void pictureBox_medaillons_green_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredGreenMedaillon, label_green_medaillon);
+        }
+        private void pictureBox_medaillons_red_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredRedMedaillon, label_red_medaillon);
+        }
+        private void pictureBox_medaillons_blue_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredBlueMedaillon, label_blue_medaillon);
+        }
+        private void pictureBox_medaillons_orange_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredOrangeMedaillon, label_orange_medaillon);
+        }
+        private void pictureBox_medaillons_purple_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredPurpleMedaillon, label_purple_medaillon);
+        }
+        private void pictureBox_medaillons_yellow_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredYellowMedaillon, label_yellow_medaillon);
+        }
+        private void pictureBox_stones_kokiri_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredKokiriStone, label_kokiri_stone);
+        }
+        private void pictureBox_stones_goron_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredGoronStone, label_goron_stone);
+        }
+        private void pictureBox_stones_zora_MouseUp(object sender, MouseEventArgs e)
+        {
+            medaillons_MouseUp((PictureBox)sender, e.Button, ref isColoredZoraStone, label_zora_stone);
+        }
+        #endregion
+
+        private void button_woth_Click(object sender, EventArgs e)
+        {
+            if(wothPosition.Count < 5)
+            {
+                if (comboBox_places.Text != string.Empty)
+                {
+                    var selectedPlace = comboBox_places.Text.ToUpper().Trim();
+                    var existingWoth = wothPosition.Where(x => x.Key.Text == selectedPlace).ToList();
+                    if (existingWoth.Count > 0 && existingWoth[0].Value == 1)
+                    {
+                        existingWoth[0].Key.Font = new Font("Corbel", 10, FontStyle.Bold | FontStyle.Underline);
+                        wothPosition[existingWoth[0].Key]++;
+                    }
+                    else if (existingWoth.Count > 0 && existingWoth[0].Value == 2)
+                    {
+                        existingWoth[0].Key.ForeColor = Color.MidnightBlue;
+                        wothPosition[existingWoth[0].Key]++;
+                    }
+                    else if (existingWoth.Count == 0)
+                    {
+                        Label newLabel = new Label
+                        {
+                            Name = Guid.NewGuid().ToString(),
+                            Text = selectedPlace,
+                            ForeColor = Color.White,
+                            BackColor = Color.CadetBlue,
+                            Font = new Font("Corbel", 10, FontStyle.Bold),
+                            Width = 200,
+                            Height = 32,
+                            TextAlign = ContentAlignment.MiddleLeft
+                        };
+                        newLabel.Location = new Point(2, (wothPosition.Count * newLabel.Height));
+                        newLabel.MouseClick += new MouseEventHandler(label_woth_MouseClick);
+
+                        for (int i = 0; i < 4; i++)
+                        {
+                            PictureBox newPictureBox = new PictureBox
+                            {
+                                Image = Properties.Resources.gossip_stone_2,
+                                Name = newLabel.Name + i,
+                                Size = new Size(32, 32),
+                                TabStop = false,
+                                AllowDrop = true
+                            };
+
+                            newPictureBox.DragDrop += new DragEventHandler(pictureBox_DragDrop);
+                            newPictureBox.DragEnter += new DragEventHandler(object_DragEnter);
+                            newPictureBox.MouseClick += new MouseEventHandler(woth_pictureBox_MouseClick);
+
+                            switch (i)
+                            {
+                                case 0: newPictureBox.Location = new Point(newLabel.Width, newLabel.Location.Y); break;
+                                case 1: newPictureBox.Location = new Point(newLabel.Width + 32, newLabel.Location.Y); break;
+                                case 2: newPictureBox.Location = new Point(newLabel.Width + 64, newLabel.Location.Y); break;
+                                case 3: newPictureBox.Location = new Point(newLabel.Width + 96, newLabel.Location.Y); break;
+                                default: break;
+                            }
+
+                            panel_woth.Controls.Add(newPictureBox);
+                        }
+                        wothPosition.Add(newLabel, 1);
+                        panel_woth.Controls.Add(newLabel);
+                    }
+                }
+            }
+        }
+
+        private void woth_pictureBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ((PictureBox)sender).Image = Properties.Resources.gossip_stone_2;
+                ((PictureBox)sender).Image.Tag = "gossip_stone_2";
+            }
+        }
+
+        private void label_woth_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                var label = (Label)sender;
+                wothPosition.Remove(label);
+                label.Dispose();
+                panel_woth.Controls.Find(label.Name + 0, false)[0].Dispose();
+                panel_woth.Controls.Find(label.Name + 1, false)[0].Dispose();
+                panel_woth.Controls.Find(label.Name + 2, false)[0].Dispose();
+                panel_woth.Controls.Find(label.Name + 3, false)[0].Dispose();
+
+                panel_woth.Controls.Remove(label);
+                panel_woth.Controls.RemoveByKey(label.Name + 0);
+                panel_woth.Controls.RemoveByKey(label.Name + 1);
+                panel_woth.Controls.RemoveByKey(label.Name + 2);
+                panel_woth.Controls.RemoveByKey(label.Name + 3); 
+                
+                for(int i = 0; i < wothPosition.Count; i++)
+                {
+                    var labelName = wothPosition.Keys.ElementAt(i).Name;
+                    var wothLabel = (Label)panel_woth.Controls.Find(labelName, false)[0];
+                    wothLabel.Location = new Point(2, (i * label.Height));
+
+                    var pictureBox1 = (PictureBox)panel_woth.Controls.Find(labelName + 0, false)[0];
+                    pictureBox1.Location = new Point(wothLabel.Width, wothLabel.Location.Y);
+
+                    var pictureBox2 = (PictureBox)panel_woth.Controls.Find(labelName + 1, false)[0];
+                    pictureBox2.Location = new Point(wothLabel.Width + 32, wothLabel.Location.Y);
+
+                    var pictureBox3 = (PictureBox)panel_woth.Controls.Find(labelName + 2, false)[0];
+                    pictureBox3.Location = new Point(wothLabel.Width + 64, wothLabel.Location.Y);
+
+                    var pictureBox4 = (PictureBox)panel_woth.Controls.Find(labelName + 3, false)[0];
+                    pictureBox4.Location = new Point(wothLabel.Width + 96, wothLabel.Location.Y);
+                }
+            }
+        }
+
+        private void label_barren_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                var label = (Label)sender;
+                barrenPosition.Remove(label);
+                label.Dispose();
+                panel_barren.Controls.Remove(label);
+
+                for (int i = 0; i < barrenPosition.Count; i++)
+                {
+                    var labelName = barrenPosition[i].Name;
+                    var barrenLabel = (Label)panel_barren.Controls.Find(labelName, false)[0];
+                    barrenLabel.Location = new Point(2, (i * label.Height));
+                }
+            }
+        }
+
+        private void button_barren_Click(object sender, EventArgs e)
+        {
+            if (barrenPosition.Count < 3)
+            {
+                if (comboBox_places.Text != string.Empty)
+                {
+                    var selectedPlace = comboBox_places.Text.ToUpper().Trim();
+                    Label newLabel = new Label
+                    {
+                        Name = Guid.NewGuid().ToString(),
+                        Text = selectedPlace,
+                        ForeColor = Color.White,
+                        BackColor = Color.IndianRed,
+                        Font = new Font("Corbel", 9, FontStyle.Bold),
+                        Width = 192,
+                        TextAlign = ContentAlignment.MiddleLeft
+                    };
+                    newLabel.Location = new Point(2, (barrenPosition.Count * newLabel.Height));
+                    newLabel.MouseClick += new MouseEventHandler(label_barren_MouseClick);
+                    barrenPosition.Add(newLabel);
+                    panel_barren.Controls.Add(newLabel);
+                }
+            }
+        }
 
         private void label_collectedSkulls_MouseDown(object sender, MouseEventArgs e)
         {
@@ -883,7 +911,6 @@ namespace TrackerOOT
                 label_collectedSkulls.Text = "0" + intLabelText.ToString();
             else 
                 label_collectedSkulls.Text = intLabelText.ToString();
-
         }
     }
 }
