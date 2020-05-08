@@ -133,6 +133,9 @@
   <data name="bolero" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bolero.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bolero_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bolero_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bolero_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bolero_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -172,23 +175,44 @@
   <data name="bow_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bow_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="check_song" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check_song.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="claim_check" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\claim_check.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="collected_skulltulas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\collected_skulltulas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="dins_farores" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dins_farores.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dins_farores_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dins_farores_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dins_fire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dins_fire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="double_magic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\double_magic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="double_magic_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\double_magic_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="epona" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\epona.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="epona_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\epona_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="epona_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\epona_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eye_drops" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eye_drops.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="farores_wind" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\farores_wind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fire_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fire_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fire_light_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fire_light_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,17 +232,26 @@
   <data name="goron_stone_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\goron_stone_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="goron_tunic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\goron_tunic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="goron_zora_tunic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\goron_zora_tunic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="goron_zora_tunic_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\goron_zora_tunic_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gossip_stone_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gossip_stone_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Gossip_Stone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gossip_Stone.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gossip_stone1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gossip_stone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="go_mode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\go_mode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="go_mode_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\go_mode_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="go_mode_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\go_mode_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,14 +265,8 @@
   <data name="half_dins_fire" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\half_dins_fire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="half_dins_fire_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\half_dins_fire_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="half_farores_wind" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\half_farores_wind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="half_farores_wind_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\half_farores_wind_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="half_fire_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\half_fire_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -268,11 +295,14 @@
   <data name="hookshot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hookshot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hookshot_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hookshot_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="hookshot_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hookshot_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hover_boots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hover_boots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iron_boots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iron_boots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iron_hover_boots" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iron_hover_boots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -289,20 +319,20 @@
   <data name="kokiri_stone_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kokiri_stone_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="kz_frog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kz_frog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="lens" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lens.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="lens_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lens_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="light_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\light_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="longshot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\longshot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="longshot_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\longshot_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="longshot_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\longshot_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="magic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\magic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -312,6 +342,9 @@
   </data>
   <data name="minuet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minuet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minuet_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minuet_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="minuet_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minuet_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -325,17 +358,17 @@
   <data name="nocturne" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nocturne.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="nocturne_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nocturne_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="nocturne_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nocturne_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="no_song" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\no_song.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ocarina_of_time" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ocarina_of_time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ocarina_of_time_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ocarina_of_time_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="oot_places" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\oot_places.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="orange_medaillon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\orange_medaillon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -346,14 +379,20 @@
   <data name="prelude" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prelude.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="prelude_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prelude_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="prelude_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prelude_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="prescription" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prescription.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="prescription_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\prescription_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="purple_medaillon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\purple_medaillon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="purple_medaillon_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\purple_medaillon_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="purple_medaillon_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\purple_medaillon_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -367,17 +406,20 @@
   <data name="requiem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\requiem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="requiem_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\requiem_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="requiem_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\requiem_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="saria" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saria.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="saria_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\saria_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="saria_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saria_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="saw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\saw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="scale" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\scale.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -388,11 +430,11 @@
   <data name="serenade" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\serenade.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="serenade_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\serenade_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="serenade_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\serenade_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="skulltulas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\skulltulas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="skull_mask2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\skull_mask2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -409,11 +451,17 @@
   <data name="song_of_storms" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\song_of_storms.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="song_of_storms_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\song_of_storms_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="song_of_storms_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\song_of_storms_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="song_of_time" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\song_of_time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="song_of_time_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\song_of_time_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="song_of_time_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\song_of_time_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -424,20 +472,17 @@
   <data name="strength2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\strength2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="strength2_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\strength2_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="strength3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\strength3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="strength3_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\strength3_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="strength_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\strength_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="suns_song" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\suns_song.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="suns_song_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\suns_song_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="suns_song_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\suns_song_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -460,6 +505,9 @@
   <data name="zeldas_lullaby" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zeldas_lullaby.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="zeldas_lullaby_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zeldas_lullaby_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="zeldas_lullaby_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zeldas_lullaby_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -468,6 +516,9 @@
   </data>
   <data name="zora_stone_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zora_stone_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zora_tunic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zora_tunic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_30_gold_skulltula" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\30_gold_skulltula.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
