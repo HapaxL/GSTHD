@@ -7,7 +7,7 @@
     <ProjectGuid>{20F88CAF-011B-40C2-85AC-D21255C0876B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>TrackerOOT</RootNamespace>
-    <AssemblyName>OotGossipStonesTracker_v1.6_LE</AssemblyName>
+    <AssemblyName>OotGossipStonesTracker_v1.6.a_LE</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,6 +46,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Gossip_Stone_64x64.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -158,12 +161,6 @@
     <None Include="Resources\boomerang_bw.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bow_bw.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\hookshot.png" />
   </ItemGroup>
   <ItemGroup>
@@ -192,15 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dins_farores_bw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\double_magic.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\magic.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\magic_bw.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\half_iron_boots.png" />
@@ -431,24 +419,6 @@
     <None Include="Resources\yellow_medaillon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\goron_stone_bw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\kokiri_stone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\kokiri_stone_bw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zora_stone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\zora_stone_bw.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\goron_stone.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\go_mode.png" />
   </ItemGroup>
   <ItemGroup>
@@ -540,6 +510,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dins_fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gossip_Stone_bw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Gossip_Stone_32x32.ico" />
+    <Content Include="Gossip_Stone_64x64.ico" />
+    <None Include="Resources\biggoron_test.png" />
+    <None Include="Resources\bow_bw.png" />
+    <None Include="Resources\bow.png" />
+    <None Include="Resources\zora_stone.png" />
+    <None Include="Resources\magic_bw.png" />
+    <None Include="Resources\magic.png" />
+    <None Include="Resources\kokiri_stone_bw.png" />
+    <None Include="Resources\kokiri_stone.png" />
+    <None Include="Resources\goron_stone_bw.png" />
+    <None Include="Resources\goron_stone.png" />
+    <None Include="Resources\double_magic.png" />
+    <None Include="Resources\zora_stone_bw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

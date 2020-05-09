@@ -20,9 +20,8 @@ namespace TrackerOOT
         SortedSet<String> ListPlaces = new SortedSet<String>();
         SortedSet<String> ListSometimesHints = new SortedSet<string>();
         List<String> ListDungeons = new List<string>();
-        ComboBox comboBox_places;
-        Button button_AddWoth;
-        Button button_AddBarren;
+        ComboBox comboBox_placesWoth;
+        ComboBox comboBox_placesBarren;
         Panel PanelWoth;
         Panel PanelBarren;
 
@@ -52,13 +51,17 @@ namespace TrackerOOT
             var source = new AutoCompleteStringCollection();
             source.AddRange(ListPlaces.ToArray());
 
-            comboBox_places.AutoCompleteCustomSource = source;
-            comboBox_places.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_places.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboBox_placesWoth.AutoCompleteCustomSource = source;
+            comboBox_placesWoth.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox_placesWoth.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            comboBox_placesBarren.AutoCompleteCustomSource = source;
+            comboBox_placesBarren.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox_placesBarren.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
+        {            
             this.MaximizeBox = false;
             timer1.Start();
             ListDungeons = new List<string>
@@ -113,6 +116,10 @@ namespace TrackerOOT
             addSometimesHints();
 
             addChrono();
+            button_ResetChrono.Focus();
+
+            this.KeyPreview = true;
+            this.KeyDown += changeCollectedSkulls;
         }
 
         private void addChrono()
@@ -188,7 +195,6 @@ namespace TrackerOOT
             };
             newTextbox.AutoCompleteCustomSource.AddRange(ListSometimesHints.ToArray());
             newTextbox.Location = new Point(newGossipStone.Location.X - newTextbox.Width - 5, newGossipStone.Location.Y + 5);
-            newTextbox.KeyDown += changeCollectedSkulls;
             this.Controls.Add(newTextbox);
 
             return newGossipStone;
@@ -196,8 +202,9 @@ namespace TrackerOOT
 
         private void addWothAndBarren()
         {
-            comboBox_places = new ComboBox {
-                BackColor = Color.FromArgb(64, 64, 64),
+            comboBox_placesWoth = new ComboBox
+            {
+                BackColor = Color.FromArgb(95,160,160),
                 CausesValidation = false,
                 Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
@@ -205,40 +212,33 @@ namespace TrackerOOT
                 IntegralHeight = false,
                 Location = new Point(170, 210),
                 MaxDropDownItems = 60,
-                Name = "comboBox_places",
+                Name = "comboBox_placesWoth",
                 Size = new Size(172, 23),
-                TabIndex = 0
+                TabIndex = 0,
+                Text = ":: Way of the Hero ::"
             };
-            comboBox_places.DropDownClosed += new System.EventHandler(this.comboBox_woth1_DropDownClosed);
-            this.Controls.Add(comboBox_places);
+            comboBox_placesWoth.KeyDown += new KeyEventHandler(this.comboBox_placesWoth_KeyDown);
+            comboBox_placesWoth.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
+            this.Controls.Add(comboBox_placesWoth);
 
-            button_AddWoth = new Button
+            comboBox_placesBarren = new ComboBox
             {
-                BackColor = Color.DimGray,
+                BackColor = Color.IndianRed,
+                CausesValidation = false,
+                Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
-                Location = new Point(170, comboBox_places.Location.Y + comboBox_places.Height + 2),
-                Name = "button_woth",
-                Size = new Size(77, 23),
+                FormattingEnabled = true,
+                IntegralHeight = false,
+                Location = new Point(170, comboBox_placesWoth.Location.Y + comboBox_placesWoth.Height + 2),
+                MaxDropDownItems = 60,
+                Name = "comboBox_placesBarren",
+                Size = new Size(172, 23),
                 TabIndex = 1,
-                Text = "add WotH",
-                UseVisualStyleBackColor = false,
+                Text = ":: Barren ::"
             };
-            button_AddWoth.Click += new EventHandler(this.button_woth_Click);
-            this.Controls.Add(button_AddWoth);
-
-            button_AddBarren = new Button
-            {
-                BackColor = Color.DimGray,
-                ForeColor = Color.WhiteSmoke,
-                Location = new Point(265, comboBox_places.Location.Y + comboBox_places.Height + 2),
-                Name = "button_barren",
-                Size = new Size(77, 23),
-                TabIndex = 2,
-                Text = "add Barren",
-                UseVisualStyleBackColor = false
-            };
-            button_AddBarren.Click += new EventHandler(this.button_barren_Click);
-            this.Controls.Add(button_AddBarren);
+            comboBox_placesBarren.KeyDown += new KeyEventHandler(this.comboBox_placesBarren_KeyDown);
+            comboBox_placesWoth.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
+            this.Controls.Add(comboBox_placesBarren);
 
             PanelWoth = new Panel
             {
@@ -253,12 +253,32 @@ namespace TrackerOOT
             PanelBarren = new Panel
             {
                 BackColor = Color.FromArgb(64, 64, 64),
-                Location = new Point(170, button_AddBarren.Location.Y + button_AddBarren.Height + 5),
+                Location = new Point(170, comboBox_placesBarren.Location.Y + comboBox_placesBarren.Height + 5),
                 Name = "panel_barren",
                 Size = new Size(172, 70),
                 TabStop = false
             };
             this.Controls.Add(PanelBarren);
+        }
+
+        private void comboBox_places_MouseClick(object sender, MouseEventArgs e)
+        {
+            ((ComboBox)sender).Text = string.Empty;
+        }
+
+        private void comboBox_placesWoth_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button_woth_Click(sender, new EventArgs());
+            }
+        }
+        private void comboBox_placesBarren_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button_barren_Click(sender, new EventArgs());
+            }
         }
 
         private void addGuaranteedHints()
@@ -272,7 +292,7 @@ namespace TrackerOOT
             //SkullMask
             createNewGuaranteedHint("SkullMask", Properties.Resources.skull_mask2, new Point(83, 205));
             //Biggoron
-            createNewGuaranteedHint("Bigorron", Properties.Resources.biggoron, new Point(83, 240));
+            createNewGuaranteedHint("Bigorron", Properties.Resources.biggoron_test, new Point(83, 240));
             //Frogs
             createNewGuaranteedHint("Frogs", Properties.Resources.frogs, new Point(83, 275));
             //OoT
@@ -367,10 +387,6 @@ namespace TrackerOOT
             pbox_collectedSkulls.Controls.Add(nb_skulls);
             this.Controls.Add(pbox_collectedSkulls);
 
-            comboBox_places.KeyDown += changeCollectedSkulls;
-            button_AddWoth.KeyDown += changeCollectedSkulls;
-            button_AddBarren.KeyDown += changeCollectedSkulls;
-            
         }
 
         private void addItems()
@@ -493,28 +509,30 @@ namespace TrackerOOT
 
         private void changeCollectedSkulls(object sender, KeyEventArgs k)
         {
-            if(k.KeyCode == Keys.F11)
+            if (k.KeyCode == Keys.F9)
+                button_chrono_Click(sender, new EventArgs());
+            if (k.KeyCode == Keys.F11)
             {
                 label_collectedSkulls_MouseDown(pbox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
             }
             if (k.KeyCode == Keys.F12)
                 label_collectedSkulls_MouseDown(pbox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Right, 1, 0, 0, 0));
         }
-
-
         
         private void loadComboBoxData(String[] data)
         {
-            comboBox_places.Items.Clear();
-            comboBox_places.Items.AddRange(data);
+            comboBox_placesWoth.Items.Clear();
+            comboBox_placesBarren.Items.Clear();
+            comboBox_placesWoth.Items.AddRange(data);
+            comboBox_placesBarren.Items.AddRange(data);
         }
 
-        #region combobox DropDownClosed
-        void comboBox_woth1_DropDownClosed(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() => { comboBox_places.Select(0, 0); }));
-        }
-        #endregion
+        //#region combobox DropDownClosed
+        //void comboBox_woth1_DropDownClosed(object sender, EventArgs e)
+        //{
+        //    this.BeginInvoke(new Action(() => { comboBox_places.Select(0, 0); }));
+        //}
+        //#endregion
 
         #region chrono and timer
         private void timer1_Tick(object sender, EventArgs e)
@@ -564,9 +582,9 @@ namespace TrackerOOT
         {
             if(wothPosition.Count < 5)
             {
-                if (comboBox_places.Text != string.Empty)
+                if (comboBox_placesWoth.Text != string.Empty)
                 {
-                    var selectedPlace = comboBox_places.Text.ToUpper().Trim();
+                    var selectedPlace = comboBox_placesWoth.Text.ToUpper().Trim();
                     var existingWoth = wothPosition.Where(x => x.Key.Text == selectedPlace).ToList();
                     if (existingWoth.Count == 0)
                     {
@@ -603,6 +621,7 @@ namespace TrackerOOT
                     }
                 }
             }
+            comboBox_placesWoth.Text = string.Empty;
         }
 
         private void label_woth_MouseDown(object sender, MouseEventArgs e)
@@ -647,16 +666,16 @@ namespace TrackerOOT
                     wothLabel.Location = new Point(2, (i * label.Height));
 
                     var pictureBox1 = (PictureBox)PanelWoth.Controls.Find(labelName + 0, false)[0];
-                    pictureBox1.Location = new Point(wothLabel.Width, wothLabel.Location.Y);
+                    pictureBox1.Location = new Point(wothLabel.Width+5, wothLabel.Location.Y);
 
                     var pictureBox2 = (PictureBox)PanelWoth.Controls.Find(labelName + 1, false)[0];
-                    pictureBox2.Location = new Point(wothLabel.Width + 32, wothLabel.Location.Y);
+                    pictureBox2.Location = new Point(wothLabel.Width+5 + 32, wothLabel.Location.Y);
 
                     var pictureBox3 = (PictureBox)PanelWoth.Controls.Find(labelName + 2, false)[0];
-                    pictureBox3.Location = new Point(wothLabel.Width + 64, wothLabel.Location.Y);
+                    pictureBox3.Location = new Point(wothLabel.Width+5 + 64, wothLabel.Location.Y);
 
                     var pictureBox4 = (PictureBox)PanelWoth.Controls.Find(labelName + 3, false)[0];
-                    pictureBox4.Location = new Point(wothLabel.Width + 96, wothLabel.Location.Y);
+                    pictureBox4.Location = new Point(wothLabel.Width+5 + 96, wothLabel.Location.Y);
                 }
             }
         }
@@ -683,9 +702,9 @@ namespace TrackerOOT
         {
             if (barrenPosition.Count < 3)
             {
-                if (comboBox_places.Text != string.Empty)
+                if (comboBox_placesBarren.Text != string.Empty)
                 {
-                    var selectedPlace = comboBox_places.Text.ToUpper().Trim();
+                    var selectedPlace = comboBox_placesBarren.Text.ToUpper().Trim();
                     Label newLabel = new Label
                     {
                         Name = Guid.NewGuid().ToString(),
@@ -702,6 +721,7 @@ namespace TrackerOOT
                     PanelBarren.Controls.Add(newLabel);
                 }
             }
+            comboBox_placesBarren.Text = string.Empty;
         }
 
         private void label_collectedSkulls_MouseDown(object sender, MouseEventArgs e)

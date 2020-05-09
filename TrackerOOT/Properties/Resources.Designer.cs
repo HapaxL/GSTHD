@@ -103,6 +103,16 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap biggoron_test {
+            get {
+                object obj = ResourceManager.GetObject("biggoron_test", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bk {
             get {
                 object obj = ResourceManager.GetObject("bk", resourceCulture);
@@ -537,6 +547,16 @@ namespace TrackerOOT.Properties {
             get {
                 object obj = ResourceManager.GetObject("Gossip_Stone", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gossip_Stone_bw {
+            get {
+                object obj = ResourceManager.GetObject("Gossip_Stone_bw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

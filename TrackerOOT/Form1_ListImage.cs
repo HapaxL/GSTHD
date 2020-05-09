@@ -159,7 +159,8 @@ namespace TrackerOOT
             ListImage_Scale = new List<Image>
             {
                 Properties.Resources.scale_bw,
-                Properties.Resources.scale
+                Properties.Resources.scale,
+                Properties.Resources.golden_scale
             };
 
             ListImage_Strength = new List<Image>
@@ -355,7 +356,7 @@ namespace TrackerOOT
             //Guaranteed Hints Option
             ListImage_GuaranteedHintsOption = new List<Image>
             {
-                Properties.Resources.gossip_stone1,
+                Properties.Resources.Gossip_Stone_bw,
                 Properties.Resources.sold_out,
                 Properties.Resources.bottle_empty,
                 Properties.Resources.bottle_big_poe
@@ -364,7 +365,7 @@ namespace TrackerOOT
             //WotH Items Options
             ListImage_WothItemsOption = new List<Image>
             {
-                Properties.Resources.gossip_stone1,
+                Properties.Resources.Gossip_Stone_bw,
                 Properties.Resources.bottle_empty,
                 Properties.Resources.bottle_big_poe
             };
@@ -372,7 +373,7 @@ namespace TrackerOOT
             //Sometimes Hints Option
             ListImage_SometimesHintOption = new List<Image>
             {
-                Properties.Resources.gossip_stone1,
+                Properties.Resources.Gossip_Stone_bw,
                 Properties.Resources.sold_out,
                 Properties.Resources.key,
                 Properties.Resources.bk,
