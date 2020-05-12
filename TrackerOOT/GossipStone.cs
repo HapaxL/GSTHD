@@ -37,7 +37,7 @@ namespace TrackerOOT
             this.Image = image;
         }
 
-        private void Click_MouseUp(object sender, MouseEventArgs e)
+        public void Click_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {

@@ -134,15 +134,16 @@ namespace TrackerOOT
             button_StartChrono = new Button
             {
                 BackColor = Color.DimGray,
+                FlatStyle = FlatStyle.Flat,
                 ForeColor = Color.White,
                 Location = new Point(11, 550),
                 Name = "button_StartChrono",
-                Size = new Size(52, 23),
+                Size = new Size(32, 32),
                 TabStop = false,
-                Text = "Start"
+                Text = "Start"                
             };
             button_StartChrono.Click += new EventHandler(this.button_chrono_Click);
-            this.Controls.Add(button_StartChrono);
+            //this.Controls.Add(button_StartChrono);
 
             button_ResetChrono = new Button
             {
@@ -155,22 +156,32 @@ namespace TrackerOOT
                 Text = "Reset"
             };
             button_ResetChrono.Click += new EventHandler(this.button_chrono_reset_Click);
-            this.Controls.Add(button_ResetChrono);
+            //this.Controls.Add(button_ResetChrono);
 
             label_Chrono = new Label
             {
+                BackColor = Color.Transparent,
                 AutoSize = true,
                 Font = new Font("Calibri", 36F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
-                Location = new Point(button_StartChrono.Location.X + button_StartChrono.Width + 30, button_StartChrono.Location.Y + 0),
+                Location = new Point(95, 545),
                 Name = "label_Chrono",
                 Size = new Size(256, 59),
                 TabStop = false,
                 Text = "00:00:00.00",
                 TextAlign = ContentAlignment.MiddleRight
             };
+            label_Chrono.MouseClick += Label_Chrono_MouseClick;
             this.Controls.Add(label_Chrono);
 
+        }
+
+        private void Label_Chrono_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                button_chrono_Click(sender, new EventArgs());
+            if(e.Button == MouseButtons.Right)
+                button_chrono_reset_Click(sender, new EventArgs());
         }
 
         private void addSometimesHints()
@@ -200,11 +211,20 @@ namespace TrackerOOT
                 AutoCompleteMode = AutoCompleteMode.SuggestAppend,
                 AutoCompleteSource = AutoCompleteSource.CustomSource
             };
+            newTextbox.KeyDown += NewTextbox_KeyDown;
             newTextbox.AutoCompleteCustomSource.AddRange(ListSometimesHints.ToArray());
             newTextbox.Location = new Point(newGossipStone.Location.X - newTextbox.Width - 5, newGossipStone.Location.Y + 5);
             this.Controls.Add(newTextbox);
 
             return newGossipStone;
+        }
+        private void NewTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var TextBox_Name = ((TextBox)sender).Name;
+                ((GossipStone)this.Controls.Find(TextBox_Name.Replace("_text", ""), false)[0]).Click_MouseUp(sender, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
+            }
         }
 
         private void addWothAndBarren()
@@ -223,25 +243,27 @@ namespace TrackerOOT
                 BackColor = Color.FromArgb(64, 64, 64),
                 Location = new Point(PanelBarren.Location.X, PanelBarren.Location.Y + PanelBarren.Height + 2),
                 Name = "panel_woth",
-                Size = new Size(336, 160),
+                Size = new Size(this.Width-22, 160),
                 TabStop = false
             };
             
             comboBox_placesWoth = new ComboBox
             {
-                BackColor = Color.CadetBlue,
+                FlatStyle = FlatStyle.Flat,
+                
+                BackColor = Color.FromArgb(74, 138, 182),
                 CausesValidation = false,
-                Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
+                Font = new Font("Corbel", 11, FontStyle.Bold), //new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
                 FormattingEnabled = true,
                 IntegralHeight = false,
                 MaxDropDownItems = 60,
                 Name = "comboBox_placesWoth",
-                Size = new Size(172, 23),
+                Size = new Size(210, 32),
                 TabIndex = 0,
                 Text = ":: Way of the Hero ::"
             };
-            comboBox_placesWoth.Location = new Point(5, 5);
+            comboBox_placesWoth.Location = new Point(2, 0);
             comboBox_placesWoth.KeyDown += new KeyEventHandler(this.comboBox_placesWoth_KeyDown);
             comboBox_placesWoth.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
             PanelWoth.Controls.Add(comboBox_placesWoth);
@@ -249,7 +271,8 @@ namespace TrackerOOT
 
             comboBox_placesBarren = new ComboBox
             {
-                BackColor = Color.IndianRed,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(198, 68, 92),
                 CausesValidation = false,
                 Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
@@ -257,13 +280,13 @@ namespace TrackerOOT
                 IntegralHeight = false,
                 MaxDropDownItems = 60,
                 Name = "comboBox_placesBarren",
-                Size = new Size(172, 23),
+                Size = new Size(170, 23),
                 TabIndex = 1,
                 Text = ":: Barren ::"
             };
             comboBox_placesBarren.KeyDown += new KeyEventHandler(this.comboBox_placesBarren_KeyDown);
             comboBox_placesBarren.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
-            comboBox_placesBarren.Location = new Point(0, 5);
+            comboBox_placesBarren.Location = new Point(2, 0);
             PanelBarren.Controls.Add(comboBox_placesBarren);
             this.Controls.Add(PanelBarren);
         }
@@ -405,7 +428,7 @@ namespace TrackerOOT
                 Width = 140,
                 Height = 170,
                 BackColor = Color.Transparent,
-                BorderStyle = BorderStyle.FixedSingle,
+                BorderStyle = BorderStyle.None,
                 Location = new Point(210, 45)
             };
 
@@ -465,7 +488,7 @@ namespace TrackerOOT
                 Width = 210,
                 Height = 95,
                 BackColor = Color.Transparent,
-                BorderStyle = BorderStyle.FixedSingle,
+                BorderStyle = BorderStyle.None,
                 Location = new Point(2, 45)
             };
 
@@ -617,7 +640,7 @@ namespace TrackerOOT
                             ForeColor = Color.White,
                             BackColor = Color.CadetBlue,
                             Font = new Font("Corbel", 10, FontStyle.Bold),
-                            Width = 200,
+                            Width = 210,
                             Height = 32,
                             TextAlign = ContentAlignment.MiddleLeft
                         };
@@ -641,7 +664,7 @@ namespace TrackerOOT
                         wothPosition.Add(newLabel, 1);
                         PanelWoth.Controls.Add(newLabel);
                         //Move Combobox
-                        comboBox_placesWoth.Location = new Point(5, newLabel.Location.Y + newLabel.Height + 5);
+                        comboBox_placesWoth.Location = new Point(2, newLabel.Location.Y + newLabel.Height);
                     }
                     
                 }
@@ -676,7 +699,7 @@ namespace TrackerOOT
             if(e.Button == MouseButtons.Right)
             {
                 var lastLabel = wothPosition.Keys.Last();
-                comboBox_placesWoth.Location = new Point(5, lastLabel.Location.Y+5);
+                comboBox_placesWoth.Location = new Point(2, lastLabel.Location.Y);
 
                 var label = (Label)sender;
                 wothPosition.Remove(label);
@@ -714,7 +737,7 @@ namespace TrackerOOT
             if(e.Button == MouseButtons.Right)
             {
                 var lastLabel = barrenPosition.Last();
-                comboBox_placesBarren.Location = new Point(5, lastLabel.Location.Y + 5);
+                comboBox_placesBarren.Location = new Point(2, lastLabel.Location.Y);
 
                 var label = (Label)sender;
                 barrenPosition.Remove(label);
@@ -752,7 +775,7 @@ namespace TrackerOOT
                     barrenPosition.Add(newLabel);
                     PanelBarren.Controls.Add(newLabel);
                     //Move Combobox
-                    comboBox_placesBarren.Location = new Point(0, newLabel.Location.Y + newLabel.Height);
+                    comboBox_placesBarren.Location = new Point(2, newLabel.Location.Y + newLabel.Height);
                 }
             }
             comboBox_placesBarren.Text = string.Empty;
@@ -772,15 +795,5 @@ namespace TrackerOOT
             else 
                 label_collectedSkulls.Text = intLabelText.ToString();
         }
-
-        private void button_save_Click(object sender, EventArgs e)
-        {
-            saveJSON();
-        }
-
-        private void saveJSON()
-        {
-
-        }        
     }
 }

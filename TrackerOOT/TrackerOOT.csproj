@@ -482,9 +482,6 @@
     <None Include="Resources\bottle_big_poe.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\go_mode_background.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\farores_wind.png" />
   </ItemGroup>
   <ItemGroup>
@@ -514,6 +511,8 @@
   <ItemGroup>
     <Content Include="Gossip_Stone_32x32.ico" />
     <Content Include="Gossip_Stone_64x64.ico" />
+    <None Include="Resources\play_pause.png" />
+    <None Include="Resources\go_mode_background.png" />
     <None Include="Resources\no_song.png" />
     <None Include="Resources\biggoron_test.png" />
     <None Include="Resources\bow_bw.png" />

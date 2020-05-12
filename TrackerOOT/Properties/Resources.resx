@@ -382,6 +382,9 @@
   <data name="orange_medaillon_bw" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\orange_medaillon_bw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="play_pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play_pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="prelude" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prelude.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
