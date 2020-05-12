@@ -37,7 +37,7 @@ namespace TrackerOOT
         List<Label> barrenPosition = new List<Label>();
 
         bool chronoRunning = false;
-
+        bool SongMode = false;
         Stopwatch chrono = new Stopwatch();
 
         public Form1()
@@ -61,7 +61,7 @@ namespace TrackerOOT
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {
             this.MaximizeBox = false;
             timer1.Start();
             ListDungeons = new List<string>
@@ -80,14 +80,13 @@ namespace TrackerOOT
 
             ListPlaces.Add("");
             JObject json_places = JObject.Parse(File.ReadAllText(@"oot_places.json"));
-            foreach(var categorie in json_places)
+            foreach (var categorie in json_places)
             {
-                foreach(var name in categorie.Value)
+                foreach (var name in categorie.Value)
                 {
                     ListPlaces.Add(name.ToString());
                 }
             }
-            
 
             JObject json_hints = JObject.Parse(File.ReadAllText(@"sometimes_hints.json"));
             foreach (var categorie in json_hints)
@@ -98,20 +97,28 @@ namespace TrackerOOT
                 }
             }
 
+            JObject json_properties = JObject.Parse(File.ReadAllText(@"settings.json"));
+            foreach (var property in json_properties)
+            {
+                if (property.Key == "MoveLocationToSong")
+                {
+                    SongMode = Convert.ToBoolean(property.Value);
+                }
+            }
+
             setListUpgrade();
 
             addItems();
-            var SongsPanel = addSongs();
-            addMedallions(SongsPanel);
+            addSongs();
+            addMedallions();
 
             addGoMode();
-            
+
             addGuaranteedHints();
 
             addWothAndBarren();
             loadComboBoxData(ListPlaces.ToArray());
             autocomplete();
-            addCollectedSkulls();
 
             addSometimesHints();
 
@@ -128,7 +135,7 @@ namespace TrackerOOT
             {
                 BackColor = Color.DimGray,
                 ForeColor = Color.White,
-                Location = new Point(11, 620),
+                Location = new Point(11, 550),
                 Name = "button_StartChrono",
                 Size = new Size(52, 23),
                 TabStop = false,
@@ -141,7 +148,7 @@ namespace TrackerOOT
             {
                 BackColor = Color.DimGray,
                 ForeColor = Color.White,
-                Location = new Point(11, 650),
+                Location = new Point(11, button_StartChrono.Location.Y + button_StartChrono.Height + 15),
                 Name = "button_ResetChrono",
                 Size = new Size(52, 23),
                 TabStop = false,
@@ -155,7 +162,7 @@ namespace TrackerOOT
                 AutoSize = true,
                 Font = new Font("Calibri", 36F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
-                Location = new Point(92, 613),
+                Location = new Point(button_StartChrono.Location.X + button_StartChrono.Width + 30, button_StartChrono.Location.Y + 0),
                 Name = "label_Chrono",
                 Size = new Size(256, 59),
                 TabStop = false,
@@ -187,7 +194,7 @@ namespace TrackerOOT
                 BackColor = Color.FromArgb(64, 64, 64),
                 Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
-                Name = name +"_text",
+                Name = name + "_text",
                 Size = new Size(125, 23),
                 AutoCompleteCustomSource = new AutoCompleteStringCollection(),
                 AutoCompleteMode = AutoCompleteMode.SuggestAppend,
@@ -202,24 +209,43 @@ namespace TrackerOOT
 
         private void addWothAndBarren()
         {
+            PanelBarren = new Panel
+            {
+                BackColor = Color.FromArgb(64, 64, 64),
+                Location = new Point(3, 200),
+                Name = "panel_barren",
+                Size = new Size(172, 70),
+                TabStop = false
+            };
+
+            PanelWoth = new Panel
+            {
+                BackColor = Color.FromArgb(64, 64, 64),
+                Location = new Point(PanelBarren.Location.X, PanelBarren.Location.Y + PanelBarren.Height + 2),
+                Name = "panel_woth",
+                Size = new Size(336, 160),
+                TabStop = false
+            };
+            
             comboBox_placesWoth = new ComboBox
             {
-                BackColor = Color.FromArgb(95,160,160),
+                BackColor = Color.CadetBlue,
                 CausesValidation = false,
                 Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
                 FormattingEnabled = true,
                 IntegralHeight = false,
-                Location = new Point(170, 210),
                 MaxDropDownItems = 60,
                 Name = "comboBox_placesWoth",
                 Size = new Size(172, 23),
                 TabIndex = 0,
                 Text = ":: Way of the Hero ::"
             };
+            comboBox_placesWoth.Location = new Point(5, 5);
             comboBox_placesWoth.KeyDown += new KeyEventHandler(this.comboBox_placesWoth_KeyDown);
             comboBox_placesWoth.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
-            this.Controls.Add(comboBox_placesWoth);
+            PanelWoth.Controls.Add(comboBox_placesWoth);
+            this.Controls.Add(PanelWoth);
 
             comboBox_placesBarren = new ComboBox
             {
@@ -229,7 +255,6 @@ namespace TrackerOOT
                 ForeColor = Color.White,
                 FormattingEnabled = true,
                 IntegralHeight = false,
-                Location = new Point(170, comboBox_placesWoth.Location.Y + comboBox_placesWoth.Height + 2),
                 MaxDropDownItems = 60,
                 Name = "comboBox_placesBarren",
                 Size = new Size(172, 23),
@@ -237,27 +262,9 @@ namespace TrackerOOT
                 Text = ":: Barren ::"
             };
             comboBox_placesBarren.KeyDown += new KeyEventHandler(this.comboBox_placesBarren_KeyDown);
-            comboBox_placesWoth.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
-            this.Controls.Add(comboBox_placesBarren);
-
-            PanelWoth = new Panel
-            {
-                BackColor = Color.FromArgb(64, 64, 64),
-                Location = new Point(6, 335),
-                Name = "panel_woth",
-                Size = new Size(336, 160),
-                TabStop = false
-            };
-            this.Controls.Add(PanelWoth);
-
-            PanelBarren = new Panel
-            {
-                BackColor = Color.FromArgb(64, 64, 64),
-                Location = new Point(170, comboBox_placesBarren.Location.Y + comboBox_placesBarren.Height + 5),
-                Name = "panel_barren",
-                Size = new Size(172, 70),
-                TabStop = false
-            };
+            comboBox_placesBarren.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
+            comboBox_placesBarren.Location = new Point(0, 5);
+            PanelBarren.Controls.Add(comboBox_placesBarren);
             this.Controls.Add(PanelBarren);
         }
 
@@ -284,19 +291,19 @@ namespace TrackerOOT
         private void addGuaranteedHints()
         {
             //30skulls
-            createNewGuaranteedHint("30Skulls", Properties.Resources._30_gold_skulltula, new Point(3,205));
+            createNewGuaranteedHint("30Skulls", Properties.Resources._30_gold_skulltula, new Point(3, 145));
             //40skulls
-            createNewGuaranteedHint("40Skulls", Properties.Resources._40_gold_skulltula, new Point(3, 240));
+            createNewGuaranteedHint("40Skulls", Properties.Resources._40_gold_skulltula, new Point(38, 145));
             //50skulls
-            createNewGuaranteedHint("50Skulls", Properties.Resources._50_gold_skulltula, new Point(3, 275));
+            createNewGuaranteedHint("50Skulls", Properties.Resources._50_gold_skulltula, new Point(73, 145));
             //SkullMask
-            createNewGuaranteedHint("SkullMask", Properties.Resources.skull_mask2, new Point(83, 205));
+            createNewGuaranteedHint("SkullMask", Properties.Resources.skull_mask2, new Point(108, 145));
             //Biggoron
-            createNewGuaranteedHint("Bigorron", Properties.Resources.biggoron_test, new Point(83, 240));
+            createNewGuaranteedHint("Bigorron", Properties.Resources.biggoron_test, new Point(143, 145));
             //Frogs
-            createNewGuaranteedHint("Frogs", Properties.Resources.frogs, new Point(83, 275));
+            createNewGuaranteedHint("Frogs", Properties.Resources.frogs, new Point(178, 145));
             //OoT
-            createNewGuaranteedHint("OcarinaOfTime", Properties.Resources.ocarina_of_time, new Point(83, 170));
+            createNewGuaranteedHint("OcarinaOfTime", Properties.Resources.ocarina_of_time, new Point(178, 195));
         }
 
         private void createNewGuaranteedHint(string name, Image image, Point location)
@@ -307,24 +314,25 @@ namespace TrackerOOT
                 Name = name,
                 Image = image,
                 Location = location,
-                Size = new Size(32,32)
+                Size = new Size(32, 50)
             };
 
-            var X = location.X + newPBox.Width + 3;
-            var Y = location.Y;
+            var X = 0;
+            var Y = 18;
             GossipStone newGossipStone = new GossipStone(name + "_gossip", ListImage_GuaranteedHintsOption, X, Y);
+            newPBox.Controls.Add(newGossipStone);
+            newGossipStone.BringToFront();
             this.Controls.Add(newPBox);
-            this.Controls.Add(newGossipStone);            
         }
 
         private void addGoMode()
         {
-            
+
             PictureBox pbox_GoMode = new PictureBox
             {
                 BackColor = Color.Transparent,
                 Image = ListImage_GoMode[0],
-                Location = new Point(185, 165),
+                Location = new Point(265, 220),
                 Name = "collectedSkulls",
                 Size = new Size(32, 32),
                 TabStop = false
@@ -353,18 +361,18 @@ namespace TrackerOOT
 
         }
 
-        private void addCollectedSkulls()
+        private PictureBox addCollectedSkulls()
         {
             pbox_collectedSkulls = new PictureBox
             {
                 BackColor = Color.Transparent,
                 Image = Properties.Resources.collected_skulltulas,
-                Location = new Point(21, 165),
+                Location = new Point(310, 173),
                 Name = "collectedSkulls",
                 Size = new Size(32, 32),
                 TabStop = false
             };
-            
+
             //Count Skulltulas
             Label nb_skulls = new Label
             {
@@ -385,48 +393,67 @@ namespace TrackerOOT
             nb_skulls.MouseDown += new MouseEventHandler(label_collectedSkulls_MouseDown);
 
             pbox_collectedSkulls.Controls.Add(nb_skulls);
-            this.Controls.Add(pbox_collectedSkulls);
-
+            //this.Controls.Add(pbox_collectedSkulls);
+            return pbox_collectedSkulls;
         }
 
         private void addItems()
         {
-            var ItemSlingshot = createNewItem("slingshot", ListImage_Slingshot, new Point(0, 2), 0);
-            var ItemBomb =      createNewItem("bomb", ListImage_Bomb, ItemSlingshot.Location, ItemSlingshot.Width);
-            var ItemBombchu = createNewItem("bombchu", ListImage_Bombchu, ItemBomb.Location, ItemBomb.Width);
-            var ItemHookshot = createNewItem("hookshot", ListImage_Hookshot, ItemBombchu.Location, ItemBombchu.Width);
-            var ItemBow = createNewItem("bow", ListImage_Bow, ItemHookshot.Location, ItemHookshot.Width);
-            var ItemArrow = createNewItemDouble("arrow", ListImage_Arrow, ItemBow.Location, ItemBow.Width);
-            var ItemSpell = createNewItemDouble("spell", ListImage_Spell, ItemArrow.Location, ItemArrow.Width);
-            var ItemMagic = createNewItem("magic", ListImage_Magic, ItemSpell.Location, ItemSpell.Width);
-            var ItemBoots = createNewItemDouble("boots", ListImage_Boots, ItemMagic.Location, ItemMagic.Width);
-            var ItemPrescription = createNewItem("biggoron_quest", ListImage_BiggoronQuest, ItemBoots.Location, ItemBoots.Width);
+            Panel newPanel = new Panel
+            {
+                Name = "panel_items",
+                Width = 140,
+                Height = 170,
+                BackColor = Color.Transparent,
+                BorderStyle = BorderStyle.FixedSingle,
+                Location = new Point(210, 45)
+            };
 
-            var ItemBoomerang = createNewItem("bommerang", ListImage_Boomerang, new Point(0, ItemSlingshot.Location.Y + ItemSlingshot.Height + 2), 0);
-            var ItemScale = createNewItem("scale", ListImage_Scale, ItemBoomerang.Location, ItemBoomerang.Width);
-            var ItemStrength = createNewItem("strength", ListImage_Strength, ItemScale.Location, ItemScale.Width);
-            var ItemLens = createNewItem("lens", ListImage_Lens, ItemStrength.Location, ItemStrength.Width);
-            var ItemHammer = createNewItem("hammer", ListImage_Hammer, ItemLens.Location, ItemLens.Width);
-            var ItemTunic = createNewItemDouble("tunic", ListImage_Tunic, ItemHammer.Location, ItemHammer.Width);
-            var ItemWallet = createNewItem("wallet", ListImage_Wallet, ItemTunic.Location, ItemTunic.Width);
-            var ItemRutosLetter = createNewItem("rutos_letter", ListImage_RutosLetter, ItemWallet.Location, ItemWallet.Width);
-            var ItemMirrorShield = createNewItem("mirror_shield", ListImage_MirrorShield, ItemRutosLetter.Location, ItemRutosLetter.Width);
+            var ItemSlingshot = createNewItem("slingshot", ListImage_Slingshot, new Point(2, 2), 0, newPanel);
+            var ItemBomb = createNewItem("bomb", ListImage_Bomb, ItemSlingshot.Location, ItemSlingshot.Width, newPanel);
+            var ItemBombchu = createNewItem("bombchu", ListImage_Bombchu, ItemBomb.Location, ItemBomb.Width, newPanel);
+            var ItemHookshot = createNewItem("hookshot", ListImage_Hookshot, ItemBombchu.Location, ItemBombchu.Width, newPanel);
+
+            var ItemBow = createNewItem("bow", ListImage_Bow, new Point(2, ItemSlingshot.Location.Y + ItemSlingshot.Height), 0, newPanel);
+            var ItemArrow = createNewItemDouble("arrow", ListImage_Arrow, ItemBow.Location, ItemBow.Width, newPanel);
+            var ItemSpell = createNewItemDouble("spell", ListImage_Spell, ItemArrow.Location, ItemArrow.Width, newPanel);
+            var ItemMagic = createNewItem("magic", ListImage_Magic, ItemSpell.Location, ItemSpell.Width, newPanel);
+
+            var ItemBoots = createNewItemDouble("boots", ListImage_Boots, new Point(2, ItemBow.Location.Y + ItemBow.Height), 0, newPanel);
+            var ItemPrescription = createNewItem("biggoron_quest", ListImage_BiggoronQuest, ItemBoots.Location, ItemBoots.Width, newPanel);
+            var ItemBoomerang = createNewItem("bommerang", ListImage_Boomerang, ItemPrescription.Location, ItemPrescription.Width, newPanel);
+            var ItemScale = createNewItem("scale", ListImage_Scale, ItemBoomerang.Location, ItemBoomerang.Width, newPanel);
+            
+            var ItemStrength = createNewItem("strength", ListImage_Strength, new Point(2, ItemBoots.Location.Y + ItemBoots.Height), 0, newPanel);
+            var ItemLens = createNewItem("lens", ListImage_Lens, ItemStrength.Location, ItemStrength.Width, newPanel);
+            var ItemHammer = createNewItem("hammer", ListImage_Hammer, ItemLens.Location, ItemLens.Width, newPanel);
+            var ItemTunic = createNewItemDouble("tunic", ListImage_Tunic, ItemHammer.Location, ItemHammer.Width, newPanel);
+            
+            var ItemWallet = createNewItem("wallet", ListImage_Wallet, new Point(2, ItemStrength.Location.Y + ItemStrength.Height), 0, newPanel);
+            var ItemRutosLetter = createNewItem("rutos_letter", ListImage_RutosLetter, ItemWallet.Location, ItemWallet.Width, newPanel);
+            var ItemMirrorShield = createNewItem("mirror_shield", ListImage_MirrorShield, ItemRutosLetter.Location, ItemRutosLetter.Width, newPanel);
+
+            var collectedSkulls = addCollectedSkulls();
+            collectedSkulls.Location = new Point(ItemMirrorShield.Location.X + ItemMirrorShield.Width, ItemMirrorShield.Location.Y);
+            newPanel.Controls.Add(collectedSkulls);
+
+            this.Controls.Add(newPanel);
         }
-        private Item createNewItem(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth)
+        private Item createNewItem(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth, Panel panelItem)
         {
-            var X = PreviousElementLocation.X + PreviousElementWidth + 3;
+            var X = PreviousElementLocation.X + PreviousElementWidth+2;
             var Y = PreviousElementLocation.Y;
             Item newItem = new Item(name, ListImage, X, Y);
-            this.Controls.Add(newItem);
+            panelItem.Controls.Add(newItem);
             return newItem;
         }
 
-        private ItemDouble createNewItemDouble(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth)
+        private ItemDouble createNewItemDouble(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth, Panel panelItem)
         {
-            var X = PreviousElementLocation.X + PreviousElementWidth + 3;
+            var X = PreviousElementLocation.X + PreviousElementWidth;
             var Y = PreviousElementLocation.Y;
             ItemDouble newItemDouble = new ItemDouble(name, ListImage, X, Y);
-            this.Controls.Add(newItemDouble);
+            panelItem.Controls.Add(newItemDouble);
             return newItemDouble;
         }
 
@@ -435,20 +462,21 @@ namespace TrackerOOT
             Panel newPanel = new Panel
             {
                 Name = "panel_songs",
-                Width = 340,
-                Height = 90,
-                BackColor = Color.Transparent, //Color.FromArgb(15, 15, 15),
-                Location = new Point(5, 72)
+                Width = 210,
+                Height = 95,
+                BackColor = Color.Transparent,
+                BorderStyle = BorderStyle.FixedSingle,
+                Location = new Point(2, 45)
             };
 
-            var SongZeldasLullaby = createNewSong("zeldas_lullaby", ListImage_ZeldasLullaby, new Point(0,3), 0, ListImage_TinySongs, newPanel);
+            var SongZeldasLullaby = createNewSong("zeldas_lullaby", ListImage_ZeldasLullaby, new Point(2, 3), 0, ListImage_TinySongs, newPanel);
             var SongEpona = createNewSong("epona", ListImage_EponasSong, SongZeldasLullaby.Location, SongZeldasLullaby.Width, ListImage_TinySongs, newPanel);
             var SongSaria = createNewSong("saria", ListImage_SariasSong, SongEpona.Location, SongEpona.Width, ListImage_TinySongs, newPanel);
             var SongSun = createNewSong("suns_song", ListImage_SunsSong, SongSaria.Location, SongSaria.Width, ListImage_TinySongs, newPanel);
             var SongTime = createNewSong("song_of_time", ListImage_SongOfTime, SongSun.Location, SongSun.Width, ListImage_TinySongs, newPanel);
             var SongStorms = createNewSong("song_of_storms", ListImage_SongOfStorms, SongTime.Location, SongTime.Width, ListImage_TinySongs, newPanel);
-            
-            var SongMinuet = createNewSong("minuet", ListImage_Minuet, new Point(0, SongZeldasLullaby.Location.Y + SongZeldasLullaby.Height + 12), 0, ListImage_TinySongs, newPanel);
+
+            var SongMinuet = createNewSong("minuet", ListImage_Minuet, new Point(0, SongZeldasLullaby.Location.Y + SongZeldasLullaby.Height + 6), 0, ListImage_TinySongs, newPanel);
             var SongBolero = createNewSong("bolero", ListImage_Bolero, SongMinuet.Location, SongMinuet.Width, ListImage_TinySongs, newPanel);
             var SongSerenade = createNewSong("serenade", ListImage_Serenade, SongBolero.Location, SongBolero.Width, ListImage_TinySongs, newPanel);
             var SongNocturne = createNewSong("nocturne", ListImage_Nocturne, SongSerenade.Location, SongSerenade.Width, ListImage_TinySongs, newPanel);
@@ -460,34 +488,32 @@ namespace TrackerOOT
 
         private Song createNewSong(string name, List<Image> ListImages, Point PreviousElementLocation, int PreviousElementWidth, List<Image> ListTinyImages, Panel PanelContainer)
         {
-            var X = PreviousElementLocation.X + PreviousElementWidth + 3;
+            var X = PreviousElementLocation.X + PreviousElementWidth+2;
             var Y = PreviousElementLocation.Y;
-            Song newSong = new Song(name, ListImages, X, Y, ListTinyImages);
+            Song newSong = new Song(name, ListImages, X, Y, ListTinyImages, SongMode);
             listSong.Add(newSong);
             PanelContainer.Controls.Add(newSong);
-            PanelContainer.Controls.Add(newSong.elementFoundAtLocation);
-            newSong.elementFoundAtLocation.BringToFront();
             return newSong;
         }
 
-        private void addMedallions(Panel PanelMedallions)
+        private void addMedallions()
         {
-            var Green = createNewMedallion("green_medallion", ListImage_GreenMedallion, new Point(217,3), 0, PanelMedallions);
-            var Red = createNewMedallion("red_medallion", ListImage_RedMedallion, Green.Location, Green.Width, PanelMedallions);
-            var Blue = createNewMedallion("blue_medallion", ListImage_BlueMedallion, Red.Location, Red.Width, PanelMedallions);
-            
-            var Purple = createNewMedallion("purple_medallion", ListImage_PurpleMedallion, new Point(217,50), 0, PanelMedallions);
-            var Orange = createNewMedallion("orange_medallion", ListImage_OrangeMedallion, Purple.Location, Purple.Width, PanelMedallions);
-            var Yellow = createNewMedallion("yellow_medallion", ListImage_YellowMedallion, Orange.Location, Orange.Width, PanelMedallions);
+            var Green = createNewMedallion("green_medallion", ListImage_GreenMedallion, new Point(-2, 3), 0);
+            var Red = createNewMedallion("red_medallion", ListImage_RedMedallion, Green.Location, Green.Width);
+            var Blue = createNewMedallion("blue_medallion", ListImage_BlueMedallion, Red.Location, Red.Width);
 
-            var Kokiri = createNewStone("kokiri_stone", ListImage_KokiriStone, new Point(222 ,165), 0);
+            var Purple = createNewMedallion("purple_medallion", ListImage_PurpleMedallion, Blue.Location, Blue.Width);
+            var Orange = createNewMedallion("orange_medallion", ListImage_OrangeMedallion, Purple.Location, Purple.Width);
+            var Yellow = createNewMedallion("yellow_medallion", ListImage_YellowMedallion, Orange.Location, Orange.Width);
+
+            var Kokiri = createNewStone("kokiri_stone", ListImage_KokiriStone, Yellow.Location, Yellow.Width);
             var Goron = createNewStone("goron_stone", ListImage_GoronStone, Kokiri.Location, Kokiri.Width);
             var Zora = createNewStone("zora_stone", ListImage_ZoraStone, Goron.Location, Goron.Width);
         }
 
         private Medallion createNewStone(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth)
         {
-            var X = PreviousElementLocation.X + PreviousElementWidth + 8;
+            var X = PreviousElementLocation.X + PreviousElementWidth + 7;
             var Y = PreviousElementLocation.Y;
             Medallion newMedallion = new Medallion(name, ListImage, X, Y, ListDungeons);
             this.Controls.Add(newMedallion);
@@ -496,13 +522,13 @@ namespace TrackerOOT
             return newMedallion;
         }
 
-        private Medallion createNewMedallion(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth, Panel PanelMedallion)
+        private Medallion createNewMedallion(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth)
         {
-            var X = PreviousElementLocation.X + PreviousElementWidth + 8;
+            var X = PreviousElementLocation.X + PreviousElementWidth + 7;
             var Y = PreviousElementLocation.Y;
             Medallion newMedallion = new Medallion(name, ListImage, X, Y, ListDungeons);
-            PanelMedallion.Controls.Add(newMedallion);
-            PanelMedallion.Controls.Add(newMedallion.SelectedDungeon);
+            this.Controls.Add(newMedallion);
+            this.Controls.Add(newMedallion.SelectedDungeon);
             newMedallion.SelectedDungeon.BringToFront();
             return newMedallion;
         }
@@ -518,7 +544,7 @@ namespace TrackerOOT
             if (k.KeyCode == Keys.F12)
                 label_collectedSkulls_MouseDown(pbox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Right, 1, 0, 0, 0));
         }
-        
+
         private void loadComboBoxData(String[] data)
         {
             comboBox_placesWoth.Items.Clear();
@@ -527,28 +553,24 @@ namespace TrackerOOT
             comboBox_placesBarren.Items.AddRange(data);
         }
 
-        //#region combobox DropDownClosed
-        //void comboBox_woth1_DropDownClosed(object sender, EventArgs e)
-        //{
-        //    this.BeginInvoke(new Action(() => { comboBox_places.Select(0, 0); }));
-        //}
-        //#endregion
-
         #region chrono and timer
         private void timer1_Tick(object sender, EventArgs e)
         {
             TimeSpan time = chrono.Elapsed;
             label_Chrono.Text = time.ToString(@"hh\:mm\:ss\.ff");
 
-            foreach(Song song in listSong)
+            if (!SongMode)
             {
-                if(song.elementFoundAtLocation.Image != song.tinyImageEmpty)
+                foreach (Song song in listSong)
                 {
-                    var filledSong = listSong.Find(x => x.tinyImage == song.elementFoundAtLocation.Image);
-                    if (filledSong != null)
+                    if (song.elementFoundAtLocation.Image != song.tinyImageEmpty)
                     {
-                        var index = filledSong.listImage.FindIndex(x => x == filledSong.Image);
-                        if (index == 0) filledSong.Click_MouseUp(song, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
+                        var filledSong = listSong.Find(x => x.tinyImage == song.elementFoundAtLocation.Image);
+                        if (filledSong != null)
+                        {
+                            var index = filledSong.listImage.FindIndex(x => x == filledSong.Image);
+                            if (index == 0) filledSong.Click_MouseUp(song, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
+                        }
                     }
                 }
             }
@@ -618,7 +640,10 @@ namespace TrackerOOT
                         }
                         wothPosition.Add(newLabel, 1);
                         PanelWoth.Controls.Add(newLabel);
+                        //Move Combobox
+                        comboBox_placesWoth.Location = new Point(5, newLabel.Location.Y + newLabel.Height + 5);
                     }
+                    
                 }
             }
             comboBox_placesWoth.Text = string.Empty;
@@ -650,6 +675,9 @@ namespace TrackerOOT
 
             if(e.Button == MouseButtons.Right)
             {
+                var lastLabel = wothPosition.Keys.Last();
+                comboBox_placesWoth.Location = new Point(5, lastLabel.Location.Y+5);
+
                 var label = (Label)sender;
                 wothPosition.Remove(label);
 
@@ -677,6 +705,7 @@ namespace TrackerOOT
                     var pictureBox4 = (PictureBox)PanelWoth.Controls.Find(labelName + 3, false)[0];
                     pictureBox4.Location = new Point(wothLabel.Width+5 + 96, wothLabel.Location.Y);
                 }
+                
             }
         }
 
@@ -684,6 +713,9 @@ namespace TrackerOOT
         {
             if(e.Button == MouseButtons.Right)
             {
+                var lastLabel = barrenPosition.Last();
+                comboBox_placesBarren.Location = new Point(5, lastLabel.Location.Y + 5);
+
                 var label = (Label)sender;
                 barrenPosition.Remove(label);
                 label.Dispose();
@@ -719,6 +751,8 @@ namespace TrackerOOT
                     newLabel.MouseClick += new MouseEventHandler(label_barren_MouseClick);
                     barrenPosition.Add(newLabel);
                     PanelBarren.Controls.Add(newLabel);
+                    //Move Combobox
+                    comboBox_placesBarren.Location = new Point(0, newLabel.Location.Y + newLabel.Height);
                 }
             }
             comboBox_placesBarren.Text = string.Empty;

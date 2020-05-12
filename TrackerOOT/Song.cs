@@ -12,9 +12,11 @@ namespace TrackerOOT
         public Image tinyImageEmpty;
         bool isMouseDown = false;
         public PictureBox elementFoundAtLocation;
+        bool SongMode;
 
-        public Song(string name, List<Image> images, int x, int y, List<Image> tinyImages)
+        public Song(string name, List<Image> images, int x, int y, List<Image> tinyImages, bool songMode)
         {
+            SongMode = songMode;
             listImage = images;
             listTinyImage = tinyImages;
             tinyImageEmpty = listTinyImage[0];
@@ -23,7 +25,7 @@ namespace TrackerOOT
             this.BackColor = Color.Transparent;
             this.Name = name;
             this.Image = listImage[0];
-            this.Size = new Size(32, 32);
+            this.Size = new Size(32, 40);
             this.Location = new Point(x, y);
             this.TabStop = false;
             this.AllowDrop = true;
@@ -32,18 +34,22 @@ namespace TrackerOOT
             this.MouseMove += this.Click_MouseMove;
             this.DragEnter += this.Click_DragEnter;
             this.DragDrop += this.Click_DragDrop;
-
+            
             elementFoundAtLocation = new PictureBox
             {
                 BackColor = Color.Transparent,
                 Image = tinyImageEmpty,
                 Name = name,
                 Size = new Size(16, 16),
-                Location = new Point(x + 8, y + 24),
+                Location = new Point(8, 24),
                 TabStop = false,
                 AllowDrop = false
             };
             elementFoundAtLocation.MouseUp += ElementFoundAtLocation_MouseUp;
+            elementFoundAtLocation.DragEnter += Click_DragEnter;
+            elementFoundAtLocation.DragDrop += Click_DragDrop;
+            this.Controls.Add(elementFoundAtLocation);
+            elementFoundAtLocation.BringToFront();
         }
 
         private void ElementFoundAtLocation_MouseUp(object sender, MouseEventArgs e)
@@ -63,7 +69,15 @@ namespace TrackerOOT
             var image = (Image)e.Data.GetData(DataFormats.Bitmap);
             if (image.Width == 16 && image.Height == 16)
             {
-                elementFoundAtLocation.Image = image;
+                if (SongMode)
+                {
+                    elementFoundAtLocation.Image = image;
+                    this.Image = listImage[1];
+                }
+                else
+                {
+                    elementFoundAtLocation.Image = image;                    
+                }
             }
         }
 
