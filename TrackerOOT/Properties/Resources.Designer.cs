@@ -63,9 +63,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _30_gold_skulltula {
+        internal static System.Drawing.Bitmap _30_gold_skulltula_24 {
             get {
-                object obj = ResourceManager.GetObject("_30_gold_skulltula", resourceCulture);
+                object obj = ResourceManager.GetObject("_30_gold_skulltula_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _40_gold_skulltula {
+        internal static System.Drawing.Bitmap _30_gold_skulltula_32 {
             get {
-                object obj = ResourceManager.GetObject("_40_gold_skulltula", resourceCulture);
+                object obj = ResourceManager.GetObject("_30_gold_skulltula_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,39 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _50_gold_skulltula {
+        internal static System.Drawing.Bitmap _40_gold_skulltula_24 {
             get {
-                object obj = ResourceManager.GetObject("_50_gold_skulltula", resourceCulture);
+                object obj = ResourceManager.GetObject("_40_gold_skulltula_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _40_gold_skulltula_32 {
+            get {
+                object obj = ResourceManager.GetObject("_40_gold_skulltula_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _50_gold_skulltula_24 {
+            get {
+                object obj = ResourceManager.GetObject("_50_gold_skulltula_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _50_gold_skulltula_32 {
+            get {
+                object obj = ResourceManager.GetObject("_50_gold_skulltula_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +133,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap biggoron_test {
+        internal static System.Drawing.Bitmap biggoron_24 {
             get {
-                object obj = ResourceManager.GetObject("biggoron_test", resourceCulture);
+                object obj = ResourceManager.GetObject("biggoron_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +143,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bk {
+        internal static System.Drawing.Bitmap biggoron_32 {
             get {
-                object obj = ResourceManager.GetObject("bk", resourceCulture);
+                object obj = ResourceManager.GetObject("biggoron_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +153,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_medaillon {
+        internal static System.Drawing.Bitmap bk_24 {
             get {
-                object obj = ResourceManager.GetObject("blue_medaillon", resourceCulture);
+                object obj = ResourceManager.GetObject("bk_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +163,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_medaillon_bw {
+        internal static System.Drawing.Bitmap bk_32 {
             get {
-                object obj = ResourceManager.GetObject("blue_medaillon_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("bk_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +173,39 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bolero {
+        internal static System.Drawing.Bitmap blue_medaillon_24 {
             get {
-                object obj = ResourceManager.GetObject("bolero", resourceCulture);
+                object obj = ResourceManager.GetObject("blue_medaillon_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blue_medaillon_32 {
+            get {
+                object obj = ResourceManager.GetObject("blue_medaillon_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blue_medaillon_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("blue_medaillon_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blue_medaillon_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("blue_medaillon_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +223,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bolero_bw {
+        internal static System.Drawing.Bitmap bolero_24 {
             get {
-                object obj = ResourceManager.GetObject("bolero_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("bolero_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +233,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bomb_chu {
+        internal static System.Drawing.Bitmap bolero_32 {
             get {
-                object obj = ResourceManager.GetObject("bomb_chu", resourceCulture);
+                object obj = ResourceManager.GetObject("bolero_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +243,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bomb_chu_bw {
+        internal static System.Drawing.Bitmap bolero_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("bomb_chu_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("bolero_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +253,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bombs {
+        internal static System.Drawing.Bitmap bolero_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("bombs", resourceCulture);
+                object obj = ResourceManager.GetObject("bolero_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +263,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bombs_bw {
+        internal static System.Drawing.Bitmap bomb_chu_24 {
             get {
-                object obj = ResourceManager.GetObject("bombs_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("bomb_chu_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +273,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap boomerang {
+        internal static System.Drawing.Bitmap bomb_chu_32 {
             get {
-                object obj = ResourceManager.GetObject("boomerang", resourceCulture);
+                object obj = ResourceManager.GetObject("bomb_chu_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +283,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap boomerang_bw {
+        internal static System.Drawing.Bitmap bomb_chu_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("boomerang_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("bomb_chu_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +293,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bottle_big_poe {
+        internal static System.Drawing.Bitmap bomb_chu_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("bottle_big_poe", resourceCulture);
+                object obj = ResourceManager.GetObject("bomb_chu_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +303,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bottle_empty {
+        internal static System.Drawing.Bitmap bombs_24 {
             get {
-                object obj = ResourceManager.GetObject("bottle_empty", resourceCulture);
+                object obj = ResourceManager.GetObject("bombs_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +313,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bottle_rutos_letter {
+        internal static System.Drawing.Bitmap bombs_32 {
             get {
-                object obj = ResourceManager.GetObject("bottle_rutos_letter", resourceCulture);
+                object obj = ResourceManager.GetObject("bombs_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +323,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bottle_rutos_letter_bw {
+        internal static System.Drawing.Bitmap bombs_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("bottle_rutos_letter_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("bombs_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,9 +333,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bow {
+        internal static System.Drawing.Bitmap bombs_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("bow", resourceCulture);
+                object obj = ResourceManager.GetObject("bombs_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +343,149 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bow_bw {
+        internal static System.Drawing.Bitmap boomerang_24 {
             get {
-                object obj = ResourceManager.GetObject("bow_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("boomerang_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boomerang_32 {
+            get {
+                object obj = ResourceManager.GetObject("boomerang_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boomerang_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("boomerang_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boomerang_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("boomerang_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boots_32 {
+            get {
+                object obj = ResourceManager.GetObject("boots_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bottle_big_poe_24 {
+            get {
+                object obj = ResourceManager.GetObject("bottle_big_poe_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bottle_empty_24 {
+            get {
+                object obj = ResourceManager.GetObject("bottle_empty_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bottle_rutos_letter_24 {
+            get {
+                object obj = ResourceManager.GetObject("bottle_rutos_letter_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bottle_rutos_letter_32 {
+            get {
+                object obj = ResourceManager.GetObject("bottle_rutos_letter_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bottle_rutos_letter_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("bottle_rutos_letter_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bottle_rutos_letter_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("bottle_rutos_letter_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bow_24 {
+            get {
+                object obj = ResourceManager.GetObject("bow_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bow_32 {
+            get {
+                object obj = ResourceManager.GetObject("bow_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bow_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("bow_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bow_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("bow_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,9 +503,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap claim_check {
+        internal static System.Drawing.Bitmap claim_check_24 {
             get {
-                object obj = ResourceManager.GetObject("claim_check", resourceCulture);
+                object obj = ResourceManager.GetObject("claim_check_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,9 +513,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap collected_skulltulas {
+        internal static System.Drawing.Bitmap claim_check_32 {
             get {
-                object obj = ResourceManager.GetObject("collected_skulltulas", resourceCulture);
+                object obj = ResourceManager.GetObject("claim_check_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -323,9 +523,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dins_farores {
+        internal static System.Drawing.Bitmap collected_skulltulas_24 {
             get {
-                object obj = ResourceManager.GetObject("dins_farores", resourceCulture);
+                object obj = ResourceManager.GetObject("collected_skulltulas_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,9 +533,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dins_farores_bw {
+        internal static System.Drawing.Bitmap collected_skulltulas_32 {
             get {
-                object obj = ResourceManager.GetObject("dins_farores_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("collected_skulltulas_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +543,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dins_fire {
+        internal static System.Drawing.Bitmap dins_farores_24 {
             get {
-                object obj = ResourceManager.GetObject("dins_fire", resourceCulture);
+                object obj = ResourceManager.GetObject("dins_farores_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,9 +553,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap double_magic {
+        internal static System.Drawing.Bitmap dins_farores_32 {
             get {
-                object obj = ResourceManager.GetObject("double_magic", resourceCulture);
+                object obj = ResourceManager.GetObject("dins_farores_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,9 +563,69 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap epona {
+        internal static System.Drawing.Bitmap dins_farores_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("epona", resourceCulture);
+                object obj = ResourceManager.GetObject("dins_farores_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dins_farores_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("dins_farores_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dins_fire_24 {
+            get {
+                object obj = ResourceManager.GetObject("dins_fire_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dins_fire_32 {
+            get {
+                object obj = ResourceManager.GetObject("dins_fire_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dins_fire_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("dins_fire_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap double_magic_24 {
+            get {
+                object obj = ResourceManager.GetObject("double_magic_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap double_magic_32 {
+            get {
+                object obj = ResourceManager.GetObject("double_magic_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,9 +643,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap epona_bw {
+        internal static System.Drawing.Bitmap epona_24 {
             get {
-                object obj = ResourceManager.GetObject("epona_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("epona_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,9 +653,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap eye_drops {
+        internal static System.Drawing.Bitmap epona_32 {
             get {
-                object obj = ResourceManager.GetObject("eye_drops", resourceCulture);
+                object obj = ResourceManager.GetObject("epona_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,9 +663,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap farores_wind {
+        internal static System.Drawing.Bitmap epona_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("farores_wind", resourceCulture);
+                object obj = ResourceManager.GetObject("epona_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -413,9 +673,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fire_arrow {
+        internal static System.Drawing.Bitmap epona_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("fire_arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("epona_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,9 +683,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fire_light_arrow {
+        internal static System.Drawing.Bitmap eye_drops_24 {
             get {
-                object obj = ResourceManager.GetObject("fire_light_arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("eye_drops_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -433,9 +693,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fire_light_arrow_bw {
+        internal static System.Drawing.Bitmap eye_drops_32 {
             get {
-                object obj = ResourceManager.GetObject("fire_light_arrow_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("eye_drops_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -443,9 +703,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap frogs {
+        internal static System.Drawing.Bitmap farores_wind_24 {
             get {
-                object obj = ResourceManager.GetObject("frogs", resourceCulture);
+                object obj = ResourceManager.GetObject("farores_wind_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -453,9 +713,99 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap go_mode {
+        internal static System.Drawing.Bitmap fire_arrow_24 {
             get {
-                object obj = ResourceManager.GetObject("go_mode", resourceCulture);
+                object obj = ResourceManager.GetObject("fire_arrow_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fire_arrow_32 {
+            get {
+                object obj = ResourceManager.GetObject("fire_arrow_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fire_arrow_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("fire_arrow_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fire_light_arrow_24 {
+            get {
+                object obj = ResourceManager.GetObject("fire_light_arrow_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fire_light_arrow_32 {
+            get {
+                object obj = ResourceManager.GetObject("fire_light_arrow_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fire_light_arrow_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("fire_light_arrow_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fire_light_arrow_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("fire_light_arrow_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frogs_24 {
+            get {
+                object obj = ResourceManager.GetObject("frogs_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frogs_32 {
+            get {
+                object obj = ResourceManager.GetObject("frogs_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap go_mode_32 {
+            get {
+                object obj = ResourceManager.GetObject("go_mode_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -473,9 +823,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap go_mode_bw {
+        internal static System.Drawing.Bitmap go_mode_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("go_mode_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("go_mode_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -483,9 +833,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap golden_scale {
+        internal static System.Drawing.Bitmap golden_scale_24 {
             get {
-                object obj = ResourceManager.GetObject("golden_scale", resourceCulture);
+                object obj = ResourceManager.GetObject("golden_scale_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -493,9 +843,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap goron_stone {
+        internal static System.Drawing.Bitmap golden_scale_32 {
             get {
-                object obj = ResourceManager.GetObject("goron_stone", resourceCulture);
+                object obj = ResourceManager.GetObject("golden_scale_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -503,9 +853,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap goron_stone_bw {
+        internal static System.Drawing.Bitmap goron_stone_24 {
             get {
-                object obj = ResourceManager.GetObject("goron_stone_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_stone_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -513,9 +863,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap goron_tunic {
+        internal static System.Drawing.Bitmap goron_stone_32 {
             get {
-                object obj = ResourceManager.GetObject("goron_tunic", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_stone_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -523,9 +873,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap goron_zora_tunic {
+        internal static System.Drawing.Bitmap goron_stone_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("goron_zora_tunic", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_stone_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -533,29 +883,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap goron_zora_tunic_bw {
+        internal static System.Drawing.Bitmap goron_stone_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("goron_zora_tunic_bw", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Icon semblable à (Icône).
-        /// </summary>
-        internal static System.Drawing.Icon Gossip_Stone {
-            get {
-                object obj = ResourceManager.GetObject("Gossip_Stone", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Gossip_Stone_bw {
-            get {
-                object obj = ResourceManager.GetObject("Gossip_Stone_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_stone_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -563,9 +893,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gossip_stone1 {
+        internal static System.Drawing.Bitmap goron_tunic_24 {
             get {
-                object obj = ResourceManager.GetObject("gossip_stone1", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_tunic_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -573,9 +903,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap green_medaillon {
+        internal static System.Drawing.Bitmap goron_tunic_32 {
             get {
-                object obj = ResourceManager.GetObject("green_medaillon", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_tunic_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -583,9 +913,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap green_medaillon_bw {
+        internal static System.Drawing.Bitmap goron_tunic_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("green_medaillon_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_tunic_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -593,9 +923,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap half_dins_fire {
+        internal static System.Drawing.Bitmap goron_zora_tunic_24 {
             get {
-                object obj = ResourceManager.GetObject("half_dins_fire", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_zora_tunic_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -603,9 +933,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap half_farores_wind {
+        internal static System.Drawing.Bitmap goron_zora_tunic_32 {
             get {
-                object obj = ResourceManager.GetObject("half_farores_wind", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_zora_tunic_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -613,9 +943,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap half_fire_arrow {
+        internal static System.Drawing.Bitmap goron_zora_tunic_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("half_fire_arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_zora_tunic_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -623,9 +953,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap half_goron_tunic {
+        internal static System.Drawing.Bitmap goron_zora_tunic_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("half_goron_tunic", resourceCulture);
+                object obj = ResourceManager.GetObject("goron_zora_tunic_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -633,9 +963,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap half_hover_boots {
+        internal static System.Drawing.Bitmap gossip_stone_32 {
             get {
-                object obj = ResourceManager.GetObject("half_hover_boots", resourceCulture);
+                object obj = ResourceManager.GetObject("gossip_stone_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -643,9 +973,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap half_iron_boots {
+        internal static System.Drawing.Bitmap gossip_stone_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("half_iron_boots", resourceCulture);
+                object obj = ResourceManager.GetObject("gossip_stone_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -653,9 +983,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap half_light_arrow {
+        internal static System.Drawing.Bitmap gossip_stone_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("half_light_arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("gossip_stone_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -663,9 +993,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap half_zora_tunic {
+        internal static System.Drawing.Bitmap green_medaillon_24 {
             get {
-                object obj = ResourceManager.GetObject("half_zora_tunic", resourceCulture);
+                object obj = ResourceManager.GetObject("green_medaillon_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -673,9 +1003,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hammer {
+        internal static System.Drawing.Bitmap green_medaillon_32 {
             get {
-                object obj = ResourceManager.GetObject("hammer", resourceCulture);
+                object obj = ResourceManager.GetObject("green_medaillon_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -683,9 +1013,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hammer_bw {
+        internal static System.Drawing.Bitmap green_medaillon_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("hammer_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("green_medaillon_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -693,9 +1023,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hookshot {
+        internal static System.Drawing.Bitmap green_medaillon_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("hookshot", resourceCulture);
+                object obj = ResourceManager.GetObject("green_medaillon_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -703,9 +1033,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hookshot_bw {
+        internal static System.Drawing.Bitmap half_dins_fire_24 {
             get {
-                object obj = ResourceManager.GetObject("hookshot_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("half_dins_fire_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -713,9 +1043,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hover_boots {
+        internal static System.Drawing.Bitmap half_dins_fire_32 {
             get {
-                object obj = ResourceManager.GetObject("hover_boots", resourceCulture);
+                object obj = ResourceManager.GetObject("half_dins_fire_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -723,9 +1053,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iron_boots {
+        internal static System.Drawing.Bitmap half_farores_wind_24 {
             get {
-                object obj = ResourceManager.GetObject("iron_boots", resourceCulture);
+                object obj = ResourceManager.GetObject("half_farores_wind_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -733,9 +1063,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iron_hover_boots {
+        internal static System.Drawing.Bitmap half_farores_wind_32 {
             get {
-                object obj = ResourceManager.GetObject("iron_hover_boots", resourceCulture);
+                object obj = ResourceManager.GetObject("half_farores_wind_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -743,9 +1073,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iron_hover_boots_bw {
+        internal static System.Drawing.Bitmap half_fire_arrow_24 {
             get {
-                object obj = ResourceManager.GetObject("iron_hover_boots_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("half_fire_arrow_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -753,9 +1083,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap key {
+        internal static System.Drawing.Bitmap half_fire_arrow_32 {
             get {
-                object obj = ResourceManager.GetObject("key", resourceCulture);
+                object obj = ResourceManager.GetObject("half_fire_arrow_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -763,9 +1093,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kokiri_stone {
+        internal static System.Drawing.Bitmap half_goron_tunic_24 {
             get {
-                object obj = ResourceManager.GetObject("kokiri_stone", resourceCulture);
+                object obj = ResourceManager.GetObject("half_goron_tunic_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -773,9 +1103,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kokiri_stone_bw {
+        internal static System.Drawing.Bitmap half_goron_tunic_32 {
             get {
-                object obj = ResourceManager.GetObject("kokiri_stone_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("half_goron_tunic_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -783,9 +1113,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kz_frog {
+        internal static System.Drawing.Bitmap half_hover_boots_24 {
             get {
-                object obj = ResourceManager.GetObject("kz_frog", resourceCulture);
+                object obj = ResourceManager.GetObject("half_hover_boots_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -793,9 +1123,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lens {
+        internal static System.Drawing.Bitmap half_hover_boots_32 {
             get {
-                object obj = ResourceManager.GetObject("lens", resourceCulture);
+                object obj = ResourceManager.GetObject("half_hover_boots_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -803,9 +1133,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lens_bw {
+        internal static System.Drawing.Bitmap half_iron_boots_24 {
             get {
-                object obj = ResourceManager.GetObject("lens_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("half_iron_boots_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -813,9 +1143,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap light_arrow {
+        internal static System.Drawing.Bitmap half_iron_boots_32 {
             get {
-                object obj = ResourceManager.GetObject("light_arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("half_iron_boots_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -823,9 +1153,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap longshot {
+        internal static System.Drawing.Bitmap half_light_arrow_24 {
             get {
-                object obj = ResourceManager.GetObject("longshot", resourceCulture);
+                object obj = ResourceManager.GetObject("half_light_arrow_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -833,9 +1163,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap magic {
+        internal static System.Drawing.Bitmap half_light_arrow_32 {
             get {
-                object obj = ResourceManager.GetObject("magic", resourceCulture);
+                object obj = ResourceManager.GetObject("half_light_arrow_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -843,9 +1173,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap magic_bw {
+        internal static System.Drawing.Bitmap half_zora_tunic_24 {
             get {
-                object obj = ResourceManager.GetObject("magic_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("half_zora_tunic_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -853,9 +1183,399 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap minuet {
+        internal static System.Drawing.Bitmap half_zora_tunic_32 {
             get {
-                object obj = ResourceManager.GetObject("minuet", resourceCulture);
+                object obj = ResourceManager.GetObject("half_zora_tunic_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hammer_24 {
+            get {
+                object obj = ResourceManager.GetObject("hammer_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hammer_32 {
+            get {
+                object obj = ResourceManager.GetObject("hammer_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hammer_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("hammer_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hammer_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("hammer_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hookshot_24 {
+            get {
+                object obj = ResourceManager.GetObject("hookshot_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hookshot_32 {
+            get {
+                object obj = ResourceManager.GetObject("hookshot_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hookshot_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("hookshot_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hookshot_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("hookshot_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hookshot_vanille_32 {
+            get {
+                object obj = ResourceManager.GetObject("hookshot_vanille_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hover_boots_24 {
+            get {
+                object obj = ResourceManager.GetObject("hover_boots_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hover_boots_32 {
+            get {
+                object obj = ResourceManager.GetObject("hover_boots_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hover_boots_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("hover_boots_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iron_boots_24 {
+            get {
+                object obj = ResourceManager.GetObject("iron_boots_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iron_boots_32 {
+            get {
+                object obj = ResourceManager.GetObject("iron_boots_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iron_hover_boots_24 {
+            get {
+                object obj = ResourceManager.GetObject("iron_hover_boots_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iron_hover_boots_32 {
+            get {
+                object obj = ResourceManager.GetObject("iron_hover_boots_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iron_hover_boots_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("iron_hover_boots_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iron_hover_boots_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("iron_hover_boots_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key_24 {
+            get {
+                object obj = ResourceManager.GetObject("key_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key_32 {
+            get {
+                object obj = ResourceManager.GetObject("key_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kokiri_stone_24 {
+            get {
+                object obj = ResourceManager.GetObject("kokiri_stone_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kokiri_stone_32 {
+            get {
+                object obj = ResourceManager.GetObject("kokiri_stone_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kokiri_stone_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("kokiri_stone_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kokiri_stone_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("kokiri_stone_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kz_frog_24 {
+            get {
+                object obj = ResourceManager.GetObject("kz_frog_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kz_frog_32 {
+            get {
+                object obj = ResourceManager.GetObject("kz_frog_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lens_24 {
+            get {
+                object obj = ResourceManager.GetObject("lens_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lens_32 {
+            get {
+                object obj = ResourceManager.GetObject("lens_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lens_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("lens_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lens_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("lens_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap light_arrow_24 {
+            get {
+                object obj = ResourceManager.GetObject("light_arrow_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap light_arrow_32 {
+            get {
+                object obj = ResourceManager.GetObject("light_arrow_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap light_arrow_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("light_arrow_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap longshot_24 {
+            get {
+                object obj = ResourceManager.GetObject("longshot_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap longshot_32 {
+            get {
+                object obj = ResourceManager.GetObject("longshot_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magic_24 {
+            get {
+                object obj = ResourceManager.GetObject("magic_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magic_32 {
+            get {
+                object obj = ResourceManager.GetObject("magic_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magic_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("magic_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magic_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("magic_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -873,9 +1593,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap minuet_bw {
+        internal static System.Drawing.Bitmap minuet_24 {
             get {
-                object obj = ResourceManager.GetObject("minuet_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("minuet_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -883,9 +1603,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mirror_shield {
+        internal static System.Drawing.Bitmap minuet_32 {
             get {
-                object obj = ResourceManager.GetObject("mirror_shield", resourceCulture);
+                object obj = ResourceManager.GetObject("minuet_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -893,9 +1613,59 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mirror_shield_bw {
+        internal static System.Drawing.Bitmap minuet_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("mirror_shield_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("minuet_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minuet_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("minuet_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mirror_shield_24 {
+            get {
+                object obj = ResourceManager.GetObject("mirror_shield_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mirror_shield_32 {
+            get {
+                object obj = ResourceManager.GetObject("mirror_shield_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mirror_shield_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("mirror_shield_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mirror_shield_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("mirror_shield_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -913,16 +1683,6 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap nocturne {
-            get {
-                object obj = ResourceManager.GetObject("nocturne", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap nocturne_16 {
             get {
                 object obj = ResourceManager.GetObject("nocturne_16", resourceCulture);
@@ -933,9 +1693,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap nocturne_bw {
+        internal static System.Drawing.Bitmap nocturne_24 {
             get {
-                object obj = ResourceManager.GetObject("nocturne_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("nocturne_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -943,9 +1703,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ocarina_of_time {
+        internal static System.Drawing.Bitmap nocturne_32 {
             get {
-                object obj = ResourceManager.GetObject("ocarina_of_time", resourceCulture);
+                object obj = ResourceManager.GetObject("nocturne_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -953,9 +1713,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap orange_medaillon {
+        internal static System.Drawing.Bitmap nocturne_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("orange_medaillon", resourceCulture);
+                object obj = ResourceManager.GetObject("nocturne_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -963,9 +1723,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap orange_medaillon_bw {
+        internal static System.Drawing.Bitmap nocturne_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("orange_medaillon_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("nocturne_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -973,9 +1733,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap play_pause {
+        internal static System.Drawing.Bitmap ocarina_of_time_24 {
             get {
-                object obj = ResourceManager.GetObject("play_pause", resourceCulture);
+                object obj = ResourceManager.GetObject("ocarina_of_time_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -983,9 +1743,49 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prelude {
+        internal static System.Drawing.Bitmap ocarina_of_time_32 {
             get {
-                object obj = ResourceManager.GetObject("prelude", resourceCulture);
+                object obj = ResourceManager.GetObject("ocarina_of_time_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap orange_medaillon_24 {
+            get {
+                object obj = ResourceManager.GetObject("orange_medaillon_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap orange_medaillon_32 {
+            get {
+                object obj = ResourceManager.GetObject("orange_medaillon_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap orange_medaillon_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("orange_medaillon_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap orange_medaillon_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("orange_medaillon_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1003,9 +1803,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prelude_bw {
+        internal static System.Drawing.Bitmap prelude_24 {
             get {
-                object obj = ResourceManager.GetObject("prelude_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("prelude_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1013,9 +1813,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prescription {
+        internal static System.Drawing.Bitmap prelude_32 {
             get {
-                object obj = ResourceManager.GetObject("prescription", resourceCulture);
+                object obj = ResourceManager.GetObject("prelude_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1023,9 +1823,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prescription_bw {
+        internal static System.Drawing.Bitmap prelude_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("prescription_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("prelude_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1033,9 +1833,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap purple_medaillon {
+        internal static System.Drawing.Bitmap prelude_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("purple_medaillon", resourceCulture);
+                object obj = ResourceManager.GetObject("prelude_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1043,9 +1843,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap purple_medaillon_bw {
+        internal static System.Drawing.Bitmap prescription_24 {
             get {
-                object obj = ResourceManager.GetObject("purple_medaillon_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("prescription_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1053,9 +1853,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap red_medaillon {
+        internal static System.Drawing.Bitmap prescription_32 {
             get {
-                object obj = ResourceManager.GetObject("red_medaillon", resourceCulture);
+                object obj = ResourceManager.GetObject("prescription_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1063,9 +1863,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap red_medaillon_bw {
+        internal static System.Drawing.Bitmap prescription_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("red_medaillon_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("prescription_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1073,9 +1873,89 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap requiem {
+        internal static System.Drawing.Bitmap prescription_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("requiem", resourceCulture);
+                object obj = ResourceManager.GetObject("prescription_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap purple_medaillon_24 {
+            get {
+                object obj = ResourceManager.GetObject("purple_medaillon_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap purple_medaillon_32 {
+            get {
+                object obj = ResourceManager.GetObject("purple_medaillon_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap purple_medaillon_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("purple_medaillon_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap purple_medaillon_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("purple_medaillon_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap red_medaillon_24 {
+            get {
+                object obj = ResourceManager.GetObject("red_medaillon_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap red_medaillon_32 {
+            get {
+                object obj = ResourceManager.GetObject("red_medaillon_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap red_medaillon_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("red_medaillon_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap red_medaillon_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("red_medaillon_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1093,9 +1973,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap requiem_bw {
+        internal static System.Drawing.Bitmap requiem_24 {
             get {
-                object obj = ResourceManager.GetObject("requiem_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("requiem_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1103,9 +1983,29 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap saria {
+        internal static System.Drawing.Bitmap requiem_32 {
             get {
-                object obj = ResourceManager.GetObject("saria", resourceCulture);
+                object obj = ResourceManager.GetObject("requiem_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap requiem_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("requiem_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap requiem_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("requiem_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1123,9 +2023,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap saria_bw {
+        internal static System.Drawing.Bitmap saria_24 {
             get {
-                object obj = ResourceManager.GetObject("saria_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("saria_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1133,9 +2033,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap scale {
+        internal static System.Drawing.Bitmap saria_32 {
             get {
-                object obj = ResourceManager.GetObject("scale", resourceCulture);
+                object obj = ResourceManager.GetObject("saria_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1143,9 +2043,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap scale_bw {
+        internal static System.Drawing.Bitmap saria_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("scale_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("saria_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1153,9 +2053,49 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap serenade {
+        internal static System.Drawing.Bitmap saria_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("serenade", resourceCulture);
+                object obj = ResourceManager.GetObject("saria_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scale_24 {
+            get {
+                object obj = ResourceManager.GetObject("scale_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scale_32 {
+            get {
+                object obj = ResourceManager.GetObject("scale_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scale_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("scale_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scale_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("scale_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1173,9 +2113,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap serenade_bw {
+        internal static System.Drawing.Bitmap serenade_24 {
             get {
-                object obj = ResourceManager.GetObject("serenade_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("serenade_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1183,9 +2123,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap skull_mask2 {
+        internal static System.Drawing.Bitmap serenade_32 {
             get {
-                object obj = ResourceManager.GetObject("skull_mask2", resourceCulture);
+                object obj = ResourceManager.GetObject("serenade_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1193,9 +2133,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap slingshot {
+        internal static System.Drawing.Bitmap serenade_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("slingshot", resourceCulture);
+                object obj = ResourceManager.GetObject("serenade_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1203,9 +2143,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap slingshot_bw {
+        internal static System.Drawing.Bitmap serenade_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("slingshot_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("serenade_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1213,9 +2153,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sold_out {
+        internal static System.Drawing.Bitmap skull_mask_24 {
             get {
-                object obj = ResourceManager.GetObject("sold_out", resourceCulture);
+                object obj = ResourceManager.GetObject("skull_mask_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1223,9 +2163,69 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap song_of_storms {
+        internal static System.Drawing.Bitmap skull_mask_32 {
             get {
-                object obj = ResourceManager.GetObject("song_of_storms", resourceCulture);
+                object obj = ResourceManager.GetObject("skull_mask_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap slingshot_24 {
+            get {
+                object obj = ResourceManager.GetObject("slingshot_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap slingshot_32 {
+            get {
+                object obj = ResourceManager.GetObject("slingshot_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap slingshot_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("slingshot_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap slingshot_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("slingshot_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sold_out_24 {
+            get {
+                object obj = ResourceManager.GetObject("sold_out_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sold_out_32 {
+            get {
+                object obj = ResourceManager.GetObject("sold_out_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1243,9 +2243,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap song_of_storms_bw {
+        internal static System.Drawing.Bitmap song_of_storms_24 {
             get {
-                object obj = ResourceManager.GetObject("song_of_storms_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("song_of_storms_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1253,9 +2253,29 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap song_of_time {
+        internal static System.Drawing.Bitmap song_of_storms_32 {
             get {
-                object obj = ResourceManager.GetObject("song_of_time", resourceCulture);
+                object obj = ResourceManager.GetObject("song_of_storms_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap song_of_storms_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("song_of_storms_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap song_of_storms_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("song_of_storms_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1273,9 +2293,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap song_of_time_bw {
+        internal static System.Drawing.Bitmap song_of_time_24 {
             get {
-                object obj = ResourceManager.GetObject("song_of_time_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("song_of_time_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1283,9 +2303,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap strength {
+        internal static System.Drawing.Bitmap song_of_time_32 {
             get {
-                object obj = ResourceManager.GetObject("strength", resourceCulture);
+                object obj = ResourceManager.GetObject("song_of_time_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1293,9 +2313,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap strength_bw {
+        internal static System.Drawing.Bitmap song_of_time_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("strength_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("song_of_time_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1303,9 +2323,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap strength2 {
+        internal static System.Drawing.Bitmap song_of_time_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("strength2", resourceCulture);
+                object obj = ResourceManager.GetObject("song_of_time_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1313,9 +2333,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap strength3 {
+        internal static System.Drawing.Bitmap strength_24 {
             get {
-                object obj = ResourceManager.GetObject("strength3", resourceCulture);
+                object obj = ResourceManager.GetObject("strength_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1323,9 +2343,69 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap suns_song {
+        internal static System.Drawing.Bitmap strength_32 {
             get {
-                object obj = ResourceManager.GetObject("suns_song", resourceCulture);
+                object obj = ResourceManager.GetObject("strength_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap strength_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("strength_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap strength_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("strength_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap strength2_24 {
+            get {
+                object obj = ResourceManager.GetObject("strength2_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap strength2_32 {
+            get {
+                object obj = ResourceManager.GetObject("strength2_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap strength3_24 {
+            get {
+                object obj = ResourceManager.GetObject("strength3_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap strength3_32 {
+            get {
+                object obj = ResourceManager.GetObject("strength3_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1343,9 +2423,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap suns_song_bw {
+        internal static System.Drawing.Bitmap suns_song_24 {
             get {
-                object obj = ResourceManager.GetObject("suns_song_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("suns_song_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1353,9 +2433,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap wallet {
+        internal static System.Drawing.Bitmap suns_song_32 {
             get {
-                object obj = ResourceManager.GetObject("wallet", resourceCulture);
+                object obj = ResourceManager.GetObject("suns_song_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1363,9 +2443,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap wallet2 {
+        internal static System.Drawing.Bitmap suns_song_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("wallet2", resourceCulture);
+                object obj = ResourceManager.GetObject("suns_song_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1373,9 +2453,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap wallet3 {
+        internal static System.Drawing.Bitmap suns_song_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("wallet3", resourceCulture);
+                object obj = ResourceManager.GetObject("suns_song_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1383,9 +2463,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap yellow_medaillon {
+        internal static System.Drawing.Bitmap wallet_24 {
             get {
-                object obj = ResourceManager.GetObject("yellow_medaillon", resourceCulture);
+                object obj = ResourceManager.GetObject("wallet_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1393,9 +2473,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap yellow_medaillon_bw {
+        internal static System.Drawing.Bitmap wallet_32 {
             get {
-                object obj = ResourceManager.GetObject("yellow_medaillon_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("wallet_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1403,9 +2483,79 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zeldas_lullaby {
+        internal static System.Drawing.Bitmap wallet2_24 {
             get {
-                object obj = ResourceManager.GetObject("zeldas_lullaby", resourceCulture);
+                object obj = ResourceManager.GetObject("wallet2_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wallet2_32 {
+            get {
+                object obj = ResourceManager.GetObject("wallet2_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wallet3_24 {
+            get {
+                object obj = ResourceManager.GetObject("wallet3_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wallet3_32 {
+            get {
+                object obj = ResourceManager.GetObject("wallet3_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yellow_medaillon_24 {
+            get {
+                object obj = ResourceManager.GetObject("yellow_medaillon_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yellow_medaillon_32 {
+            get {
+                object obj = ResourceManager.GetObject("yellow_medaillon_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yellow_medaillon_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("yellow_medaillon_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yellow_medaillon_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("yellow_medaillon_bw_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1423,9 +2573,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zeldas_lullaby_bw {
+        internal static System.Drawing.Bitmap zeldas_lullaby_24 {
             get {
-                object obj = ResourceManager.GetObject("zeldas_lullaby_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("zeldas_lullaby_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1433,9 +2583,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zora_stone {
+        internal static System.Drawing.Bitmap zeldas_lullaby_32 {
             get {
-                object obj = ResourceManager.GetObject("zora_stone", resourceCulture);
+                object obj = ResourceManager.GetObject("zeldas_lullaby_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1443,9 +2593,9 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zora_stone_bw {
+        internal static System.Drawing.Bitmap zeldas_lullaby_bw_24 {
             get {
-                object obj = ResourceManager.GetObject("zora_stone_bw", resourceCulture);
+                object obj = ResourceManager.GetObject("zeldas_lullaby_bw_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1453,9 +2603,69 @@ namespace TrackerOOT.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zora_tunic {
+        internal static System.Drawing.Bitmap zeldas_lullaby_bw_32 {
             get {
-                object obj = ResourceManager.GetObject("zora_tunic", resourceCulture);
+                object obj = ResourceManager.GetObject("zeldas_lullaby_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zora_stone_24 {
+            get {
+                object obj = ResourceManager.GetObject("zora_stone_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zora_stone_32 {
+            get {
+                object obj = ResourceManager.GetObject("zora_stone_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zora_stone_bw_24 {
+            get {
+                object obj = ResourceManager.GetObject("zora_stone_bw_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zora_stone_bw_32 {
+            get {
+                object obj = ResourceManager.GetObject("zora_stone_bw_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zora_tunic_24 {
+            get {
+                object obj = ResourceManager.GetObject("zora_tunic_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zora_tunic_32 {
+            get {
+                object obj = ResourceManager.GetObject("zora_tunic_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

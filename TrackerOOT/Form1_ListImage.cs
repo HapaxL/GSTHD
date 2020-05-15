@@ -11,374 +11,440 @@ namespace TrackerOOT
     public partial class Form1 : Form
     {
         //row 1
-        List<Image> ListImage_Slingshot = new List<Image>();
-        List<Image> ListImage_Bomb = new List<Image>();
-        List<Image> ListImage_Bombchu = new List<Image>();
-        List<Image> ListImage_Hookshot = new List<Image>();
-        List<Image> ListImage_Bow = new List<Image>();
-        List<Image> ListImage_Arrow = new List<Image>();
-        List<Image> ListImage_Spell = new List<Image>();
-        List<Image> ListImage_Magic = new List<Image>();
-        List<Image> ListImage_Boots = new List<Image>();
-        List<Image> ListImage_BiggoronQuest = new List<Image>();
+        List<string> ListImage_Slingshot = new List<string>();
+        List<string> ListImage_Bomb = new List<string>();
+        List<string> ListImage_Bombchu = new List<string>();
+        List<string> ListImage_Hookshot = new List<string>();
+        List<string> ListImage_Bow = new List<string>();
+        List<string> ListImage_Arrow = new List<string>();
+        List<string> ListImage_Spell = new List<string>();
+        List<string> ListImage_Magic = new List<string>();
+        List<string> ListImage_Boots = new List<string>();
+        List<string> ListImage_BiggoronQuest = new List<string>();
 
 
         //row 2
-        List<Image> ListImage_Boomerang = new List<Image>();
-        List<Image> ListImage_Scale = new List<Image>();
-        List<Image> ListImage_Strength = new List<Image>();
-        List<Image> ListImage_Lens = new List<Image>();
-        List<Image> ListImage_Hammer = new List<Image>();
-        List<Image> ListImage_Tunic = new List<Image>();
-        List<Image> ListImage_Wallet = new List<Image>();
-        List<Image> ListImage_RutosLetter = new List<Image>();
-        List<Image> ListImage_MirrorShield = new List<Image>();
+        List<string> ListImage_Boomerang = new List<string>();
+        List<string> ListImage_Scale = new List<string>();
+        List<string> ListImage_Strength = new List<string>();
+        List<string> ListImage_Lens = new List<string>();
+        List<string> ListImage_Hammer = new List<string>();
+        List<string> ListImage_Tunic = new List<string>();
+        List<string> ListImage_Wallet = new List<string>();
+        List<string> ListImage_RutosLetter = new List<string>();
+        List<string> ListImage_MirrorShield = new List<string>();
 
         //Songs
-        List<Image> ListImage_TinySongs = new List<Image>();
-        List<Image> ListImage_ZeldasLullaby = new List<Image>();
-        List<Image> ListImage_EponasSong = new List<Image>();
-        List<Image> ListImage_SariasSong = new List<Image>();
-        List<Image> ListImage_SunsSong = new List<Image>();
-        List<Image> ListImage_SongOfTime = new List<Image>();
-        List<Image> ListImage_SongOfStorms = new List<Image>();
+        List<string> ListImage_TinySongs = new List<string>();
+        List<string> ListImage_ZeldasLullaby = new List<string>();
+        List<string> ListImage_EponasSong = new List<string>();
+        List<string> ListImage_SariasSong = new List<string>();
+        List<string> ListImage_SunsSong = new List<string>();
+        List<string> ListImage_SongOfTime = new List<string>();
+        List<string> ListImage_SongOfStorms = new List<string>();
 
-        List<Image> ListImage_Minuet = new List<Image>();
-        List<Image> ListImage_Bolero = new List<Image>();
-        List<Image> ListImage_Serenade = new List<Image>();
-        List<Image> ListImage_Nocturne = new List<Image>();
-        List<Image> ListImage_Requiem = new List<Image>();
-        List<Image> ListImage_Prelude = new List<Image>();
+        List<string> ListImage_Minuet = new List<string>();
+        List<string> ListImage_Bolero = new List<string>();
+        List<string> ListImage_Serenade = new List<string>();
+        List<string> ListImage_Nocturne = new List<string>();
+        List<string> ListImage_Requiem = new List<string>();
+        List<string> ListImage_Prelude = new List<string>();
 
         //Medallions
-        List<Image> ListImage_GreenMedallion = new List<Image>();
-        List<Image> ListImage_RedMedallion = new List<Image>();
-        List<Image> ListImage_BlueMedallion = new List<Image>();
-        List<Image> ListImage_PurpleMedallion = new List<Image>();
-        List<Image> ListImage_OrangeMedallion = new List<Image>();
-        List<Image> ListImage_YellowMedallion = new List<Image>();
+        List<string> ListImage_GreenMedallion = new List<string>();
+        List<string> ListImage_RedMedallion = new List<string>();
+        List<string> ListImage_BlueMedallion = new List<string>();
+        List<string> ListImage_PurpleMedallion = new List<string>();
+        List<string> ListImage_OrangeMedallion = new List<string>();
+        List<string> ListImage_YellowMedallion = new List<string>();
         //Stones
-        List<Image> ListImage_KokiriStone = new List<Image>();
-        List<Image> ListImage_GoronStone = new List<Image>();
-        List<Image> ListImage_ZoraStone = new List<Image>();
+        List<string> ListImage_KokiriStone = new List<string>();
+        List<string> ListImage_GoronStone = new List<string>();
+        List<string> ListImage_ZoraStone = new List<string>();
 
         //GoMode
-        List<Image> ListImage_GoMode = new List<Image>();
+        List<string> ListImage_GoMode = new List<string>();
 
-        List<Image> ListImage_GuaranteedHintsOption = new List<Image>();
-        List<Image> ListImage_SometimesHintOption = new List<Image>();
-        List<Image> ListImage_WothItemsOption = new List<Image>();
+        List<string> ListImage_GuaranteedHints = new List<string>();
+        List<string> ListImage_30SkulltulasOption = new List<string>();
+        List<string> ListImage_40SkulltulasOption = new List<string>();
+        List<string> ListImage_50SkulltulasOption = new List<string>();
+        List<string> ListImage_SkullMaskOption = new List<string>();
+        List<string> ListImage_BiggoronOption = new List<string>();
+        List<string> ListImage_FrogsOption = new List<string>();
+        List<string> ListImage_OcarinaOfTimeOption = new List<string>();
 
-        private void setListUpgrade()
+        List<string> ListImage_SometimesHintOption = new List<string>();
+        List<string> ListImage_WothItemsOption = new List<string>();
+
+        private void LoadListImage()
         {
-            //row 1
-            ListImage_Slingshot = new List<Image>
+            // Items
+            ListImage_Slingshot = new List<string>
             {
-                Properties.Resources.slingshot_bw,
-                Properties.Resources.slingshot,
+                "slingshot_bw_" + ActiveLayout.Slingshot.Size,
+                "slingshot_" + ActiveLayout.Slingshot.Size
             };
 
-            ListImage_Bomb = new List<Image>
+            ListImage_Bomb = new List<string>
             {
-                Properties.Resources.bombs_bw,
-                Properties.Resources.bombs,
+                "bombs_bw_" + ActiveLayout.Bombs.Size,
+                "bombs_" + ActiveLayout.Bombs.Size,
             };
 
-            ListImage_Bombchu = new List<Image>
+            ListImage_Bombchu = new List<string>
             {
-                Properties.Resources.bomb_chu_bw,
-                Properties.Resources.bomb_chu,
+                "bomb_chu_bw_" + ActiveLayout.Bombchus.Size,
+                "bomb_chu_" +  + ActiveLayout.Bombchus.Size
             };
 
-            ListImage_Hookshot = new List<Image>
+            ListImage_Hookshot = new List<string>
             {
-                Properties.Resources.hookshot_bw,
-                Properties.Resources.hookshot,
-                Properties.Resources.longshot
+                "hookshot_bw_" + ActiveLayout.Hookshot.Size,
+                "hookshot_" + ActiveLayout.Hookshot.Size,
+                "longshot_" + ActiveLayout.Hookshot.Size
             };
 
-            ListImage_Bow = new List<Image>
+            ListImage_Bow = new List<string>
             {
-                Properties.Resources.bow_bw,
-                Properties.Resources.bow
+                "bow_bw_" + ActiveLayout.Bow.Size,
+                "bow_" + ActiveLayout.Bow.Size
             };
 
-            ListImage_Arrow = new List<Image>
+            ListImage_Arrow = new List<string>
             {
-                Properties.Resources.fire_light_arrow_bw,
-                Properties.Resources.half_fire_arrow,
-                Properties.Resources.half_light_arrow,
-                Properties.Resources.fire_light_arrow,
-                Properties.Resources.fire_arrow,
-                Properties.Resources.light_arrow
+                "fire_light_arrow_bw_" + ActiveLayout.Arrows.Size,
+                "half_fire_arrow_" + ActiveLayout.Arrows.Size,
+                "half_light_arrow_" + ActiveLayout.Arrows.Size,
+                "fire_light_arrow_" + ActiveLayout.Arrows.Size,
+                "fire_arrow_" + ActiveLayout.Arrows.Size,
+                "light_arrow_" + ActiveLayout.Arrows.Size
             };
 
-            ListImage_Spell = new List<Image>
+            ListImage_Spell = new List<string>
             {
-                Properties.Resources.dins_farores_bw,
-                Properties.Resources.half_dins_fire,
-                Properties.Resources.half_farores_wind,
-                Properties.Resources.dins_farores,
-                Properties.Resources.dins_fire,
-                Properties.Resources.farores_wind
+                "dins_farores_bw_" + ActiveLayout.Spells.Size, 
+                "half_dins_fire_" + ActiveLayout.Spells.Size,
+                "half_farores_wind_" + ActiveLayout.Spells.Size,
+                "dins_farores_" + ActiveLayout.Spells.Size,
+                "dins_fire_" + ActiveLayout.Spells.Size,
+                "farores_wind_" + ActiveLayout.Spells.Size
             };
 
-            ListImage_Magic = new List<Image>
+            ListImage_Magic = new List<string>
             {
-                Properties.Resources.magic_bw,
-                Properties.Resources.magic,
-                Properties.Resources.double_magic
+                "magic_bw_" + ActiveLayout.Magic.Size,
+                "magic_" + ActiveLayout.Magic.Size,
+                "double_magic_" + ActiveLayout.Magic.Size
             };
 
-            ListImage_Boots = new List<Image>
+            ListImage_Boots = new List<string>
             {
-                Properties.Resources.iron_hover_boots_bw,
-                Properties.Resources.half_iron_boots,
-                Properties.Resources.half_hover_boots,
-                Properties.Resources.iron_hover_boots,
-                Properties.Resources.iron_boots,
-                Properties.Resources.hover_boots
+                "iron_hover_boots_bw_" + ActiveLayout.Boots.Size,
+                "half_iron_boots_" + ActiveLayout.Boots.Size,
+                "half_hover_boots_" + ActiveLayout.Boots.Size,
+                "iron_hover_boots_" + ActiveLayout.Boots.Size,
+                "iron_boots_" + ActiveLayout.Boots.Size,
+                "hover_boots_" + ActiveLayout.Boots.Size
             };
 
-            ListImage_BiggoronQuest = new List<Image>
+            ListImage_BiggoronQuest = new List<string>
             {
-                Properties.Resources.prescription_bw,
-                Properties.Resources.prescription,
-                Properties.Resources.kz_frog,
-                Properties.Resources.eye_drops,
-                Properties.Resources.claim_check
+                "prescription_bw_" + ActiveLayout.BiggoronItem.Size,
+                "prescription_" + ActiveLayout.BiggoronItem.Size,
+                "kz_frog_" + ActiveLayout.BiggoronItem.Size,
+                "eye_drops_" + ActiveLayout.BiggoronItem.Size,
+                "claim_check_" + ActiveLayout.BiggoronItem.Size
             };
 
-            //row 2
-            ListImage_Boomerang = new List<Image>
+            ListImage_Boomerang = new List<string>
             {
-                Properties.Resources.boomerang_bw,
-                Properties.Resources.boomerang
+                "boomerang_bw_" + ActiveLayout.Boomerang.Size,
+                "boomerang_" + ActiveLayout.Boomerang.Size
             };
 
-            ListImage_Scale = new List<Image>
+            ListImage_Scale = new List<string>
             {
-                Properties.Resources.scale_bw,
-                Properties.Resources.scale,
-                Properties.Resources.golden_scale
+                "scale_bw_" + ActiveLayout.Scale.Size,
+                "scale_" + ActiveLayout.Scale.Size,
+                "golden_scale_" + ActiveLayout.Scale.Size
             };
 
-            ListImage_Strength = new List<Image>
+            ListImage_Strength = new List<string>
             {
-                Properties.Resources.strength_bw,
-                Properties.Resources.strength,
-                Properties.Resources.strength2,
-                Properties.Resources.strength3
+                "strength_bw_" + ActiveLayout.Strength.Size,
+                "strength_" + ActiveLayout.Strength.Size,
+                "strength2_" + ActiveLayout.Strength.Size,
+                "strength3_" + ActiveLayout.Strength.Size
             };
 
-            ListImage_Lens = new List<Image>
+            ListImage_Lens = new List<string>
             {
-                Properties.Resources.lens_bw,
-                Properties.Resources.lens
+                "lens_bw_" + ActiveLayout.Lens.Size,
+                "lens_" + ActiveLayout.Lens.Size
             };
 
-            ListImage_Hammer = new List<Image>
+            ListImage_Hammer = new List<string>
             {
-                Properties.Resources.hammer_bw,
-                Properties.Resources.hammer
+                "hammer_bw_" + ActiveLayout.Hammer.Size,
+                "hammer_" + ActiveLayout.Hammer.Size
             };
 
-            ListImage_Tunic = new List<Image>
+            ListImage_Tunic = new List<string>
             {
-                Properties.Resources.goron_zora_tunic_bw,
-                Properties.Resources.half_goron_tunic,
-                Properties.Resources.half_zora_tunic,
-                Properties.Resources.goron_zora_tunic,
-                Properties.Resources.goron_tunic,
-                Properties.Resources.zora_tunic
+                "goron_zora_tunic_bw_" + ActiveLayout.Tunics.Size,
+                "half_goron_tunic_" + ActiveLayout.Tunics.Size,
+                "half_zora_tunic_" + ActiveLayout.Tunics.Size,
+                "goron_zora_tunic_" + ActiveLayout.Tunics.Size,
+                "goron_tunic_" + ActiveLayout.Tunics.Size,
+                "zora_tunic_" + ActiveLayout.Tunics.Size
             };
 
-            ListImage_Wallet = new List<Image>
+            ListImage_Wallet = new List<string>
             {
-                Properties.Resources.wallet,
-                Properties.Resources.wallet2,
-                Properties.Resources.wallet3
+                "wallet_" + ActiveLayout.Wallet.Size,
+                "wallet2_" + ActiveLayout.Wallet.Size,
+                "wallet3_" + ActiveLayout.Wallet.Size
             };
 
-            ListImage_RutosLetter = new List<Image>
+            ListImage_RutosLetter = new List<string>
             {
-                Properties.Resources.bottle_rutos_letter_bw,
-                Properties.Resources.bottle_rutos_letter
+                "bottle_rutos_letter_bw_" + ActiveLayout.RutosLetter.Size,
+                "bottle_rutos_letter_" + ActiveLayout.RutosLetter.Size
             };
 
-            ListImage_MirrorShield = new List<Image>
+            ListImage_MirrorShield = new List<string>
             {
-                Properties.Resources.mirror_shield_bw,
-                Properties.Resources.mirror_shield
+                "mirror_shield_bw_" + ActiveLayout.MirrorShield.Size,
+                "mirror_shield_" + ActiveLayout.MirrorShield.Size
             };
 
-            //Songs
-            ListImage_TinySongs = new List<Image>
+            // Songs
+            ListImage_TinySongs = new List<string>
             {
-                Properties.Resources.no_song,
-                Properties.Resources.check_song
+                "no_song",
+                "check_song"
             };
 
-            ListImage_ZeldasLullaby = new List<Image>
+            ListImage_ZeldasLullaby = new List<string>
             {
-                Properties.Resources.zeldas_lullaby_bw,
-                Properties.Resources.zeldas_lullaby
+                "zeldas_lullaby_bw_" + ActiveLayout.ZeldasLullaby.Size,
+                "zeldas_lullaby_" + ActiveLayout.ZeldasLullaby.Size
             };
 
-            ListImage_EponasSong = new List<Image>
+            ListImage_EponasSong = new List<string>
             {
-                Properties.Resources.epona_bw,
-                Properties.Resources.epona
+                "epona_bw_" + ActiveLayout.EponasSong.Size,
+                "epona_" + ActiveLayout.EponasSong.Size
             };
 
-            ListImage_SariasSong = new List<Image>
+            ListImage_SariasSong = new List<string>
             {
-                Properties.Resources.saria_bw,
-                Properties.Resources.saria
+                "saria_bw_" + ActiveLayout.SariasSong.Size,
+                "saria_" + ActiveLayout.SariasSong.Size
             };
 
-            ListImage_SunsSong = new List<Image>
+            ListImage_SunsSong = new List<string>
             {
-                Properties.Resources.suns_song_bw,
-                Properties.Resources.suns_song
+                "suns_song_bw_" + ActiveLayout.SunsSong.Size,
+                "suns_song_" + ActiveLayout.SunsSong.Size
             };
 
-            ListImage_SongOfTime = new List<Image>
+            ListImage_SongOfTime = new List<string>
             {
-                Properties.Resources.song_of_time_bw,
-                Properties.Resources.song_of_time
+                "song_of_time_bw_" + ActiveLayout.SongOfTime.Size,
+                "song_of_time_" + ActiveLayout.SongOfTime.Size
             };
 
-            ListImage_SongOfStorms = new List<Image>
+            ListImage_SongOfStorms = new List<string>
             {
-                Properties.Resources.song_of_storms_bw,
-                Properties.Resources.song_of_storms
+                "song_of_storms_bw_" + ActiveLayout.SongOfStorms.Size,
+                "song_of_storms_" + ActiveLayout.SongOfStorms.Size
             };
 
-            ListImage_Minuet = new List<Image>
+            ListImage_Minuet = new List<string>
             {
-                Properties.Resources.minuet_bw,
-                Properties.Resources.minuet
+                "minuet_bw_" + ActiveLayout.Minuet.Size,
+                "minuet_" + ActiveLayout.Minuet.Size
             };
 
-            ListImage_Bolero = new List<Image>
+            ListImage_Bolero = new List<string>
             {
-                Properties.Resources.bolero_bw,
-                Properties.Resources.bolero
+                "bolero_bw_" + ActiveLayout.Bolero.Size,
+                "bolero_" + ActiveLayout.Bolero.Size
             };
 
-            ListImage_Serenade = new List<Image>
+            ListImage_Serenade = new List<string>
             {
-                Properties.Resources.serenade_bw,
-                Properties.Resources.serenade
+                "serenade_bw_" + ActiveLayout.Serenade.Size,
+                "serenade_" + ActiveLayout.Serenade.Size
             };
 
-            ListImage_Nocturne = new List<Image>
+            ListImage_Nocturne = new List<string>
             {
-                Properties.Resources.nocturne_bw,
-                Properties.Resources.nocturne
+                "nocturne_bw_" + ActiveLayout.Nocturne.Size,
+                "nocturne_" + ActiveLayout.Nocturne.Size
             };
 
-            ListImage_Requiem = new List<Image>
+            ListImage_Requiem = new List<string>
             {
-                Properties.Resources.requiem_bw,
-                Properties.Resources.requiem
+                "requiem_bw_" + ActiveLayout.Requiem.Size,
+                "requiem_" + ActiveLayout.Requiem.Size
             };
 
-            ListImage_Prelude = new List<Image>
+            ListImage_Prelude = new List<string>
             {
-                Properties.Resources.prelude_bw,
-                Properties.Resources.prelude
+                "prelude_bw_" + ActiveLayout.Prelude.Size,
+                "prelude_" + ActiveLayout.Prelude.Size
             };
 
-            //Medallions
-            ListImage_GreenMedallion = new List<Image>
+            // Medallions
+            ListImage_GreenMedallion = new List<string>
             {
-                Properties.Resources.green_medaillon_bw,
-                Properties.Resources.green_medaillon
+                "green_medaillon_bw_" + ActiveLayout.GreenMedallion.Size,
+                "green_medaillon_" + ActiveLayout.GreenMedallion.Size
             };
 
-            ListImage_RedMedallion = new List<Image>
+            ListImage_RedMedallion = new List<string>
             {
-                Properties.Resources.red_medaillon_bw,
-                Properties.Resources.red_medaillon
+                "red_medaillon_bw_" + ActiveLayout.RedMedallion.Size,
+                "red_medaillon_" + ActiveLayout.RedMedallion.Size
             };
 
-            ListImage_BlueMedallion = new List<Image>
+            ListImage_BlueMedallion = new List<string>
             {
-                Properties.Resources.blue_medaillon_bw,
-                Properties.Resources.blue_medaillon
+                "blue_medaillon_bw_" + ActiveLayout.BlueMedallion.Size,
+                "blue_medaillon_" + ActiveLayout.BlueMedallion.Size
             };
 
-            ListImage_PurpleMedallion = new List<Image>
+            ListImage_PurpleMedallion = new List<string>
             {
-                Properties.Resources.purple_medaillon_bw,
-                Properties.Resources.purple_medaillon
+                "purple_medaillon_bw_" + ActiveLayout.PurpleMedallion.Size,
+                "purple_medaillon_" + ActiveLayout.PurpleMedallion.Size
             };
 
-            ListImage_OrangeMedallion = new List<Image>
+            ListImage_OrangeMedallion = new List<string>
             {
-                Properties.Resources.orange_medaillon_bw,
-                Properties.Resources.orange_medaillon
+                "orange_medaillon_bw_" + ActiveLayout.OrangeMedallion.Size,
+                "orange_medaillon_" + ActiveLayout.OrangeMedallion.Size
             };
 
-            ListImage_YellowMedallion = new List<Image>
+            ListImage_YellowMedallion = new List<string>
             {
-                Properties.Resources.yellow_medaillon_bw,
-                Properties.Resources.yellow_medaillon,
+                "yellow_medaillon_bw_" + ActiveLayout.YellowMedallion.Size,
+                "yellow_medaillon_" + ActiveLayout.YellowMedallion.Size,
             };
-            //Stones
-            ListImage_KokiriStone = new List<Image>
+            // Stones
+            ListImage_KokiriStone = new List<string>
             {
-                Properties.Resources.kokiri_stone_bw,
-                Properties.Resources.kokiri_stone,
-            };
-
-            ListImage_GoronStone = new List<Image>
-            {
-                Properties.Resources.goron_stone_bw,
-                Properties.Resources.goron_stone
+                "kokiri_stone_bw_" + ActiveLayout.KokiriStone.Size,
+                "kokiri_stone_" + ActiveLayout.KokiriStone.Size,
             };
 
-            ListImage_ZoraStone = new List<Image>
+            ListImage_GoronStone = new List<string>
             {
-                Properties.Resources.zora_stone_bw,
-                Properties.Resources.zora_stone
+                "goron_stone_bw_" + ActiveLayout.GoronStone.Size,
+                "goron_stone_" + ActiveLayout.GoronStone.Size
             };
 
-            //Go Mode
-            ListImage_GoMode = new List<Image>
+            ListImage_ZoraStone = new List<string>
             {
-                Properties.Resources.go_mode_bw,
-                Properties.Resources.go_mode
+                "zora_stone_bw_" + ActiveLayout.ZoraStone.Size,
+                "zora_stone_" + ActiveLayout.ZoraStone.Size
             };
 
-            //Guaranteed Hints Option
-            ListImage_GuaranteedHintsOption = new List<Image>
+            // Go Mode
+            ListImage_GoMode = new List<string>
             {
-                Properties.Resources.Gossip_Stone_bw,
-                Properties.Resources.sold_out,
-                Properties.Resources.bottle_empty,
-                Properties.Resources.bottle_big_poe
+                "go_mode_bw_" + ActiveLayout.GoMode.Size,
+                "go_mode_" + ActiveLayout.GoMode.Size
             };
 
-            //WotH Items Options
-            ListImage_WothItemsOption = new List<Image>
+            // Guaranteed Hints And Option
+            ListImage_GuaranteedHints = new List<string>
             {
-                Properties.Resources.Gossip_Stone_bw,
-                Properties.Resources.bottle_empty,
-                Properties.Resources.bottle_big_poe
+                "_30_gold_skulltula_" + ActiveLayout.Skulltulas_30.Size,
+                "_40_gold_skulltula_" + ActiveLayout.Skulltulas_40.Size,
+                "_50_gold_skulltula_" + ActiveLayout.Skulltulas_50.Size,
+                "skull_mask_" + ActiveLayout.SkullMask.Size,
+                "biggoron_" + ActiveLayout.Biggoron.Size,
+                "frogs_" + ActiveLayout.Frogs.Size,
+                "ocarina_of_time_" + ActiveLayout.OcarinaOfTimeHint.Size
             };
 
-            //Sometimes Hints Option
-            ListImage_SometimesHintOption = new List<Image>
+            ListImage_30SkulltulasOption = new List<string>
             {
-                Properties.Resources.Gossip_Stone_bw,
-                Properties.Resources.sold_out,
-                Properties.Resources.key,
-                Properties.Resources.bk,
-                Properties.Resources.bottle_empty,
-                Properties.Resources.bottle_big_poe
+                "gossip_stone_bw_" + ActiveLayout.Skulltulas_30_GossipStone.Size,
+                "sold_out_" + ActiveLayout.Skulltulas_30_GossipStone.Size,
+                "bottle_empty_" + ActiveLayout.Skulltulas_30_GossipStone.Size,
+                "bottle_big_poe_" + ActiveLayout.Skulltulas_30_GossipStone.Size
+            };
+
+            ListImage_40SkulltulasOption = new List<string>
+            {
+                "gossip_stone_bw_" + ActiveLayout.Skulltulas_40_GossipStone.Size,
+                "sold_out_" + ActiveLayout.Skulltulas_40_GossipStone.Size,
+                "bottle_empty_" + ActiveLayout.Skulltulas_40_GossipStone.Size,
+                "bottle_big_poe_" + ActiveLayout.Skulltulas_40_GossipStone.Size
+            };
+
+            ListImage_50SkulltulasOption = new List<string>
+            {
+                "gossip_stone_bw_" + ActiveLayout.Skulltulas_50_GossipStone.Size,
+                "sold_out_" + ActiveLayout.Skulltulas_50_GossipStone.Size,
+                "bottle_empty_" + ActiveLayout.Skulltulas_50_GossipStone.Size,
+                "bottle_big_poe_" + ActiveLayout.Skulltulas_50_GossipStone.Size
+            };
+
+            ListImage_SkullMaskOption = new List<string>
+            {
+                "gossip_stone_bw_" + ActiveLayout.SkullMask_GossipStone.Size,
+                "sold_out_" + ActiveLayout.SkullMask_GossipStone.Size,
+                "bottle_empty_" + ActiveLayout.SkullMask_GossipStone.Size,
+                "bottle_big_poe_" + ActiveLayout.SkullMask_GossipStone.Size
+            };
+
+            ListImage_BiggoronOption = new List<string>
+            {
+                "gossip_stone_bw_" + ActiveLayout.Biggoron_GossipStone.Size,
+                "sold_out_" + ActiveLayout.Biggoron_GossipStone.Size,
+                "bottle_empty_" + ActiveLayout.Biggoron_GossipStone.Size,
+                "bottle_big_poe_" + ActiveLayout.Biggoron_GossipStone.Size
+            };
+
+            ListImage_FrogsOption = new List<string>
+            {
+                "gossip_stone_bw_" + ActiveLayout.Frogs_GossipStone.Size,
+                "sold_out_" + ActiveLayout.Frogs_GossipStone.Size,
+                "bottle_empty_" + ActiveLayout.Frogs_GossipStone.Size,
+                "bottle_big_poe_" + ActiveLayout.Frogs_GossipStone.Size
+            };
+
+            ListImage_OcarinaOfTimeOption = new List<string>
+            {
+                "gossip_stone_bw_" + ActiveLayout.OcarinaOfTimeHint_GossipStone.Size,
+                "sold_out_" + ActiveLayout.OcarinaOfTimeHint_GossipStone.Size,
+                "bottle_empty_" + ActiveLayout.OcarinaOfTimeHint_GossipStone.Size,
+                "bottle_big_poe_" + ActiveLayout.OcarinaOfTimeHint_GossipStone.Size
+            };
+
+            // WotH Items Options
+            ListImage_WothItemsOption = new List<string>
+            {
+                "gossip_stone_bw_" + 24,
+                "bottle_empty_" + 24,
+                "bottle_big_poe_" + 24
+            };
+
+            // Sometimes Hints Option
+            ListImage_SometimesHintOption = new List<string>
+            {
+                "gossip_stone_bw_" + ActiveLayout.SH_GossipStone1.Size,
+                "sold_out_" + ActiveLayout.SH_GossipStone1.Size,
+                "key_" + ActiveLayout.SH_GossipStone1.Size,
+                "bk_" + ActiveLayout.SH_GossipStone1.Size,
+                "bottle_empty_" + ActiveLayout.SH_GossipStone1.Size,
+                "bottle_big_poe_" + ActiveLayout.SH_GossipStone1.Size
             };
         }
     }

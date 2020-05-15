@@ -6,19 +6,19 @@ namespace TrackerOOT
 {
     class ItemDouble : PictureBox
     {
-        List<Image> listImage;
+        List<string> listImageName;
         bool isMouseDown = false;
         bool isColoredLeft = false;
         bool isColoredRight = false;
 
-        public ItemDouble(string name, List<Image> images, int x, int y)
+        public ItemDouble(List<string> names, int x, int y, int size)
         {
-            listImage = images;
+            listImageName = names;
 
             this.BackColor = Color.Transparent;
-            this.Name = name;
-            this.Image = listImage[0];
-            this.Size = new Size(32, 32);
+            this.Name = listImageName[0];
+            this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
+            this.Size = new Size(size, size);
             this.Location = new Point(x, y);
             this.TabStop = false;
             this.AllowDrop = false;
@@ -33,22 +33,26 @@ namespace TrackerOOT
             {
                 if (!isColoredLeft && !isColoredRight)
                 {
-                    this.Image = listImage[1];
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[1]);
+                    this.Name = listImageName[1];
                     isColoredLeft = true;
                 }
                 else if (isColoredLeft && !isColoredRight)
                 {
-                    this.Image = listImage[0];
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
+                    this.Name = listImageName[0];
                     isColoredLeft = false;
                 }
                 else if (!isColoredLeft && isColoredRight)
                 {
-                    this.Image = listImage[3];
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[3]);
+                    this.Name = listImageName[3];
                     isColoredLeft = true;
                 }
                 else if (isColoredLeft && isColoredRight)
                 {
-                    this.Image = listImage[2];
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[2]);
+                    this.Name = listImageName[2];
                     isColoredLeft = false;
                 }
 
@@ -57,22 +61,26 @@ namespace TrackerOOT
             {
                 if (!isColoredLeft && !isColoredRight)
                 {
-                    this.Image = listImage[2];
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[2]);
+                    this.Name = listImageName[2];
                     isColoredRight = true;
                 }
                 else if (isColoredLeft && !isColoredRight)
                 {
-                    this.Image = listImage[3];
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[3]);
+                    this.Name = listImageName[3];
                     isColoredRight = true;
                 }
                 else if (!isColoredLeft && isColoredRight)
                 {
-                    this.Image = listImage[0];
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
+                    this.Name = listImageName[0];
                     isColoredRight = false;
                 }
                 else if (isColoredLeft && isColoredRight)
                 {
-                    this.Image = listImage[1];
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[1]);
+                    this.Name = listImageName[1];
                     isColoredRight = false;
                 }
             }
@@ -90,25 +98,14 @@ namespace TrackerOOT
         {
             if (e.Button == MouseButtons.Left && isMouseDown)
             {
-                this.DoDragDrop(this.listImage[4], DragDropEffects.Copy);
+                this.DoDragDrop(this.listImageName[4], DragDropEffects.Copy);
                 isMouseDown = false;
             }
             if (e.Button == MouseButtons.Right && isMouseDown)
             {
-                this.DoDragDrop(this.listImage[5], DragDropEffects.Copy);
+                this.DoDragDrop(this.listImageName[5], DragDropEffects.Copy);
                 isMouseDown = false;
             }
-        }
-
-
-        public string saveItem()
-        {
-            return '"' + this.Name + "\" : \"" + listImage.FindIndex(x => x == this.Image).ToString() + '"';
-        }
-
-        public void loadItem(string value)
-        {
-            var image = listImage.Find(x => x.Tag.ToString() == value);
         }
     }
 }

@@ -1,31 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TrackerOOT
 {
     class Song : PictureBox
     {
-        public List<Image> listImage;
-        public List<Image> listTinyImage;
+        public List<string> listImageName;
+        public List<string> listTinyImageName;
         public Image tinyImage;
         public Image tinyImageEmpty;
         bool isMouseDown = false;
         public PictureBox elementFoundAtLocation;
+        int ImageSize;
         bool SongMode;
 
-        public Song(string name, List<Image> images, int x, int y, List<Image> tinyImages, bool songMode)
+        public Song(List<string> images, int x, int y, List<string> tinyImages, int size, bool songMode)
         {
+            ImageSize = size;
             SongMode = songMode;
-            listImage = images;
-            listTinyImage = tinyImages;
-            tinyImageEmpty = listTinyImage[0];
-            tinyImage = (Image)Properties.Resources.ResourceManager.GetObject(name + "_16");
+            listImageName = images;
+            listTinyImageName = tinyImages;
+            tinyImageEmpty = (Image)Properties.Resources.ResourceManager.GetObject(listTinyImageName[0]);
+            tinyImage = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[1].Replace(size.ToString(), "16"));
 
             this.BackColor = Color.Transparent;
-            this.Name = name;
-            this.Image = listImage[0];
-            this.Size = new Size(32, 40);
+            this.Name = listImageName[0];
+            this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
+            this.Size = new Size(size, size + 12);
             this.Location = new Point(x, y);
             this.TabStop = false;
             this.AllowDrop = true;
@@ -34,49 +37,66 @@ namespace TrackerOOT
             this.MouseMove += this.Click_MouseMove;
             this.DragEnter += this.Click_DragEnter;
             this.DragDrop += this.Click_DragDrop;
-            
+            this.Tag = listImageName[1];
+
             elementFoundAtLocation = new PictureBox
             {
                 BackColor = Color.Transparent,
                 Image = tinyImageEmpty,
-                Name = name,
+                Name = listTinyImageName[0],
                 Size = new Size(16, 16),
-                Location = new Point(8, 24),
                 TabStop = false,
-                AllowDrop = false
+                AllowDrop = false,
             };
             elementFoundAtLocation.MouseUp += ElementFoundAtLocation_MouseUp;
             elementFoundAtLocation.DragEnter += Click_DragEnter;
             elementFoundAtLocation.DragDrop += Click_DragDrop;
             this.Controls.Add(elementFoundAtLocation);
             elementFoundAtLocation.BringToFront();
+            elementFoundAtLocation.Location = new Point((size - 16) / 2, size - size / 4);
         }
 
         private void ElementFoundAtLocation_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                var index = listTinyImage.FindIndex(x => x == elementFoundAtLocation.Image);
-                if (index == (listTinyImage.Count - 1))
-                    elementFoundAtLocation.Image = listTinyImage[0];
+                var index = listTinyImageName.FindIndex(x => x == elementFoundAtLocation.Name) + 1;
+                if (index <= 0 || index >= listTinyImageName.Count)
+                {
+                    elementFoundAtLocation.Image = (Image)Properties.Resources.ResourceManager.GetObject(listTinyImageName[0]);
+                    elementFoundAtLocation.Name = listTinyImageName[0];
+                }
                 else
-                    elementFoundAtLocation.Image = listTinyImage[index + 1];
+                {
+                    elementFoundAtLocation.Image = (Image)Properties.Resources.ResourceManager.GetObject(listTinyImageName[index]);
+                    elementFoundAtLocation.Name = listTinyImageName[index];
+                }
             }
         }
 
         private void Click_DragDrop(object sender, DragEventArgs e)
         {
-            var image = (Image)e.Data.GetData(DataFormats.Bitmap);
-            if (image.Width == 16 && image.Height == 16)
+            var imageName = ((string)e.Data.GetData(DataFormats.Text));
+            var tinyImageName = imageName.Substring(0, imageName.Length-2) + "16";
+            var tinyImage = (Image)Properties.Resources.ResourceManager.GetObject(tinyImageName);
+
+            if (SongMode)
             {
-                if (SongMode)
+                elementFoundAtLocation.Image = tinyImage;
+                elementFoundAtLocation.Name = imageName;
+                this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[1]);
+                this.Name = imageName;
+            }
+            else
+            {
+                elementFoundAtLocation.Image = tinyImage;
+                elementFoundAtLocation.Name = imageName;
+                var newName = imageName.Substring(0, imageName.Length - 2) + "bw_" + imageName.Substring(imageName.Length - 2, 2);
+                var findOrigin = this.Parent.Controls.Find(newName, false);
+                if (findOrigin.Length > 0)
                 {
-                    elementFoundAtLocation.Image = image;
-                    this.Image = listImage[1];
-                }
-                else
-                {
-                    elementFoundAtLocation.Image = image;                    
+                    var origin = (Song)findOrigin[0];
+                    origin.Click_MouseUp(this, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
                 }
             }
         }
@@ -90,11 +110,17 @@ namespace TrackerOOT
         {
             if (e.Button == MouseButtons.Left)
             {
-                var index = listImage.FindIndex(x => x == this.Image);
-                if (index == (listImage.Count - 1))
-                    this.Image = listImage[0];
+                var index = listImageName.FindIndex(x => x == this.Name) + 1;
+                if (index <= 0 || index >= listImageName.Count)
+                {
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
+                    this.Name = listImageName[0];
+                }
                 else
-                    this.Image = listImage[index + 1];
+                {
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[index]);
+                    this.Name = listImageName[index];
+                }
             }
         }
 
@@ -109,25 +135,9 @@ namespace TrackerOOT
         {
             if (e.Button == MouseButtons.Left && isMouseDown)
             {
-                this.DoDragDrop(this.listImage[1], DragDropEffects.Copy);
+                this.DoDragDrop(this.Tag, DragDropEffects.Copy);
                 isMouseDown = false;
             }
-            if (e.Button == MouseButtons.Right && isMouseDown)
-            {
-                this.DoDragDrop(this.tinyImage, DragDropEffects.Copy);
-                isMouseDown = false;
-            }
-
-        }
-
-        public string saveItem()
-        {
-            return '"' + this.Name + "\" : \"" + listImage.FindIndex(x => x == this.Image).ToString() + '"';
-        }
-
-        public void loadItem(string value)
-        {
-
-        }
+        }       
     }
 }

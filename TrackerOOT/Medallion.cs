@@ -6,28 +6,27 @@ namespace TrackerOOT
 {
     class Medallion : PictureBox
     {
-        List<Image> ListImage;
+        List<string> ListImageName;
         List<string> ListDungeon;
         bool IsMouseDown = false;
 
         public Label SelectedDungeon;
-        int SelectedDungeon_Y_Delta = 24;
+        int SelectedDungeon_Y_Delta = 20;
 
-        public Medallion(string name, List<Image> images, int x, int y, List<string> dungeons)
+        public Medallion(List<string> images, int x, int y, List<string> dungeons, int size)
         {
-            ListImage = images;
+            ListImageName = images;
             ListDungeon = dungeons;
 
             this.BackColor = Color.Transparent;
-            this.Name = name;
-            this.Image = ListImage[0];
-            this.Size = new Size(32, 32);
+            this.Name = ListImageName[0];
+            this.Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImageName[0]);
+            this.Size = new Size(size, size);
             this.Location = new Point(x, y);
             this.TabStop = false;
             this.AllowDrop = false;
             this.MouseUp += this.Click_MouseUp;
             this.MouseDown += this.Click_MouseDown;
-            this.MouseMove += this.Click_MouseMove;
 
             SelectedDungeon = new Label
             {
@@ -38,18 +37,28 @@ namespace TrackerOOT
                 ForeColor = Color.White,
                 AutoSize = true
             };
-            SelectedDungeon.Location = new Point(x, y + SelectedDungeon_Y_Delta);
         }     
+
+        public void SetSelectedDungeonLocation()
+        {
+            SelectedDungeon.Location = new Point(this.Location.X + this.Width / 2 - SelectedDungeon.Width / 2, this.Location.Y + SelectedDungeon_Y_Delta);
+        }
 
         private void Click_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                var index = ListImage.FindIndex(x => x == this.Image);
-                if (index == (ListImage.Count - 1))
-                    this.Image = ListImage[0];
+                var index = ListImageName.FindIndex(x => x == this.Name) + 1;
+                if (index <= 0 || index >= ListImageName.Count)
+                {
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImageName[0]);
+                    this.Name = ListImageName[0];
+                }
                 else
-                    this.Image = ListImage[index + 1];
+                {
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImageName[index]);
+                    this.Name = ListImageName[index];
+                }
             }
 
             if (e.Button == MouseButtons.Right)
@@ -59,7 +68,7 @@ namespace TrackerOOT
                     SelectedDungeon.Text = ListDungeon[0];
                 else
                     SelectedDungeon.Text = ListDungeon[index + 1];
-                SelectedDungeon.Location = new Point(this.Location.X + this.Width / 2 - SelectedDungeon.Width / 2, this.Location.Y + SelectedDungeon_Y_Delta);
+                SetSelectedDungeonLocation();
             }
         }
 
@@ -69,26 +78,6 @@ namespace TrackerOOT
                 IsMouseDown = false;
             else IsMouseDown = true;
         }
-
-
-        private void Click_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && IsMouseDown)
-            {
-                this.DoDragDrop(this.Image, DragDropEffects.Copy);
-                IsMouseDown = false;
-            }
-        }
-
-
-        public string saveItem()
-        {
-            return '"' + this.Name + "\" : \"" + ListImage.FindIndex(x => x == this.Image).ToString() + '"';
-        }
-
-        public void loadItem(string value)
-        {
-            var image = ListImage.Find(x => x.Tag.ToString() == value);
-        }
+        
     }
 }

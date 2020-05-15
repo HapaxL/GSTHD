@@ -6,17 +6,16 @@ namespace TrackerOOT
 {
     class Item : PictureBox
     {
-        List<Image> listImage;
+        List<string> listImageName;
         bool isMouseDown = false;
-
-        public Item(string name, List<Image> images, int x, int y)
+        public Item(List<string> images, int x, int y, int size)
         {
-            listImage = images;
+            listImageName = images;
 
             this.BackColor = Color.Transparent;
-            this.Name = name;
-            this.Image = listImage[0];
-            this.Size = new Size(32, 32);
+            this.Name = listImageName[0];
+            this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
+            this.Size = new Size(size, size);
             this.Location = new Point(x, y);
             this.TabStop = false;
             this.AllowDrop = false;
@@ -29,11 +28,17 @@ namespace TrackerOOT
         {
             if(e.Button == MouseButtons.Left)
             {
-                var index = listImage.FindIndex(x => x == this.Image);
-                if(index == (listImage.Count-1))
-                    this.Image = listImage[0];
+                var index = listImageName.FindIndex(x => x == this.Name) + 1;
+                if (index <= 0 || index >= listImageName.Count)
+                {
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
+                    this.Name = listImageName[0];
+                }
                 else
-                    this.Image = listImage[index + 1];
+                {
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[index]);
+                    this.Name = listImageName[index];
+                }
             }
         }
 
@@ -44,25 +49,13 @@ namespace TrackerOOT
             else isMouseDown = true;
         }
 
-
         private void Click_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && isMouseDown)
             {
-                this.DoDragDrop(listImage[1], DragDropEffects.Copy);
+                this.DoDragDrop(listImageName[1], DragDropEffects.Copy);
                 isMouseDown = false;
             }
-        }
-
-
-        public string saveItem()
-        {
-            return '"'+ this.Name + "\" : \"" + listImage.FindIndex(x => x == this.Image).ToString() + '"';
-        }
-
-        public void loadItem(string value)
-        {
-            var image = listImage.Find(x => x.Tag.ToString() == value);
         }
     }
 }

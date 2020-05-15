@@ -2,31 +2,24 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TrackerOOT
 {
     public partial class Form1 : Form
     {
+        Dictionary<string, string> ListPlacesWithTag = new Dictionary<string, string>();
         SortedSet<String> ListPlaces = new SortedSet<String>();
         SortedSet<String> ListSometimesHints = new SortedSet<string>();
         List<String> ListDungeons = new List<string>();
-        ComboBox comboBox_placesWoth;
-        ComboBox comboBox_placesBarren;
-        Panel PanelWoth;
-        Panel PanelBarren;
+        PanelWothBarren PanelWoth;
+        PanelWothBarren PanelBarren;
 
-        Button button_StartChrono;
-        Button button_ResetChrono;
         Label label_Chrono;
 
         PictureBox pbox_collectedSkulls;
@@ -38,32 +31,24 @@ namespace TrackerOOT
 
         bool chronoRunning = false;
         bool SongMode = false;
+        string ActiveLayoutName = string.Empty;
+        Layout ActiveLayout;
+
         Stopwatch chrono = new Stopwatch();
 
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void autocomplete()
-        {
-            //Textbox AutoComplete
-            var source = new AutoCompleteStringCollection();
-            source.AddRange(ListPlaces.ToArray());
-
-            comboBox_placesWoth.AutoCompleteCustomSource = source;
-            comboBox_placesWoth.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_placesWoth.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-            comboBox_placesBarren.AutoCompleteCustomSource = source;
-            comboBox_placesBarren.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_placesBarren.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Text = "Gossip Stones Tracker v1.8 (Standard Edition)";
+            this.AcceptButton = null;
             this.MaximizeBox = false;
             timer1.Start();
+
             ListDungeons = new List<string>
             {
                 "????",
@@ -80,12 +65,10 @@ namespace TrackerOOT
 
             ListPlaces.Add("");
             JObject json_places = JObject.Parse(File.ReadAllText(@"oot_places.json"));
-            foreach (var categorie in json_places)
+            foreach (var property in json_places)
             {
-                foreach (var name in categorie.Value)
-                {
-                    ListPlaces.Add(name.ToString());
-                }
+                ListPlaces.Add(property.Key.ToString());
+                ListPlacesWithTag.Add(property.Key, property.Value.ToString());
             }
 
             JObject json_hints = JObject.Parse(File.ReadAllText(@"sometimes_hints.json"));
@@ -104,12 +87,26 @@ namespace TrackerOOT
                 {
                     SongMode = Convert.ToBoolean(property.Value);
                 }
+                if(property.Key == "ActiveLayout")
+                {
+                    ActiveLayoutName = property.Value.ToString();
+                }
             }
 
-            setListUpgrade();
+            if (ActiveLayoutName != string.Empty)
+            {
+                var json_file = File.ReadAllText(@"Layouts/" + ActiveLayoutName + ".json");
+                ActiveLayout = JsonConvert.DeserializeObject<Layout>(json_file);
+            }
+            this.Size = new Size(ActiveLayout.AppSize.Width, ActiveLayout.AppSize.Height);
+
+
+            LoadListImage();
 
             addItems();
+
             addSongs();
+
             addMedallions();
 
             addGoMode();
@@ -117,54 +114,24 @@ namespace TrackerOOT
             addGuaranteedHints();
 
             addWothAndBarren();
-            loadComboBoxData(ListPlaces.ToArray());
-            autocomplete();
-
+            
             addSometimesHints();
 
             addChrono();
-            button_ResetChrono.Focus();
-
+            
             this.KeyPreview = true;
             this.KeyDown += changeCollectedSkulls;
         }
 
         private void addChrono()
         {
-            button_StartChrono = new Button
-            {
-                BackColor = Color.DimGray,
-                FlatStyle = FlatStyle.Flat,
-                ForeColor = Color.White,
-                Location = new Point(11, 550),
-                Name = "button_StartChrono",
-                Size = new Size(32, 32),
-                TabStop = false,
-                Text = "Start"                
-            };
-            button_StartChrono.Click += new EventHandler(this.button_chrono_Click);
-            //this.Controls.Add(button_StartChrono);
-
-            button_ResetChrono = new Button
-            {
-                BackColor = Color.DimGray,
-                ForeColor = Color.White,
-                Location = new Point(11, button_StartChrono.Location.Y + button_StartChrono.Height + 15),
-                Name = "button_ResetChrono",
-                Size = new Size(52, 23),
-                TabStop = false,
-                Text = "Reset"
-            };
-            button_ResetChrono.Click += new EventHandler(this.button_chrono_reset_Click);
-            //this.Controls.Add(button_ResetChrono);
-
             label_Chrono = new Label
             {
                 BackColor = Color.Transparent,
                 AutoSize = true,
                 Font = new Font("Calibri", 36F, FontStyle.Bold, GraphicsUnit.Point, 0),
                 ForeColor = Color.White,
-                Location = new Point(95, 545),
+                Location = new Point(ActiveLayout.Chronometer.X, ActiveLayout.Chronometer.Y),
                 Name = "label_Chrono",
                 Size = new Size(256, 59),
                 TabStop = false,
@@ -186,177 +153,150 @@ namespace TrackerOOT
 
         private void addSometimesHints()
         {
-            var GossipStone1 = createNewSometimesHint("sometimes_hint_1", ListImage_SometimesHintOption, new Point(140, PanelWoth.Location.Y + PanelWoth.Height + 5));
-            var GossipStone2 = createNewSometimesHint("sometimes_hint_2", ListImage_SometimesHintOption, new Point(140, GossipStone1.Location.Y + GossipStone1.Height + 5));
+            var SometimesHint1 = new SometimesHint(ListImage_SometimesHintOption, ActiveLayout.SH_GossipStone1.X, ActiveLayout.SH_GossipStone1.Y, ListSometimesHints.ToList(), ActiveLayout.SH_GossipStone1.Size);
+            this.Controls.Add(SometimesHint1.SH_GossipStone);
+            this.Controls.Add(SometimesHint1.SH_TextBox);
 
-            var GossipStone3 = createNewSometimesHint("sometimes_hint_3", ListImage_SometimesHintOption, new Point(140, GossipStone2.Location.Y + GossipStone2.Height + 5));
+            var SometimesHint2 = new SometimesHint(ListImage_SometimesHintOption, ActiveLayout.SH_GossipStone2.X, ActiveLayout.SH_GossipStone2.Y, ListSometimesHints.ToList(), ActiveLayout.SH_GossipStone2.Size);
+            this.Controls.Add(SometimesHint2.SH_GossipStone);
+            this.Controls.Add(SometimesHint2.SH_TextBox);
 
-            var GossipStone4 = createNewSometimesHint("sometimes_hint_4", ListImage_SometimesHintOption, new Point(GossipStone1.Location.X + GossipStone1.Height + 15 + 125, GossipStone1.Location.Y));
-            var GossipStone5 = createNewSometimesHint("sometimes_hint_5", ListImage_SometimesHintOption, new Point(GossipStone4.Location.X, GossipStone2.Location.Y));
-        }
+            var SometimesHint3 = new SometimesHint(ListImage_SometimesHintOption, ActiveLayout.SH_GossipStone3.X, ActiveLayout.SH_GossipStone3.Y, ListSometimesHints.ToList(), ActiveLayout.SH_GossipStone3.Size);
+            this.Controls.Add(SometimesHint3.SH_GossipStone);
+            this.Controls.Add(SometimesHint3.SH_TextBox);
 
-        private GossipStone createNewSometimesHint(string name, List<Image> images, Point Location)
-        {
-            var newGossipStone = new GossipStone(name, images, Location.X, Location.Y);
-            this.Controls.Add(newGossipStone);
+            var SometimesHint4 = new SometimesHint(ListImage_SometimesHintOption, ActiveLayout.SH_GossipStone4.X, ActiveLayout.SH_GossipStone4.Y, ListSometimesHints.ToList(), ActiveLayout.SH_GossipStone4.Size);
+            this.Controls.Add(SometimesHint4.SH_GossipStone);
+            this.Controls.Add(SometimesHint4.SH_TextBox);
 
-            var newTextbox = new TextBox
-            {
-                BackColor = Color.FromArgb(64, 64, 64),
-                Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
-                ForeColor = Color.White,
-                Name = name + "_text",
-                Size = new Size(125, 23),
-                AutoCompleteCustomSource = new AutoCompleteStringCollection(),
-                AutoCompleteMode = AutoCompleteMode.SuggestAppend,
-                AutoCompleteSource = AutoCompleteSource.CustomSource
-            };
-            newTextbox.KeyDown += NewTextbox_KeyDown;
-            newTextbox.AutoCompleteCustomSource.AddRange(ListSometimesHints.ToArray());
-            newTextbox.Location = new Point(newGossipStone.Location.X - newTextbox.Width - 5, newGossipStone.Location.Y + 5);
-            this.Controls.Add(newTextbox);
-
-            return newGossipStone;
-        }
-        private void NewTextbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                var TextBox_Name = ((TextBox)sender).Name;
-                ((GossipStone)this.Controls.Find(TextBox_Name.Replace("_text", ""), false)[0]).Click_MouseUp(sender, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
-            }
+            var SometimesHint5 = new SometimesHint(ListImage_SometimesHintOption, ActiveLayout.SH_GossipStone5.X, ActiveLayout.SH_GossipStone5.Y, ListSometimesHints.ToList(), ActiveLayout.SH_GossipStone5.Size);
+            this.Controls.Add(SometimesHint5.SH_GossipStone);
+            this.Controls.Add(SometimesHint5.SH_TextBox);
         }
 
         private void addWothAndBarren()
         {
-            PanelBarren = new Panel
+            PanelBarren = new PanelWothBarren(ListPlacesWithTag)
             {
                 BackColor = Color.FromArgb(64, 64, 64),
-                Location = new Point(3, 200),
+                Location = new Point(ActiveLayout.PanelBarren.X, ActiveLayout.PanelBarren.Y),
                 Name = "panel_barren",
-                Size = new Size(172, 70),
+                Size = new Size(222, 70),
                 TabStop = false
             };
+            this.Controls.Add(PanelBarren);
+            this.Controls.Add(PanelBarren.textBoxCustom.SuggestionContainer);
+            PanelBarren.SetSuggestionContainer();
 
-            PanelWoth = new Panel
+            PanelWoth = new PanelWothBarren (ListPlacesWithTag, ListImage_WothItemsOption, 24)
             {
                 BackColor = Color.FromArgb(64, 64, 64),
-                Location = new Point(PanelBarren.Location.X, PanelBarren.Location.Y + PanelBarren.Height + 2),
+                Location = new Point(ActiveLayout.PanelWoth.X, ActiveLayout.PanelWoth.Y),
                 Name = "panel_woth",
-                Size = new Size(this.Width-22, 160),
+                Size = new Size(this.Width-38, 120),
                 TabStop = false
             };
-            
-            comboBox_placesWoth = new ComboBox
-            {
-                FlatStyle = FlatStyle.Flat,
-                
-                BackColor = Color.FromArgb(74, 138, 182),
-                CausesValidation = false,
-                Font = new Font("Corbel", 11, FontStyle.Bold), //new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
-                ForeColor = Color.White,
-                FormattingEnabled = true,
-                IntegralHeight = false,
-                MaxDropDownItems = 60,
-                Name = "comboBox_placesWoth",
-                Size = new Size(210, 32),
-                TabIndex = 0,
-                Text = ":: Way of the Hero ::"
-            };
-            comboBox_placesWoth.Location = new Point(2, 0);
-            comboBox_placesWoth.KeyDown += new KeyEventHandler(this.comboBox_placesWoth_KeyDown);
-            comboBox_placesWoth.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
-            PanelWoth.Controls.Add(comboBox_placesWoth);
             this.Controls.Add(PanelWoth);
-
-            comboBox_placesBarren = new ComboBox
-            {
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(198, 68, 92),
-                CausesValidation = false,
-                Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
-                ForeColor = Color.White,
-                FormattingEnabled = true,
-                IntegralHeight = false,
-                MaxDropDownItems = 60,
-                Name = "comboBox_placesBarren",
-                Size = new Size(170, 23),
-                TabIndex = 1,
-                Text = ":: Barren ::"
-            };
-            comboBox_placesBarren.KeyDown += new KeyEventHandler(this.comboBox_placesBarren_KeyDown);
-            comboBox_placesBarren.MouseClick += new MouseEventHandler(comboBox_places_MouseClick);
-            comboBox_placesBarren.Location = new Point(2, 0);
-            PanelBarren.Controls.Add(comboBox_placesBarren);
-            this.Controls.Add(PanelBarren);
+            this.Controls.Add(PanelWoth.textBoxCustom.SuggestionContainer);
+            PanelWoth.SetSuggestionContainer();
         }
 
         private void comboBox_places_MouseClick(object sender, MouseEventArgs e)
         {
-            ((ComboBox)sender).Text = string.Empty;
-        }
-
-        private void comboBox_placesWoth_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                button_woth_Click(sender, new EventArgs());
-            }
-        }
-        private void comboBox_placesBarren_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                button_barren_Click(sender, new EventArgs());
-            }
+            ((TextBox)sender).Text = string.Empty;
         }
 
         private void addGuaranteedHints()
         {
             //30skulls
-            createNewGuaranteedHint("30Skulls", Properties.Resources._30_gold_skulltula, new Point(3, 145));
+            createNewGuaranteedHint(
+                ListImage_GuaranteedHints[0], 
+                ActiveLayout.Skulltulas_30.Size, 
+                new Point(ActiveLayout.Skulltulas_30.X, ActiveLayout.Skulltulas_30.Y), 
+                ListImage_30SkulltulasOption,
+                ActiveLayout.Skulltulas_30_GossipStone.Size, 
+                new Point(ActiveLayout.Skulltulas_30_GossipStone.X, ActiveLayout.Skulltulas_30_GossipStone.Y)
+            );
             //40skulls
-            createNewGuaranteedHint("40Skulls", Properties.Resources._40_gold_skulltula, new Point(38, 145));
+            createNewGuaranteedHint(
+                ListImage_GuaranteedHints[1], 
+                ActiveLayout.Skulltulas_40.Size, 
+                new Point(ActiveLayout.Skulltulas_40.X, ActiveLayout.Skulltulas_40.Y), 
+                ListImage_40SkulltulasOption,
+                ActiveLayout.Skulltulas_40_GossipStone.Size, 
+                new Point(ActiveLayout.Skulltulas_40_GossipStone.X, ActiveLayout.Skulltulas_40_GossipStone.Y)
+            );
             //50skulls
-            createNewGuaranteedHint("50Skulls", Properties.Resources._50_gold_skulltula, new Point(73, 145));
+            createNewGuaranteedHint(
+                ListImage_GuaranteedHints[2], 
+                ActiveLayout.Skulltulas_50.Size,
+                new Point(ActiveLayout.Skulltulas_50.X, ActiveLayout.Skulltulas_50.Y),
+                ListImage_50SkulltulasOption,
+                ActiveLayout.Skulltulas_50_GossipStone.Size,
+                new Point(ActiveLayout.Skulltulas_50_GossipStone.X, ActiveLayout.Skulltulas_50_GossipStone.Y)
+            );
             //SkullMask
-            createNewGuaranteedHint("SkullMask", Properties.Resources.skull_mask2, new Point(108, 145));
+            createNewGuaranteedHint(
+                ListImage_GuaranteedHints[3],
+                ActiveLayout.SkullMask.Size,
+                new Point(ActiveLayout.SkullMask.X, ActiveLayout.SkullMask.Y),
+                ListImage_SkullMaskOption,
+                ActiveLayout.SkullMask_GossipStone.Size,
+                new Point(ActiveLayout.SkullMask_GossipStone.X, ActiveLayout.SkullMask_GossipStone.Y)
+            );
             //Biggoron
-            createNewGuaranteedHint("Bigorron", Properties.Resources.biggoron_test, new Point(143, 145));
+            createNewGuaranteedHint(
+                ListImage_GuaranteedHints[4],
+                ActiveLayout.Biggoron.Size,
+                new Point(ActiveLayout.Biggoron.X, ActiveLayout.Biggoron.Y),
+                ListImage_BiggoronOption,
+                ActiveLayout.Biggoron_GossipStone.Size,
+                new Point(ActiveLayout.Biggoron_GossipStone.X, ActiveLayout.Biggoron_GossipStone.Y)
+            );
             //Frogs
-            createNewGuaranteedHint("Frogs", Properties.Resources.frogs, new Point(178, 145));
+            createNewGuaranteedHint(
+                ListImage_GuaranteedHints[5],
+                ActiveLayout.Frogs.Size,
+                new Point(ActiveLayout.Frogs.X, ActiveLayout.Frogs.Y),
+                ListImage_FrogsOption,
+                ActiveLayout.Frogs_GossipStone.Size,
+                new Point(ActiveLayout.Frogs_GossipStone.X, ActiveLayout.Frogs_GossipStone.Y)
+            );
             //OoT
-            createNewGuaranteedHint("OcarinaOfTime", Properties.Resources.ocarina_of_time, new Point(178, 195));
+            createNewGuaranteedHint(
+                ListImage_GuaranteedHints[6],
+                ActiveLayout.OcarinaOfTimeHint.Size,
+                new Point(ActiveLayout.OcarinaOfTimeHint.X, ActiveLayout.OcarinaOfTimeHint.Y),
+                ListImage_OcarinaOfTimeOption,
+                ActiveLayout.OcarinaOfTimeHint_GossipStone.Size,
+                new Point(ActiveLayout.OcarinaOfTimeHint_GossipStone.X, ActiveLayout.OcarinaOfTimeHint_GossipStone.Y)
+            );
         }
 
-        private void createNewGuaranteedHint(string name, Image image, Point location)
+        private void createNewGuaranteedHint(string imageName, int size, Point location, List<string> gossipImageName, int gossip_size, Point gossipLocation)
         {
             PictureBox newPBox = new PictureBox
             {
                 BackColor = Color.Transparent,
-                Name = name,
-                Image = image,
+                Image = (Image)Properties.Resources.ResourceManager.GetObject(imageName),
                 Location = location,
-                Size = new Size(32, 50)
+                Size = new Size(size, size)
             };
 
-            var X = 0;
-            var Y = 18;
-            GossipStone newGossipStone = new GossipStone(name + "_gossip", ListImage_GuaranteedHintsOption, X, Y);
-            newPBox.Controls.Add(newGossipStone);
-            newGossipStone.BringToFront();
+            GossipStone newGossipStone = new GossipStone(gossipImageName, gossipLocation, gossip_size);
+            this.Controls.Add(newGossipStone);
             this.Controls.Add(newPBox);
         }
-
+        
         private void addGoMode()
         {
 
             PictureBox pbox_GoMode = new PictureBox
             {
                 BackColor = Color.Transparent,
-                Image = ListImage_GoMode[0],
-                Location = new Point(265, 220),
-                Name = "collectedSkulls",
+                Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImage_GoMode[0]),
+                Location = new Point(ActiveLayout.GoMode.X, ActiveLayout.GoMode.Y),
+                Name = ListImage_GoMode[0],
                 Size = new Size(32, 32),
                 TabStop = false
             };
@@ -369,16 +309,18 @@ namespace TrackerOOT
             var pbox = (PictureBox)sender;
             if (e.Button == MouseButtons.Left)
             {
-                var index = ListImage_GoMode.FindIndex(x => x == pbox.Image);
-                if (index == (ListImage_GoMode.Count - 1))
+                var index = ListImage_GoMode.FindIndex(x => x == pbox.Name) + 1;
+                if (index <= 0 || index >= ListImage_GoMode.Count)
                 {
-                    pbox.Image = ListImage_GoMode[0];
-                    this.BackgroundImage = null;
+                    pbox.Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImage_GoMode[0]);
+                    //this.BackgroundImage = null;
+                    pbox.Name = ListImage_GoMode[0];
                 }
                 else
                 {
-                    pbox.Image = ListImage_GoMode[index + 1];
-                    this.BackgroundImage = Properties.Resources.go_mode_background;
+                    pbox.Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImage_GoMode[index]);
+                    //this.BackgroundImage = Properties.Resources.go_mode_background;
+                    pbox.Name = ListImage_GoMode[index];
                 }
             }
 
@@ -389,10 +331,9 @@ namespace TrackerOOT
             pbox_collectedSkulls = new PictureBox
             {
                 BackColor = Color.Transparent,
-                Image = Properties.Resources.collected_skulltulas,
-                Location = new Point(310, 173),
+                Image = (Image)Properties.Resources.ResourceManager.GetObject("collected_skulltulas_" + ActiveLayout.CollectedSkulls.Size),
                 Name = "collectedSkulls",
-                Size = new Size(32, 32),
+                Size = new Size(ActiveLayout.CollectedSkulls.Size, ActiveLayout.CollectedSkulls.Size),
                 TabStop = false
             };
 
@@ -405,155 +346,83 @@ namespace TrackerOOT
                 BackColor = Color.Transparent,
                 BorderStyle = BorderStyle.None,
                 Text = "00",
-                Font = new Font("Consolas", 18, FontStyle.Bold),
+                Font = new Font("Consolas", 14, FontStyle.Bold),
                 ForeColor = Color.White,
                 Width = 42,
-                Height = 32,
+                Height = 24,
                 AutoSize = false,
-                Location = new Point(-3, -5),
+                Location = new Point(-2, -5),
                 TextAlign = ContentAlignment.MiddleLeft
             };
             nb_skulls.MouseDown += new MouseEventHandler(label_collectedSkulls_MouseDown);
 
             pbox_collectedSkulls.Controls.Add(nb_skulls);
-            //this.Controls.Add(pbox_collectedSkulls);
             return pbox_collectedSkulls;
         }
 
         private void addItems()
         {
-            Panel newPanel = new Panel
-            {
-                Name = "panel_items",
-                Width = 140,
-                Height = 170,
-                BackColor = Color.Transparent,
-                BorderStyle = BorderStyle.None,
-                Location = new Point(210, 45)
-            };
-
-            var ItemSlingshot = createNewItem("slingshot", ListImage_Slingshot, new Point(2, 2), 0, newPanel);
-            var ItemBomb = createNewItem("bomb", ListImage_Bomb, ItemSlingshot.Location, ItemSlingshot.Width, newPanel);
-            var ItemBombchu = createNewItem("bombchu", ListImage_Bombchu, ItemBomb.Location, ItemBomb.Width, newPanel);
-            var ItemHookshot = createNewItem("hookshot", ListImage_Hookshot, ItemBombchu.Location, ItemBombchu.Width, newPanel);
-
-            var ItemBow = createNewItem("bow", ListImage_Bow, new Point(2, ItemSlingshot.Location.Y + ItemSlingshot.Height), 0, newPanel);
-            var ItemArrow = createNewItemDouble("arrow", ListImage_Arrow, ItemBow.Location, ItemBow.Width, newPanel);
-            var ItemSpell = createNewItemDouble("spell", ListImage_Spell, ItemArrow.Location, ItemArrow.Width, newPanel);
-            var ItemMagic = createNewItem("magic", ListImage_Magic, ItemSpell.Location, ItemSpell.Width, newPanel);
-
-            var ItemBoots = createNewItemDouble("boots", ListImage_Boots, new Point(2, ItemBow.Location.Y + ItemBow.Height), 0, newPanel);
-            var ItemPrescription = createNewItem("biggoron_quest", ListImage_BiggoronQuest, ItemBoots.Location, ItemBoots.Width, newPanel);
-            var ItemBoomerang = createNewItem("bommerang", ListImage_Boomerang, ItemPrescription.Location, ItemPrescription.Width, newPanel);
-            var ItemScale = createNewItem("scale", ListImage_Scale, ItemBoomerang.Location, ItemBoomerang.Width, newPanel);
-            
-            var ItemStrength = createNewItem("strength", ListImage_Strength, new Point(2, ItemBoots.Location.Y + ItemBoots.Height), 0, newPanel);
-            var ItemLens = createNewItem("lens", ListImage_Lens, ItemStrength.Location, ItemStrength.Width, newPanel);
-            var ItemHammer = createNewItem("hammer", ListImage_Hammer, ItemLens.Location, ItemLens.Width, newPanel);
-            var ItemTunic = createNewItemDouble("tunic", ListImage_Tunic, ItemHammer.Location, ItemHammer.Width, newPanel);
-            
-            var ItemWallet = createNewItem("wallet", ListImage_Wallet, new Point(2, ItemStrength.Location.Y + ItemStrength.Height), 0, newPanel);
-            var ItemRutosLetter = createNewItem("rutos_letter", ListImage_RutosLetter, ItemWallet.Location, ItemWallet.Width, newPanel);
-            var ItemMirrorShield = createNewItem("mirror_shield", ListImage_MirrorShield, ItemRutosLetter.Location, ItemRutosLetter.Width, newPanel);
+            this.Controls.Add(new Item(ListImage_Slingshot, ActiveLayout.Slingshot.X, ActiveLayout.Slingshot.Y, ActiveLayout.Slingshot.Size));
+            this.Controls.Add(new Item(ListImage_Bomb, ActiveLayout.Bombs.X, ActiveLayout.Bombs.Y, ActiveLayout.Bombs.Size));
+            this.Controls.Add(new Item(ListImage_Bombchu, ActiveLayout.Bombchus.X, ActiveLayout.Bombchus.Y, ActiveLayout.Bombchus.Size));
+            this.Controls.Add(new Item(ListImage_Hookshot, ActiveLayout.Hookshot.X, ActiveLayout.Hookshot.Y, ActiveLayout.Hookshot.Size));
+            this.Controls.Add(new Item(ListImage_Bow, ActiveLayout.Bow.X, ActiveLayout.Bow.Y, ActiveLayout.Bow.Size));
+            this.Controls.Add(new ItemDouble(ListImage_Arrow, ActiveLayout.Arrows.X, ActiveLayout.Arrows.Y, ActiveLayout.Arrows.Size));
+            this.Controls.Add(new ItemDouble(ListImage_Spell, ActiveLayout.Spells.X, ActiveLayout.Spells.Y, ActiveLayout.Spells.Size));
+            this.Controls.Add(new Item(ListImage_Magic, ActiveLayout.Magic.X, ActiveLayout.Magic.Y, ActiveLayout.Magic.Size));
+            this.Controls.Add(new ItemDouble(ListImage_Boots, ActiveLayout.Boots.X, ActiveLayout.Boots.Y, ActiveLayout.Boots.Size));
+            this.Controls.Add(new Item(ListImage_BiggoronQuest, ActiveLayout.BiggoronItem.X, ActiveLayout.BiggoronItem.Y, ActiveLayout.BiggoronItem.Size));
+            this.Controls.Add(new Item(ListImage_Boomerang, ActiveLayout.Boomerang.X, ActiveLayout.Boomerang.Y, ActiveLayout.Boomerang.Size));
+            this.Controls.Add(new Item(ListImage_Scale, ActiveLayout.Scale.X, ActiveLayout.Scale.Y, ActiveLayout.Scale.Size));
+            this.Controls.Add(new Item(ListImage_Strength, ActiveLayout.Strength.X, ActiveLayout.Strength.Y, ActiveLayout.Strength.Size));
+            this.Controls.Add(new Item(ListImage_Lens, ActiveLayout.Lens.X, ActiveLayout.Lens.Y, ActiveLayout.Lens.Size));
+            this.Controls.Add(new Item(ListImage_Hammer, ActiveLayout.Hammer.X, ActiveLayout.Hammer.Y, ActiveLayout.Hammer.Size));
+            this.Controls.Add(new ItemDouble(ListImage_Tunic, ActiveLayout.Tunics.X, ActiveLayout.Tunics.Y, ActiveLayout.Tunics.Size));
+            this.Controls.Add(new Item(ListImage_Wallet, ActiveLayout.Wallet.X, ActiveLayout.Wallet.Y, ActiveLayout.Wallet.Size));
+            this.Controls.Add(new Item(ListImage_RutosLetter, ActiveLayout.RutosLetter.X, ActiveLayout.RutosLetter.Y, ActiveLayout.RutosLetter.Size));
+            this.Controls.Add(new Item(ListImage_MirrorShield, ActiveLayout.MirrorShield.X, ActiveLayout.MirrorShield.Y, ActiveLayout.MirrorShield.Size));
 
             var collectedSkulls = addCollectedSkulls();
-            collectedSkulls.Location = new Point(ItemMirrorShield.Location.X + ItemMirrorShield.Width, ItemMirrorShield.Location.Y);
-            newPanel.Controls.Add(collectedSkulls);
-
-            this.Controls.Add(newPanel);
-        }
-        private Item createNewItem(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth, Panel panelItem)
-        {
-            var X = PreviousElementLocation.X + PreviousElementWidth+2;
-            var Y = PreviousElementLocation.Y;
-            Item newItem = new Item(name, ListImage, X, Y);
-            panelItem.Controls.Add(newItem);
-            return newItem;
+            collectedSkulls.Location = new Point(ActiveLayout.CollectedSkulls.X, ActiveLayout.CollectedSkulls.Y);
+            this.Controls.Add(collectedSkulls);
         }
 
-        private ItemDouble createNewItemDouble(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth, Panel panelItem)
+        private void addSongs()
         {
-            var X = PreviousElementLocation.X + PreviousElementWidth;
-            var Y = PreviousElementLocation.Y;
-            ItemDouble newItemDouble = new ItemDouble(name, ListImage, X, Y);
-            panelItem.Controls.Add(newItemDouble);
-            return newItemDouble;
-        }
-
-        private Panel addSongs()
-        {
-            Panel newPanel = new Panel
-            {
-                Name = "panel_songs",
-                Width = 210,
-                Height = 95,
-                BackColor = Color.Transparent,
-                BorderStyle = BorderStyle.None,
-                Location = new Point(2, 45)
-            };
-
-            var SongZeldasLullaby = createNewSong("zeldas_lullaby", ListImage_ZeldasLullaby, new Point(2, 3), 0, ListImage_TinySongs, newPanel);
-            var SongEpona = createNewSong("epona", ListImage_EponasSong, SongZeldasLullaby.Location, SongZeldasLullaby.Width, ListImage_TinySongs, newPanel);
-            var SongSaria = createNewSong("saria", ListImage_SariasSong, SongEpona.Location, SongEpona.Width, ListImage_TinySongs, newPanel);
-            var SongSun = createNewSong("suns_song", ListImage_SunsSong, SongSaria.Location, SongSaria.Width, ListImage_TinySongs, newPanel);
-            var SongTime = createNewSong("song_of_time", ListImage_SongOfTime, SongSun.Location, SongSun.Width, ListImage_TinySongs, newPanel);
-            var SongStorms = createNewSong("song_of_storms", ListImage_SongOfStorms, SongTime.Location, SongTime.Width, ListImage_TinySongs, newPanel);
-
-            var SongMinuet = createNewSong("minuet", ListImage_Minuet, new Point(0, SongZeldasLullaby.Location.Y + SongZeldasLullaby.Height + 6), 0, ListImage_TinySongs, newPanel);
-            var SongBolero = createNewSong("bolero", ListImage_Bolero, SongMinuet.Location, SongMinuet.Width, ListImage_TinySongs, newPanel);
-            var SongSerenade = createNewSong("serenade", ListImage_Serenade, SongBolero.Location, SongBolero.Width, ListImage_TinySongs, newPanel);
-            var SongNocturne = createNewSong("nocturne", ListImage_Nocturne, SongSerenade.Location, SongSerenade.Width, ListImage_TinySongs, newPanel);
-            var SongRequiem = createNewSong("requiem", ListImage_Requiem, SongNocturne.Location, SongNocturne.Width, ListImage_TinySongs, newPanel);
-            var SongPrelude = createNewSong("prelude", ListImage_Prelude, SongRequiem.Location, SongRequiem.Width, ListImage_TinySongs, newPanel);
-            this.Controls.Add(newPanel);
-            return newPanel;
-        }
-
-        private Song createNewSong(string name, List<Image> ListImages, Point PreviousElementLocation, int PreviousElementWidth, List<Image> ListTinyImages, Panel PanelContainer)
-        {
-            var X = PreviousElementLocation.X + PreviousElementWidth+2;
-            var Y = PreviousElementLocation.Y;
-            Song newSong = new Song(name, ListImages, X, Y, ListTinyImages, SongMode);
-            listSong.Add(newSong);
-            PanelContainer.Controls.Add(newSong);
-            return newSong;
+            this.Controls.Add(new Song(ListImage_ZeldasLullaby, ActiveLayout.ZeldasLullaby.X, ActiveLayout.ZeldasLullaby.Y, ListImage_TinySongs, ActiveLayout.ZeldasLullaby.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_EponasSong, ActiveLayout.EponasSong.X, ActiveLayout.EponasSong.Y, ListImage_TinySongs, ActiveLayout.EponasSong.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_SariasSong, ActiveLayout.SariasSong.X, ActiveLayout.SariasSong.Y, ListImage_TinySongs, ActiveLayout.SariasSong.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_SunsSong, ActiveLayout.SunsSong.X, ActiveLayout.SunsSong.Y, ListImage_TinySongs, ActiveLayout.SunsSong.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_SongOfTime, ActiveLayout.SongOfTime.X, ActiveLayout.SongOfTime.Y, ListImage_TinySongs, ActiveLayout.SongOfTime.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_SongOfStorms, ActiveLayout.SongOfStorms.X, ActiveLayout.SongOfStorms.Y, ListImage_TinySongs, ActiveLayout.SongOfStorms.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_Minuet, ActiveLayout.Minuet.X, ActiveLayout.Minuet.Y, ListImage_TinySongs, ActiveLayout.Minuet.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_Bolero, ActiveLayout.Bolero.X, ActiveLayout.Bolero.Y, ListImage_TinySongs, ActiveLayout.Bolero.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_Serenade, ActiveLayout.Serenade.X, ActiveLayout.Serenade.Y, ListImage_TinySongs, ActiveLayout.Serenade.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_Nocturne, ActiveLayout.Nocturne.X, ActiveLayout.Nocturne.Y, ListImage_TinySongs, ActiveLayout.Nocturne.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_Requiem, ActiveLayout.Requiem.X, ActiveLayout.Requiem.Y, ListImage_TinySongs, ActiveLayout.Requiem.Size, SongMode));
+            this.Controls.Add(new Song(ListImage_Prelude, ActiveLayout.Prelude.X, ActiveLayout.Prelude.Y, ListImage_TinySongs, ActiveLayout.Prelude.Size, SongMode));
         }
 
         private void addMedallions()
         {
-            var Green = createNewMedallion("green_medallion", ListImage_GreenMedallion, new Point(-2, 3), 0);
-            var Red = createNewMedallion("red_medallion", ListImage_RedMedallion, Green.Location, Green.Width);
-            var Blue = createNewMedallion("blue_medallion", ListImage_BlueMedallion, Red.Location, Red.Width);
-
-            var Purple = createNewMedallion("purple_medallion", ListImage_PurpleMedallion, Blue.Location, Blue.Width);
-            var Orange = createNewMedallion("orange_medallion", ListImage_OrangeMedallion, Purple.Location, Purple.Width);
-            var Yellow = createNewMedallion("yellow_medallion", ListImage_YellowMedallion, Orange.Location, Orange.Width);
-
-            var Kokiri = createNewStone("kokiri_stone", ListImage_KokiriStone, Yellow.Location, Yellow.Width);
-            var Goron = createNewStone("goron_stone", ListImage_GoronStone, Kokiri.Location, Kokiri.Width);
-            var Zora = createNewStone("zora_stone", ListImage_ZoraStone, Goron.Location, Goron.Width);
+            createNewMedallion(ListImage_GreenMedallion, ActiveLayout.GreenMedallion.X, ActiveLayout.GreenMedallion.Y, ListDungeons, ActiveLayout.GreenMedallion.Size);
+            createNewMedallion(ListImage_RedMedallion, ActiveLayout.RedMedallion.X, ActiveLayout.RedMedallion.Y, ListDungeons, ActiveLayout.RedMedallion.Size);
+            createNewMedallion(ListImage_BlueMedallion, ActiveLayout.BlueMedallion.X, ActiveLayout.BlueMedallion.Y, ListDungeons, ActiveLayout.BlueMedallion.Size);
+            createNewMedallion(ListImage_PurpleMedallion, ActiveLayout.PurpleMedallion.X, ActiveLayout.PurpleMedallion.Y, ListDungeons, ActiveLayout.PurpleMedallion.Size);
+            createNewMedallion(ListImage_OrangeMedallion, ActiveLayout.OrangeMedallion.X, ActiveLayout.OrangeMedallion.Y, ListDungeons, ActiveLayout.OrangeMedallion.Size);
+            createNewMedallion(ListImage_YellowMedallion, ActiveLayout.YellowMedallion.X, ActiveLayout.YellowMedallion.Y, ListDungeons, ActiveLayout.YellowMedallion.Size);
+            createNewMedallion(ListImage_KokiriStone, ActiveLayout.KokiriStone.X, ActiveLayout.KokiriStone.Y, ListDungeons, ActiveLayout.KokiriStone.Size);
+            createNewMedallion(ListImage_GoronStone, ActiveLayout.GoronStone.X, ActiveLayout.GoronStone.Y, ListDungeons, ActiveLayout.GoronStone.Size);
+            createNewMedallion(ListImage_ZoraStone, ActiveLayout.ZoraStone.X, ActiveLayout.ZoraStone.Y, ListDungeons, ActiveLayout.ZoraStone.Size);
         }
 
-        private Medallion createNewStone(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth)
+        private void createNewMedallion(List<string> ListImage, int X, int Y, List<string> ListText, int size)
         {
-            var X = PreviousElementLocation.X + PreviousElementWidth + 7;
-            var Y = PreviousElementLocation.Y;
-            Medallion newMedallion = new Medallion(name, ListImage, X, Y, ListDungeons);
+            Medallion newMedallion = new Medallion(ListImage, X, Y, ListText, size);
             this.Controls.Add(newMedallion);
             this.Controls.Add(newMedallion.SelectedDungeon);
+            newMedallion.SetSelectedDungeonLocation();
             newMedallion.SelectedDungeon.BringToFront();
-            return newMedallion;
-        }
-
-        private Medallion createNewMedallion(string name, List<Image> ListImage, Point PreviousElementLocation, int PreviousElementWidth)
-        {
-            var X = PreviousElementLocation.X + PreviousElementWidth + 7;
-            var Y = PreviousElementLocation.Y;
-            Medallion newMedallion = new Medallion(name, ListImage, X, Y, ListDungeons);
-            this.Controls.Add(newMedallion);
-            this.Controls.Add(newMedallion.SelectedDungeon);
-            newMedallion.SelectedDungeon.BringToFront();
-            return newMedallion;
         }
 
         private void changeCollectedSkulls(object sender, KeyEventArgs k)
@@ -568,35 +437,11 @@ namespace TrackerOOT
                 label_collectedSkulls_MouseDown(pbox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Right, 1, 0, 0, 0));
         }
 
-        private void loadComboBoxData(String[] data)
-        {
-            comboBox_placesWoth.Items.Clear();
-            comboBox_placesBarren.Items.Clear();
-            comboBox_placesWoth.Items.AddRange(data);
-            comboBox_placesBarren.Items.AddRange(data);
-        }
-
         #region chrono and timer
         private void timer1_Tick(object sender, EventArgs e)
         {
             TimeSpan time = chrono.Elapsed;
             label_Chrono.Text = time.ToString(@"hh\:mm\:ss\.ff");
-
-            if (!SongMode)
-            {
-                foreach (Song song in listSong)
-                {
-                    if (song.elementFoundAtLocation.Image != song.tinyImageEmpty)
-                    {
-                        var filledSong = listSong.Find(x => x.tinyImage == song.elementFoundAtLocation.Image);
-                        if (filledSong != null)
-                        {
-                            var index = filledSong.listImage.FindIndex(x => x == filledSong.Image);
-                            if (index == 0) filledSong.Click_MouseUp(song, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
-                        }
-                    }
-                }
-            }
         }
 
         private void button_chrono_Click(object sender, EventArgs e)
@@ -604,14 +449,11 @@ namespace TrackerOOT
             if (chronoRunning)
             {
                 chrono.Stop();
-                button_StartChrono.Text = "Start";
             }
             else
             {
                 chrono.Start();
-                button_StartChrono.Text = "Stop";
             }
-
             chronoRunning = !chronoRunning;
         }
 
@@ -619,167 +461,8 @@ namespace TrackerOOT
         {
             chronoRunning = false;
             chrono.Reset();
-            button_StartChrono.Text = "Start";
         }
         #endregion
-
-        private void button_woth_Click(object sender, EventArgs e)
-        {
-            if(wothPosition.Count < 5)
-            {
-                if (comboBox_placesWoth.Text != string.Empty)
-                {
-                    var selectedPlace = comboBox_placesWoth.Text.ToUpper().Trim();
-                    var existingWoth = wothPosition.Where(x => x.Key.Text == selectedPlace).ToList();
-                    if (existingWoth.Count == 0)
-                    {
-                        Label newLabel = new Label
-                        {
-                            Name = Guid.NewGuid().ToString(),
-                            Text = selectedPlace,
-                            ForeColor = Color.White,
-                            BackColor = Color.CadetBlue,
-                            Font = new Font("Corbel", 10, FontStyle.Bold),
-                            Width = 210,
-                            Height = 32,
-                            TextAlign = ContentAlignment.MiddleLeft
-                        };
-                        newLabel.Location = new Point(2, (wothPosition.Count * newLabel.Height));
-                        newLabel.MouseDown += new MouseEventHandler(label_woth_MouseDown);
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            GossipStone newGossipStone = new GossipStone(newLabel.Name+i, ListImage_WothItemsOption, 0, 0);
-                            switch (i)
-                            {
-                                case 0: newGossipStone.Location = new Point(newLabel.Width+5, newLabel.Location.Y); break;
-                                case 1: newGossipStone.Location = new Point(newLabel.Width+5 + 32, newLabel.Location.Y); break;
-                                case 2: newGossipStone.Location = new Point(newLabel.Width+5 + 64, newLabel.Location.Y); break;
-                                case 3: newGossipStone.Location = new Point(newLabel.Width+5 + 96, newLabel.Location.Y); break;
-                                default: break;
-                            }
-
-                            PanelWoth.Controls.Add(newGossipStone);
-                        }
-                        wothPosition.Add(newLabel, 1);
-                        PanelWoth.Controls.Add(newLabel);
-                        //Move Combobox
-                        comboBox_placesWoth.Location = new Point(2, newLabel.Location.Y + newLabel.Height);
-                    }
-                    
-                }
-            }
-            comboBox_placesWoth.Text = string.Empty;
-        }
-
-        private void label_woth_MouseDown(object sender, MouseEventArgs e)
-        {
-            if(e.Button == MouseButtons.Left)
-            {
-                var label = (Label)sender;
-                var existingWoth = wothPosition.Where(x => x.Key.Text == label.Text).ToList();
-                switch(existingWoth[0].Value)
-                {
-                    case 1:
-                        existingWoth[0].Key.Font = new Font("Corbel", 10, FontStyle.Bold | FontStyle.Underline);
-                        wothPosition[existingWoth[0].Key]++; 
-                        break;
-                    case 2:
-                        existingWoth[0].Key.ForeColor = Color.MidnightBlue;
-                        wothPosition[existingWoth[0].Key]++; 
-                        break;
-                    case 3:
-                        existingWoth[0].Key.Font = new Font("Corbel", 10, FontStyle.Bold);
-                        existingWoth[0].Key.ForeColor = Color.White;
-                        wothPosition[existingWoth[0].Key] = 1; 
-                        break;
-                }
-            }
-
-            if(e.Button == MouseButtons.Right)
-            {
-                var lastLabel = wothPosition.Keys.Last();
-                comboBox_placesWoth.Location = new Point(2, lastLabel.Location.Y);
-
-                var label = (Label)sender;
-                wothPosition.Remove(label);
-
-                PanelWoth.Controls.Remove(label);
-                PanelWoth.Controls.RemoveByKey(label.Name + 0);
-                PanelWoth.Controls.RemoveByKey(label.Name + 1);
-                PanelWoth.Controls.RemoveByKey(label.Name + 2);
-                PanelWoth.Controls.RemoveByKey(label.Name + 3);
-
-                for (int i = 0; i < wothPosition.Count; i++)
-                {
-                    var labelName = wothPosition.Keys.ElementAt(i).Name;
-                    var wothLabel = (Label)PanelWoth.Controls.Find(labelName, false)[0];
-                    wothLabel.Location = new Point(2, (i * label.Height));
-
-                    var pictureBox1 = (PictureBox)PanelWoth.Controls.Find(labelName + 0, false)[0];
-                    pictureBox1.Location = new Point(wothLabel.Width+5, wothLabel.Location.Y);
-
-                    var pictureBox2 = (PictureBox)PanelWoth.Controls.Find(labelName + 1, false)[0];
-                    pictureBox2.Location = new Point(wothLabel.Width+5 + 32, wothLabel.Location.Y);
-
-                    var pictureBox3 = (PictureBox)PanelWoth.Controls.Find(labelName + 2, false)[0];
-                    pictureBox3.Location = new Point(wothLabel.Width+5 + 64, wothLabel.Location.Y);
-
-                    var pictureBox4 = (PictureBox)PanelWoth.Controls.Find(labelName + 3, false)[0];
-                    pictureBox4.Location = new Point(wothLabel.Width+5 + 96, wothLabel.Location.Y);
-                }
-                
-            }
-        }
-
-        private void label_barren_MouseClick(object sender, MouseEventArgs e)
-        {
-            if(e.Button == MouseButtons.Right)
-            {
-                var lastLabel = barrenPosition.Last();
-                comboBox_placesBarren.Location = new Point(2, lastLabel.Location.Y);
-
-                var label = (Label)sender;
-                barrenPosition.Remove(label);
-                label.Dispose();
-                PanelBarren.Controls.Remove(label);
-
-                for (int i = 0; i < barrenPosition.Count; i++)
-                {
-                    var labelName = barrenPosition[i].Name;
-                    var barrenLabel = (Label)PanelBarren.Controls.Find(labelName, false)[0];
-                    barrenLabel.Location = new Point(2, (i * label.Height));
-                }
-            }
-        }
-
-        private void button_barren_Click(object sender, EventArgs e)
-        {
-            if (barrenPosition.Count < 3)
-            {
-                if (comboBox_placesBarren.Text != string.Empty)
-                {
-                    var selectedPlace = comboBox_placesBarren.Text.ToUpper().Trim();
-                    Label newLabel = new Label
-                    {
-                        Name = Guid.NewGuid().ToString(),
-                        Text = selectedPlace,
-                        ForeColor = Color.White,
-                        BackColor = Color.IndianRed,
-                        Font = new Font("Corbel", 9, FontStyle.Bold),
-                        Width = 192,
-                        TextAlign = ContentAlignment.MiddleLeft
-                    };
-                    newLabel.Location = new Point(2, (barrenPosition.Count * newLabel.Height));
-                    newLabel.MouseClick += new MouseEventHandler(label_barren_MouseClick);
-                    barrenPosition.Add(newLabel);
-                    PanelBarren.Controls.Add(newLabel);
-                    //Move Combobox
-                    comboBox_placesBarren.Location = new Point(2, newLabel.Location.Y + newLabel.Height);
-                }
-            }
-            comboBox_placesBarren.Text = string.Empty;
-        }
 
         private void label_collectedSkulls_MouseDown(object sender, MouseEventArgs e)
         {

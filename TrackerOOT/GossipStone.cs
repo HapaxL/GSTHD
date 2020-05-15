@@ -6,18 +6,18 @@ namespace TrackerOOT
 {
     class GossipStone : PictureBox
     {
-        List<Image> listImage;
+        List<string> listImage;
         bool isMouseDown = false;
 
-        public GossipStone(string name, List<Image> images, int x, int y)
+        public GossipStone(List<string> images, Point location, int size)
         {
             listImage = images;
 
             this.BackColor = Color.Transparent;
-            this.Name = name;
-            this.Image = listImage[0];
-            this.Size = new Size(32, 32);
-            this.Location = new Point(x, y);
+            this.Name = listImage[0];
+            this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImage[0]);
+            this.Size = new Size(size, size);
+            this.Location = location;
             this.TabStop = false;
             this.AllowDrop = true;
             this.MouseUp += this.Click_MouseUp;
@@ -33,7 +33,9 @@ namespace TrackerOOT
 
         private void Click_DragDrop(object sender, DragEventArgs e)
         {
-            var image = (Image)e.Data.GetData(DataFormats.Bitmap);
+            var imageName = (string)e.Data.GetData(DataFormats.Text);
+            var newImageName = imageName.Substring(0, imageName.Length - 2) + this.Size.Width;
+            var image = (Image)Properties.Resources.ResourceManager.GetObject(newImageName);
             this.Image = image;
         }
 
@@ -41,11 +43,17 @@ namespace TrackerOOT
         {
             if (e.Button == MouseButtons.Left)
             {
-                var index = listImage.FindIndex(x => x == this.Image);
-                if (index == (listImage.Count - 1))
-                    this.Image = listImage[0];
+                var index = listImage.FindIndex(x => x == this.Name) + 1;
+                if (index <= 0 || index >= listImage.Count)
+                {
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImage[0]);
+                    this.Name = listImage[0];
+                }
                 else
-                    this.Image = listImage[index + 1];
+                {
+                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImage[index]);
+                    this.Name = listImage[index];
+                }
             }
         }
 
