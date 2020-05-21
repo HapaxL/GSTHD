@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TrackerOOT
@@ -11,18 +12,27 @@ namespace TrackerOOT
         bool IsMouseDown = false;
 
         public Label SelectedDungeon;
-        int SelectedDungeon_Y_Delta = 20;
+        Size MedallionSize;
 
-        public Medallion(List<string> images, int x, int y, List<string> dungeons, int size)
+        public Medallion(ObjectPointMedallion data)
         {
-            ListImageName = images;
-            ListDungeon = dungeons;
+            if(data.ImageCollection != null)
+                ListImageName = data.ImageCollection.ToList();
+            if(data.Label.TextCollection != null)
+                ListDungeon = data.Label.TextCollection.ToList();
+
+            MedallionSize = data.Size;
+
+            if(ListImageName.Count > 0)
+            {
+                this.Name = ListImageName[0];
+                this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
+                this.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.Size = MedallionSize;
+            }
 
             this.BackColor = Color.Transparent;
-            this.Name = ListImageName[0];
-            this.Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImageName[0]);
-            this.Size = new Size(size, size);
-            this.Location = new Point(x, y);
+            this.Location = new Point(data.X, data.Y);
             this.TabStop = false;
             this.AllowDrop = false;
             this.MouseUp += this.Click_MouseUp;
@@ -30,7 +40,7 @@ namespace TrackerOOT
 
             SelectedDungeon = new Label
             {
-                Font = new Font("Consolas", 8, FontStyle.Bold),
+                Font = new Font(new FontFamily(data.Label.FontName), data.Label.FontSize, data.Label.FontStyle),
                 Text = ListDungeon[0],
                 TextAlign = ContentAlignment.MiddleCenter,
                 BackColor = Color.Transparent,
@@ -41,7 +51,7 @@ namespace TrackerOOT
 
         public void SetSelectedDungeonLocation()
         {
-            SelectedDungeon.Location = new Point(this.Location.X + this.Width / 2 - SelectedDungeon.Width / 2, this.Location.Y + SelectedDungeon_Y_Delta);
+            SelectedDungeon.Location = new Point(this.Location.X + MedallionSize.Width / 2 - SelectedDungeon.Width / 2, (int)(this.Location.Y + MedallionSize.Height * 0.75));
         }
 
         private void Click_MouseUp(object sender, MouseEventArgs e)
@@ -51,12 +61,12 @@ namespace TrackerOOT
                 var index = ListImageName.FindIndex(x => x == this.Name) + 1;
                 if (index <= 0 || index >= ListImageName.Count)
                 {
-                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImageName[0]);
+                    this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
                     this.Name = ListImageName[0];
                 }
                 else
                 {
-                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(ListImageName[index]);
+                    this.Image = Image.FromFile(@"Resources/" + ListImageName[index]);
                     this.Name = ListImageName[index];
                 }
             }
@@ -78,6 +88,5 @@ namespace TrackerOOT
                 IsMouseDown = false;
             else IsMouseDown = true;
         }
-        
     }
 }

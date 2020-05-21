@@ -8,100 +8,144 @@ using System.Threading.Tasks;
 
 namespace TrackerOOT
 {
-    class Layout
-    {
-        //App
-        public Resolution AppSize { get; set; }
-        // Items
-        public ObjectPoint Slingshot { get; set; }
-        public ObjectPoint Bombs { get; set; }
-        public ObjectPoint Bombchus { get; set; }
-        public ObjectPoint Hookshot { get; set; }
-        public ObjectPoint Longshot { get; set; }
-        public ObjectPoint Bow { get; set; }
-        public ObjectPoint Arrows { get; set; }
-        public ObjectPoint Spells { get; set; }
-        public ObjectPoint Magic { get; set; }
-        public ObjectPoint Boots { get; set; }
-        public ObjectPoint BiggoronItem { get; set; }
-        public ObjectPoint Boomerang { get; set; }
-        public ObjectPoint Scale { get; set; }
-        public ObjectPoint Strength { get; set; }
-        public ObjectPoint Lens { get; set; }
-        public ObjectPoint Hammer { get; set; }
-        public ObjectPoint Tunics { get; set; }
-        public ObjectPoint Wallet { get; set; }
-        public ObjectPoint RutosLetter { get; set; }
-        public ObjectPoint MirrorShield { get; set; }
-        public ObjectPoint CollectedSkulls { get; set; }
-
-        // Songs
-        public ObjectPoint ZeldasLullaby { get; set; }
-        public ObjectPoint EponasSong { get; set; }
-        public ObjectPoint SariasSong { get; set; }
-        public ObjectPoint SunsSong { get; set; }
-        public ObjectPoint SongOfTime { get; set; }
-        public ObjectPoint SongOfStorms { get; set; }
-        public ObjectPoint Minuet { get; set; }
-        public ObjectPoint Bolero { get; set; }
-        public ObjectPoint Serenade { get; set; }
-        public ObjectPoint Nocturne { get; set; }
-        public ObjectPoint Requiem { get; set; }
-        public ObjectPoint Prelude { get; set; }
-
-        // Medallions
-        public ObjectPoint GreenMedallion { get; set; }
-        public ObjectPoint RedMedallion { get; set; }
-        public ObjectPoint BlueMedallion { get; set; }
-        public ObjectPoint PurpleMedallion { get; set; }
-        public ObjectPoint OrangeMedallion { get; set; }
-        public ObjectPoint YellowMedallion { get; set; }
-        public ObjectPoint KokiriStone { get; set; }
-        public ObjectPoint GoronStone { get; set; }
-        public ObjectPoint ZoraStone { get; set; }
-
-        // Go Mode
-        public ObjectPoint GoMode { get; set; }
-
-        // Hints
-        public ObjectPoint Skulltulas_30 { get; set; }
-        public ObjectPoint Skulltulas_30_GossipStone { get; set; }
-        public ObjectPoint Skulltulas_40 { get; set; }
-        public ObjectPoint Skulltulas_40_GossipStone { get; set; }
-        public ObjectPoint Skulltulas_50 { get; set; }
-        public ObjectPoint Skulltulas_50_GossipStone { get; set; }
-        public ObjectPoint SkullMask { get; set; }
-        public ObjectPoint SkullMask_GossipStone { get; set; }
-        public ObjectPoint Biggoron { get; set; }
-        public ObjectPoint Biggoron_GossipStone { get; set; }
-        public ObjectPoint Frogs { get; set; }
-        public ObjectPoint Frogs_GossipStone { get; set; }
-        public ObjectPoint OcarinaOfTimeHint { get; set; }
-        public ObjectPoint OcarinaOfTimeHint_GossipStone { get; set; }
-
-        //SometimesHints
-        public ObjectPoint SH_GossipStone1 { get; set; }
-        public ObjectPoint SH_GossipStone2 { get; set; }
-        public ObjectPoint SH_GossipStone3 { get; set; }
-        public ObjectPoint SH_GossipStone4 { get; set; }
-        public ObjectPoint SH_GossipStone5 { get; set; }
-
-        public ObjectPoint Chronometer { get; set; }
-        public ObjectPoint PanelWoth { get; set; }
-        public ObjectPoint PanelBarren { get; set; }
-
-    }
-
     class ObjectPoint
     {
+        public string Id { get; set; }
+        public string Name { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public int Size { get; set; }
+        public Size Size { get; set; }
+        public bool Visible { get; set; }
+        public string[] ImageCollection { get; set; }
+        public string[] TinyImageCollection { get; set; }
     }
 
-    class Resolution
+    class ObjectPointMedallion
+    {
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public Size Size { get; set; }
+        public bool Visible { get; set; }
+        public string[] ImageCollection { get; set; }
+        public MedallionLabel Label { get; set; }
+        
+        public class MedallionLabel
+        {
+            public string[] TextCollection { get; set; }
+            public int FontSize { get; set; }
+            public string FontName { get; set; }
+            public FontStyle FontStyle { get; set; }
+        }
+    }
+
+    public class ObjectPointLabel
+    {
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public bool Visible { get; set; }
+        public Color BackColor { get; set; }
+        public int FontSize { get; set; }
+        public string FontName { get; set; }
+        public FontStyle FontStyle { get; set; }
+        public Color FontColor { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+    }
+
+    public class ObjectPanelWotH
+    {
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public bool Visible { get; set; }
+        public Color BackColor { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int NbMaxRows { get; set; }
+        public bool IsScrollable { get; set; }
+
+        public string TextBoxName { get; set; }
+        public Color TextBoxBackColor { get; set; }
+        public string TextBoxFontName { get; set; }
+        public int TextBoxFontSize { get; set; }
+        public FontStyle TextBoxFontStyle { get; set; }
+        public int TextBoxWidth { get; set; }
+        public int TextBoxHeight { get; set; }
+        public string TextBoxText { get; set; }
+
+        public Color LabelColor { get; set; }
+        public Color LabelBackColor { get; set; }
+        public string LabelFontName { get; set; }
+        public int LabelFontSize { get; set; }
+        public FontStyle LabelFontStyle { get; set; }
+        public int LabelWidth { get; set; }
+        public int LabelHeight { get; set; }
+
+        public Size GossipStoneSize { get; set; }
+        public string[] GossipStoneImageCollection { get; set; }
+    }
+
+    public class ObjectPanelBarren
+    {
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public bool Visible { get; set; }
+        public Color BackColor { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int NbMaxRows { get; set; }
+        public bool IsScrollable { get; set; }
+
+        public string TextBoxName { get; set; }
+        public Color TextBoxBackColor { get; set; }
+        public string TextBoxFontName { get; set; }
+        public int TextBoxFontSize { get; set; }
+        public FontStyle TextBoxFontStyle { get; set; }
+        public int TextBoxWidth { get; set; }
+        public int TextBoxHeight { get; set; }
+        public string TextBoxText { get; set; }
+
+        public Color LabelColor { get; set; }
+        public Color LabelBackColor { get; set; }
+        public string LabelFontName { get; set; }
+        public int LabelFontSize { get; set; }
+        public FontStyle LabelFontStyle { get; set; }
+        public int LabelWidth { get; set; }
+        public int LabelHeight { get; set; }
+    }
+
+    public class ObjectPointGoMode
+    {
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public Size Size { get; set; }
+        public bool Visible { get; set; }
+        public string[] ImageCollection { get; set; }
+        public string BackgroundImage { get; set; }
+    }
+
+    public class ObjectPointCollectedItem
+    {
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public Size Size { get; set; }
+        public bool Visible { get; set; }
+        public string[] ImageCollection { get; set; }
+        public string LabelFontName { get; set; }
+        public int LabelFontSize { get; set; }
+        public FontStyle LabelFontStyle { get; set; }
+        public Color LabelColor { get; set; }
+    }
+
+    class AppSettings
     {
         public int Width { get; set; }
         public int Height { get; set; }
+        public Color BackgroundColor { get;set; }
     }
 }

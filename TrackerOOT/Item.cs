@@ -1,22 +1,32 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TrackerOOT
 {
     class Item : PictureBox
     {
-        List<string> listImageName;
+        List<string> listImageName = new List<string>();
         bool isMouseDown = false;
-        public Item(List<string> images, int x, int y, int size)
+
+        Size ItemSize;
+        public Item(ObjectPoint data)
         {
-            listImageName = images;
+            if(data.ImageCollection != null)
+                listImageName = data.ImageCollection.ToList();
+
+            ItemSize = data.Size;
 
             this.BackColor = Color.Transparent;
-            this.Name = listImageName[0];
-            this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
-            this.Size = new Size(size, size);
-            this.Location = new Point(x, y);
+            if (listImageName.Count > 0)
+            {
+                this.Name = listImageName[0];
+                this.Image = Image.FromFile(@"Resources/" + listImageName[0]);
+                this.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.Size = ItemSize;
+            }            
+            this.Location = new Point(data.X, data.Y);
             this.TabStop = false;
             this.AllowDrop = false;
             this.MouseUp += this.Click_MouseUp;
@@ -31,12 +41,12 @@ namespace TrackerOOT
                 var index = listImageName.FindIndex(x => x == this.Name) + 1;
                 if (index <= 0 || index >= listImageName.Count)
                 {
-                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[0]);
+                    this.Image = Image.FromFile(@"Resources/" + listImageName[0]);
                     this.Name = listImageName[0];
                 }
                 else
                 {
-                    this.Image = (Image)Properties.Resources.ResourceManager.GetObject(listImageName[index]);
+                    this.Image = Image.FromFile(@"Resources/" + listImageName[index]);
                     this.Name = listImageName[index];
                 }
             }

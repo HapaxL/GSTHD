@@ -12,48 +12,121 @@ namespace TrackerOOT
     {
         public List<WotH> ListWotH = new List<WotH>();
         public List<Barren> ListBarren = new List<Barren>();
-        int size_gossip;
 
         public TextBoxCustom textBoxCustom;
-        private List<string> ListImage_WothItemsOption;
-        public PanelWothBarren(Dictionary<string, string> PlacesWithTag, List<string> listImage_WothItemsOption, int size_gossip)
+        private string[] ListImage_WothItemsOption;
+        Size GossipStoneSize;
+        int NbMaxRows;
+        Label LabelSettings = new Label();
+
+        public PanelWothBarren(ObjectPanelWotH data)
         {
-            ListImage_WothItemsOption = listImage_WothItemsOption;
+            GossipStoneSize = data.GossipStoneSize;
+            this.BackColor = data.BackColor;
+            this.Location = new Point(data.X, data.Y);
+            this.Name = data.Name;
+            this.Size = new Size(data.Width, data.Height);
+            this.TabStop = false;
+            if(data.IsScrollable)
+                this.MouseWheel += Panel_MouseWheel;
+        }
+
+        public PanelWothBarren(ObjectPanelBarren data)
+        {
+            this.BackColor = data.BackColor;
+            this.Location = new Point(data.X, data.Y);
+            this.Name = data.Name;
+            this.Size = new Size(data.Width, data.Height);
+            this.TabStop = false;
+            if (data.IsScrollable)
+                this.MouseWheel += Panel_MouseWheel;
+        }
+
+        private void Panel_MouseWheel(object sender, MouseEventArgs e)
+        {
+            var panel = (Panel)sender;
+            if (e.Delta < 0)
+            {
+                foreach (var element in panel.Controls)
+                {
+                    if (element is Label)
+                        ((Label)element).Location = new Point(((Label)element).Location.X, ((Label)element).Location.Y - 15);
+                    if (element is GossipStone)
+                        ((GossipStone)element).Location = new Point(((GossipStone)element).Location.X, ((GossipStone)element).Location.Y - 15);
+                    if (element is TextBox)
+                        ((TextBox)element).Location = new Point(((TextBox)element).Location.X, ((TextBox)element).Location.Y - 15);
+                }
+            }
+            if (e.Delta > 0)
+            {
+                foreach (var element in panel.Controls)
+                {
+                    if (element is Label)
+                        ((Label)element).Location = new Point(((Label)element).Location.X, ((Label)element).Location.Y + 15);
+                    if (element is GossipStone)
+                        ((GossipStone)element).Location = new Point(((GossipStone)element).Location.X, ((GossipStone)element).Location.Y + 15);
+                    if (element is TextBox)
+                        ((TextBox)element).Location = new Point(((TextBox)element).Location.X, ((TextBox)element).Location.Y + 15);
+                }
+            }
+            ((PanelWothBarren)panel).SetSuggestionContainer();
+        }
+
+        public void PanelWoth(Dictionary<string, string> PlacesWithTag, ObjectPanelWotH data)
+        {
+            ListImage_WothItemsOption = data.GossipStoneImageCollection;
+            NbMaxRows = data.NbMaxRows;
+
+            LabelSettings = new Label
+            {
+                ForeColor = data.LabelColor,
+                BackColor = data.LabelBackColor,
+                Font = new Font(data.LabelFontName, data.LabelFontSize, data.LabelFontStyle),
+                Width = data.LabelWidth,
+                Height = data.LabelHeight
+            };
 
             textBoxCustom = new TextBoxCustom
                 (
                     PlacesWithTag,
                     new Point(0, 0),
-                    Color.FromArgb(74, 138, 182),
-                    new Font("Calibri", 11, FontStyle.Bold, GraphicsUnit.Point, 0),
-                    "TBC_WotH",
-                    new Size(222, 24),
-                    ":: Way of the Hero ::"
+                    data.TextBoxBackColor,
+                    new Font(data.TextBoxFontName, data.TextBoxFontSize, data.TextBoxFontStyle),
+                    data.TextBoxName,
+                    new Size(data.TextBoxWidth, data.TextBoxHeight),
+                    data.TextBoxText
                 );
             textBoxCustom.TextBoxField.KeyDown += textBoxCustom_KeyDown_WotH;
             textBoxCustom.TextBoxField.MouseClick += textBoxCustom_MouseClick;
             this.Controls.Add(textBoxCustom.TextBoxField);
-
         }
 
-        public PanelWothBarren(Dictionary<string, string> PlacesWithTag)
+        public void PanelBarren(Dictionary<string, string> PlacesWithTag, ObjectPanelBarren data)
         {
-            ListImage_WothItemsOption = new List<string>();
+            NbMaxRows = data.NbMaxRows;
+
+            LabelSettings = new Label
+            {
+                ForeColor = data.LabelColor,
+                BackColor = data.LabelBackColor,
+                Font = new Font(data.LabelFontName, data.LabelFontSize, data.LabelFontStyle),
+                Width = data.LabelWidth,
+                Height = data.LabelHeight
+            };
 
             textBoxCustom = new TextBoxCustom
                 (
                     PlacesWithTag,
-                    new Point(0, 2),
-                    Color.FromArgb(198, 68, 92),
-                    new Font("Calibri", 11, FontStyle.Bold),
-                    "barren",
-                    new Size(222, 23),
-                    ":: Barren places ::"
+                    new Point(0, 0),
+                    data.TextBoxBackColor,
+                    new Font(data.TextBoxFontName, data.TextBoxFontSize, data.TextBoxFontStyle),
+                    data.TextBoxName,
+                    new Size(data.TextBoxWidth, data.TextBoxHeight),
+                    data.TextBoxText
                 );
             textBoxCustom.TextBoxField.KeyDown += textBoxCustom_KeyDown_Barren;
             textBoxCustom.TextBoxField.MouseClick += textBoxCustom_MouseClick;
             this.Controls.Add(textBoxCustom.TextBoxField);
-
         }
 
         public void SetSuggestionContainer()
@@ -61,7 +134,6 @@ namespace TrackerOOT
             textBoxCustom.SetSuggestionsContainerLocation(this.Location);
             textBoxCustom.SuggestionContainer.BringToFront();
         }
-
 
         private void textBoxCustom_MouseClick(object sender, MouseEventArgs e)
         {
@@ -75,12 +147,21 @@ namespace TrackerOOT
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 var textbox = (TextBox)sender;
-                if (ListBarren.Count < 3)
+                if (ListBarren.Count < NbMaxRows)
                 {
                     var selectedPlace = textbox.Text.ToUpper().Trim();
-                    var newBarren = new Barren(selectedPlace, ListBarren.Count);
-                    if(this.AddPlaces(newBarren))
+                    var find = ListBarren.Where(x => x.Name == selectedPlace);
+                    if (find.Count() <= 0)
                     {
+                        Barren newBarren = null;
+                        if(ListBarren.Count <= 0)
+                            newBarren = new Barren(selectedPlace, new Point(2, -LabelSettings.Height), LabelSettings);
+                        else
+                        {
+                            var lastLocation = ListBarren.Last().LabelPlace.Location;
+                            newBarren = new Barren(selectedPlace, lastLocation, LabelSettings);
+                        }
+                        ListBarren.Add(newBarren);
                         this.Controls.Add(newBarren.LabelPlace);
                         newBarren.LabelPlace.MouseClick += LabelPlace_MouseClick_Barren;
                         textBoxCustom.newLocation(new Point(2, newBarren.LabelPlace.Location.Y + newBarren.LabelPlace.Height), this.Location);
@@ -98,17 +179,27 @@ namespace TrackerOOT
                 e.SuppressKeyPress = true;
 
                 var textbox = (TextBox)sender;
-                if (ListWotH.Count < 5)
+                if (ListWotH.Count < NbMaxRows)
                 {
                     if (textbox.Text != string.Empty)
                     {
                         var selectedPlace = textbox.Text.ToUpper().Trim();
-                        var newWotH = new WotH(selectedPlace, ListImage_WothItemsOption, ListWotH.Count, size_gossip);
-
-                        if (this.AddPlaces(newWotH))
+                        var find = ListWotH.Where(x => x.Name == selectedPlace);
+                        if(find.Count() <= 0)
                         {
+                            WotH newWotH = null;
+                            if (ListWotH.Count <= 0)
+                                newWotH = new WotH(selectedPlace, ListImage_WothItemsOption, new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
+                            else
+                            {
+                                var lastLocation = ListWotH.Last().LabelPlace.Location;
+                                newWotH = new WotH(selectedPlace, ListImage_WothItemsOption, lastLocation, LabelSettings, GossipStoneSize);
+                               
+                            }
+                            ListWotH.Add(newWotH);
                             this.Controls.Add(newWotH.LabelPlace);
                             newWotH.LabelPlace.MouseClick += LabelPlace_MouseClick_WotH;
+
                             foreach (var gossipStone in newWotH.listGossipStone)
                             {
                                 this.Controls.Add(gossipStone);
@@ -140,28 +231,6 @@ namespace TrackerOOT
                 var woth = this.ListWotH.Where(x => x.LabelPlace.Name == label.Name).ToList()[0];
                 this.RemoveWotH(woth);
             }
-        }
-
-        public bool AddPlaces(WotH woth)
-        {
-            var isAdded = false;
-            if (!ListWotH.Contains(woth))
-            {
-                ListWotH.Add(woth);
-                isAdded = true;
-            }
-            return isAdded;
-        }
-
-        public bool AddPlaces(Barren barren)
-        {
-            var isAdded = false;
-            if (!ListBarren.Contains(barren))
-            {
-                ListBarren.Add(barren);
-                isAdded = true;
-            }
-            return isAdded;
         }
 
         public void RemoveWotH(WotH woth)

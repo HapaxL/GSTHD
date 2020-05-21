@@ -32,13 +32,7 @@ namespace TrackerOOT
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -53,11 +47,13 @@ namespace TrackerOOT
             this.Name = "Form1";
             this.Text = "Gossip Stones Tracker v1.7 (Standard Edition)";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(Form1_KeyDown);
             this.ResumeLayout(false);
 
         }
 
+        
+
         #endregion
-        private System.Windows.Forms.Timer timer1;
     }
 }

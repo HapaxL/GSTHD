@@ -11,20 +11,24 @@ namespace TrackerOOT
     class Barren
     {
         public Label LabelPlace;
+        public string Name;
 
-        public Barren(string selectedPlace, int nbBarren)
+        public Barren(string selectedPlace, Point lastLabelLocation, Label labelSettings)
         {
+            this.Name = selectedPlace;
+
             LabelPlace = new Label
             {
                 Name = Guid.NewGuid().ToString(),
                 Text = selectedPlace,
-                ForeColor = Color.White,
-                BackColor = Color.IndianRed,
-                Font = new Font("Calibri", 11, FontStyle.Bold),
-                Width = 222,
+                ForeColor = labelSettings.ForeColor,
+                BackColor = labelSettings.BackColor,
+                Font = labelSettings.Font,
+                Width = labelSettings.Width,
+                Height = labelSettings.Height,
                 TextAlign = ContentAlignment.MiddleLeft
             };
-            LabelPlace.Location = new Point(2, (nbBarren * LabelPlace.Height));
+            LabelPlace.Location = new Point(2, lastLabelLocation.Y + LabelPlace.Height);
         }
     }
 }

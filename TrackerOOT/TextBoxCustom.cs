@@ -14,6 +14,7 @@ namespace TrackerOOT
         public TextBox TextBoxField;
         public ListBox SuggestionContainer;
         Dictionary<string, string> ListSuggestion;
+        bool SuggestionContainerIsFocus = false;
 
         public TextBoxCustom(Dictionary<string, string> listSuggestion, Point location, Color color, Font font, string name, Size size, string text)
         {
@@ -53,12 +54,19 @@ namespace TrackerOOT
 
         private void TextBoxField_LostFocus(object sender, EventArgs e)
         {
-            SuggestionContainer.Hide();
+            //Weird but works ¯\_(ツ)_/¯
+            if (SuggestionContainerIsFocus) SuggestionContainer.Hide();
         }
 
         private void TextBoxField_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Tab)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+
+            if(e.Control && e.KeyCode == Keys.R)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -87,6 +95,7 @@ namespace TrackerOOT
                 TextBoxField.Text = SuggestionContainer.SelectedItem.ToString();
                 TextBoxField.Focus();
                 SuggestionContainer.Hide();
+                SuggestionContainerIsFocus = false;
             }
         }
 
@@ -98,11 +107,12 @@ namespace TrackerOOT
                 {
                     SuggestionContainer.Focus();
                     SuggestionContainer.SelectedIndex = 0;
+                    SuggestionContainerIsFocus = true;
                 }
             }
             else if(e.KeyCode == Keys.Tab)
             {
-                
+                //Do Nothing
             }
             else 
             {

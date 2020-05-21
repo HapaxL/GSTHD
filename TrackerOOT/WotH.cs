@@ -12,29 +12,33 @@ namespace TrackerOOT
     {
         public Label LabelPlace;
         public List<GossipStone> listGossipStone = new List<GossipStone>();
+        public string Name;
         int LabelPlaceNbClick = 0;
 
-        public WotH(string selectedPlace, List<string> listImage, int nbWoth, int size_gossip)
+        public WotH(string selectedPlace, string[] listImage, Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
         {
-            LabelPlace = new Label
+            this.Name = selectedPlace;
+
+            this.LabelPlace = new Label
             {
                 Name = Guid.NewGuid().ToString(),
                 Text = selectedPlace,
-                ForeColor = Color.White,
-                BackColor = Color.CadetBlue,
-                Font = new Font("Calibri", 11, FontStyle.Bold),
-                Width = 222,
-                Height = 24,
-                TextAlign = ContentAlignment.MiddleLeft
+                ForeColor = labelSettings.ForeColor,
+                BackColor = labelSettings.BackColor,
+                Font = labelSettings.Font,
+                Width = labelSettings.Width,
+                Height = labelSettings.Height,
+                TextAlign = ContentAlignment.MiddleLeft,
             };
-            LabelPlace.Location = new Point(2, (nbWoth * LabelPlace.Height));
-            LabelPlace.MouseDown += new MouseEventHandler(label_woth_MouseDown);
+            
+            this.LabelPlace.Location = new Point(2, lastLabelLocation.Y + LabelPlace.Height);
+            this.LabelPlace.MouseDown += new MouseEventHandler(label_woth_MouseDown);
 
-            if (listImage.Count > 0)
+            if (listImage.Length > 0)
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    GossipStone newGossipStone = new GossipStone(listImage, new Point(0, 0), 24);
+                    GossipStone newGossipStone = new GossipStone(this.Name + "_GossipStone" + i, 0, 0, listImage, gossipStoneSize);
                     newGossipStone.Location = 
                         new Point(LabelPlace.Width + 5 + ((newGossipStone.Width+2) * i ), LabelPlace.Location.Y);
                     listGossipStone.Add(newGossipStone);

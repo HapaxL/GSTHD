@@ -7,7 +7,7 @@
     <ProjectGuid>{20F88CAF-011B-40C2-85AC-D21255C0876B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>TrackerOOT</RootNamespace>
-    <AssemblyName>OotGossipStonesTracker_v1.8_SE</AssemblyName>
+    <AssemblyName>OotGossipStonesTracker_v1.8.1_SE</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,6 +50,9 @@
   <PropertyGroup>
     <ApplicationIcon>Gossip_Stone_64x64.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -69,6 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Barren.cs" />
+    <Compile Include="Chronometer.cs" />
+    <Compile Include="CollectedItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1_ListImage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,13 +85,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GoMode.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GossipStone.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GuaranteedHint.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Item.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ItemDouble.cs">
+    <Compile Include="DoubleItem.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Layout.cs" />
@@ -101,7 +114,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SometimesHint.cs" />
+    <Compile Include="SometimesHint.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Song.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -140,275 +155,16 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gossip_Stone_32x32.ico" />
     <Content Include="Gossip_Stone_64x64.ico" />
-    <None Include="Resources\bomb_chu_bw_24.png" />
-    <None Include="Resources\bomb_chu_24.png" />
-    <None Include="Resources\zora_tunic_24.png" />
-    <None Include="Resources\wallet3_24.png" />
-    <None Include="Resources\wallet2_24.png" />
-    <None Include="Resources\wallet_24.png" />
-    <None Include="Resources\strength3_24.png" />
-    <None Include="Resources\strength2_24.png" />
-    <None Include="Resources\strength_bw_24.png" />
-    <None Include="Resources\strength_24.png" />
-    <None Include="Resources\slingshot_bw_24.png" />
-    <None Include="Resources\slingshot_24.png" />
-    <None Include="Resources\scale_bw_24.png" />
-    <None Include="Resources\scale_24.png" />
-    <None Include="Resources\prescription_bw_24.png" />
-    <None Include="Resources\prescription_24.png" />
-    <None Include="Resources\mirror_shield_bw_24.png" />
-    <None Include="Resources\mirror_shield_24.png" />
-    <None Include="Resources\magic_bw_24.png" />
-    <None Include="Resources\magic_24.png" />
-    <None Include="Resources\longshot_24.png" />
-    <None Include="Resources\light_arrow_24.png" />
-    <None Include="Resources\lens_bw_24.png" />
-    <None Include="Resources\lens_24.png" />
-    <None Include="Resources\kz_frog_24.png" />
-    <None Include="Resources\iron_hover_boots_bw_24.png" />
-    <None Include="Resources\iron_hover_boots_24.png" />
-    <None Include="Resources\iron_boots_24.png" />
-    <None Include="Resources\hover_boots_24.png" />
-    <None Include="Resources\hookshot_bw_24.png" />
-    <None Include="Resources\hookshot_24.png" />
-    <None Include="Resources\hammer_bw_24.png" />
-    <None Include="Resources\hammer_24.png" />
-    <None Include="Resources\half_zora_tunic_24.png" />
-    <None Include="Resources\half_light_arrow_24.png" />
-    <None Include="Resources\half_iron_boots_24.png" />
-    <None Include="Resources\half_hover_boots_24.png" />
-    <None Include="Resources\half_goron_tunic_24.png" />
-    <None Include="Resources\half_fire_arrow_24.png" />
-    <None Include="Resources\half_farores_wind_24.png" />
-    <None Include="Resources\half_dins_fire_24.png" />
-    <None Include="Resources\goron_zora_tunic_bw_24.png" />
-    <None Include="Resources\goron_zora_tunic_24.png" />
-    <None Include="Resources\goron_tunic_24.png" />
-    <None Include="Resources\golden_scale_24.png" />
-    <None Include="Resources\fire_light_arrow_bw_24.png" />
-    <None Include="Resources\fire_light_arrow_24.png" />
-    <None Include="Resources\fire_arrow_24.png" />
-    <None Include="Resources\farores_wind_24.png" />
-    <None Include="Resources\eye_drops_24.png" />
-    <None Include="Resources\double_magic_24.png" />
-    <None Include="Resources\dins_fire_24.png" />
-    <None Include="Resources\dins_farores_bw_24.png" />
-    <None Include="Resources\dins_farores_24.png" />
-    <None Include="Resources\collected_skulltulas_24.png" />
-    <None Include="Resources\claim_check_24.png" />
-    <None Include="Resources\bow_bw_24.png" />
-    <None Include="Resources\bow_24.png" />
-    <None Include="Resources\bottle_rutos_letter_bw_24.png" />
-    <None Include="Resources\bottle_rutos_letter_24.png" />
-    <None Include="Resources\boomerang_bw_24.png" />
-    <None Include="Resources\boomerang_24.png" />
-    <None Include="Resources\bombs_bw_24.png" />
-    <None Include="Resources\bombs_24.png" />
-    <None Include="Resources\gossip_stone_bw_32.png" />
-    <None Include="Resources\skull_mask_32.png" />
-    <None Include="Resources\ocarina_of_time_32.png" />
-    <None Include="Resources\key_32.png" />
-    <None Include="Resources\gossip_stone_32.png" />
-    <None Include="Resources\frogs_32.png" />
-    <None Include="Resources\bk_32.png" />
-    <None Include="Resources\biggoron_32.png" />
-    <None Include="Resources\biggoron.png" />
-    <None Include="Resources\50_gold_skulltula_32.png" />
-    <None Include="Resources\40_gold_skulltula_32.png" />
-    <None Include="Resources\30_gold_skulltula_32.png" />
-    <None Include="Resources\sold_out_32.png" />
-    <None Include="Resources\zora_stone_32.png" />
-    <None Include="Resources\yellow_medaillon_bw_32.png" />
-    <None Include="Resources\yellow_medaillon_32.png" />
-    <None Include="Resources\red_medaillon_bw_32.png" />
-    <None Include="Resources\red_medaillon_32.png" />
-    <None Include="Resources\purple_medaillon_bw_32.png" />
-    <None Include="Resources\purple_medaillon_32.png" />
-    <None Include="Resources\orange_medaillon_bw_32.png" />
-    <None Include="Resources\orange_medaillon_32.png" />
-    <None Include="Resources\kokiri_stone_bw_32.png" />
-    <None Include="Resources\kokiri_stone_32.png" />
-    <None Include="Resources\green_medaillon_bw_32.png" />
-    <None Include="Resources\green_medaillon_32.png" />
-    <None Include="Resources\goron_stone_bw_32.png" />
-    <None Include="Resources\goron_stone_32.png" />
-    <None Include="Resources\blue_medaillon_bw_32.png" />
-    <None Include="Resources\blue_medaillon_32.png" />
-    <None Include="Resources\zora_stone_bw_32.png" />
-    <None Include="Resources\bottle_rutos_letter_32.png" />
-    <None Include="Resources\bottle_rutos_letter_bw_32.png" />
-    <None Include="Resources\iron_hover_boots_bw_32.png" />
-    <None Include="Resources\eye_drops_32.png" />
-    <None Include="Resources\claim_check_32.png" />
-    <None Include="Resources\prescription_bw_32.png" />
-    <None Include="Resources\prescription_32.png" />
-    <None Include="Resources\kz_frog_32.png" />
-    <None Include="Resources\collected_skulltulas_32.png" />
-    <None Include="Resources\bow_bw_32.png" />
-    <None Include="Resources\bow_32.png" />
-    <None Include="Resources\boots_32.png" />
-    <None Include="Resources\boomerang_bw_32.png" />
-    <None Include="Resources\boomerang_32.png" />
-    <None Include="Resources\bombs_bw_32.png" />
-    <None Include="Resources\bombs_32.png" />
-    <None Include="Resources\bomb_chu_bw_32.png" />
-    <None Include="Resources\bomb_chu_32.png" />
-    <None Include="Resources\zora_tunic_32.png" />
-    <None Include="Resources\wallet3_32.png" />
-    <None Include="Resources\wallet2_32.png" />
-    <None Include="Resources\wallet_32.png" />
-    <None Include="Resources\strength3_32.png" />
-    <None Include="Resources\strength2_32.png" />
-    <None Include="Resources\strength_bw_32.png" />
-    <None Include="Resources\strength_32.png" />
-    <None Include="Resources\slingshot_bw_32.png" />
-    <None Include="Resources\slingshot_32.png" />
-    <None Include="Resources\scale_bw_32.png" />
-    <None Include="Resources\scale_32.png" />
-    <None Include="Resources\mirror_shield_bw_32.png" />
-    <None Include="Resources\mirror_shield_32.png" />
-    <None Include="Resources\magic_bw_32.png" />
-    <None Include="Resources\magic_32.png" />
-    <None Include="Resources\longshot_32.png" />
-    <None Include="Resources\light_arrow_bw_32.png" />
-    <None Include="Resources\light_arrow_32.png" />
-    <None Include="Resources\lens_bw_32.png" />
-    <None Include="Resources\lens_32.png" />
-    <None Include="Resources\iron_hover_boots_32.png" />
-    <None Include="Resources\iron_boots_32.png" />
-    <None Include="Resources\hover_boots_bw_32.png" />
-    <None Include="Resources\hover_boots_32.png" />
-    <None Include="Resources\hookshot_vanille_32.png" />
-    <None Include="Resources\hookshot_bw_32.png" />
-    <None Include="Resources\hookshot_32.png" />
-    <None Include="Resources\hammer_bw_32.png" />
-    <None Include="Resources\hammer_32.png" />
-    <None Include="Resources\half_zora_tunic_32.png" />
-    <None Include="Resources\half_light_arrow_32.png" />
-    <None Include="Resources\half_iron_boots_32.png" />
-    <None Include="Resources\half_hover_boots_32.png" />
-    <None Include="Resources\half_goron_tunic_32.png" />
-    <None Include="Resources\half_fire_arrow_32.png" />
-    <None Include="Resources\half_farores_wind_32.png" />
-    <None Include="Resources\half_dins_fire_32.png" />
-    <None Include="Resources\goron_zora_tunic_bw_32.png" />
-    <None Include="Resources\goron_zora_tunic_32.png" />
-    <None Include="Resources\goron_tunic_bw_32.png" />
-    <None Include="Resources\goron_tunic_32.png" />
-    <None Include="Resources\golden_scale_32.png" />
-    <None Include="Resources\fire_light_arrow_bw_32.png" />
-    <None Include="Resources\fire_light_arrow_32.png" />
-    <None Include="Resources\fire_arrow_bw_32.png" />
-    <None Include="Resources\fire_arrow_32.png" />
-    <None Include="Resources\double_magic_32.png" />
-    <None Include="Resources\dins_fire_bw_32.png" />
-    <None Include="Resources\dins_fire_32.png" />
-    <None Include="Resources\dins_farores_bw_32.png" />
-    <None Include="Resources\dins_farores_32.png" />
-    <None Include="Resources\go_mode_background.png" />
-    <None Include="Resources\go_mode_32.png" />
-    <None Include="Resources\go_mode_bw_32.png" />
-    <None Include="Resources\epona_16.png" />
-    <None Include="Resources\check_song.png" />
-    <None Include="Resources\bolero_bw_32.png" />
-    <None Include="Resources\bolero_32.png" />
-    <None Include="Resources\bolero_16.png" />
-    <None Include="Resources\zeldas_lullaby_bw_32.png" />
-    <None Include="Resources\zeldas_lullaby_32.png" />
-    <None Include="Resources\zeldas_lullaby_16.png" />
-    <None Include="Resources\suns_song_bw_32.png" />
-    <None Include="Resources\suns_song_32.png" />
-    <None Include="Resources\suns_song_16.png" />
-    <None Include="Resources\song_of_time_bw_32.png" />
-    <None Include="Resources\song_of_time_32.png" />
-    <None Include="Resources\song_of_time_16.png" />
-    <None Include="Resources\song_of_storms_bw_32.png" />
-    <None Include="Resources\song_of_storms_32.png" />
-    <None Include="Resources\song_of_storms_16.png" />
-    <None Include="Resources\serenade_bw_32.png" />
-    <None Include="Resources\serenade_32.png" />
-    <None Include="Resources\serenade_16.png" />
-    <None Include="Resources\saria_bw_32.png" />
-    <None Include="Resources\saria_32.png" />
-    <None Include="Resources\saria_16.png" />
-    <None Include="Resources\requiem_bw_32.png" />
-    <None Include="Resources\requiem_32.png" />
-    <None Include="Resources\requiem_16.png" />
-    <None Include="Resources\prelude_bw_32.png" />
-    <None Include="Resources\prelude_32.png" />
-    <None Include="Resources\prelude_16.png" />
-    <None Include="Resources\nocturne_bw_32.png" />
-    <None Include="Resources\nocturne_32.png" />
-    <None Include="Resources\nocturne_16.png" />
-    <None Include="Resources\no_song.png" />
-    <None Include="Resources\minuet_bw_32.png" />
-    <None Include="Resources\minuet_32.png" />
-    <None Include="Resources\minuet_16.png" />
-    <None Include="Resources\epona_bw_32.png" />
-    <None Include="Resources\epona_32.png" />
-    <None Include="Resources\nocturne_24.png" />
-    <None Include="Resources\minuet_bw_24.png" />
-    <None Include="Resources\minuet_24.png" />
-    <None Include="Resources\epona_bw_24.png" />
-    <None Include="Resources\epona_24.png" />
-    <None Include="Resources\bolero_bw_24.png" />
-    <None Include="Resources\bolero_24.png" />
-    <None Include="Resources\zeldas_lullaby_bw_24.png" />
-    <None Include="Resources\zeldas_lullaby_24.png" />
-    <None Include="Resources\suns_song_bw_24.png" />
-    <None Include="Resources\suns_song_24.png" />
-    <None Include="Resources\song_of_time_bw_24.png" />
-    <None Include="Resources\song_of_time_24.png" />
-    <None Include="Resources\song_of_storms_bw_24.png" />
-    <None Include="Resources\song_of_storms_24.png" />
-    <None Include="Resources\serenade_bw_24.png" />
-    <None Include="Resources\serenade_24.png" />
-    <None Include="Resources\saria_bw_24.png" />
-    <None Include="Resources\saria_24.png" />
-    <None Include="Resources\requiem_bw_24.png" />
-    <None Include="Resources\requiem_24.png" />
-    <None Include="Resources\prelude_bw_24.png" />
-    <None Include="Resources\prelude_24.png" />
-    <None Include="Resources\nocturne_bw_24.png" />
-    <None Include="Resources\kokiri_stone_24.png" />
-    <None Include="Resources\green_medaillon_bw_24.png" />
-    <None Include="Resources\green_medaillon_24.png" />
-    <None Include="Resources\goron_stone_bw_24.png" />
-    <None Include="Resources\goron_stone_24.png" />
-    <None Include="Resources\blue_medaillon_bw_24.png" />
-    <None Include="Resources\blue_medaillon_24.png" />
-    <None Include="Resources\zora_stone_bw_24.png" />
-    <None Include="Resources\zora_stone_24.png" />
-    <None Include="Resources\yellow_medaillon_bw_24.png" />
-    <None Include="Resources\yellow_medaillon_24.png" />
-    <None Include="Resources\red_medaillon_bw_24.png" />
-    <None Include="Resources\red_medaillon_24.png" />
-    <None Include="Resources\purple_medaillon_bw_24.png" />
-    <None Include="Resources\purple_medaillon_24.png" />
-    <None Include="Resources\orange_medaillon_bw_24.png" />
-    <None Include="Resources\orange_medaillon_24.png" />
-    <None Include="Resources\kokiri_stone_bw_24.png" />
-    <None Include="Resources\40_gold_skulltula_24.png" />
-    <None Include="Resources\30_gold_skulltula_24.png" />
-    <None Include="Resources\sold_out_24.png" />
-    <None Include="Resources\skull_mask_24.png" />
-    <None Include="Resources\ocarina_of_time_24.png" />
-    <None Include="Resources\key_24.png" />
-    <None Include="Resources\gossip_stone_bw_24.png" />
-    <None Include="Resources\frogs_24.png" />
-    <None Include="Resources\bottle_empty_24.png" />
-    <None Include="Resources\bottle_big_poe_24.png" />
-    <None Include="Resources\bk_24.png" />
-    <None Include="Resources\biggoron_24.png" />
-    <None Include="Resources\50_gold_skulltula_24.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
