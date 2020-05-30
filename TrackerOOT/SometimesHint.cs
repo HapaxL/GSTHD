@@ -32,7 +32,6 @@ namespace TrackerOOT
                 if(array.Length > 0)
                     ((GossipStone)array[0]).Click_MouseUp(sender, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
             }
-                
         }
     }
 }

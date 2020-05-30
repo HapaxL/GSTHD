@@ -9,6 +9,9 @@ namespace TrackerOOT
     {
         public List<string> ListImageName = new List<string>();
         public List<string> ListTinyImageName = new List<string>();
+        string ActiveImageName;
+        string ActiveTinyImageName;
+
         bool isMouseDown = false;
         public PictureBox TinyPictureBox;
         bool SongMode;
@@ -16,16 +19,22 @@ namespace TrackerOOT
 
         Size SongSize;
 
-        public Song(ObjectPoint data, bool songMode, bool autoCheck)
+        public Song(ObjectPointSong data, bool songMode, bool autoCheck)
         {
             SongMode = songMode;
             AutoCheck = autoCheck;
 
             if (data.ImageCollection != null)
+            {
                 ListImageName = data.ImageCollection.ToList();
-            
-            if(data.TinyImageCollection != null)
+                ActiveImageName = data.ActiveSongImage;
+            }
+
+            if (data.TinyImageCollection != null)
+            {
                 ListTinyImageName = data.TinyImageCollection.ToList();
+                ActiveTinyImageName = data.ActiveTinySongImage;
+            }
 
             SongSize = data.Size;
 
@@ -38,6 +47,8 @@ namespace TrackerOOT
             TinyPictureBox.MouseUp += TinyPictureBox_MouseUp;
             TinyPictureBox.DragEnter += Click_DragEnter;
             TinyPictureBox.DragDrop += Click_DragDrop;
+            TinyPictureBox.MouseDown += Click_MouseDown;
+            TinyPictureBox.MouseMove += Click_MouseMove;
             this.Controls.Add(TinyPictureBox);
             TinyPictureBox.BringToFront();
 
@@ -65,12 +76,16 @@ namespace TrackerOOT
                 this.Name = ListImageName[0];
                 this.Image = Image.FromFile(@"Resources/" + this.Name);
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
-                this.Size = new Size(SongSize.Width, SongSize.Height + (int)(0.75 * TinyPictureBox.Height));
-                this.Tag = ListImageName[1];
+                this.Size = new Size(SongSize.Width, SongSize.Height + (int)(TinyPictureBox.Height*5/6));
                 TinyPictureBox.Location = new Point(
                     (SongSize.Width - TinyPictureBox.Width) / 2,
-                    SongSize.Height - TinyPictureBox.Height / 4
+                    SongSize.Height - TinyPictureBox.Height / 6
                 );
+
+                if (data.DragAndDropImageName != string.Empty)
+                    this.Tag = data.DragAndDropImageName;
+                else
+                    this.Tag = ListImageName[1];
             }
         }
 
@@ -95,8 +110,7 @@ namespace TrackerOOT
         private void Click_DragDrop(object sender, DragEventArgs e)
         {
             var imageName = ((string)e.Data.GetData(DataFormats.Text));
-            var tinyImageName = imageName.Split('_')[0] + "_16x16.png";
-            var tinyImage = Image.FromFile(@"Resources/" + tinyImageName);
+            var tinyImage = Image.FromFile(@"Resources/" + imageName);
 
             TinyPictureBox.Image = tinyImage;
             TinyPictureBox.Name = imageName;

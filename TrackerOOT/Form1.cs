@@ -41,7 +41,7 @@ namespace TrackerOOT
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Text = "Gossip Stones Tracker v1.8.1 (Standard Edition)";
+            this.Text = "Gossip Stones Tracker v1.8.2 (Standard Edition)";
             this.AcceptButton = null;
             this.MaximizeBox = false;
 
@@ -85,7 +85,7 @@ namespace TrackerOOT
             if(ActiveLayoutName != string.Empty)
             {
                 List<ObjectPoint> ListItems = new List<ObjectPoint>();
-                List<ObjectPoint> ListSongs = new List<ObjectPoint>();
+                List<ObjectPointSong> ListSongs = new List<ObjectPointSong>();
                 List<ObjectPoint> ListDoubleItems = new List<ObjectPoint>();
                 List<ObjectPointCollectedItem> ListCollectedItems = new List<ObjectPointCollectedItem>();
                 List<ObjectPointMedallion> ListMedallions = new List<ObjectPointMedallion>();
@@ -119,7 +119,7 @@ namespace TrackerOOT
                     {
                         foreach (var element in category.Value)
                         {
-                            ListSongs.Add(JsonConvert.DeserializeObject<ObjectPoint>(element.ToString()));
+                            ListSongs.Add(JsonConvert.DeserializeObject<ObjectPointSong>(element.ToString()));
                         }
                     }
 

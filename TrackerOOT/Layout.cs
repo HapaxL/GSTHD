@@ -20,6 +20,21 @@ namespace TrackerOOT
         public string[] TinyImageCollection { get; set; }
     }
 
+    class ObjectPointSong
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public Size Size { get; set; }
+        public bool Visible { get; set; }
+        public string DragAndDropImageName { get; set; }
+        public string[] ImageCollection { get; set; }
+        public string[] TinyImageCollection { get; set; }
+        public string ActiveSongImage { get; set; }
+        public string ActiveTinySongImage { get; set; }
+    }
+
     class ObjectPointMedallion
     {
         public string Name { get; set; }
