@@ -90,7 +90,7 @@ namespace TrackerOOT
             if (e.KeyCode == Keys.Enter)
             {
                 var textbox = (TextBox)sender;
-                if(SuggestionContainer.Items.Count > 0)
+                if(!SuggestionContainer.Items.Contains(textbox.Text) && SuggestionContainer.Items.Count > 0)
                     textbox.Text = SuggestionContainer.Items[0].ToString();
             }
         }
