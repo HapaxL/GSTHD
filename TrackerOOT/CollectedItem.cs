@@ -11,7 +11,12 @@ namespace TrackerOOT
     class CollectedItem : PictureBox
     {
         List<string> ListImageName = new List<string>();
+        Label ItemCount;
         Size CollectedItemSize;
+        Size CollectedItemCountPosition;
+        int CollectedItemMax;
+        int CollectedItems;
+        bool isMouseDown = false;
 
         public CollectedItem(ObjectPointCollectedItem data)
         {
@@ -19,8 +24,9 @@ namespace TrackerOOT
                 ListImageName = data.ImageCollection.ToList();
 
             CollectedItemSize = data.Size;
+            this.CollectedItems = 0;
 
-            if(ListImageName.Count > 0)
+            if (ListImageName.Count > 0)
             {
                 this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
                 this.Name = ListImageName[0];
@@ -28,39 +34,79 @@ namespace TrackerOOT
                 this.Size = CollectedItemSize;
             }
             this.Location = new Point(data.X, data.Y);
+            this.CollectedItemCountPosition = data.CountPosition.IsEmpty ? new Size(1, -7) : data.CountPosition;
+            this.CollectedItemMax = data.CountMax == 0 ? 100 : data.CountMax;
             this.BackColor = Color.Transparent;
             this.TabStop = false;
 
-            Label nb_items = new Label
+            ItemCount = new Label
             {
                 BackColor = Color.Transparent,
                 BorderStyle = BorderStyle.None,
-                Text = "00",
+                Text = "0",
                 Font = new Font(data.LabelFontName, data.LabelFontSize, data.LabelFontStyle),
                 ForeColor = data.LabelColor,
                 AutoSize = false,
-                TextAlign = ContentAlignment.TopLeft,
-                Height = CollectedItemSize.Height
+                TextAlign = ContentAlignment.MiddleCenter,
+                Height = 30,
+                Width = 40,
+                Location = new Point((CollectedItemSize.Width / 2) + CollectedItemCountPosition.Width - 20, (CollectedItemSize.Height / 2) + CollectedItemCountPosition.Height - 15),
             };
-            nb_items.Location = new Point(0, 0);
-            nb_items.MouseDown += new MouseEventHandler(label_collectedSkulls_MouseDown);
+            this.MouseDown += this.Click_MouseDown;
+            this.MouseUp += this.Click_MouseUp;
+            this.MouseMove += this.Click_MouseMove;
+            this.MouseWheel += this.Click_MouseWheel;
+            ItemCount.MouseMove += this.Click_MouseMove;
+            ItemCount.MouseUp += this.Click_MouseUp;
+            ItemCount.MouseDown += this.Click_MouseDown; // must add this line because MouseDown on PictureBox won't fire when hovering above Label
+            // ItemCount.MouseWheel += this.Click_MouseWheel; // must NOT add this line because both MouseWheels would fire when hovering above both PictureBox and Label
 
-            this.Controls.Add(nb_items);
+            this.Controls.Add(ItemCount);
         }
 
-        private void label_collectedSkulls_MouseDown(object sender, MouseEventArgs e)
+        private void Click_MouseDown(object sender, MouseEventArgs e)
         {
-            var label_collectedSkulls = (Label)sender;
-            var intLabelText = Convert.ToInt32(label_collectedSkulls.Text);
-            if (e.Button == MouseButtons.Left)
-                intLabelText++;
-            if (e.Button == MouseButtons.Right && intLabelText > 0)
-                intLabelText--;
+            if (e.Clicks != 1)
+                isMouseDown = false;
+            else isMouseDown = true;
 
-            if (intLabelText < 10)
-                label_collectedSkulls.Text = "0" + intLabelText.ToString();
-            else
-                label_collectedSkulls.Text = intLabelText.ToString();
+            if (e.Button == MouseButtons.Left && CollectedItems < CollectedItemMax)
+                CollectedItems++;
+            if (e.Button == MouseButtons.Right && CollectedItems > 0)
+                CollectedItems--;
+
+            ItemCount.Text = CollectedItems.ToString();
+        }
+
+        private void Click_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+                CollectedItems = 0;
+                ItemCount.Text = CollectedItems.ToString();
+            }
+        }
+
+        private void Click_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle && isMouseDown)
+            {
+                this.DoDragDrop(ListImageName[0], DragDropEffects.Copy);
+                isMouseDown = false;
+            }
+        }
+
+        private void Click_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta != 0)
+            {
+                var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
+                CollectedItems -= scrolls;
+                if (CollectedItems < 0) CollectedItems = 0;
+                if (CollectedItems > CollectedItemMax) CollectedItems = CollectedItemMax;
+
+                ItemCount.Text = CollectedItems.ToString();
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ namespace TrackerOOT
         string ActiveImageName;
         string ActiveTinyImageName;
 
+        int imageIndex = 0;
+        int tinyImageIndex = 0;
         bool isMouseDown = false;
         public PictureBox TinyPictureBox;
         bool SongMode;
@@ -44,10 +46,10 @@ namespace TrackerOOT
                 TabStop = false,
                 AllowDrop = false
             };
-            TinyPictureBox.MouseUp += TinyPictureBox_MouseUp;
+            // TinyPictureBox.MouseUp += TinyPictureBox_MouseUp;
+            TinyPictureBox.MouseDown += TinyPictureBox_MouseDown;
             TinyPictureBox.DragEnter += Click_DragEnter;
             TinyPictureBox.DragDrop += Click_DragDrop;
-            TinyPictureBox.MouseDown += Click_MouseDown;
             TinyPictureBox.MouseMove += Click_MouseMove;
             this.Controls.Add(TinyPictureBox);
             TinyPictureBox.BringToFront();
@@ -65,7 +67,7 @@ namespace TrackerOOT
             this.Location = new Point(data.X, data.Y);
             this.TabStop = false;
             this.AllowDrop = true;
-            this.MouseUp += this.Click_MouseUp;
+            // this.MouseUp += this.Click_MouseUp;
             this.MouseDown += this.Click_MouseDown;
             this.MouseMove += this.Click_MouseMove;
             this.DragEnter += this.Click_DragEnter;
@@ -75,7 +77,7 @@ namespace TrackerOOT
             {
                 this.Name = ListImageName[0];
                 this.Image = Image.FromFile(@"Resources/" + this.Name);
-                this.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.SizeMode = PictureBoxSizeMode.Zoom;
                 this.Size = new Size(SongSize.Width, SongSize.Height + (int)(TinyPictureBox.Height*5/6));
                 TinyPictureBox.Location = new Point(
                     (SongSize.Width - TinyPictureBox.Width) / 2,
@@ -89,22 +91,24 @@ namespace TrackerOOT
             }
         }
 
-        private void TinyPictureBox_MouseUp(object sender, MouseEventArgs e)
+        private void TinyPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Clicks != 1)
+                isMouseDown = false;
+            else isMouseDown = true;
+
+            if (e.Button == MouseButtons.Left && tinyImageIndex < ListTinyImageName.Count - 1)
             {
-                var index = ListTinyImageName.FindIndex(x => x == TinyPictureBox.Name) + 1;
-                if (index <= 0 || index >= ListTinyImageName.Count)
-                {
-                    TinyPictureBox.Image = Image.FromFile(@"Resources/" + ListTinyImageName[0]);
-                    TinyPictureBox.Name = ListTinyImageName[0];
-                }
-                else
-                {
-                    TinyPictureBox.Image = Image.FromFile(@"Resources/" + ListTinyImageName[index]);
-                    TinyPictureBox.Name = ListTinyImageName[index];
-                }
+                tinyImageIndex += 1;
             }
+
+            if (e.Button == MouseButtons.Right && tinyImageIndex > 0)
+            {
+                tinyImageIndex -= 1;
+            }
+
+            TinyPictureBox.Image = Image.FromFile(@"Resources/" + ListTinyImageName[tinyImageIndex]);
+            TinyPictureBox.Name = ListTinyImageName[tinyImageIndex];
         }
 
         private void Click_DragDrop(object sender, DragEventArgs e)
@@ -133,7 +137,7 @@ namespace TrackerOOT
                     if (findOrigin.Length > 0)
                     {
                         var origin = (Song)findOrigin[0];
-                        origin.Click_MouseUp(this, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
+                        origin.Click_MouseDown(this, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
                     }
                 }
             }
@@ -144,34 +148,29 @@ namespace TrackerOOT
             e.Effect = e.AllowedEffect;
         }
 
-        public void Click_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                var index = ListImageName.FindIndex(x => x == this.Name) + 1;
-                if (index <= 0 || index >= ListImageName.Count)
-                {
-                    this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
-                    this.Name = ListImageName[0];
-                }
-                else
-                {
-                    this.Image = Image.FromFile(@"Resources/" + ListImageName[index]);
-                    this.Name = ListImageName[index];
-                }
-            }
-        }
-
         private void Click_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Clicks != 1)
                 isMouseDown = false;
             else isMouseDown = true;
+
+            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Count - 1)
+            {
+                imageIndex += 1;
+            }
+
+            if (e.Button == MouseButtons.Right && imageIndex > 0)
+            {
+                imageIndex -= 1;
+            }
+
+            Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
+            Name = ListImageName[imageIndex];
         }
 
         private void Click_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && isMouseDown)
+            if (e.Button == MouseButtons.Middle && isMouseDown)
             {
                 this.DoDragDrop(this.Tag, DragDropEffects.Copy);
                 isMouseDown = false;

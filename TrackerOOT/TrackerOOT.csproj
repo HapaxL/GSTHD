@@ -110,6 +110,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Layout.cs" />
+    <Compile Include="Math.cs" />
     <Compile Include="Medallion.cs">
       <SubType>Component</SubType>
     </Compile>

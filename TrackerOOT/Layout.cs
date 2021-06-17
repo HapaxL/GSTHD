@@ -22,6 +22,7 @@ namespace TrackerOOT
         public List<ObjectPointMedallion> ListMedallions = new List<ObjectPointMedallion>();
         public List<ObjectPoint> ListGuaranteedHints = new List<ObjectPoint>();
         public List<ObjectPoint> ListGossipStones = new List<ObjectPoint>();
+        public List<ObjectPointGrid> ListGossipStoneGrids = new List<ObjectPointGrid>();
         public List<ObjectPointLabel> ListSometimesHints = new List<ObjectPointLabel>();
         public List<ObjectPointLabel> ListChronometers = new List<ObjectPointLabel>();
         public List<ObjectPanelWotH> ListPanelWotH = new List<ObjectPanelWotH>();
@@ -95,6 +96,14 @@ namespace TrackerOOT
                         foreach (var element in category.Value)
                         {
                             ListGossipStones.Add(JsonConvert.DeserializeObject<ObjectPoint>(element.ToString()));
+                        }
+                    }
+
+                    if (category.Key.ToString() == "GossipStoneGrids")
+                    {
+                        foreach (var element in category.Value)
+                        {
+                            ListGossipStoneGrids.Add(JsonConvert.DeserializeObject<ObjectPointGrid>(element.ToString()));
                         }
                     }
 
@@ -211,6 +220,34 @@ namespace TrackerOOT
                     }
                 }
 
+                if (ListGossipStoneGrids.Count > 0)
+                {
+                    foreach (var item in ListGossipStoneGrids)
+                    {
+                        if (item.Visible)
+                        {
+                            for (int j = 0; j < item.Rows; j++)
+                            {
+                                for (int i = 0; i < item.Columns; i++)
+                                {
+                                    var gs = new ObjectPoint()
+                                    {
+                                        Id = item.Id,
+                                        Name = item.Name,
+                                        X = item.X + i * item.Size.Width,
+                                        Y = item.Y + j * item.Size.Height,
+                                        Size = item.Size,
+                                        ImageCollection = item.ImageCollection,
+                                        TinyImageCollection = item.TinyImageCollection,
+                                        Visible = item.Visible,
+                                    };
+                                    form.Controls.Add(new GossipStone(gs));
+                                }
+                            }
+                        }
+                    }
+                }
+
                 if (ListSometimesHints.Count > 0)
                 {
                     foreach (var item in ListSometimesHints)
@@ -321,6 +358,20 @@ namespace TrackerOOT
         }
     }
 
+    public class ObjectPointGrid
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Columns { get; set; }
+        public int Rows { get; set; }
+        public Size Size { get; set; }
+        public bool Visible { get; set; }
+        public string[] ImageCollection { get; set; }
+        public string[] TinyImageCollection { get; set; }
+    }
+
     public class ObjectPointLabel
     {
         public string Name { get; set; }
@@ -416,6 +467,8 @@ namespace TrackerOOT
         public int X { get; set; }
         public int Y { get; set; }
         public Size Size { get; set; }
+        public Size CountPosition { get; set; }
+        public int CountMax { get; set; }
         public bool Visible { get; set; }
         public string[] ImageCollection { get; set; }
         public string LabelFontName { get; set; }

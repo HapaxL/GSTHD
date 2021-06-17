@@ -15,6 +15,7 @@ namespace TrackerOOT
         string BackgroundImage;        
         Point FirstLocation;
         Timer tictac;
+        int imageIndex = 0;
 
         public PictureBox GoModeImage = new PictureBox();
         Size GoModeImageSize;
@@ -43,8 +44,9 @@ namespace TrackerOOT
                 GoModeImage.Size = this.GoModeImageSize;
             }                        
             GoModeImage.BackColor = Color.Transparent;
-            GoModeImage.MouseUp += Click_MouseUp;
-            
+            // GoModeImage.MouseUp += Click_MouseUp;
+            GoModeImage.MouseDown += Click_MouseDown;
+
             if (data.BackgroundImage != string.Empty)
             {
                 BackgroundImage = data.BackgroundImage;
@@ -97,36 +99,37 @@ namespace TrackerOOT
             return bmp;
         }
 
-        private void Click_MouseUp(object sender, MouseEventArgs e)
+        private void Click_MouseDown(object sender, MouseEventArgs e)
         {
-            var pbox = (PictureBox)sender;
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Count - 1)
             {
-                var index = ListImageName.FindIndex(x => x == pbox.Name) + 1;
-                if (index <= 0 || index >= ListImageName.Count)
-                {
-                    pbox.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
-                    pbox.Name = ListImageName[0];
-                    pbox.Size = GoModeImageSize;
-
-                    this.Name = "NoImage";
-                    this.Image = null;
-                }
-                else
-                {
-                    pbox.Image = Image.FromFile(@"Resources/" + ListImageName[index]);
-                    pbox.Name = ListImageName[index];
-                    pbox.Size = GoModeImageSize;
-
-                    if (this.Image == null)
-                    {
-                        this.Name = BackgroundImage;
-                        this.Image = Image.FromFile(@"Resources/" + BackgroundImage);
-                        this.Size = new Size(this.Image.Width, this.Image.Height);
-                    }
-                }
-                SetLocation();
+                imageIndex += 1;
             }
+
+            if (e.Button == MouseButtons.Right && imageIndex > 0)
+            {
+                imageIndex -= 1;
+            }
+
+            var pbox = (PictureBox)sender;
+            pbox.Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
+            pbox.Name = ListImageName[imageIndex];
+            pbox.Size = GoModeImageSize;
+            
+
+            if (imageIndex <= 0)
+            {
+                this.Name = "NoImage";
+                this.Image = null;
+            }
+            else
+            {
+                this.Name = BackgroundImage;
+                this.Image = Image.FromFile(@"Resources/" + BackgroundImage);
+                this.Size = new Size(this.Image.Width, this.Image.Height);
+            }
+
+            SetLocation();
         }
 
         public void SetLocation()

@@ -7,22 +7,23 @@ namespace TrackerOOT
 {
     class Item : PictureBox
     {
-        List<string> listImageName = new List<string>();
+        List<string> ListImageName = new List<string>();
+        int imageIndex = 0;
         bool isMouseDown = false;
 
         Size ItemSize;
         public Item(ObjectPoint data)
         {
             if(data.ImageCollection != null)
-                listImageName = data.ImageCollection.ToList();
+                ListImageName = data.ImageCollection.ToList();
 
             ItemSize = data.Size;
 
             this.BackColor = Color.Transparent;
-            if (listImageName.Count > 0)
+            if (ListImageName.Count > 0)
             {
-                this.Name = listImageName[0];
-                this.Image = Image.FromFile(@"Resources/" + listImageName[0]);
+                this.Name = ListImageName[0];
+                this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
                 this.Size = ItemSize;
             }            
@@ -32,23 +33,16 @@ namespace TrackerOOT
             this.MouseUp += this.Click_MouseUp;
             this.MouseDown += this.Click_MouseDown;
             this.MouseMove += this.Click_MouseMove;
+            this.MouseWheel += this.Click_MouseWheel;
         }
 
         private void Click_MouseUp(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Middle)
             {
-                var index = listImageName.FindIndex(x => x == this.Name) + 1;
-                if (index <= 0 || index >= listImageName.Count)
-                {
-                    this.Image = Image.FromFile(@"Resources/" + listImageName[0]);
-                    this.Name = listImageName[0];
-                }
-                else
-                {
-                    this.Image = Image.FromFile(@"Resources/" + listImageName[index]);
-                    this.Name = listImageName[index];
-                }
+                imageIndex = 0;
+                Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
+                Name = ListImageName[imageIndex];
             }
         }
 
@@ -57,14 +51,40 @@ namespace TrackerOOT
             if (e.Clicks != 1)
                 isMouseDown = false;
             else isMouseDown = true;
+
+            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Count - 1)
+            {
+                imageIndex += 1;
+            }
+
+            if (e.Button == MouseButtons.Right && imageIndex > 0)
+            {
+                imageIndex -= 1;
+            }
+
+            Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
+            Name = ListImageName[imageIndex];
         }
 
         private void Click_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && isMouseDown)
+            if (e.Button == MouseButtons.Middle && isMouseDown)
             {
-                this.DoDragDrop(listImageName[1], DragDropEffects.Copy);
+                this.DoDragDrop(ListImageName[1], DragDropEffects.Copy);
                 isMouseDown = false;
+            }
+        }
+
+        private void Click_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta != 0)
+            {
+                var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
+                imageIndex -= scrolls;
+                if (imageIndex < 0) imageIndex = 0;
+                if (imageIndex >= ListImageName.Count) imageIndex = ListImageName.Count - 1;
+                Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
+                Name = ListImageName[imageIndex];
             }
         }
     }

@@ -215,7 +215,7 @@ namespace TrackerOOT
 
         private void LabelPlace_MouseClick_Barren(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Middle)
             {
                 var label = (Label)sender;
                 var barren = this.ListBarren.Where(x => x.LabelPlace.Name == label.Name).ToList()[0];
@@ -225,7 +225,7 @@ namespace TrackerOOT
 
         private void LabelPlace_MouseClick_WotH(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Middle)
             {
                 var label = (Label)sender;
                 var woth = this.ListWotH.Where(x => x.LabelPlace.Name == label.Name).ToList()[0];

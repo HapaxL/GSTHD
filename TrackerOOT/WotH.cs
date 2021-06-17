@@ -30,7 +30,7 @@ namespace TrackerOOT
                 Height = labelSettings.Height,
                 TextAlign = ContentAlignment.MiddleLeft,
             };
-            
+
             this.LabelPlace.Location = new Point(2, lastLabelLocation.Y + LabelPlace.Height);
             this.LabelPlace.MouseDown += new MouseEventHandler(label_woth_MouseDown);
 
@@ -39,8 +39,8 @@ namespace TrackerOOT
                 for (int i = 0; i < 4; i++)
                 {
                     GossipStone newGossipStone = new GossipStone(this.Name + "_GossipStone" + i, 0, 0, listImage, gossipStoneSize);
-                    newGossipStone.Location = 
-                        new Point(LabelPlace.Width + 5 + ((newGossipStone.Width+2) * i ), LabelPlace.Location.Y);
+                    newGossipStone.Location =
+                        new Point(LabelPlace.Width + 5 + ((newGossipStone.Width + 2) * i), LabelPlace.Location.Y);
                     listGossipStone.Add(newGossipStone);
                 }
             }
@@ -50,22 +50,22 @@ namespace TrackerOOT
         {
             if (e.Button == MouseButtons.Left)
             {
-                switch (LabelPlaceNbClick)
-                {
-                    case 0:
-                        LabelPlace.ForeColor = Color.Orange;
-                        LabelPlaceNbClick++;
-                        break;
-                    case 1:
-                        LabelPlace.ForeColor = Color.Crimson;
-                        LabelPlaceNbClick++;
-                        break;
-                    case 2:
-                        LabelPlace.ForeColor = Color.White;
-                        LabelPlaceNbClick = 0;
-                        break;
-                }
-            }            
+                LabelPlaceNbClick++;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                LabelPlaceNbClick--;
+            }
+
+            if (LabelPlaceNbClick == -1) LabelPlace.ForeColor = Color.BlueViolet;
+            else if (LabelPlaceNbClick == 0) LabelPlace.ForeColor = Color.White;
+            else if (LabelPlaceNbClick == 1) LabelPlace.ForeColor = Color.Yellow;
+            else if (LabelPlaceNbClick == 2) LabelPlace.ForeColor = Color.DarkOrange;
+            else if (LabelPlaceNbClick == 3) LabelPlace.ForeColor = Color.Red;
+            else if (LabelPlaceNbClick == 4) LabelPlace.ForeColor = Color.Black;
+            else if (LabelPlaceNbClick < -1) LabelPlaceNbClick = -1;
+            else LabelPlaceNbClick = 4;
+
         }
     }
 }
