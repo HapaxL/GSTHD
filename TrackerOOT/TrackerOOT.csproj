@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Gossip_Stone_64x64.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Gossip_Stone_64x64.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -174,11 +174,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Gossip_Stone_32x32.ico" />
-    <Content Include="Gossip_Stone_64x64.ico" />
+    <Content Include="Resources\Gossip_Stone_32x32.ico" />
+    <Content Include="Resources\Gossip_Stone_64x64.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

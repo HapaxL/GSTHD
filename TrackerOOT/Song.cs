@@ -175,6 +175,6 @@ namespace TrackerOOT
                 this.DoDragDrop(this.Tag, DragDropEffects.Copy);
                 isMouseDown = false;
             }
-        }       
+        }
     }
 }
