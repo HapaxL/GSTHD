@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("Gossip Stone Tracker HD")]
-[assembly: AssemblyDescription("Fork of Drekorig's Gossip Stones Tracker for Zelda Ocarina of Time Randomizer")]
+[assembly: AssemblyTitle("Gossip Stones Tracker HD")]
+[assembly: AssemblyDescription("Fork of Drekorig's Gossip Stones Tracker for the Ocarina of Time Randomizer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hapax")]
 [assembly: AssemblyProduct("GSTHD")]
