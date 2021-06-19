@@ -1,7 +1,7 @@
-# Gossip Stone Tracker HD v0.1 for the [Ocarina of Time Randomizer](https://ootrandomizer.com)
-Fork of [Drekorig](https://github.com/Draeko/ootr_gst/tree/ladder_version)'s (`Drekorig#2506`) Gossip Stones Tracker for Zelda Ocarina of Time Randomizer
+# Gossip Stone Tracker HD v0.1
+Fork of Drekorig (`Drekorig#2506`)'s [Gossip Stones Tracker](https://github.com/Draeko/ootr_gst/tree/ladder_version) for the [Ocarina of Time Randomizer](https://ootrandomizer.com)
 
-Made by Hapax (Discord: `Hapax#1729`).
+Made by Hapax (`Hapax#1729`).
 
 **Work in progress.**
 ___
