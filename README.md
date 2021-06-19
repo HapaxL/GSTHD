@@ -44,6 +44,7 @@ ___
 - Allowing layouts to set the order of dungeon names under medallions.
 - Allowing more customization options in layouts and in the Settings file.
 - Using mouse wheel to progress/regress Gossip Stones and icons on Gossip Stones.
+- Toolbar controls for changing settings and loading layouts
 
 #### Known issues
 - Drag & dropping a Song's small icon currently does not work correctly (acts like a drag & drop on the big icon instead, while deleting the contents of the small icon).
