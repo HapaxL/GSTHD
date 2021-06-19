@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TrackerOOT
+namespace GSTHD
 {
     partial class Form1
     {

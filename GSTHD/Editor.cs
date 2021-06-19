@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TrackerOOT.EditorObjects;
+using GSTHD.EditorObjects;
 
-namespace TrackerOOT
+namespace GSTHD
 {
     public partial class Editor : Form
     {

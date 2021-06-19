@@ -3,30 +3,37 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace TrackerOOT
+namespace GSTHD
 {
-    class Item : PictureBox
+    class Medallion : PictureBox
     {
-        List<string> ListImageName = new List<string>();
-        int imageIndex = 0;
+        List<string> ListImageName;
+        List<string> ListDungeon;
         bool isMouseDown = false;
+        int imageIndex = 0;
+        int dungeonIndex = 0;
 
-        Size ItemSize;
-        public Item(ObjectPoint data)
+        public Label SelectedDungeon;
+        Size MedallionSize;
+
+        public Medallion(ObjectPointMedallion data)
         {
             if(data.ImageCollection != null)
                 ListImageName = data.ImageCollection.ToList();
+            if(data.Label.TextCollection != null)
+                ListDungeon = data.Label.TextCollection.ToList();
 
-            ItemSize = data.Size;
+            MedallionSize = data.Size;
 
-            this.BackColor = Color.Transparent;
-            if (ListImageName.Count > 0)
+            if(ListImageName.Count > 0)
             {
                 this.Name = ListImageName[0];
                 this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
-                this.Size = ItemSize;
-            }            
+                this.Size = MedallionSize;
+            }
+
+            this.BackColor = Color.Transparent;
             this.Location = new Point(data.X, data.Y);
             this.TabStop = false;
             this.AllowDrop = false;
@@ -34,15 +41,35 @@ namespace TrackerOOT
             this.MouseDown += this.Click_MouseDown;
             this.MouseMove += this.Click_MouseMove;
             this.MouseWheel += this.Click_MouseWheel;
+
+            SelectedDungeon = new Label
+            {
+                Font = new Font(new FontFamily(data.Label.FontName), data.Label.FontSize, data.Label.FontStyle),
+                Text = ListDungeon[0],
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent,
+                ForeColor = Color.White,
+                AutoSize = true
+            };
+            SelectedDungeon.MouseUp += this.Click_MouseUp;
+            SelectedDungeon.MouseDown += this.Click_MouseDown;
+            SelectedDungeon.MouseMove += this.Click_MouseMove;
+            SelectedDungeon.MouseWheel += this.Click_MouseWheel;
+        }     
+
+        public void SetSelectedDungeonLocation()
+        {
+            SelectedDungeon.Location = new Point(this.Location.X + MedallionSize.Width / 2 - SelectedDungeon.Width / 2, (int)(this.Location.Y + MedallionSize.Height * 0.75));
         }
 
         private void Click_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Middle)
             {
-                imageIndex = 0;
-                Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
-                Name = ListImageName[imageIndex];
+                dungeonIndex = 0;
+                SelectedDungeon.Text = ListDungeon[dungeonIndex];
+                SetSelectedDungeonLocation();
+                return;
             }
         }
 
@@ -80,11 +107,9 @@ namespace TrackerOOT
             if (e.Delta != 0)
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
-                imageIndex -= scrolls;
-                if (imageIndex < 0) imageIndex = 0;
-                if (imageIndex >= ListImageName.Count) imageIndex = ListImageName.Count - 1;
-                Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
-                Name = ListImageName[imageIndex];
+                dungeonIndex = Math.EMod(dungeonIndex - scrolls, ListDungeon.Count);
+                SelectedDungeon.Text = ListDungeon[dungeonIndex];
+                SetSelectedDungeonLocation();
             }
         }
     }

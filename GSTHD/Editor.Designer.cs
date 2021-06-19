@@ -1,4 +1,4 @@
-﻿namespace TrackerOOT
+﻿namespace GSTHD
 {
     partial class Editor
     {

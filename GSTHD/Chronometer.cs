@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TrackerOOT
+namespace GSTHD
 {
     class Chronometer : Stopwatch
     {

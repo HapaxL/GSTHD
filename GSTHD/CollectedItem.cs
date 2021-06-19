@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TrackerOOT
+namespace GSTHD
 {
     class CollectedItem : PictureBox
     {
@@ -34,7 +34,7 @@ namespace TrackerOOT
                 this.Size = CollectedItemSize;
             }
             this.Location = new Point(data.X, data.Y);
-            this.CollectedItemCountPosition = data.CountPosition.IsEmpty ? new Size(1, -7) : data.CountPosition;
+            this.CollectedItemCountPosition = data.CountPosition.IsEmpty ? new Size(0, -7) : data.CountPosition;
             this.CollectedItemMax = data.CountMax == 0 ? 100 : data.CountMax;
             this.BackColor = Color.Transparent;
             this.TabStop = false;
@@ -50,7 +50,7 @@ namespace TrackerOOT
                 TextAlign = ContentAlignment.MiddleCenter,
                 Height = 30,
                 Width = 40,
-                Location = new Point((CollectedItemSize.Width / 2) + CollectedItemCountPosition.Width - 20, (CollectedItemSize.Height / 2) + CollectedItemCountPosition.Height - 15),
+                Location = new Point((CollectedItemSize.Width / 2) + CollectedItemCountPosition.Width - 19, (CollectedItemSize.Height / 2) + CollectedItemCountPosition.Height - 15),
             };
             this.MouseDown += this.Click_MouseDown;
             this.MouseUp += this.Click_MouseUp;

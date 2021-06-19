@@ -7,9 +7,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
-namespace TrackerOOT
+namespace GSTHD
 {
     public partial class Form1 : Form
     {
@@ -48,7 +49,8 @@ namespace TrackerOOT
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Text = "Items&Hints Tracker v1.8.3";
+            var assembly = Assembly.GetEntryAssembly().GetName();
+            this.Text = $"{Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title} v{assembly.Version.Major}.{assembly.Version.Minor}";
             this.AcceptButton = null;
             this.MaximizeBox = false;
 
