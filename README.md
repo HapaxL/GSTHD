@@ -1,5 +1,5 @@
 # ootr_gst
-Fork of [Draeko](https://github.com/Draeko/ootr_gst/tree/ladder_version)'s Gossip Stones Tracker for Zelda Ocarina of Time Randomizer
+Fork of [Drekorig](https://github.com/Draeko/ootr_gst/tree/ladder_version)'s (`Drekorig#2506`) Gossip Stones Tracker for Zelda Ocarina of Time Randomizer
 
 Made by Hapax (Discord: `Hapax#1729`).
 
@@ -43,6 +43,7 @@ ___
 - Allowing layouts to set the preferred color scheme for WotH panels.
 - Allowing layouts to set the order of dungeon names under medallions.
 - Allowing more customization options in layouts and in the Settings file.
+- Using mouse wheel to progress/regress Gossip Stones and icons on Gossip Stones.
 
 #### Known issues
 - Drag & dropping a Song's small icon currently does not work correctly (acts like a drag & drop on the big icon instead, while deleting the contents of the small icon).
