@@ -16,8 +16,9 @@ namespace GSTHD
         Label ItemCount;
         Size CollectedItemSize;
         Size CollectedItemCountPosition;
-        int CollectedItemMax;
-        int CollectedItems;
+        private readonly int CollectedItemMax;
+        private int CollectedItems;
+        private readonly int Step;
         bool isMouseDown = false;
 
         public CollectedItem(ObjectPointCollectedItem data, Settings settings)
@@ -40,6 +41,7 @@ namespace GSTHD
             this.Location = new Point(data.X, data.Y);
             this.CollectedItemCountPosition = data.CountPosition.IsEmpty ? new Size(0, -7) : data.CountPosition;
             this.CollectedItemMax = data.CountMax == 0 ? 100 : data.CountMax;
+            this.Step = data.Step == 0 ? 1 : data.Step;
             this.BackColor = Color.Transparent;
             this.TabStop = false;
 
@@ -105,7 +107,7 @@ namespace GSTHD
             if (e.Delta != 0)
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
-                CollectedItems += Settings.InvertScrollWheel ? scrolls : -scrolls;
+                CollectedItems += Step * (Settings.InvertScrollWheel ? scrolls : -scrolls);
                 if (CollectedItems < 0) CollectedItems = 0;
                 if (CollectedItems > CollectedItemMax) CollectedItems = CollectedItemMax;
 
