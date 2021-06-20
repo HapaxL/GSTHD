@@ -226,6 +226,7 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
+
                             for (int j = 0; j < item.Rows; j++)
                             {
                                 for (int i = 0; i < item.Columns; i++)
@@ -234,8 +235,8 @@ namespace GSTHD
                                     {
                                         Id = item.Id,
                                         Name = item.Name,
-                                        X = item.X + i * item.Size.Width,
-                                        Y = item.Y + j * item.Size.Height,
+                                        X = item.X + i * (item.Size.Width + item.Spacing.Width),
+                                        Y = item.Y + j * (item.Size.Height + item.Spacing.Height),
                                         Size = item.Size,
                                         ImageCollection = item.ImageCollection,
                                         TinyImageCollection = item.TinyImageCollection,
@@ -367,6 +368,7 @@ namespace GSTHD
         public int Columns { get; set; }
         public int Rows { get; set; }
         public Size Size { get; set; }
+        public Size Spacing { get; set; }
         public bool Visible { get; set; }
         public string[] ImageCollection { get; set; }
         public string[] TinyImageCollection { get; set; }
