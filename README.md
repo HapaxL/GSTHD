@@ -30,6 +30,7 @@ ___
 #### Other changes and fixes
 - Fixed small issues with collected items' number display.
 - Fixed Song icons being flattened when drag & dropped.
+- Fixed drag & drop on small Song icons to correspond to Gossip Stone behaviour.
 - Changed default WoTH colors, added "last woth" color (right click on a white WotH).
 - Fixed other small UI/UX details.
 ___
@@ -47,7 +48,7 @@ ___
 - Toolbar controls for changing settings and loading layouts
 
 #### Known issues
-- Drag & dropping a Song's small icon currently does not work correctly (acts like a drag & drop on the big icon instead, while deleting the contents of the small icon).
+- No known big issues for now, feel free to contact me on Discord or to open a Github issue if you find anything!
 ___
 
 ### Special thanks
