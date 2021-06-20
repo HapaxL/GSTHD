@@ -44,13 +44,13 @@ namespace GSTHD
             {
                 BackColor = Color.Transparent,
                 TabStop = false,
-                AllowDrop = false
+                AllowDrop = false,
             };
-            // TinyPictureBox.MouseUp += TinyPictureBox_MouseUp;
+            TinyPictureBox.MouseUp += TinyPictureBox_MouseUp;
             TinyPictureBox.MouseDown += TinyPictureBox_MouseDown;
             TinyPictureBox.DragEnter += Click_DragEnter;
-            TinyPictureBox.DragDrop += Click_DragDrop;
-            TinyPictureBox.MouseMove += Click_MouseMove;
+            TinyPictureBox.DragDrop += TinyPictureBox_DragDrop;
+            TinyPictureBox.MouseMove += TinyPictureBox_MouseMove;
             this.Controls.Add(TinyPictureBox);
             TinyPictureBox.BringToFront();
 
@@ -60,6 +60,10 @@ namespace GSTHD
                 TinyPictureBox.Image = Image.FromFile(@"Resources/" + ListTinyImageName[0]);
                 TinyPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 TinyPictureBox.Size = new Size(TinyPictureBox.Image.Width, TinyPictureBox.Image.Height);
+                if (data.DragAndDropImageName != string.Empty)
+                    TinyPictureBox.Tag = data.DragAndDropImageName;
+                else
+                    TinyPictureBox.Tag = ListImageName[1];
             }
 
             
@@ -91,24 +95,50 @@ namespace GSTHD
             }
         }
 
+        //public void Click_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Middle)
+        //    {
+        //        imageIndex = 0;
+        //        this.Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
+        //        this.ActiveImageName = ListImageName[imageIndex];
+        //    }
+        //}
+
+        public void TinyPictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle)
+            {
+                TinyPictureBox.Image = Image.FromFile(@"Resources/" + ListTinyImageName[0]);
+                TinyPictureBox.Name = ListTinyImageName[0];
+            }
+        }
+
         private void TinyPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Clicks != 1)
                 isMouseDown = false;
             else isMouseDown = true;
 
+            var newImageIndex = tinyImageIndex;
+
             if (e.Button == MouseButtons.Left && tinyImageIndex < ListTinyImageName.Count - 1)
             {
-                tinyImageIndex += 1;
+                newImageIndex += 1;
             }
 
             if (e.Button == MouseButtons.Right && tinyImageIndex > 0)
             {
-                tinyImageIndex -= 1;
+                newImageIndex -= 1;
             }
 
-            TinyPictureBox.Image = Image.FromFile(@"Resources/" + ListTinyImageName[tinyImageIndex]);
-            TinyPictureBox.Name = ListTinyImageName[tinyImageIndex];
+            if (newImageIndex != tinyImageIndex)
+            {
+                tinyImageIndex = newImageIndex;
+                TinyPictureBox.Image = Image.FromFile(@"Resources/" + ListTinyImageName[tinyImageIndex]);
+                TinyPictureBox.Name = ListTinyImageName[tinyImageIndex];
+            }
+
         }
 
         private void Click_DragDrop(object sender, DragEventArgs e)
@@ -143,6 +173,14 @@ namespace GSTHD
             }
         }
 
+        private void TinyPictureBox_DragDrop(object sender, DragEventArgs e)
+        {
+            var imageName = (string)e.Data.GetData(DataFormats.Text);
+            var image = Image.FromFile(@"Resources/" + imageName);
+            TinyPictureBox.Name = imageName;
+            TinyPictureBox.Image = image;
+        }
+
         private void Click_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
@@ -174,6 +212,19 @@ namespace GSTHD
             {
                 this.DoDragDrop(this.Tag, DragDropEffects.Copy);
                 isMouseDown = false;
+            }
+        }
+
+        private void TinyPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle && isMouseDown)
+            {
+                var draggedImageName = TinyPictureBox.Name;
+                imageIndex = 0;
+                TinyPictureBox.Image = Image.FromFile(@"Resources/" + ListTinyImageName[imageIndex]);
+                TinyPictureBox.Name = ListTinyImageName[imageIndex];
+                isMouseDown = false;
+                this.DoDragDrop(draggedImageName, DragDropEffects.Copy);
             }
         }
     }
