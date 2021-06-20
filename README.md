@@ -51,6 +51,6 @@ ___
 ___
 
 ### Special thanks
-- Draeko, for his genius drag & drop idea, and his nice tracker base.
+- Drekorig, for his genius drag & drop idea, and his nice tracker base.
 - ArthurOudini, for inspiring me to add some of the features in this project.
 - Everyone who submitted, and will submit, suggestions and bug fixes for the project.
