@@ -21,10 +21,10 @@ namespace GSTHD
 
         Size SongSize;
 
-        public Song(ObjectPointSong data, bool songMode, bool autoCheck)
+        public Song(ObjectPointSong data, Settings settings)
         {
-            SongMode = songMode;
-            AutoCheck = autoCheck;
+            SongMode = settings.MoveLocationToSong;
+            AutoCheck = settings.AutoCheckSongs;
 
             if (data.ImageCollection != null)
             {

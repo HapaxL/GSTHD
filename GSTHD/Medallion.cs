@@ -7,6 +7,8 @@ namespace GSTHD
 {
     class Medallion : PictureBox
     {
+        private readonly Settings Settings;
+
         List<string> ListImageName;
         List<string> ListDungeon;
         bool isMouseDown = false;
@@ -16,8 +18,10 @@ namespace GSTHD
         public Label SelectedDungeon;
         Size MedallionSize;
 
-        public Medallion(ObjectPointMedallion data)
+        public Medallion(ObjectPointMedallion data, Settings settings)
         {
+            Settings = settings;
+
             if(data.ImageCollection != null)
                 ListImageName = data.ImageCollection.ToList();
             if(data.Label.TextCollection != null)
@@ -107,7 +111,8 @@ namespace GSTHD
             if (e.Delta != 0)
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
-                dungeonIndex = Math.EMod(dungeonIndex - scrolls, ListDungeon.Count);
+                var newIndex = dungeonIndex + (Settings.InvertScrollWheel ? scrolls : -scrolls);
+                dungeonIndex = Math.EMod(newIndex, ListDungeon.Count);
                 SelectedDungeon.Text = ListDungeon[dungeonIndex];
                 SetSelectedDungeonLocation();
             }

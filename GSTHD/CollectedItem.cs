@@ -10,6 +10,8 @@ namespace GSTHD
 {
     class CollectedItem : PictureBox
     {
+        private readonly Settings Settings;
+
         List<string> ListImageName = new List<string>();
         Label ItemCount;
         Size CollectedItemSize;
@@ -18,8 +20,10 @@ namespace GSTHD
         int CollectedItems;
         bool isMouseDown = false;
 
-        public CollectedItem(ObjectPointCollectedItem data)
+        public CollectedItem(ObjectPointCollectedItem data, Settings settings)
         {
+            Settings = settings;
+
             if (data.ImageCollection != null)
                 ListImageName = data.ImageCollection.ToList();
 
@@ -101,7 +105,7 @@ namespace GSTHD
             if (e.Delta != 0)
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
-                CollectedItems -= scrolls;
+                CollectedItems += Settings.InvertScrollWheel ? scrolls : -scrolls;
                 if (CollectedItems < 0) CollectedItems = 0;
                 if (CollectedItems > CollectedItemMax) CollectedItems = CollectedItemMax;
 

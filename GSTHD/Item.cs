@@ -7,13 +7,17 @@ namespace GSTHD
 {
     class Item : PictureBox
     {
+        private readonly Settings Settings;
+
         List<string> ListImageName = new List<string>();
         int imageIndex = 0;
         bool isMouseDown = false;
 
         Size ItemSize;
-        public Item(ObjectPoint data)
+        public Item(ObjectPoint data, Settings settings)
         {
+            Settings = settings;
+
             if(data.ImageCollection != null)
                 ListImageName = data.ImageCollection.ToList();
 
@@ -80,7 +84,7 @@ namespace GSTHD
             if (e.Delta != 0)
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
-                imageIndex -= scrolls;
+                imageIndex += Settings.InvertScrollWheel ? scrolls : -scrolls;
                 if (imageIndex < 0) imageIndex = 0;
                 if (imageIndex >= ListImageName.Count) imageIndex = ListImageName.Count - 1;
                 Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);

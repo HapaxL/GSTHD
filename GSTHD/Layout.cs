@@ -31,11 +31,11 @@ namespace GSTHD
 
         public AppSettings App_Settings = new AppSettings();
 
-        public void LoadLayout(Form form, string layoutName, bool songMode, bool autoCheck, SortedSet<string> listSometimesHintsSuggestions, Dictionary<string, string> listPlacesWithTag)
+        public void LoadLayout(Form form, Settings settings, SortedSet<string> listSometimesHintsSuggestions, Dictionary<string, string> listPlacesWithTag)
         {
-            if (layoutName != string.Empty)
+            if (settings.ActiveLayout != string.Empty)
             {
-                JObject json_layouts = JObject.Parse(File.ReadAllText(@"Layouts/" + layoutName + ".json"));
+                JObject json_layouts = JObject.Parse(File.ReadAllText(@"Layouts/" + settings.ActiveLayout + ".json"));
                 foreach (var category in json_layouts)
                 {
                     if (category.Key.ToString() == "AppSize")
@@ -156,7 +156,7 @@ namespace GSTHD
                     foreach (var item in ListItems)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new Item(item));
+                            form.Controls.Add(new Item(item, settings));
                     }
                 }
 
@@ -165,7 +165,7 @@ namespace GSTHD
                     foreach (var song in ListSongs)
                     {
                         if (song.Visible)
-                            form.Controls.Add(new Song(song, songMode, autoCheck));
+                            form.Controls.Add(new Song(song, settings));
                     }
                 }
 
@@ -183,7 +183,7 @@ namespace GSTHD
                     foreach (var item in ListCollectedItems)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new CollectedItem(item));
+                            form.Controls.Add(new CollectedItem(item, settings));
                     }
                 }
 
@@ -193,7 +193,7 @@ namespace GSTHD
                     {
                         if (medallion.Visible)
                         {
-                            var element = new Medallion(medallion);
+                            var element = new Medallion(medallion, settings);
                             form.Controls.Add(element);
                             form.Controls.Add(element.SelectedDungeon);
                             element.SetSelectedDungeonLocation();

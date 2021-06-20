@@ -21,9 +21,7 @@ namespace GSTHD
         Layout CurrentLayout = new Layout();
         PictureBox pbox_collectedSkulls;
 
-        bool SongMode = false;
-        bool AutoCheck = false;
-        string ActiveLayoutName = string.Empty;
+        Settings Settings;
 
         public Form1()
         {
@@ -74,24 +72,9 @@ namespace GSTHD
                 }
             }
 
-            JObject json_properties = JObject.Parse(File.ReadAllText(@"settings.json"));
-            foreach (var property in json_properties)
-            {
-                if (property.Key == "MoveLocationToSong")
-                {
-                    SongMode = Convert.ToBoolean(property.Value);
-                }
-                if(property.Key == "AutoCheckSongs")
-                {
-                    AutoCheck = Convert.ToBoolean(property.Value);
-                }
-                if(property.Key == "ActiveLayout")
-                {
-                    ActiveLayoutName = property.Value.ToString();
-                }
-            }
+            Settings = Settings.GetSettings();
 
-            CurrentLayout.LoadLayout(this, ActiveLayoutName, SongMode, AutoCheck, ListSometimesHintsSuggestions, ListPlacesWithTag);
+            CurrentLayout.LoadLayout(this, Settings, ListSometimesHintsSuggestions, ListPlacesWithTag);
             
             
             this.KeyPreview = true;
