@@ -7,21 +7,27 @@ namespace GSTHD
 {
     class GossipStone : PictureBox
     {
-        List<string> ListImageName = new List<string>();
+        Settings Settings;
+
+        string[] ListImageName;
         string ActiveImageName;
         int imageIndex = 0;
         bool isMouseDown = false;
 
         Size GossipStoneSize;
 
-        public GossipStone(ObjectPoint data)
+        public GossipStone(ObjectPoint data, Settings settings)
         {
-            if (data.ImageCollection != null)
-                ListImageName = data.ImageCollection.ToList();
+            Settings = settings;
+
+            if (data.ImageCollection == null)
+                ListImageName = Settings.DefaultGossipStoneImages;
+            else
+                ListImageName = data.ImageCollection;
 
             GossipStoneSize = data.Size;
 
-            if (ListImageName.Count > 0)
+            if (ListImageName.Length > 0)
             {
                 this.ActiveImageName = ListImageName[0];
                 this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
@@ -45,11 +51,11 @@ namespace GSTHD
         public GossipStone(string name, int x, int y, string[] imageCollection, Size imageSize)
         {
             if (imageCollection != null)
-                ListImageName = imageCollection.ToList();
+                ListImageName = imageCollection;
 
             GossipStoneSize = imageSize;
 
-            if (ListImageName.Count > 0)
+            if (ListImageName.Length > 0)
             {
                 this.ActiveImageName = ListImageName[0];
                 this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
@@ -114,7 +120,7 @@ namespace GSTHD
 
             var newImageIndex = imageIndex;
 
-            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Count - 1)
+            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Length - 1)
             {
                 newImageIndex += 1;
             }

@@ -72,7 +72,7 @@ namespace GSTHD
                 }
             }
 
-            Settings = Settings.GetSettings();
+            Settings = Settings.Get();
 
             CurrentLayout.LoadLayout(this, Settings, ListSometimesHintsSuggestions, ListPlacesWithTag);
             

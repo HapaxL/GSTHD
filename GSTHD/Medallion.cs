@@ -15,7 +15,7 @@ namespace GSTHD
         int imageIndex = 0;
         int dungeonIndex = 0;
 
-        public Label SelectedDungeon;
+        public System.Windows.Forms.Label SelectedDungeon;
         Size MedallionSize;
 
         public Medallion(ObjectPointMedallion data, Settings settings)
@@ -46,7 +46,7 @@ namespace GSTHD
             this.MouseMove += this.Click_MouseMove;
             this.MouseWheel += this.Click_MouseWheel;
 
-            SelectedDungeon = new Label
+            SelectedDungeon = new System.Windows.Forms.Label
             {
                 Font = new Font(new FontFamily(data.Label.FontName), data.Label.FontSize, data.Label.FontStyle),
                 Text = ListDungeon[0],

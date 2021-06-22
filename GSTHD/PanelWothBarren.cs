@@ -17,7 +17,7 @@ namespace GSTHD
         private string[] ListImage_WothItemsOption;
         Size GossipStoneSize;
         int NbMaxRows;
-        Label LabelSettings = new Label();
+        System.Windows.Forms.Label LabelSettings = new System.Windows.Forms.Label();
 
         public PanelWothBarren(ObjectPanelWotH data)
         {
@@ -49,8 +49,8 @@ namespace GSTHD
             {
                 foreach (var element in panel.Controls)
                 {
-                    if (element is Label)
-                        ((Label)element).Location = new Point(((Label)element).Location.X, ((Label)element).Location.Y - 15);
+                    if (element is System.Windows.Forms.Label)
+                        ((System.Windows.Forms.Label)element).Location = new Point(((System.Windows.Forms.Label)element).Location.X, ((System.Windows.Forms.Label)element).Location.Y - 15);
                     if (element is GossipStone)
                         ((GossipStone)element).Location = new Point(((GossipStone)element).Location.X, ((GossipStone)element).Location.Y - 15);
                     if (element is TextBox)
@@ -61,8 +61,8 @@ namespace GSTHD
             {
                 foreach (var element in panel.Controls)
                 {
-                    if (element is Label)
-                        ((Label)element).Location = new Point(((Label)element).Location.X, ((Label)element).Location.Y + 15);
+                    if (element is System.Windows.Forms.Label)
+                        ((System.Windows.Forms.Label)element).Location = new Point(((System.Windows.Forms.Label)element).Location.X, ((System.Windows.Forms.Label)element).Location.Y + 15);
                     if (element is GossipStone)
                         ((GossipStone)element).Location = new Point(((GossipStone)element).Location.X, ((GossipStone)element).Location.Y + 15);
                     if (element is TextBox)
@@ -77,7 +77,7 @@ namespace GSTHD
             ListImage_WothItemsOption = data.GossipStoneImageCollection;
             NbMaxRows = data.NbMaxRows;
 
-            LabelSettings = new Label
+            LabelSettings = new System.Windows.Forms.Label
             {
                 ForeColor = data.LabelColor,
                 BackColor = data.LabelBackColor,
@@ -105,7 +105,7 @@ namespace GSTHD
         {
             NbMaxRows = data.NbMaxRows;
 
-            LabelSettings = new Label
+            LabelSettings = new System.Windows.Forms.Label
             {
                 ForeColor = data.LabelColor,
                 BackColor = data.LabelBackColor,
@@ -217,7 +217,7 @@ namespace GSTHD
         {
             if (e.Button == MouseButtons.Middle)
             {
-                var label = (Label)sender;
+                var label = (System.Windows.Forms.Label)sender;
                 var barren = this.ListBarren.Where(x => x.LabelPlace.Name == label.Name).ToList()[0];
                 this.RemoveBarren(barren);
             }
@@ -227,7 +227,7 @@ namespace GSTHD
         {
             if (e.Button == MouseButtons.Middle)
             {
-                var label = (Label)sender;
+                var label = (System.Windows.Forms.Label)sender;
                 var woth = this.ListWotH.Where(x => x.LabelPlace.Name == label.Name).ToList()[0];
                 this.RemoveWotH(woth);
             }

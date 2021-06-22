@@ -14,7 +14,7 @@ namespace GSTHD
 {
     public class Layout
     {
-
+        public List<TextLabel> ListLabels = new List<TextLabel>();
         public List<ObjectPoint> ListItems = new List<ObjectPoint>();
         public List<ObjectPointSong> ListSongs = new List<ObjectPointSong>();
         public List<ObjectPoint> ListDoubleItems = new List<ObjectPoint>();
@@ -43,14 +43,22 @@ namespace GSTHD
                         App_Settings = JsonConvert.DeserializeObject<AppSettings>(category.Value.ToString());
                     }
 
+                    if (category.Key.ToString() == "Labels")
+                    {
+                        foreach (var element in category.Value)
+                        {
+                            ListLabels.Add(JsonConvert.DeserializeObject<TextLabel>(element.ToString()));
+                        }
+                    }
+
                     if (category.Key.ToString() == "Items")
                     {
                         foreach (var element in category.Value)
                         {
                             ListItems.Add(JsonConvert.DeserializeObject<ObjectPoint>(element.ToString()));
                         }
-
                     }
+
                     if (category.Key.ToString() == "Songs")
                     {
                         foreach (var element in category.Value)
@@ -150,6 +158,34 @@ namespace GSTHD
 
                 form.Size = new Size(App_Settings.Width, App_Settings.Height);
                 form.BackColor = App_Settings.BackgroundColor;
+                if (App_Settings.DefaultSongMarkerImages != null)
+                {
+                    settings.DefaultSongMarkerImages = App_Settings.DefaultSongMarkerImages;
+                }
+                if (App_Settings.DefaultGossipStoneImages != null)
+                {
+                    settings.DefaultGossipStoneImages = App_Settings.DefaultGossipStoneImages;
+                }
+
+                if (ListLabels.Count > 0)
+                {
+                    foreach (var item in ListLabels)
+                    {
+                        if (item.Visible)
+                        {
+                            form.Controls.Add(new Label()
+                            {
+                                Text = item.Text,
+                                Left = item.X,
+                                Top = item.Y,
+                                Font = new Font(new FontFamily(item.FontName), item.FontSize, item.FontStyle),
+                                ForeColor = Color.FromName(item.Color),
+                                BackColor = Color.Transparent,
+                                AutoSize = true,
+                            });
+                        }
+                    }
+                }
 
                 if (ListItems.Count > 0)
                 {
@@ -216,7 +252,7 @@ namespace GSTHD
                     foreach (var item in ListGossipStones)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new GossipStone(item));
+                            form.Controls.Add(new GossipStone(item, settings));
                     }
                 }
 
@@ -226,7 +262,6 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
-
                             for (int j = 0; j < item.Rows; j++)
                             {
                                 for (int i = 0; i < item.Columns; i++)
@@ -242,7 +277,7 @@ namespace GSTHD
                                         TinyImageCollection = item.TinyImageCollection,
                                         Visible = item.Visible,
                                     };
-                                    form.Controls.Add(new GossipStone(gs));
+                                    form.Controls.Add(new GossipStone(gs, settings));
                                 }
                             }
                         }
@@ -311,6 +346,19 @@ namespace GSTHD
                 }
             }
         }
+    }
+
+    public class TextLabel
+    {
+        public string Text { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int FontSize { get; set; }
+        public string FontName { get; set; }
+        public FontStyle FontStyle { get; set; }
+        public string Color { get; set; }
+        // public Size MaxSize { get; set; }
+        public bool Visible { get; set; }
     }
 
     public class ObjectPoint
@@ -485,5 +533,7 @@ namespace GSTHD
         public int Width { get; set; }
         public int Height { get; set; }
         public Color BackgroundColor { get;set; }
+        public string[] DefaultSongMarkerImages { get; set; } = null;
+        public string[] DefaultGossipStoneImages { get; set; } = null;
     }
 }
