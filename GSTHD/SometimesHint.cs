@@ -7,7 +7,7 @@ namespace GSTHD
 {
     class SometimesHint : TextBox
     {
-        public SometimesHint(SortedSet<string> listSometimesHints, ObjectPointLabel textInput)
+        public SometimesHint(SortedSet<string> listSometimesHints, AutoFillTextBox textInput)
         {
             this.BackColor = textInput.BackColor;
             this.Font = new Font(textInput.FontName, textInput.FontSize, textInput.FontStyle);

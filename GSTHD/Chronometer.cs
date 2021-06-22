@@ -15,7 +15,7 @@ namespace GSTHD
         bool ChronoRunning = false;
         Timer ChronoTimer;
 
-        public Chronometer(ObjectPointLabel data)
+        public Chronometer(AutoFillTextBox data)
         {
             this.ChronoTimer = new Timer();
             this.ChronoTimer.Interval = 10;

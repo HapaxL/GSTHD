@@ -14,7 +14,8 @@ namespace GSTHD
 {
     public class Layout
     {
-        public List<TextLabel> ListLabels = new List<TextLabel>();
+        public List<GenericLabel> ListLabels = new List<GenericLabel>();
+        public List<GenericTextBox> ListTextBoxes = new List<GenericTextBox>();
         public List<ObjectPoint> ListItems = new List<ObjectPoint>();
         public List<ObjectPointSong> ListSongs = new List<ObjectPointSong>();
         public List<ObjectPoint> ListDoubleItems = new List<ObjectPoint>();
@@ -23,8 +24,8 @@ namespace GSTHD
         public List<ObjectPoint> ListGuaranteedHints = new List<ObjectPoint>();
         public List<ObjectPoint> ListGossipStones = new List<ObjectPoint>();
         public List<ObjectPointGrid> ListGossipStoneGrids = new List<ObjectPointGrid>();
-        public List<ObjectPointLabel> ListSometimesHints = new List<ObjectPointLabel>();
-        public List<ObjectPointLabel> ListChronometers = new List<ObjectPointLabel>();
+        public List<AutoFillTextBox> ListSometimesHints = new List<AutoFillTextBox>();
+        public List<AutoFillTextBox> ListChronometers = new List<AutoFillTextBox>();
         public List<ObjectPanelWotH> ListPanelWotH = new List<ObjectPanelWotH>();
         public List<ObjectPanelBarren> ListPanelBarren = new List<ObjectPanelBarren>();
         public List<ObjectPointGoMode> ListGoMode = new List<ObjectPointGoMode>();
@@ -47,7 +48,15 @@ namespace GSTHD
                     {
                         foreach (var element in category.Value)
                         {
-                            ListLabels.Add(JsonConvert.DeserializeObject<TextLabel>(element.ToString()));
+                            ListLabels.Add(JsonConvert.DeserializeObject<GenericLabel>(element.ToString()));
+                        }
+                    }
+
+                    if (category.Key.ToString() == "TextBoxes")
+                    {
+                        foreach (var element in category.Value)
+                        {
+                            ListTextBoxes.Add(JsonConvert.DeserializeObject<GenericTextBox>(element.ToString()));
                         }
                     }
 
@@ -119,7 +128,7 @@ namespace GSTHD
                     {
                         foreach (var element in category.Value)
                         {
-                            ListSometimesHints.Add(JsonConvert.DeserializeObject<ObjectPointLabel>(element.ToString()));
+                            ListSometimesHints.Add(JsonConvert.DeserializeObject<AutoFillTextBox>(element.ToString()));
                         }
                     }
 
@@ -127,7 +136,7 @@ namespace GSTHD
                     {
                         foreach (var element in category.Value)
                         {
-                            ListChronometers.Add(JsonConvert.DeserializeObject<ObjectPointLabel>(element.ToString()));
+                            ListChronometers.Add(JsonConvert.DeserializeObject<AutoFillTextBox>(element.ToString()));
                         }
                     }
 
@@ -182,6 +191,24 @@ namespace GSTHD
                                 ForeColor = Color.FromName(item.Color),
                                 BackColor = Color.Transparent,
                                 AutoSize = true,
+                            });
+                        }
+                    }
+                }
+
+                if (ListTextBoxes.Count > 0)
+                {
+                    foreach (var box in ListTextBoxes)
+                    {
+                        if (box.Visible)
+                        {
+                            form.Controls.Add(new TextBox()
+                            {
+                                BackColor = box.BackColor,
+                                Font = new Font(box.FontName, box.FontSize, box.FontStyle),
+                                ForeColor = box.FontColor,
+                                Size = new Size(box.Width, box.Height),
+                                Location = new Point(box.X, box.Y),
                             });
                         }
                     }
@@ -348,7 +375,7 @@ namespace GSTHD
         }
     }
 
-    public class TextLabel
+    public class GenericLabel
     {
         public string Text { get; set; }
         public int X { get; set; }
@@ -359,6 +386,20 @@ namespace GSTHD
         public string Color { get; set; }
         // public Size MaxSize { get; set; }
         public bool Visible { get; set; }
+    }
+
+    public class GenericTextBox
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public bool Visible { get; set; }
+        public Color BackColor { get; set; }
+        public int FontSize { get; set; }
+        public string FontName { get; set; }
+        public FontStyle FontStyle { get; set; }
+        public Color FontColor { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 
     public class ObjectPoint
@@ -422,7 +463,7 @@ namespace GSTHD
         public string[] TinyImageCollection { get; set; }
     }
 
-    public class ObjectPointLabel
+    public class AutoFillTextBox
     {
         public string Name { get; set; }
         public int X { get; set; }
