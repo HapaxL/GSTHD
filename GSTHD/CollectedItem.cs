@@ -77,9 +77,15 @@ namespace GSTHD
             else isMouseDown = true;
 
             if (e.Button == MouseButtons.Left && CollectedItems < CollectedItemMax)
-                CollectedItems++;
+            {
+                CollectedItems += Step;
+                if (CollectedItems > CollectedItemMax) CollectedItems = CollectedItemMax;
+            }
             if (e.Button == MouseButtons.Right && CollectedItems > 0)
-                CollectedItems--;
+            {
+                CollectedItems -= Step;
+                if (CollectedItems < 0) CollectedItems = 0;
+            }
 
             ItemCount.Text = CollectedItems.ToString();
         }
