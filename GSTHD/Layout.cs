@@ -175,6 +175,21 @@ namespace GSTHD
                 {
                     settings.DefaultGossipStoneImages = App_Settings.DefaultGossipStoneImages;
                 }
+                if (App_Settings.DefaultDungeonNames != null)
+                {
+                    if (App_Settings.DefaultDungeonNames.TextCollection != null)
+                        settings.DefaultDungeonNames.TextCollection = App_Settings.DefaultDungeonNames.TextCollection;
+                    if (App_Settings.DefaultDungeonNames.DefaultValue != null)
+                        settings.DefaultDungeonNames.DefaultValue = App_Settings.DefaultDungeonNames.DefaultValue;
+                    if (App_Settings.DefaultDungeonNames.Wraparound != null)
+                        settings.DefaultDungeonNames.Wraparound = App_Settings.DefaultDungeonNames.Wraparound;
+                    if (App_Settings.DefaultDungeonNames.FontName != null)
+                        settings.DefaultDungeonNames.FontName = App_Settings.DefaultDungeonNames.FontName;
+                    if (App_Settings.DefaultDungeonNames.FontSize != null)
+                        settings.DefaultDungeonNames.FontSize = App_Settings.DefaultDungeonNames.FontSize;
+                    if (App_Settings.DefaultDungeonNames.FontStyle != null)
+                        settings.DefaultDungeonNames.FontStyle = App_Settings.DefaultDungeonNames.FontStyle;
+                }
 
                 if (ListLabels.Count > 0)
                 {
@@ -429,6 +444,16 @@ namespace GSTHD
         public string ActiveTinySongImage { get; set; }
     }
 
+    public class MedallionLabel
+    {
+        public string[] TextCollection { get; set; }
+        public int? DefaultValue { get; set; }
+        public bool? Wraparound { get; set; }
+        public int? FontSize { get; set; }
+        public string FontName { get; set; }
+        public FontStyle? FontStyle { get; set; }
+    }
+
     public class ObjectPointMedallion
     {
         public string Name { get; set; }
@@ -438,14 +463,6 @@ namespace GSTHD
         public bool Visible { get; set; }
         public string[] ImageCollection { get; set; }
         public MedallionLabel Label { get; set; }
-        
-        public class MedallionLabel
-        {
-            public string[] TextCollection { get; set; }
-            public int FontSize { get; set; }
-            public string FontName { get; set; }
-            public FontStyle FontStyle { get; set; }
-        }
     }
 
     public class ObjectPointGrid
@@ -576,5 +593,6 @@ namespace GSTHD
         public Color BackgroundColor { get;set; }
         public string[] DefaultSongMarkerImages { get; set; } = null;
         public string[] DefaultGossipStoneImages { get; set; } = null;
+        public MedallionLabel DefaultDungeonNames { get; set; } = null;
     }
 }

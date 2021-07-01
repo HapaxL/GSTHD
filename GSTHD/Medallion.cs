@@ -9,13 +9,15 @@ namespace GSTHD
     {
         private readonly Settings Settings;
 
-        List<string> ListImageName;
-        List<string> ListDungeon;
+        string[] ListImageName;
+        string[] ListDungeon;
+        int defaultValue;
+        bool wraparound;
         bool isMouseDown = false;
         int imageIndex = 0;
-        int dungeonIndex = 0;
+        int dungeonIndex;
 
-        public System.Windows.Forms.Label SelectedDungeon;
+        public Label SelectedDungeon;
         Size MedallionSize;
 
         public Medallion(ObjectPointMedallion data, Settings settings)
@@ -23,13 +25,34 @@ namespace GSTHD
             Settings = settings;
 
             if(data.ImageCollection != null)
-                ListImageName = data.ImageCollection.ToList();
-            if(data.Label.TextCollection != null)
-                ListDungeon = data.Label.TextCollection.ToList();
+                ListImageName = data.ImageCollection;
+
+            if (data.Label == null)
+                data.Label = Settings.DefaultDungeonNames;
+            else
+            {
+                if (data.Label.TextCollection == null)
+                    data.Label.TextCollection = Settings.DefaultDungeonNames.TextCollection;
+                if (data.Label.DefaultValue == null)
+                    data.Label.DefaultValue = Settings.DefaultDungeonNames.DefaultValue;
+                if (data.Label.Wraparound == null)
+                    data.Label.Wraparound = Settings.DefaultDungeonNames.Wraparound;
+                if (data.Label.FontName == null)
+                    data.Label.FontName = Settings.DefaultDungeonNames.FontName;
+                if (data.Label.FontSize == null)
+                    data.Label.FontSize = Settings.DefaultDungeonNames.FontSize;
+                if (data.Label.FontStyle == null)
+                    data.Label.FontStyle = Settings.DefaultDungeonNames.FontStyle;
+            }
+
+            ListDungeon = data.Label.TextCollection;
+            defaultValue = data.Label.DefaultValue.Value;
+            dungeonIndex = defaultValue;
+            wraparound = data.Label.Wraparound.Value;
 
             MedallionSize = data.Size;
 
-            if(ListImageName.Count > 0)
+            if(ListImageName.Length > 0)
             {
                 this.Name = ListImageName[0];
                 this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
@@ -46,10 +69,10 @@ namespace GSTHD
             this.MouseMove += this.Click_MouseMove;
             this.MouseWheel += this.Click_MouseWheel;
 
-            SelectedDungeon = new System.Windows.Forms.Label
+            SelectedDungeon = new Label
             {
-                Font = new Font(new FontFamily(data.Label.FontName), data.Label.FontSize, data.Label.FontStyle),
-                Text = ListDungeon[0],
+                Font = new Font(new FontFamily(data.Label.FontName), data.Label.FontSize.Value, data.Label.FontStyle.Value),
+                Text = ListDungeon[defaultValue],
                 TextAlign = ContentAlignment.MiddleCenter,
                 BackColor = Color.Transparent,
                 ForeColor = Color.White,
@@ -70,7 +93,7 @@ namespace GSTHD
         {
             if (e.Button == MouseButtons.Middle)
             {
-                dungeonIndex = 0;
+                dungeonIndex = defaultValue;
                 SelectedDungeon.Text = ListDungeon[dungeonIndex];
                 SetSelectedDungeonLocation();
                 return;
@@ -83,7 +106,7 @@ namespace GSTHD
                 isMouseDown = false;
             else isMouseDown = true;
 
-            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Count - 1)
+            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Length - 1)
             {
                 imageIndex += 1;
             }
@@ -112,7 +135,22 @@ namespace GSTHD
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
                 var newIndex = dungeonIndex + (Settings.InvertScrollWheel ? scrolls : -scrolls);
-                dungeonIndex = Math.EMod(newIndex, ListDungeon.Count);
+                if (wraparound)
+                {
+                    dungeonIndex = Math.EMod(newIndex, ListDungeon.Length);
+                }
+                else if (newIndex < 0)
+                {
+                    dungeonIndex = 0;
+                }
+                else if (newIndex >= ListDungeon.Length)
+                {
+                    dungeonIndex = ListDungeon.Length - 1;
+                }
+                else
+                {
+                    dungeonIndex = newIndex;
+                }
                 SelectedDungeon.Text = ListDungeon[dungeonIndex];
                 SetSelectedDungeonLocation();
             }

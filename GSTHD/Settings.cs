@@ -29,6 +29,15 @@ namespace GSTHD
         public SongMarkerBehaviourEnum SongMarkerBehaviour { get; set; } = DefaultSongMarkerBehaviour;
         public string[] DefaultSongMarkerImages { get; set; } = new string[0];
         public string[] DefaultGossipStoneImages { get; set; } = new string[0];
+        public MedallionLabel DefaultDungeonNames { get; set; } = new MedallionLabel()
+        {
+            TextCollection = new string[0],
+            DefaultValue = 0,
+            Wraparound = true,
+            FontName = "Consolas",
+            FontSize = 8,
+            FontStyle = System.Drawing.FontStyle.Bold,
+        };
 
         public static SongMarkerBehaviourEnum GetSongMarkerBehaviour(string value)
         {
