@@ -33,15 +33,15 @@ namespace GSTHD
             {
                 if (data.Label.TextCollection == null)
                     data.Label.TextCollection = Settings.DefaultDungeonNames.TextCollection;
-                if (data.Label.DefaultValue == null)
+                if (!data.Label.DefaultValue.HasValue)
                     data.Label.DefaultValue = Settings.DefaultDungeonNames.DefaultValue;
-                if (data.Label.Wraparound == null)
+                if (!data.Label.Wraparound.HasValue)
                     data.Label.Wraparound = Settings.DefaultDungeonNames.Wraparound;
                 if (data.Label.FontName == null)
                     data.Label.FontName = Settings.DefaultDungeonNames.FontName;
-                if (data.Label.FontSize == null)
+                if (!data.Label.FontSize.HasValue)
                     data.Label.FontSize = Settings.DefaultDungeonNames.FontSize;
-                if (data.Label.FontStyle == null)
+                if (!data.Label.FontStyle.HasValue)
                     data.Label.FontStyle = Settings.DefaultDungeonNames.FontStyle;
             }
 

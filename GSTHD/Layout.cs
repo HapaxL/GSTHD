@@ -175,19 +175,27 @@ namespace GSTHD
                 {
                     settings.DefaultGossipStoneImages = App_Settings.DefaultGossipStoneImages;
                 }
+                if (App_Settings.WothColors != null)
+                {
+                    settings.WothColors = App_Settings.WothColors;
+                }
+                if (App_Settings.DefaultWothColorIndex.HasValue)
+                {
+                    settings.DefaultWothColorIndex = App_Settings.DefaultWothColorIndex.Value;
+                }
                 if (App_Settings.DefaultDungeonNames != null)
                 {
                     if (App_Settings.DefaultDungeonNames.TextCollection != null)
                         settings.DefaultDungeonNames.TextCollection = App_Settings.DefaultDungeonNames.TextCollection;
-                    if (App_Settings.DefaultDungeonNames.DefaultValue != null)
+                    if (App_Settings.DefaultDungeonNames.DefaultValue.HasValue)
                         settings.DefaultDungeonNames.DefaultValue = App_Settings.DefaultDungeonNames.DefaultValue;
-                    if (App_Settings.DefaultDungeonNames.Wraparound != null)
+                    if (App_Settings.DefaultDungeonNames.Wraparound.HasValue)
                         settings.DefaultDungeonNames.Wraparound = App_Settings.DefaultDungeonNames.Wraparound;
                     if (App_Settings.DefaultDungeonNames.FontName != null)
                         settings.DefaultDungeonNames.FontName = App_Settings.DefaultDungeonNames.FontName;
-                    if (App_Settings.DefaultDungeonNames.FontSize != null)
+                    if (App_Settings.DefaultDungeonNames.FontSize.HasValue)
                         settings.DefaultDungeonNames.FontSize = App_Settings.DefaultDungeonNames.FontSize;
-                    if (App_Settings.DefaultDungeonNames.FontStyle != null)
+                    if (App_Settings.DefaultDungeonNames.FontStyle.HasValue)
                         settings.DefaultDungeonNames.FontStyle = App_Settings.DefaultDungeonNames.FontStyle;
                 }
 
@@ -350,7 +358,7 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
-                            var newPanel = new PanelWothBarren(item);
+                            var newPanel = new PanelWothBarren(item, settings);
                             newPanel.PanelWoth(listPlacesWithTag, item);
                             form.Controls.Add(newPanel);
                             form.Controls.Add(newPanel.textBoxCustom.SuggestionContainer);
@@ -365,7 +373,7 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
-                            var newPanel = new PanelWothBarren(item);
+                            var newPanel = new PanelWothBarren(item, settings);
                             newPanel.PanelBarren(listPlacesWithTag, item);
                             form.Controls.Add(newPanel);
                             form.Controls.Add(newPanel.textBoxCustom.SuggestionContainer);
@@ -593,6 +601,8 @@ namespace GSTHD
         public Color BackgroundColor { get;set; }
         public string[] DefaultSongMarkerImages { get; set; } = null;
         public string[] DefaultGossipStoneImages { get; set; } = null;
+        public string[] WothColors { get; set; }
+        public int? DefaultWothColorIndex { get; set; }
         public MedallionLabel DefaultDungeonNames { get; set; } = null;
     }
 }

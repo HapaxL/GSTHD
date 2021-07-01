@@ -13,9 +13,11 @@ namespace GSTHD
         public Label LabelPlace;
         public List<GossipStone> listGossipStone = new List<GossipStone>();
         public string Name;
-        int LabelPlaceNbClick = 0;
 
-        public WotH(string selectedPlace, string[] listImage, Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
+        private Color[] Colors;
+        private int ColorIndex;
+
+        public WotH(Settings settings, string selectedPlace, string[] listImage, Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
         {
             this.Name = selectedPlace;
 
@@ -44,28 +46,30 @@ namespace GSTHD
                     listGossipStone.Add(newGossipStone);
                 }
             }
+
+            Colors = new Color[settings.WothColors.Length];
+            for (int i = 0; i < settings.WothColors.Length; i++)
+            {
+                Colors[i] = Color.FromName(settings.WothColors[i]);
+            }
+            ColorIndex = settings.DefaultWothColorIndex;
         }
 
         private void label_woth_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                LabelPlaceNbClick++;
+                ColorIndex++;
             }
             else if (e.Button == MouseButtons.Right)
             {
-                LabelPlaceNbClick--;
+                ColorIndex--;
             }
 
-            if (LabelPlaceNbClick == -1) LabelPlace.ForeColor = Color.BlueViolet;
-            else if (LabelPlaceNbClick == 0) LabelPlace.ForeColor = Color.White;
-            else if (LabelPlaceNbClick == 1) LabelPlace.ForeColor = Color.Yellow;
-            else if (LabelPlaceNbClick == 2) LabelPlace.ForeColor = Color.DarkOrange;
-            else if (LabelPlaceNbClick == 3) LabelPlace.ForeColor = Color.Red;
-            else if (LabelPlaceNbClick == 4) LabelPlace.ForeColor = Color.Black;
-            else if (LabelPlaceNbClick < -1) LabelPlaceNbClick = -1;
-            else LabelPlaceNbClick = 4;
+            if (ColorIndex < 0) ColorIndex = 0;
+            else if (ColorIndex >= Colors.Length) ColorIndex = Colors.Length - 1;
 
+            LabelPlace.ForeColor = Colors[ColorIndex];
         }
     }
 }

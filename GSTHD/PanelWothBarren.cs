@@ -10,6 +10,8 @@ namespace GSTHD
 {
     class PanelWothBarren : Panel
     {
+        Settings Settings;
+
         public List<WotH> ListWotH = new List<WotH>();
         public List<Barren> ListBarren = new List<Barren>();
 
@@ -17,10 +19,12 @@ namespace GSTHD
         private string[] ListImage_WothItemsOption;
         Size GossipStoneSize;
         int NbMaxRows;
-        System.Windows.Forms.Label LabelSettings = new System.Windows.Forms.Label();
+        Label LabelSettings = new Label();
 
-        public PanelWothBarren(ObjectPanelWotH data)
+        public PanelWothBarren(ObjectPanelWotH data, Settings settings)
         {
+            Settings = settings;
+
             GossipStoneSize = data.GossipStoneSize;
             this.BackColor = data.BackColor;
             this.Location = new Point(data.X, data.Y);
@@ -31,8 +35,10 @@ namespace GSTHD
                 this.MouseWheel += Panel_MouseWheel;
         }
 
-        public PanelWothBarren(ObjectPanelBarren data)
+        public PanelWothBarren(ObjectPanelBarren data, Settings settings)
         {
+            Settings = settings;
+
             this.BackColor = data.BackColor;
             this.Location = new Point(data.X, data.Y);
             this.Name = data.Name;
@@ -49,8 +55,8 @@ namespace GSTHD
             {
                 foreach (var element in panel.Controls)
                 {
-                    if (element is System.Windows.Forms.Label)
-                        ((System.Windows.Forms.Label)element).Location = new Point(((System.Windows.Forms.Label)element).Location.X, ((System.Windows.Forms.Label)element).Location.Y - 15);
+                    if (element is Label)
+                        ((Label)element).Location = new Point(((Label)element).Location.X, ((Label)element).Location.Y - 15);
                     if (element is GossipStone)
                         ((GossipStone)element).Location = new Point(((GossipStone)element).Location.X, ((GossipStone)element).Location.Y - 15);
                     if (element is TextBox)
@@ -61,8 +67,8 @@ namespace GSTHD
             {
                 foreach (var element in panel.Controls)
                 {
-                    if (element is System.Windows.Forms.Label)
-                        ((System.Windows.Forms.Label)element).Location = new Point(((System.Windows.Forms.Label)element).Location.X, ((System.Windows.Forms.Label)element).Location.Y + 15);
+                    if (element is Label)
+                        ((Label)element).Location = new Point(((Label)element).Location.X, ((Label)element).Location.Y + 15);
                     if (element is GossipStone)
                         ((GossipStone)element).Location = new Point(((GossipStone)element).Location.X, ((GossipStone)element).Location.Y + 15);
                     if (element is TextBox)
@@ -77,7 +83,7 @@ namespace GSTHD
             ListImage_WothItemsOption = data.GossipStoneImageCollection;
             NbMaxRows = data.NbMaxRows;
 
-            LabelSettings = new System.Windows.Forms.Label
+            LabelSettings = new Label
             {
                 ForeColor = data.LabelColor,
                 BackColor = data.LabelBackColor,
@@ -105,7 +111,7 @@ namespace GSTHD
         {
             NbMaxRows = data.NbMaxRows;
 
-            LabelSettings = new System.Windows.Forms.Label
+            LabelSettings = new Label
             {
                 ForeColor = data.LabelColor,
                 BackColor = data.LabelBackColor,
@@ -189,11 +195,11 @@ namespace GSTHD
                         {
                             WotH newWotH = null;
                             if (ListWotH.Count <= 0)
-                                newWotH = new WotH(selectedPlace, ListImage_WothItemsOption, new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
+                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
                             else
                             {
                                 var lastLocation = ListWotH.Last().LabelPlace.Location;
-                                newWotH = new WotH(selectedPlace, ListImage_WothItemsOption, lastLocation, LabelSettings, GossipStoneSize);
+                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, lastLocation, LabelSettings, GossipStoneSize);
                                
                             }
                             ListWotH.Add(newWotH);
@@ -217,7 +223,7 @@ namespace GSTHD
         {
             if (e.Button == MouseButtons.Middle)
             {
-                var label = (System.Windows.Forms.Label)sender;
+                var label = (Label)sender;
                 var barren = this.ListBarren.Where(x => x.LabelPlace.Name == label.Name).ToList()[0];
                 this.RemoveBarren(barren);
             }
@@ -227,7 +233,7 @@ namespace GSTHD
         {
             if (e.Button == MouseButtons.Middle)
             {
-                var label = (System.Windows.Forms.Label)sender;
+                var label = (Label)sender;
                 var woth = this.ListWotH.Where(x => x.LabelPlace.Name == label.Name).ToList()[0];
                 this.RemoveWotH(woth);
             }

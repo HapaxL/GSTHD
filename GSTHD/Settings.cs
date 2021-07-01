@@ -29,6 +29,13 @@ namespace GSTHD
         public SongMarkerBehaviourEnum SongMarkerBehaviour { get; set; } = DefaultSongMarkerBehaviour;
         public string[] DefaultSongMarkerImages { get; set; } = new string[0];
         public string[] DefaultGossipStoneImages { get; set; } = new string[0];
+        public string[] WothColors { get; set; } = new string[]
+        {
+            "White",
+            "Orange",
+            "Crimson",
+        };
+        public int DefaultWothColorIndex { get; set; } = 0;
         public MedallionLabel DefaultDungeonNames { get; set; } = new MedallionLabel()
         {
             TextCollection = new string[0],
