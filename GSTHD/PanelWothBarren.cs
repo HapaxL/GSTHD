@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace GSTHD
 {
-    class PanelWothBarren : Panel
+    class PanelWothBarren : Panel, UpdatableFromSettings
     {
         Settings Settings;
 
@@ -46,6 +46,18 @@ namespace GSTHD
             this.TabStop = false;
             if (data.IsScrollable)
                 this.MouseWheel += Panel_MouseWheel;
+        }
+
+        public void UpdateFromSettings()
+        {
+            foreach (var woth in ListWotH)
+            {
+                woth.UpdateFromSettings();
+            }
+            foreach (var barren in ListBarren)
+            {
+                barren.UpdateFromSettings();
+            }
         }
 
         private void Panel_MouseWheel(object sender, MouseEventArgs e)

@@ -5,273 +5,414 @@ using System.Windows.Forms;
 
 namespace GSTHD
 {
-    class Song : PictureBox
+    public struct SongMarkerState
     {
-        Settings Settings;
+        public bool HoldsImage;
+        public string HeldImageName;
+        public int ImageIndex;
+    }
 
-        public List<string> ImageNames = new List<string>();
-        public string[] SongMarkerImageNames;
-        string ActiveImageName;
-        string ActiveSongMarkerImageName;
+    public class SongMarker : PictureBox, UpdatableFromSettings, ProgressibleElement<SongMarkerState>, DraggableElement<SongMarkerState>
+    {
+        private readonly Settings Settings;
+        private readonly ProgressibleElementBehaviour<SongMarkerState> ProgressBehaviour;
+        private readonly DraggableElementBehaviour<SongMarkerState> DragBehaviour;
 
-        int imageIndex = 0;
-        int songMarkerImageIndex = 0;
-        public PictureBox SongMarker;
+        private string[] ImageNames;
+        private bool HoldsImage;
+        private string HeldImageName;
+        private int ImageIndex = 0;
 
-        Size SongSize;
+        private bool RemoveImage;
 
-        public Song(ObjectPointSong data, Settings settings)
+        public Song Song;
+
+        public SongMarker(Song song, Settings settings, string[] imageCollection)
         {
+            Song = song;
             Settings = settings;
+            ProgressBehaviour = new ProgressibleElementBehaviour<SongMarkerState>(this, settings);
+            DragBehaviour = new DraggableElementBehaviour<SongMarkerState>(this, settings);
 
-            if (data.ImageCollection != null)
+            if (imageCollection == null)
             {
-                ImageNames = data.ImageCollection.ToList();
-                ActiveImageName = data.ActiveSongImage;
-            }
-
-            SongSize = data.Size;
-            
-            this.BackColor = Color.Transparent;
-            this.Location = new Point(data.X, data.Y);
-            this.TabStop = false;
-            this.AllowDrop = true;
-            this.MouseUp += this.Mouse_MiddleClick_Up;
-            this.MouseDown += this.Mouse_LeftClick_Down;
-            this.MouseDown += this.Mouse_RightClick_Down;
-            this.MouseMove += this.Mouse_Move;
-            this.DragEnter += this.Mouse_MiddleClick_Drag;
-
-            if (ImageNames.Count > 0)
-            {
-                this.Name = ImageNames[0];
-                this.Image = Image.FromFile(@"Resources/" + this.Name);
-                this.SizeMode = PictureBoxSizeMode.Zoom;
-
-                if (data.DragAndDropImageName != string.Empty)
-                    this.Tag = data.DragAndDropImageName;
-                else
-                    this.Tag = ImageNames[1];
-            }
-
-            if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourEnum.None)
-            {
-                this.Size = new Size(SongSize.Width, SongSize.Height);
+                ImageNames = Settings.DefaultSongMarkerImages;
             }
             else
             {
-                if (data.TinyImageCollection == null)
-                {
-                    SongMarkerImageNames = Settings.DefaultSongMarkerImages;
-                }
-                else
-                {
-                    SongMarkerImageNames = data.TinyImageCollection;
-                    ActiveSongMarkerImageName = data.ActiveTinySongImage;
-                }
+                ImageNames = imageCollection;
+            }
 
-                SongMarker = new PictureBox
-                {
-                    BackColor = Color.Transparent,
-                    TabStop = false,
-                    AllowDrop = false,
-                };
+            Visible = true;
 
-                this.Controls.Add(SongMarker);
-                SongMarker.BringToFront();
-                
-                if (SongMarkerImageNames.Length > 0)
-                {
-                    SongMarker.Name = SongMarkerImageNames[0];
-                    SongMarker.Image = Image.FromFile(@"Resources/" + SongMarkerImageNames[0]);
-                    SongMarker.SizeMode = PictureBoxSizeMode.StretchImage;
-                    SongMarker.Size = new Size(SongMarker.Image.Width, SongMarker.Image.Height);
-                    if (data.DragAndDropImageName != string.Empty)
-                        SongMarker.Tag = data.DragAndDropImageName;
-                    else
-                        SongMarker.Tag = ImageNames[1];
-                }
+            if (ImageNames.Length > 0)
+            {
+                Name = Song.Name + "_SongMarker";
+                UpdateImage();
+                SizeMode = PictureBoxSizeMode.StretchImage;
+                Size = new Size(Image.Width, Image.Height);
 
-                if (ImageNames.Count > 0)
-                {
-                    this.Size = new Size(SongSize.Width, SongSize.Height + (int)(SongMarker.Height * 5 / 6));
+                //if (data.DragAndDropImageName != string.Empty)
+                //    SongMarker.Tag = data.DragAndDropImageName;
+                //else
+                //    SongMarker.Tag = ImageNames[1];
 
-                    SongMarker.Location = new Point(
-                        (SongSize.Width - SongMarker.Width) / 2,
-                        SongSize.Height - SongMarker.Height / 6
-                    );
-                }
-
-                SongMarker.MouseDown += Mouse_RightClick_Down_SongMarker;
-                SongMarker.MouseUp += Mouse_MiddleClick_Up_SongMarker;
-                SongMarker.DragEnter += Mouse_MiddleClick_Drag;
-
-                if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourEnum.CheckOnly)
-                {
-                    SongMarker.MouseDown += Mouse_LeftClick_Down_SongMarker;
-                    SongMarker.MouseMove += Mouse_Move;
-                }
-
-                if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourEnum.DropOnly)
-                {
-                    this.DragDrop += Mouse_MiddleClick_Drop;
-                    SongMarker.MouseMove += Mouse_Move;
-                }
-
-                if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourEnum.DropAndCheck)
-                {
-                    this.DragDrop += Mouse_MiddleClick_Drop;
-                    SongMarker.MouseDown += Mouse_LeftClick_Down_SongMarker;
-                    SongMarker.MouseMove += Mouse_Move;
-                }
-    
-                if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourEnum.DragAndDrop)
-                {
-                    this.DragDrop += Mouse_MiddleClick_Drop;
-                    SongMarker.MouseMove += Mouse_Move_SongMarker;
-                }
-    
-                if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourEnum.Full)
-                {
-                    this.DragDrop += Mouse_MiddleClick_Drop;
-                    SongMarker.MouseDown += Mouse_LeftClick_Down_SongMarker;
-                    SongMarker.MouseMove += Mouse_Move_SongMarker;
-                }
             }
         }
 
-        private void SetImage()
+        public void UpdateFromSettings()
         {
-            Image = Image.FromFile(@"Resources/" + ImageNames[imageIndex]);
-            Name = ImageNames[imageIndex];
-        }
+            MouseDown -= ProgressBehaviour.Mouse_ClickDown;
+            MouseDown -= Mouse_MiddleClickDown;
+            MouseUp -= DragBehaviour.Mouse_ClickUp;
+            MouseDown -= DragBehaviour.Mouse_ClickDown;
+            MouseMove -= Mouse_Move;
+            DragEnter -= Mouse_DragEnter;
+            DragDrop -= Mouse_DragDrop;
 
-        private void SetSongMarkerImage()
-        {
-            SongMarker.Image = Image.FromFile(@"Resources/" + SongMarkerImageNames[songMarkerImageIndex]);
-            SongMarker.Name = SongMarkerImageNames[songMarkerImageIndex];
-        }
-
-        private void Mouse_LeftClick_Down(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
+            if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.None)
             {
-                if (imageIndex < ImageNames.Count - 1)
-                {
-                    imageIndex += 1;
-                }
-                SetImage();
-            }
-        }
-
-        private void Mouse_RightClick_Down(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                if (imageIndex > 0)
-                {
-                    imageIndex -= 1;
-                }
-                SetImage();
-            }
-        }
-
-        private void Mouse_LeftClick_Down_SongMarker(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                if (songMarkerImageIndex < SongMarkerImageNames.Length - 1)
-                {
-                    songMarkerImageIndex += 1;
-                }
-                SetSongMarkerImage();
-            }
-        }
-
-        private void Mouse_RightClick_Down_SongMarker(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                if (songMarkerImageIndex > 0)
-                {
-                    songMarkerImageIndex -= 1;
-                }
-                SetSongMarkerImage();
-            }
-        }
-
-        public void Mouse_MiddleClick_Up(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle)
-            {
-                imageIndex = 0;
-                SetImage();
-            }
-        }
-
-        public void Mouse_MiddleClick_Up_SongMarker(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle)
-            {
-                songMarkerImageIndex = 0;
-                SetSongMarkerImage();
-            }
-        }
-
-        private void Mouse_MiddleClick_Drop(object sender, DragEventArgs e)
-        {
-            var imageName = ((string)e.Data.GetData(DataFormats.Text));
-            var image = Image.FromFile(@"Resources/" + imageName);
-
-            SongMarker.Name = imageName;
-            SongMarker.Image = image;
-
-            if (Settings.MoveLocationToSong)
-            {
-                if (Settings.AutoCheckSongs)
-                {
-                    this.Image = Image.FromFile(@"Resources/" + ImageNames[1]);
-                    this.Name = imageName;
-                }
+                Visible = false;
             }
             else
             {
-                if (Settings.AutoCheckSongs)
+                Visible = true;
+
+                if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.CheckOnly)
                 {
-                    var splitName = imageName.Split('_');
-                    var newName = splitName[0] + "-bw_" + splitName[1];
-                    var findOrigin = this.Parent.Controls.Find(newName, false);
-                    if (findOrigin.Length > 0)
-                    {
-                        var origin = (Song)findOrigin[0];
-                        origin.Mouse_LeftClick_Down(this, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
-                    }
+                    MouseDown += ProgressBehaviour.Mouse_ClickDown;
+                }
+                else if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.DropOnly)
+                {
+                    MouseDown += Mouse_MiddleClickDown;
+                    MouseUp += DragBehaviour.Mouse_ClickUp;
+                    DragDrop += Mouse_DragDrop;
+                }
+                else if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.DropAndCheck)
+                {
+                    MouseDown += ProgressBehaviour.Mouse_ClickDown;
+                    MouseUp += DragBehaviour.Mouse_ClickUp;
+                    DragDrop += Mouse_DragDrop;
+                }
+                else if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.DragAndDrop)
+                {
+                    MouseDown += Mouse_MiddleClickDown;
+                    MouseUp += DragBehaviour.Mouse_ClickUp;
+                    MouseDown += DragBehaviour.Mouse_ClickDown;
+                    MouseMove += Mouse_Move;
+                    DragEnter += Mouse_DragEnter;
+                    DragDrop += Mouse_DragDrop;
+                }
+                else if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.Full)
+                {
+                    MouseDown += ProgressBehaviour.Mouse_ClickDown;
+                    MouseUp += DragBehaviour.Mouse_ClickUp;
+                    MouseDown += DragBehaviour.Mouse_ClickDown;
+                    MouseMove += Mouse_Move;
+                    DragEnter += Mouse_DragEnter;
+                    DragDrop += Mouse_DragDrop;
                 }
             }
         }
 
-        private void Mouse_MiddleClick_Drag(object sender, DragEventArgs e)
+        public void UpdateImage()
+        {
+            if (HoldsImage)
+            {
+                Image = Image.FromFile(@"Resources/" + HeldImageName);
+            }
+            else
+            {
+                Image = Image.FromFile(@"Resources/" + ImageNames[ImageIndex]);
+            }
+        }
+
+        public void Mouse_MiddleClickDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Middle:
+                    ProgressBehaviour.Mouse_MiddleClickDown(sender, e);
+                    break;
+            }
+        }
+
+        private void Mouse_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
         }
 
         private void Mouse_Move(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Middle)
+            if (HoldsImage)
             {
-                this.DoDragDrop(this.Tag, DragDropEffects.Copy);
+                DragBehaviour.Mouse_Move(sender, e);
             }
         }
 
-        private void Mouse_Move_SongMarker(object sender, MouseEventArgs e)
+        public void Mouse_DragDrop(object sender, DragEventArgs e)
         {
-            if (e.Button == MouseButtons.Middle)
+            ImageIndex = 0;
+            HoldsImage = true;
+            var dropContent = (DragDropContent)e.Data.GetData(typeof(DragDropContent));
+            HeldImageName = dropContent.ImageName;
+            UpdateImage();
+            DragBehaviour.SaveChanges();
+        }
+
+        public SongMarkerState GetState()
+        {
+            return new SongMarkerState()
             {
-                var draggedImageName = SongMarker.Name;
-                imageIndex = 0;
-                SetSongMarkerImage();
-                this.DoDragDrop(draggedImageName, DragDropEffects.Copy);
+                HoldsImage = HoldsImage,
+                HeldImageName = HeldImageName,
+                ImageIndex = ImageIndex,
+            };
+        }
+
+        public void SetState(SongMarkerState state)
+        {
+            HoldsImage = state.HoldsImage;
+            HeldImageName = state.HeldImageName;
+            ImageIndex = state.ImageIndex;
+        }
+
+        public void IncrementState()
+        {
+            RemoveImage = true;
+            if (ImageIndex < ImageNames.Length - 1) ImageIndex += 1;
+            UpdateImage();
+        }
+
+        public void DecrementState()
+        {
+            RemoveImage = true;
+            if (ImageIndex > 0) ImageIndex -= 1;
+            UpdateImage();
+        }
+
+        public void ResetState()
+        {
+            RemoveImage = true;
+            ImageIndex = 0;
+            UpdateImage();
+        }
+
+        public void StartDragDrop()
+        {
+            HoldsImage = false;
+            UpdateImage();
+            var dropContent = new DragDropContent(false, HeldImageName);
+            DoDragDrop(dropContent, DragDropEffects.Copy);
+            SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            if (RemoveImage)
+            {
+                HoldsImage = false;
+                RemoveImage = false;
+                UpdateImage();
             }
         }
+
+        public void CancelChanges() { }
+    }
+
+    public class Song : PictureBox, UpdatableFromSettings, ProgressibleElement<int>, DraggableAutocheckElement<int>
+    {
+        private readonly Settings Settings;
+        private readonly ProgressibleElementBehaviour<int> ProgressBehaviour;
+        private readonly DraggableAutocheckElementBehaviour<int> DragBehaviour;
+
+        private readonly string DragPictureName;
+
+        public string[] ImageNames;
+        string ActiveImageName;
+
+        private int ImageIndex = 0;
+
+        public SongMarker SongMarker;
+
+        Size SongSize;
+
+        public Song(ObjectPointSong data, Settings settings)
+        {
+            Settings = settings;
+            ProgressBehaviour = new ProgressibleElementBehaviour<int>(this, settings);
+            DragBehaviour = new DraggableAutocheckElementBehaviour<int>(this, settings);
+
+            if (data.ImageCollection != null)
+            {
+                ImageNames = data.ImageCollection;
+                ActiveImageName = data.ActiveSongImage;
+            }
+
+            Name = data.Name;
+            SongSize = data.Size;
+            
+            BackColor = Color.Transparent;
+            Location = new Point(data.X, data.Y);
+            TabStop = false;
+            AllowDrop = true;
+
+            if (ImageNames.Length > 0)
+            {
+                UpdateImage();
+                SizeMode = PictureBoxSizeMode.Zoom;
+
+                if (data.DragAndDropImageName != string.Empty)
+                    DragPictureName = data.DragAndDropImageName;
+                else
+                    DragPictureName = ImageNames[1];
+            }
+
+            SongMarker = new SongMarker(this, settings, data.TinyImageCollection)
+            {
+                BackColor = Color.Transparent,
+                TabStop = false,
+                AllowDrop = false,
+            };
+
+            Size = new Size(SongSize.Width, SongSize.Height + SongMarker.Height * 5 / 6);
+            Controls.Add(SongMarker);
+            SongMarker.BringToFront();
+
+            MouseUp += DragBehaviour.Mouse_ClickUp;
+            MouseDown += ProgressBehaviour.Mouse_ClickDown;
+            MouseDown += DragBehaviour.Mouse_ClickDown;
+            DragEnter += Mouse_DragEnter;
+
+            UpdateFromSettings();
+        }
+
+        public void UpdateFromSettings()
+        {
+            SongMarker.DragEnter -= Mouse_DragEnter;
+            DragDrop -= Mouse_DragDrop;
+            DragDrop -= Mouse_DragDrop_WithMoveLocationToSong;
+            DragDrop -= SongMarker.Mouse_DragDrop;
+            MouseMove -= Mouse_Move;
+            MouseMove -= Mouse_Move_WithMoveLocationToSong;
+            SongMarker.MouseMove -= Mouse_Move;
+            SongMarker.MouseMove -= Mouse_Move_WithMoveLocationToSong;
+
+            if (Settings.SongMarkerBehaviour != Settings.SongMarkerBehaviourOption.None)
+            {
+                if (ImageNames.Length > 0)
+                {
+                    SongMarker.Location = new Point(
+                        (SongSize.Width - SongMarker.Width) / 2,
+                        SongSize.Height - SongMarker.Height / 6
+                    );
+                }
+
+                if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.CheckOnly)
+                {
+                    MouseMove += Mouse_Move;
+                    SongMarker.MouseMove += Mouse_Move;
+                }
+                else if (Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.DropOnly
+                    || Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.DropAndCheck
+                    || Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.DragAndDrop
+                    || Settings.SongMarkerBehaviour == Settings.SongMarkerBehaviourOption.Full)
+                {
+                    SongMarker.DragEnter += Mouse_DragEnter;
+                    DragDrop += SongMarker.Mouse_DragDrop;
+
+                    if (Settings.MoveLocationToSong)
+                    {
+                        DragDrop += Mouse_DragDrop_WithMoveLocationToSong;
+                        MouseMove += Mouse_Move_WithMoveLocationToSong;
+                        SongMarker.MouseMove += Mouse_Move_WithMoveLocationToSong;
+                    }
+                    else
+                    {
+                        DragDrop += Mouse_DragDrop;
+                        MouseMove += Mouse_Move;
+                        SongMarker.MouseMove += Mouse_Move;
+                    }
+                }
+            }
+
+            SongMarker.UpdateFromSettings();
+        }
+
+        private void UpdateImage()
+        {
+            Image = Image.FromFile(@"Resources/" + ImageNames[ImageIndex]);
+        }
+
+        private void Mouse_Move(object sender, MouseEventArgs e)
+        {
+            DragBehaviour.Mouse_Move_WithAutocheck(sender, e);
+        }
+
+        private void Mouse_Move_WithMoveLocationToSong(object sender, MouseEventArgs e)
+        {
+            DragBehaviour.Mouse_Move(sender, e);
+        }
+
+        private void Mouse_DragDrop(object sender, DragEventArgs e) { }
+
+        private void Mouse_DragDrop_WithMoveLocationToSong(object sender, DragEventArgs e)
+        {
+            var dropContent = (DragDropContent)e.Data.GetData(typeof(DragDropContent));
+            if (dropContent.IsAutocheck)
+            {
+                IncrementState();
+                DragBehaviour.SaveChanges();
+            }
+        }
+
+        private void Mouse_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = e.AllowedEffect;
+        }
+
+        public int GetState()
+        {
+            return ImageIndex;
+        }
+
+        public void SetState(int state)
+        {
+            ImageIndex = state;
+            UpdateImage();
+        }
+
+        public void IncrementState()
+        {
+            if (ImageIndex < ImageNames.Length - 1)
+            {
+                ImageIndex += 1;
+                UpdateImage();
+            }
+        }
+
+        public void DecrementState()
+        {
+            if (ImageIndex > 0)
+            {
+                ImageIndex -= 1;
+                UpdateImage();
+            }
+        }
+
+        public void ResetState()
+        {
+            ImageIndex = 0;
+            UpdateImage();
+        }
+
+        public void StartDragDrop()
+        {
+            var dropContent = new DragDropContent(DragBehaviour.AutocheckDragDrop, DragPictureName);
+            DoDragDrop(dropContent, DragDropEffects.Copy);
+        }
+
+        public void SaveChanges() { }
+        public void CancelChanges() { }
     }
 }

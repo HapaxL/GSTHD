@@ -12,6 +12,11 @@ using System.Windows.Forms;
 
 namespace GSTHD
 {
+    public interface UpdatableFromSettings
+    {
+        void UpdateFromSettings();
+    }
+
     public class Layout
     {
         public List<GenericLabel> ListLabels = new List<GenericLabel>();
@@ -30,14 +35,24 @@ namespace GSTHD
         public List<ObjectPanelBarren> ListPanelBarren = new List<ObjectPanelBarren>();
         public List<ObjectPointGoMode> ListGoMode = new List<ObjectPointGoMode>();
 
+        public List<UpdatableFromSettings> ListUpdatables = new List<UpdatableFromSettings>();
+
         public AppSettings App_Settings = new AppSettings();
 
-        public void LoadLayout(Form form, Settings settings, SortedSet<string> listSometimesHintsSuggestions, Dictionary<string, string> listPlacesWithTag)
+        public void UpdateFromSettings()
+        {
+            foreach (var updatable in ListUpdatables)
+            {
+                updatable.UpdateFromSettings();
+            }
+        }
+
+        public void LoadLayout(Panel panelLayout, Settings settings, SortedSet<string> listSometimesHintsSuggestions, Dictionary<string, string> listPlacesWithTag, Form1 form)
         {
             if (settings.ActiveLayout != string.Empty)
             {
-                JObject json_layouts = JObject.Parse(File.ReadAllText(@"Layouts/" + settings.ActiveLayout + ".json"));
-                foreach (var category in json_layouts)
+                JObject json_layout = JObject.Parse(File.ReadAllText(@"Layouts/" + settings.ActiveLayout + ".json"));
+                foreach (var category in json_layout)
                 {
                     if (category.Key.ToString() == "AppSize")
                     {
@@ -165,8 +180,11 @@ namespace GSTHD
                     }
                 }
 
-                form.Size = new Size(App_Settings.Width, App_Settings.Height);
-                form.BackColor = App_Settings.BackgroundColor;
+                panelLayout.Size = new Size(App_Settings.Width, App_Settings.Height);
+                if (App_Settings.BackgroundColor.HasValue)
+                    form.BackColor = App_Settings.BackgroundColor.Value;
+                panelLayout.BackColor = form.BackColor;
+
                 if (App_Settings.DefaultSongMarkerImages != null)
                 {
                     settings.DefaultSongMarkerImages = App_Settings.DefaultSongMarkerImages;
@@ -177,7 +195,7 @@ namespace GSTHD
                 }
                 if (App_Settings.WothColors != null)
                 {
-                    settings.WothColors = App_Settings.WothColors;
+                    settings.DefaultWothColors = App_Settings.WothColors;
                 }
                 if (App_Settings.DefaultWothColorIndex.HasValue)
                 {
@@ -205,7 +223,7 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
-                            form.Controls.Add(new Label()
+                            panelLayout.Controls.Add(new Label()
                             {
                                 Text = item.Text,
                                 Left = item.X,
@@ -225,7 +243,7 @@ namespace GSTHD
                     {
                         if (box.Visible)
                         {
-                            form.Controls.Add(new TextBox()
+                            panelLayout.Controls.Add(new TextBox()
                             {
                                 BackColor = box.BackColor,
                                 Font = new Font(box.FontName, box.FontSize, box.FontStyle),
@@ -242,7 +260,7 @@ namespace GSTHD
                     foreach (var item in ListItems)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new Item(item, settings));
+                            panelLayout.Controls.Add(new Item(item, settings));
                     }
                 }
 
@@ -251,7 +269,11 @@ namespace GSTHD
                     foreach (var song in ListSongs)
                     {
                         if (song.Visible)
-                            form.Controls.Add(new Song(song, settings));
+                        {
+                            var s = new Song(song, settings);
+                            panelLayout.Controls.Add(s);
+                            ListUpdatables.Add(s);
+                        }
                     }
                 }
 
@@ -260,7 +282,7 @@ namespace GSTHD
                     foreach (var doubleItem in ListDoubleItems)
                     {
                         if (doubleItem.Visible)
-                            form.Controls.Add(new DoubleItem(doubleItem));
+                            panelLayout.Controls.Add(new DoubleItem(doubleItem));
                     }
                 }
 
@@ -269,7 +291,7 @@ namespace GSTHD
                     foreach (var item in ListCollectedItems)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new CollectedItem(item, settings));
+                            panelLayout.Controls.Add(new CollectedItem(item, settings));
                     }
                 }
 
@@ -280,8 +302,9 @@ namespace GSTHD
                         if (medallion.Visible)
                         {
                             var element = new Medallion(medallion, settings);
-                            form.Controls.Add(element);
-                            form.Controls.Add(element.SelectedDungeon);
+                            panelLayout.Controls.Add(element);
+                            panelLayout.Controls.Add(element.SelectedDungeon);
+                            ListUpdatables.Add(element);
                             element.SetSelectedDungeonLocation();
                             element.SelectedDungeon.BringToFront();
                         }
@@ -293,7 +316,7 @@ namespace GSTHD
                     foreach (var item in ListGuaranteedHints)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new GuaranteedHint(item));
+                            panelLayout.Controls.Add(new GuaranteedHint(item));
                     }
                 }
 
@@ -302,7 +325,7 @@ namespace GSTHD
                     foreach (var item in ListGossipStones)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new GossipStone(item, settings));
+                            panelLayout.Controls.Add(new GossipStone(item, settings));
                     }
                 }
 
@@ -327,7 +350,7 @@ namespace GSTHD
                                         TinyImageCollection = item.TinyImageCollection,
                                         Visible = item.Visible,
                                     };
-                                    form.Controls.Add(new GossipStone(gs, settings));
+                                    panelLayout.Controls.Add(new GossipStone(gs, settings));
                                 }
                             }
                         }
@@ -339,7 +362,7 @@ namespace GSTHD
                     foreach (var item in ListSometimesHints)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new SometimesHint(listSometimesHintsSuggestions, item));
+                            panelLayout.Controls.Add(new SometimesHint(listSometimesHintsSuggestions, item));
                     }
                 }
 
@@ -348,7 +371,7 @@ namespace GSTHD
                     foreach (var item in ListChronometers)
                     {
                         if (item.Visible)
-                            form.Controls.Add(new Chronometer(item).ChronoLabel);
+                            panelLayout.Controls.Add(new Chronometer(item).ChronoLabel);
                     }
                 }
 
@@ -358,11 +381,12 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
-                            var newPanel = new PanelWothBarren(item, settings);
-                            newPanel.PanelWoth(listPlacesWithTag, item);
-                            form.Controls.Add(newPanel);
-                            form.Controls.Add(newPanel.textBoxCustom.SuggestionContainer);
-                            newPanel.SetSuggestionContainer();
+                            var panel = new PanelWothBarren(item, settings);
+                            panel.PanelWoth(listPlacesWithTag, item);
+                            panelLayout.Controls.Add(panel);
+                            panelLayout.Controls.Add(panel.textBoxCustom.SuggestionContainer);
+                            ListUpdatables.Add(panel);
+                            panel.SetSuggestionContainer();
                         }
                     }
                 }
@@ -375,8 +399,8 @@ namespace GSTHD
                         {
                             var newPanel = new PanelWothBarren(item, settings);
                             newPanel.PanelBarren(listPlacesWithTag, item);
-                            form.Controls.Add(newPanel);
-                            form.Controls.Add(newPanel.textBoxCustom.SuggestionContainer);
+                            panelLayout.Controls.Add(newPanel);
+                            panelLayout.Controls.Add(newPanel.textBoxCustom.SuggestionContainer);
                             newPanel.SetSuggestionContainer();
                         }
                     }
@@ -388,9 +412,9 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
-                            var element = new GoMode(item);
-                            form.Controls.Add(element);
-                            element.SetLocation();
+                        //    var element = new GoMode(item);
+                        //    panelLayout.Controls.Add(element);
+                        //    element.SetLocation();
                         }
                     }
                 }
@@ -598,7 +622,7 @@ namespace GSTHD
     {
         public int Width { get; set; }
         public int Height { get; set; }
-        public Color BackgroundColor { get;set; }
+        public Color? BackgroundColor { get;set; }
         public string[] DefaultSongMarkerImages { get; set; } = null;
         public string[] DefaultGossipStoneImages { get; set; } = null;
         public string[] WothColors { get; set; }

@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +11,9 @@ namespace GSTHD
     public class Settings
     {
         private const string SettingsFileName = @"settings.json";
-        
-        public enum SongMarkerBehaviourEnum
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SongMarkerBehaviourOption
         {
             None,
             CheckOnly,
@@ -20,43 +23,67 @@ namespace GSTHD
             Full,
         }
 
-        private const SongMarkerBehaviourEnum DefaultSongMarkerBehaviour = SongMarkerBehaviourEnum.DropAndCheck;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum DragButtonOption
+        {
+            None,
+            Left,
+            Middle,
+            Right,
+            LeftAndRight,
+        }
 
+        private const SongMarkerBehaviourOption DefaultSongMarkerBehaviour = SongMarkerBehaviourOption.DropAndCheck;
+
+        public bool ShowMenuBar { get; set; } = true;
         public string ActiveLayout { get; set; } = string.Empty;
         public bool InvertScrollWheel { get; set; } = false;
+        public bool WraparoundDungeonNames { get; set; } = true;
+        public DragButtonOption DragButton { get; set; } = DragButtonOption.Middle;
+        public DragButtonOption AutocheckDragButton { get; set; } = DragButtonOption.None;
+        public int MinDragThreshold { get; set; } = 6;
         public bool MoveLocationToSong { get; set; } = false;
-        public bool AutoCheckSongs { get; set; } = false;
-        public SongMarkerBehaviourEnum SongMarkerBehaviour { get; set; } = DefaultSongMarkerBehaviour;
+        // public bool AutoCheckSongs { get; set; } = false;
+        public SongMarkerBehaviourOption SongMarkerBehaviour { get; set; } = DefaultSongMarkerBehaviour;
         public string[] DefaultSongMarkerImages { get; set; } = new string[0];
         public string[] DefaultGossipStoneImages { get; set; } = new string[0];
-        public string[] WothColors { get; set; } = new string[]
+        public string[] DefaultWothColors { get; set; } = new string[]
         {
             "White",
             "Orange",
             "Crimson",
         };
         public int DefaultWothColorIndex { get; set; } = 0;
+        public bool EnableLastWoth { get; set; } = false;
+        public KnownColor LastWothColor { get; set; } = KnownColor.BlueViolet;
+
         public MedallionLabel DefaultDungeonNames { get; set; } = new MedallionLabel()
         {
-            TextCollection = new string[0],
+            TextCollection = new string[] { "????", "FREE", "DEKU", "DC", "JABU", "FOREST", "FIRE", "WATER", "SHADOW", "SPIRIT" },
             DefaultValue = 0,
             Wraparound = true,
             FontName = "Consolas",
             FontSize = 8,
-            FontStyle = System.Drawing.FontStyle.Bold,
+            FontStyle = FontStyle.Bold,
         };
 
-        public static SongMarkerBehaviourEnum GetSongMarkerBehaviour(string value)
+        public static SongMarkerBehaviourOption GetSongMarkerBehaviour(string value)
         {
             if (string.IsNullOrEmpty(value))
                 return DefaultSongMarkerBehaviour;
 
-            return (SongMarkerBehaviourEnum) Enum.Parse(typeof(SongMarkerBehaviourEnum), value);
+            return (SongMarkerBehaviourOption) Enum.Parse(typeof(SongMarkerBehaviourOption), value);
         }
 
-        public static Settings Get()
+        public static Settings Read()
         {
             return JsonConvert.DeserializeObject<Settings>(File.ReadAllText(SettingsFileName));
+        }
+
+        public void Write()
+        {
+            var str = JsonConvert.SerializeObject(this, Formatting.Indented);
+            File.WriteAllText(SettingsFileName, str);
         }
     }
 }

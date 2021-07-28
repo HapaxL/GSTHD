@@ -13,6 +13,7 @@ using GSTHD.EditorObjects;
 
 namespace GSTHD
 {
+    /*
     public partial class Editor : Form
     {
         Layout CurrentLayout = new Layout();
@@ -71,4 +72,5 @@ namespace GSTHD
 
 
     }
+    */
 }

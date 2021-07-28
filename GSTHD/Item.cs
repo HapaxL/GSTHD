@@ -5,91 +5,100 @@ using System.Windows.Forms;
 
 namespace GSTHD
 {
-    class Item : PictureBox
+    public class Item : PictureBox, ProgressibleElement<int>, DraggableAutocheckElement<int>
     {
         private readonly Settings Settings;
+        private readonly ProgressibleElementBehaviour<int> ProgressBehaviour;
+        private readonly DraggableAutocheckElementBehaviour<int> DragBehaviour;
 
-        List<string> ListImageName = new List<string>();
-        int imageIndex = 0;
-        bool isMouseDown = false;
+        private string[] ImageNames;
+        private int ImageIndex = 0;
 
-        Size ItemSize;
         public Item(ObjectPoint data, Settings settings)
         {
             Settings = settings;
 
-            if(data.ImageCollection != null)
-                ListImageName = data.ImageCollection.ToList();
+            if (data.ImageCollection == null)
+                ImageNames = new string[0];
+            else
+                ImageNames = data.ImageCollection;
 
-            ItemSize = data.Size;
+            Name = data.Name;
+            BackColor = Color.Transparent;
 
-            this.BackColor = Color.Transparent;
-            if (ListImageName.Count > 0)
+            if (ImageNames.Length > 0)
             {
-                this.Name = ListImageName[0];
-                this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
-                this.SizeMode = PictureBoxSizeMode.StretchImage;
-                this.Size = ItemSize;
-            }            
-            this.Location = new Point(data.X, data.Y);
-            this.TabStop = false;
-            this.AllowDrop = false;
-            this.MouseUp += this.Click_MouseUp;
-            this.MouseDown += this.Click_MouseDown;
-            this.MouseMove += this.Click_MouseMove;
-            this.MouseWheel += this.Click_MouseWheel;
-        }
-
-        private void Click_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle)
-            {
-                imageIndex = 0;
-                Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
-                Name = ListImageName[imageIndex];
-            }
-        }
-
-        private void Click_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Clicks != 1)
-                isMouseDown = false;
-            else isMouseDown = true;
-
-            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Count - 1)
-            {
-                imageIndex += 1;
+                UpdateImage();
+                SizeMode = PictureBoxSizeMode.StretchImage;
+                Size = data.Size;
             }
 
-            if (e.Button == MouseButtons.Right && imageIndex > 0)
-            {
-                imageIndex -= 1;
-            }
+            ProgressBehaviour = new ProgressibleElementBehaviour<int>(this, Settings);
+            DragBehaviour = new DraggableAutocheckElementBehaviour<int>(this, Settings);
 
-            Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
-            Name = ListImageName[imageIndex];
+            Location = new Point(data.X, data.Y);
+            TabStop = false;
+            AllowDrop = false;
+            MouseUp += DragBehaviour.Mouse_ClickUp;
+            MouseDown += ProgressBehaviour.Mouse_ClickDown;
+            MouseDown += DragBehaviour.Mouse_ClickDown;
+            MouseMove += DragBehaviour.Mouse_Move_WithAutocheck;
+            MouseWheel += Mouse_Wheel;
         }
 
-        private void Click_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle && isMouseDown)
-            {
-                this.DoDragDrop(ListImageName[1], DragDropEffects.Copy);
-                isMouseDown = false;
-            }
-        }
-
-        private void Click_MouseWheel(object sender, MouseEventArgs e)
+        private void Mouse_Wheel(object sender, MouseEventArgs e)
         {
             if (e.Delta != 0)
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
-                imageIndex += Settings.InvertScrollWheel ? scrolls : -scrolls;
-                if (imageIndex < 0) imageIndex = 0;
-                if (imageIndex >= ListImageName.Count) imageIndex = ListImageName.Count - 1;
-                Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
-                Name = ListImageName[imageIndex];
+                ImageIndex += Settings.InvertScrollWheel ? scrolls : -scrolls;
+                if (ImageIndex < 0) ImageIndex = 0;
+                else if (ImageIndex >= ImageNames.Length) ImageIndex = ImageNames.Length - 1;
+                UpdateImage();
             }
         }
+
+        private void UpdateImage()
+        {
+            Image = Image.FromFile(@"Resources/" + ImageNames[ImageIndex]);
+        }
+
+        public int GetState()
+        {
+            return ImageIndex;
+        }
+
+        public void SetState(int state)
+        {
+            ImageIndex = state;
+            UpdateImage();
+        }
+
+        public void IncrementState()
+        {
+            if (ImageIndex < ImageNames.Length - 1) ImageIndex += 1;
+            UpdateImage();
+        }
+
+        public void DecrementState()
+        {
+            if (ImageIndex > 0) ImageIndex -= 1;
+            UpdateImage();
+        }
+
+        public void ResetState()
+        {
+            ImageIndex = 0;
+            UpdateImage();
+        }
+
+        public void StartDragDrop()
+        {
+            var dropContent = new DragDropContent(DragBehaviour.AutocheckDragDrop, ImageNames[1]);
+            DoDragDrop(dropContent, DragDropEffects.Copy);
+        }
+
+        public void SaveChanges() { }
+        public void CancelChanges() { }
     }
 }

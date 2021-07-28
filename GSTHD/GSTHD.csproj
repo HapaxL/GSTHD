@@ -60,6 +60,9 @@
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -83,9 +86,11 @@
     <Compile Include="CollectedItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Editor.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ControlExtensions.cs" />
+    <Compile Include="DragDropContent.cs" />
+    <Compile Include="DraggableAutocheckElementBehaviour.cs" />
+    <Compile Include="DraggableElementBehaviour.cs" />
+    <Compile Include="Editor.cs" />
     <Compile Include="Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
@@ -100,6 +105,9 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1_MenuBar.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GoMode.cs">
       <SubType>Component</SubType>
@@ -121,6 +129,7 @@
     <Compile Include="Medallion.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ProgressibleElementBehaviour.cs" />
     <Compile Include="PanelWothBarren.cs">
       <SubType>Component</SubType>
     </Compile>

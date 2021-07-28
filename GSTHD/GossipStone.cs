@@ -5,137 +5,162 @@ using System.Windows.Forms;
 
 namespace GSTHD
 {
-    class GossipStone : PictureBox
+    public struct GossipStoneState
     {
-        Settings Settings;
+        public bool HoldsImage;
+        public string HeldImageName;
+        public int ImageIndex;
+    }
 
-        string[] ListImageName;
-        string ActiveImageName;
-        int imageIndex = 0;
-        bool isMouseDown = false;
+    public class GossipStone : PictureBox, ProgressibleElement<GossipStoneState>, DraggableElement<GossipStoneState>
+    {
+        private readonly Settings Settings;
+        private readonly ProgressibleElementBehaviour<GossipStoneState> ProgressBehaviour;
+        private readonly DraggableElementBehaviour<GossipStoneState> DragBehaviour;
+
+        private string[] ImageNames;
+        private bool HoldsImage;
+        private string HeldImageName;
+        private int ImageIndex = 0;
+        private bool RemoveImage;
 
         Size GossipStoneSize;
 
         public GossipStone(ObjectPoint data, Settings settings)
+            : this(settings, data.Name, data.X, data.Y, data.ImageCollection, data.Size) { }
+
+        public GossipStone(Settings settings, string name, int x, int y, string[] imageCollection, Size imageSize)
         {
             Settings = settings;
 
-            if (data.ImageCollection == null)
-                ListImageName = Settings.DefaultGossipStoneImages;
+            if (imageCollection == null)
+                ImageNames = Settings.DefaultGossipStoneImages;
             else
-                ListImageName = data.ImageCollection;
+                ImageNames = imageCollection;
 
-            GossipStoneSize = data.Size;
-
-            if (ListImageName.Length > 0)
-            {
-                this.ActiveImageName = ListImageName[0];
-                this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
-                this.SizeMode = PictureBoxSizeMode.StretchImage;
-                this.Size = GossipStoneSize;
-            }
-
-            this.Name = data.Name;
-            this.BackColor = Color.Transparent;
-            this.Location = new Point(data.X, data.Y);
-            this.TabStop = false;
-            this.AllowDrop = true;
-
-            this.MouseUp += this.Click_MouseUp;
-            this.MouseDown += this.Click_MouseDown;
-            this.MouseMove += this.Click_MouseMove;
-            this.DragEnter += this.Click_DragEnter;
-            this.DragDrop += this.Click_DragDrop;
-        }
-
-        public GossipStone(string name, int x, int y, string[] imageCollection, Size imageSize)
-        {
-            if (imageCollection != null)
-                ListImageName = imageCollection;
-
+            Name = name;
             GossipStoneSize = imageSize;
 
-            if (ListImageName.Length > 0)
+            if (ImageNames.Length > 0)
             {
-                this.ActiveImageName = ListImageName[0];
-                this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
+                UpdateImage();
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
                 this.Size = GossipStoneSize;
             }
 
-            this.Name = name;
+            ProgressBehaviour = new ProgressibleElementBehaviour<GossipStoneState>(this, Settings);
+            DragBehaviour = new DraggableElementBehaviour<GossipStoneState>(this, Settings);
+
             this.BackColor = Color.Transparent;
             this.Location = new Point(x, y);
             this.TabStop = false;
             this.AllowDrop = true;
 
-            this.MouseUp += this.Click_MouseUp;
-            this.MouseDown += this.Click_MouseDown;
-            this.MouseMove += this.Click_MouseMove;
-            this.DragEnter += this.Click_DragEnter;
-            this.DragDrop += this.Click_DragDrop;
+            this.MouseUp += DragBehaviour.Mouse_ClickUp;
+            this.MouseDown += ProgressBehaviour.Mouse_ClickDown;
+            this.MouseDown += DragBehaviour.Mouse_ClickDown;
+            this.MouseMove += Mouse_Move;
+            this.DragEnter += Mouse_DragEnter;
+            this.DragDrop += Mouse_DragDrop;
         }
 
-        private void Click_DragEnter(object sender, DragEventArgs e)
+        private void Mouse_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
         }
 
-        private void Click_DragDrop(object sender, DragEventArgs e)
+        private void Mouse_DragDrop(object sender, DragEventArgs e)
         {
-            var imageName = (string)e.Data.GetData(DataFormats.Text);
-            var image = Image.FromFile(@"Resources/" + imageName);
-            ActiveImageName = imageName;
-            this.Image = image;
+            ImageIndex = 0;
+            HoldsImage = true;
+            var dropContent = (DragDropContent)e.Data.GetData(typeof(DragDropContent));
+            HeldImageName = dropContent.ImageName;
+            UpdateImage();
+            DragBehaviour.SaveChanges();
         }
 
-        public void Click_MouseUp(object sender, MouseEventArgs e)
+        public void Mouse_ClickUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Middle)
-            {
-                imageIndex = 0;
-                this.Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
-                this.ActiveImageName = ListImageName[imageIndex];
-            }
+            DragBehaviour.Mouse_ClickUp(sender, e);
         }
 
-        private void Click_MouseMove(object sender, MouseEventArgs e)
+        public void Mouse_Move(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Middle && isMouseDown)
+            if (HoldsImage)
             {
-                var draggedImageName = ActiveImageName;
-                imageIndex = 0;
-                this.Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
-                ActiveImageName = ListImageName[imageIndex];
-                isMouseDown = false;
-                this.DoDragDrop(draggedImageName, DragDropEffects.Copy);
+                DragBehaviour.Mouse_Move(sender, e);
             }
         }
 
-        private void Click_MouseDown(object sender, MouseEventArgs e)
+        private void UpdateImage()
         {
-            if (e.Clicks != 1)
-                isMouseDown = false;
-            else isMouseDown = true;
-
-            var newImageIndex = imageIndex;
-
-            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Length - 1)
+            if (HoldsImage)
             {
-                newImageIndex += 1;
+                Image = Image.FromFile(@"Resources/" + HeldImageName);
             }
-
-            if (e.Button == MouseButtons.Right && imageIndex > 0)
+            else
             {
-                newImageIndex -= 1;
-            }
-
-            if (newImageIndex != imageIndex)
-            {
-                imageIndex = newImageIndex;
-                this.Image = Image.FromFile(@"Resources/" + ListImageName[newImageIndex]);
-                this.ActiveImageName = ListImageName[newImageIndex];
+                Image = Image.FromFile(@"Resources/" + ImageNames[ImageIndex]);
             }
         }
+
+        public GossipStoneState GetState()
+        {
+            return new GossipStoneState()
+            {
+                HoldsImage = HoldsImage,
+                HeldImageName = HeldImageName,
+                ImageIndex = ImageIndex,
+            };
+        }
+
+        public void SetState(GossipStoneState state)
+        {
+            HoldsImage = state.HoldsImage;
+            HeldImageName = state.HeldImageName;
+            ImageIndex = state.ImageIndex;
+        }
+
+        public void IncrementState()
+        {
+            RemoveImage = true;
+            if (ImageIndex < ImageNames.Length - 1) ImageIndex += 1;
+            UpdateImage();
+        }
+
+        public void DecrementState()
+        {
+            RemoveImage = true;
+            if (ImageIndex > 0) ImageIndex -= 1;
+            UpdateImage();
+        }
+
+        public void ResetState()
+        {
+            RemoveImage = true;
+            ImageIndex = 0;
+            UpdateImage();
+        }
+
+        public void StartDragDrop()
+        {
+            HoldsImage = false;
+            UpdateImage();
+            var dropContent = new DragDropContent(false, HeldImageName);
+            DoDragDrop(dropContent, DragDropEffects.Copy);
+            SaveChanges();
+        }
+
+        public void SaveChanges()
+        {
+            if (RemoveImage)
+            {
+                HoldsImage = false;
+                RemoveImage = false;
+                UpdateImage();
+            }
+        }
+
+        public void CancelChanges() { }
     }
 }

@@ -30,7 +30,7 @@ namespace GSTHD
             {
                 var array = this.Parent.Controls.Find(this.Name + "_GossipStone", false);
                 if(array.Length > 0)
-                    ((GossipStone)array[0]).Click_MouseUp(sender, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
+                    ((GossipStone)array[0]).Mouse_ClickUp(sender, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
                 ((TextBox)sender).SelectionStart = ((TextBox)sender).Text.Length;
             }
         }

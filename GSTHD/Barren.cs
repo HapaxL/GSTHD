@@ -30,5 +30,7 @@ namespace GSTHD
             };
             LabelPlace.Location = new Point(2, lastLabelLocation.Y + LabelPlace.Height);
         }
+
+        public void UpdateFromSettings() { }
     }
 }

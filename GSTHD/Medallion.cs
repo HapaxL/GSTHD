@@ -5,27 +5,30 @@ using System.Windows.Forms;
 
 namespace GSTHD
 {
-    class Medallion : PictureBox
+    public class Medallion : PictureBox, UpdatableFromSettings, ProgressibleElement<int>, DraggableAutocheckElement<int>
     {
         private readonly Settings Settings;
+        private readonly ProgressibleElementBehaviour<int> ProgressBehaviour;
+        private readonly DraggableAutocheckElementBehaviour<int> DragBehaviour;
 
-        string[] ListImageName;
-        string[] ListDungeon;
-        int defaultValue;
-        bool wraparound;
-        bool isMouseDown = false;
-        int imageIndex = 0;
-        int dungeonIndex;
+        private string[] ImageNames;
+        private string[] DungeonNames;
+        private bool Wraparound;
+        private int ImageIndex = 0;
+
+        private int DefaultDungeonIndex;
+        private int DungeonIndex;
 
         public Label SelectedDungeon;
-        Size MedallionSize;
 
         public Medallion(ObjectPointMedallion data, Settings settings)
         {
             Settings = settings;
 
-            if(data.ImageCollection != null)
-                ListImageName = data.ImageCollection;
+            if (data.ImageCollection == null)
+                ImageNames = new string[0];
+            else
+                ImageNames = data.ImageCollection;
 
             if (data.Label == null)
                 data.Label = Settings.DefaultDungeonNames;
@@ -45,115 +48,142 @@ namespace GSTHD
                     data.Label.FontStyle = Settings.DefaultDungeonNames.FontStyle;
             }
 
-            ListDungeon = data.Label.TextCollection;
-            defaultValue = data.Label.DefaultValue.Value;
-            dungeonIndex = defaultValue;
-            wraparound = data.Label.Wraparound.Value;
+            DungeonNames = data.Label.TextCollection;
+            DefaultDungeonIndex = data.Label.DefaultValue.Value;
+            DungeonIndex = DefaultDungeonIndex;
+            Wraparound = data.Label.Wraparound.Value;
 
-            MedallionSize = data.Size;
+            Name = data.Name;
+            BackColor = Color.Transparent;
 
-            if(ListImageName.Length > 0)
+            if (ImageNames.Length > 0)
             {
-                this.Name = ListImageName[0];
-                this.Image = Image.FromFile(@"Resources/" + ListImageName[0]);
-                this.SizeMode = PictureBoxSizeMode.StretchImage;
-                this.Size = MedallionSize;
+                UpdateImage();
+                SizeMode = PictureBoxSizeMode.StretchImage;
+                Size = data.Size;
             }
 
-            this.BackColor = Color.Transparent;
-            this.Location = new Point(data.X, data.Y);
-            this.TabStop = false;
-            this.AllowDrop = false;
-            this.MouseUp += this.Click_MouseUp;
-            this.MouseDown += this.Click_MouseDown;
-            this.MouseMove += this.Click_MouseMove;
-            this.MouseWheel += this.Click_MouseWheel;
+            ProgressBehaviour = new ProgressibleElementBehaviour<int>(this, Settings);
+            DragBehaviour = new DraggableAutocheckElementBehaviour<int>(this, Settings);
+
+            Location = new Point(data.X, data.Y);
+            TabStop = false;
+            AllowDrop = false;
+            MouseUp += DragBehaviour.Mouse_ClickUp;
+            MouseDown += ProgressBehaviour.Mouse_ClickDown;
+            MouseDown += DragBehaviour.Mouse_ClickDown;
+            MouseMove += DragBehaviour.Mouse_Move_WithAutocheck;
 
             SelectedDungeon = new Label
             {
                 Font = new Font(new FontFamily(data.Label.FontName), data.Label.FontSize.Value, data.Label.FontStyle.Value),
-                Text = ListDungeon[defaultValue],
-                TextAlign = ContentAlignment.MiddleCenter,
+                Text = DungeonNames[DefaultDungeonIndex],
                 BackColor = Color.Transparent,
                 ForeColor = Color.White,
-                AutoSize = true
+                AutoSize = true,
             };
-            SelectedDungeon.MouseUp += this.Click_MouseUp;
-            SelectedDungeon.MouseDown += this.Click_MouseDown;
-            SelectedDungeon.MouseMove += this.Click_MouseMove;
-            SelectedDungeon.MouseWheel += this.Click_MouseWheel;
-        }     
+
+            SelectedDungeon.Location = new Point(Location.X + Size.Width / 2, (int)(Location.Y + Size.Height * 0.75));
+
+            SelectedDungeon.MouseUp += DragBehaviour.Mouse_ClickUp;
+            SelectedDungeon.MouseDown += ProgressBehaviour.Mouse_ClickDown;
+            SelectedDungeon.MouseDown += DragBehaviour.Mouse_ClickDown;
+            SelectedDungeon.MouseMove += DragBehaviour.Mouse_Move_WithAutocheck;
+
+            UpdateFromSettings();
+        }
+
+        public void UpdateFromSettings()
+        {
+            MouseWheel -= Mouse_Wheel;
+            MouseWheel -= Mouse_Wheel_WithWraparound;
+            SelectedDungeon.MouseWheel -= Mouse_Wheel;
+            SelectedDungeon.MouseWheel -= Mouse_Wheel_WithWraparound;
+
+            if (Settings.WraparoundDungeonNames)
+            {
+                MouseWheel += Mouse_Wheel_WithWraparound;
+                SelectedDungeon.MouseWheel += Mouse_Wheel_WithWraparound;
+            }
+            else
+            {
+                MouseWheel += Mouse_Wheel;
+                SelectedDungeon.MouseWheel += Mouse_Wheel;
+            }
+        }
 
         public void SetSelectedDungeonLocation()
         {
-            SelectedDungeon.Location = new Point(this.Location.X + MedallionSize.Width / 2 - SelectedDungeon.Width / 2, (int)(this.Location.Y + MedallionSize.Height * 0.75));
+            SelectedDungeon.Location = new Point(Location.X + Size.Width / 2 - SelectedDungeon.Width / 2, (int)(Location.Y + Size.Height * 0.75));
         }
 
-        private void Click_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle)
-            {
-                dungeonIndex = defaultValue;
-                SelectedDungeon.Text = ListDungeon[dungeonIndex];
-                SetSelectedDungeonLocation();
-                return;
-            }
-        }
-
-        private void Click_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Clicks != 1)
-                isMouseDown = false;
-            else isMouseDown = true;
-
-            if (e.Button == MouseButtons.Left && imageIndex < ListImageName.Length - 1)
-            {
-                imageIndex += 1;
-            }
-
-            if (e.Button == MouseButtons.Right && imageIndex > 0)
-            {
-                imageIndex -= 1;
-            }
-
-            Image = Image.FromFile(@"Resources/" + ListImageName[imageIndex]);
-            Name = ListImageName[imageIndex];
-        }
-
-        private void Click_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle && isMouseDown)
-            {
-                this.DoDragDrop(ListImageName[1], DragDropEffects.Copy);
-                isMouseDown = false;
-            }
-        }
-
-        private void Click_MouseWheel(object sender, MouseEventArgs e)
+        private void Mouse_Wheel(object sender, MouseEventArgs e)
         {
             if (e.Delta != 0)
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
-                var newIndex = dungeonIndex + (Settings.InvertScrollWheel ? scrolls : -scrolls);
-                if (wraparound)
-                {
-                    dungeonIndex = Math.EMod(newIndex, ListDungeon.Length);
-                }
-                else if (newIndex < 0)
-                {
-                    dungeonIndex = 0;
-                }
-                else if (newIndex >= ListDungeon.Length)
-                {
-                    dungeonIndex = ListDungeon.Length - 1;
-                }
-                else
-                {
-                    dungeonIndex = newIndex;
-                }
-                SelectedDungeon.Text = ListDungeon[dungeonIndex];
+                DungeonIndex += (Settings.InvertScrollWheel ? scrolls : -scrolls);
+                if (DungeonIndex < 0) DungeonIndex = 0;
+                else if (DungeonIndex >= DungeonNames.Length) DungeonIndex = DungeonNames.Length - 1;
+                SelectedDungeon.Text = DungeonNames[DungeonIndex];
                 SetSelectedDungeonLocation();
             }
         }
+
+        private void Mouse_Wheel_WithWraparound(object sender, MouseEventArgs e)
+        {
+            if (e.Delta != 0)
+            {
+                var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
+                var newIndex = DungeonIndex + (Settings.InvertScrollWheel ? scrolls : -scrolls);
+                DungeonIndex = Math.EMod(newIndex, DungeonNames.Length);
+                SelectedDungeon.Text = DungeonNames[DungeonIndex];
+                SetSelectedDungeonLocation();
+            }
+        }
+
+        private void UpdateImage()
+        {
+            Image = Image.FromFile(@"Resources/" + ImageNames[ImageIndex]);
+        }
+
+        public int GetState()
+        {
+            return ImageIndex;
+        }
+
+        public void SetState(int state)
+        {
+            ImageIndex = state;
+            UpdateImage();
+        }
+
+        public void IncrementState()
+        {
+            if (ImageIndex < ImageNames.Length - 1) ImageIndex += 1;
+            UpdateImage();
+        }
+
+        public void DecrementState()
+        {
+            if (ImageIndex > 0) ImageIndex -= 1;
+            UpdateImage();
+        }
+
+        public void ResetState()
+        {
+            DungeonIndex = DefaultDungeonIndex;
+            SelectedDungeon.Text = DungeonNames[DungeonIndex];
+            SetSelectedDungeonLocation();
+        }
+
+        public void StartDragDrop()
+        {
+            var dropContent = new DragDropContent(DragBehaviour.AutocheckDragDrop, ImageNames[1]);
+            DoDragDrop(dropContent, DragDropEffects.Copy);
+        }
+
+        public void SaveChanges() { }
+        public void CancelChanges() { }
     }
 }

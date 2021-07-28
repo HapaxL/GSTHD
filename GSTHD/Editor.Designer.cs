@@ -1,5 +1,6 @@
 ﻿namespace GSTHD
 {
+    /*
     partial class Editor
     {
         /// <summary>
@@ -44,4 +45,5 @@
 
         #endregion
     }
+    */
 }
