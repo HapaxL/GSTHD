@@ -35,6 +35,8 @@ ___
 - It is now possible to add generic (no autofill) text boxes to a layout.
 - Layouts can now set the order of dungeon names under medallions, as well as the starting value.
 - Different behaviours for Song Markers are now available (`None`, `CheckOnly`, `DropOnly`, `DropAndCheck`, `DragAndDrop`, `Full`).
+- New Path indicators in WOTH pannel. Gossip Stones can be configured to automatically populated to the left of a WOTH location to indicate the path the location is one.
+- The number of gossip stones tracking items from a WOTH location can be configured with the `GossipStoneCount` property in the layout.
 
 #### Other changes and fixes
 - Fixed small issues with collected items' number display.
