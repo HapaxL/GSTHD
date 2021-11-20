@@ -20,10 +20,19 @@ namespace GSTHD
         private int ColorIndex;
         private int MinIndex;
 
-        public WotH(Settings settings, string selectedPlace, string[] listImage, Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
+        public WotH(Settings settings, string selectedPlace, int wothItemCount, string[] wothItemImageList, int pathGoalCount, string[] pathGoalImageList, Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
         {
             Settings = settings;
             Name = selectedPlace;
+
+            int goalStoneStartX = 2;
+            int labelStartX = 2;
+            int labelWidth = labelSettings.Width;
+            if (pathGoalCount > 0)
+            {
+                labelStartX += pathGoalCount * gossipStoneSize.Width + 4;
+            }
+            int gossipStoneStartX = labelStartX + labelWidth + 3;
 
             LabelPlace = new Label
             {
@@ -32,20 +41,31 @@ namespace GSTHD
                 ForeColor = labelSettings.ForeColor,
                 BackColor = labelSettings.BackColor,
                 Font = labelSettings.Font,
-                Width = labelSettings.Width,
+                Width = labelWidth,
                 Height = labelSettings.Height,
                 TextAlign = ContentAlignment.MiddleLeft,
             };
-            LabelPlace.Location = new Point(2, lastLabelLocation.Y + LabelPlace.Height);
+            LabelPlace.Location = new Point(labelStartX, lastLabelLocation.Y + LabelPlace.Height);
             LabelPlace.MouseDown += new MouseEventHandler(label_woth_MouseDown);
 
-            if (listImage.Length > 0)
+            if (wothItemImageList.Length > 0)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < wothItemCount; i++)
                 {
-                    GossipStone newGossipStone = new GossipStone(Settings, Name + "_GossipStone" + i, 0, 0, listImage, gossipStoneSize);
+                    GossipStone newGossipStone = new GossipStone(Settings, Name + "_GossipStone" + i, 0, 0, wothItemImageList, gossipStoneSize);
                     newGossipStone.Location =
-                        new Point(LabelPlace.Width + 5 + ((newGossipStone.Width + 2) * i), LabelPlace.Location.Y);
+                        new Point(gossipStoneStartX + ((newGossipStone.Width + 2) * i), LabelPlace.Location.Y);
+                    listGossipStone.Add(newGossipStone);
+                }
+            }
+
+            if (pathGoalImageList?.Length > 0)
+            {
+                for (int i = 0; i < pathGoalCount; i++)
+                {
+                    GossipStone newGossipStone = new GossipStone(Settings, Name + "_GoalGossipStone" + i, 0, 0, pathGoalImageList, gossipStoneSize);
+                    newGossipStone.Location =
+                        new Point(goalStoneStartX + ((newGossipStone.Width + 2) * i), LabelPlace.Location.Y);
                     listGossipStone.Add(newGossipStone);
                 }
             }
