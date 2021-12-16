@@ -1,11 +1,11 @@
-# Gossip Stones Tracker HD v0.2
+# Gossip Stones Tracker HD v0.3
 Fork of Drekorig (`Drekorig#2506`)'s [Gossip Stones Tracker](https://github.com/Draeko/ootr_gst/tree/ladder_version) for the [Ocarina of Time Randomizer](https://ootrandomizer.com)
 
 Made by Hapax (`Hapax#1729`). **Work in progress.**
 
 ## [>>> Get the latest release <<<](https://github.com/HapaxL/GSTHD/releases/latest)
 
-I'm really sorry I haven't wrote any real tutorial yet to explain all the new (and old) stuff, I will write one soon !! In the meantime feel free to ask me about anything in here or (preferably) on Discord (`Hapax#1729`).
+I'm really sorry I haven't wrote any real tutorial yet to explain all the new (and old) stuff, I will write one soon!! In the meantime feel free to ask me about anything in here or (preferably) on Discord (`Hapax#1729`). Small tutorials for individual features are already partially available in the description of many of the releases (link above), be sure to check it out!
 ___
 
 ### What's new
@@ -14,11 +14,12 @@ ___
 - Right click "regresses" a UI element (e.g. Longshot -> Hookshot -> greyed out Hookshot). Applies to every UI element.
 - No cycling (e.g. left-clicking the Longshot does not reset it to a greyed-out Hookshot anymore).
 - Middle click resets a UI element to its default value (including WotH/Barren panels, dungeon names, collected items, etc).
-- Drag & drop is now done with middle click.
-
-**Note:** a big issue I had with Drekorig's tracker was a feeling of unresponsivity from clicking on things on the tracker. This was due to left click being used to drag & drop, which meant the action of left-clicking normally on an icon to progress it could not go through until the mouse button was *released*, and also meant that moving the mouse even one pixel due to a click meant the click would not go through. I was dissatisfied with this behaviour, and opted to completely change the way the tracker controls. If this is not to your liking, please feel free to contact me on Discord (`Hapax#1729`), or [open a Github issue](https://github.com/HapaxL/ootr_gst/issues), I can probably code a way to set one's preferred control schemes in the Settings file.
+- You can now choose which button to use for drag & drop (default is middle click, options include left, right, middle, and left+right click).
+- Added a minimum mouse movement threshold for initiating a drag & drop (value `MinDragThreshold` can be changed in settings).
 
 #### New features
+- You can now set a button for autocheck drag & drop (initiating a drag & drop using that button will automatically progress the item/song/medallion being dragged).
+- A menu bar was added for quick access to some settings. Can be displayed or hidden with F10.
 - Mouse wheel can now be used to progress and regress icons (applicable to progressive items, collected items, and dungeon names). Direction can be inverted or not.
 - New "Gossip Stone grid" UI element that can be used to add Gossip Stones in bulk to a layout.
 - Drag & dropped icons can now be moved around again from Gossip Stone to Gossip Stone (or to a Song's small icon).
@@ -33,24 +34,25 @@ ___
 - It is now possible to add labels to a layout (for aesthetic purposes).
 - It is now possible to add generic (no autofill) text boxes to a layout.
 - Layouts can now set the order of dungeon names under medallions, as well as the starting value.
-- Different behaviours for song markers are now available (None, CheckOnly, DropOnly, DropAndCheck, DragAndDrop, Full).
+- Different behaviours for Song Markers are now available (`None`, `CheckOnly`, `DropOnly`, `DropAndCheck`, `DragAndDrop`, `Full`).
 
 #### Other changes and fixes
 - Fixed small issues with collected items' number display.
 - Fixed Song icons being flattened when drag & dropped.
 - Fixed drag & drop on small Song icons to correspond to Gossip Stone behaviour.
-- Changed default WoTH colors, added "last woth" color (right click on a white WotH).
+- Changed default WotH colors, added togglable "Last WotH" color (right click on a white WotH).
 - Fixed other small UI/UX details.
+- Fixed some behaviours with Song Markers.
 ___
 
 ### To be added
 #### Planned features and changes
 - Group-selecting, and group-drag & dropping, a set of icons in a Gossip Stone grid.
 - Writing text inside a Gossip Stone which can be drag & dropped.
-- Allowing layouts to set the preferred color scheme for WotH panels.
 - Allowing more customization options in layouts and in the Settings file.
 - Using mouse wheel to progress/regress Gossip Stones and icons on Gossip Stones.
-- Toolbar controls for changing settings and loading layouts.
+- Choosing a layout file directly from the menu bar
+- Adding more existing options to the menu bar
 
 #### Known issues
 - No known big issues for now, feel free to contact me on Discord or to open a Github issue if you find anything!
