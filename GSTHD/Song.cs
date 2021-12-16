@@ -262,10 +262,10 @@ namespace GSTHD
                 UpdateImage();
                 SizeMode = PictureBoxSizeMode.Zoom;
 
-                if (data.DragAndDropImageName != string.Empty)
-                    DragPictureName = data.DragAndDropImageName;
-                else
+                if (string.IsNullOrEmpty(data.DragAndDropImageName))
                     DragPictureName = ImageNames[1];
+                else
+                    DragPictureName = data.DragAndDropImageName;
             }
 
             SongMarker = new SongMarker(this, settings, data.TinyImageCollection)

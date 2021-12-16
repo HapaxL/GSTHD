@@ -412,9 +412,9 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
-                        //    var element = new GoMode(item);
-                        //    panelLayout.Controls.Add(element);
-                        //    element.SetLocation();
+                            var element = new GoMode(item);
+                            panelLayout.Controls.Add(element);
+                            element.SetLocation();
                         }
                     }
                 }
