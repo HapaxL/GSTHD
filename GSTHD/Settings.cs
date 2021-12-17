@@ -54,6 +54,7 @@ namespace GSTHD
             "Crimson",
         };
         public int DefaultWothColorIndex { get; set; } = 0;
+        public bool EnableDuplicateWoth { get; set; } = true;
         public bool EnableLastWoth { get; set; } = false;
         public KnownColor LastWothColor { get; set; } = KnownColor.BlueViolet;
 

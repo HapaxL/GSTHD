@@ -31,7 +31,8 @@ namespace GSTHD
             // public ToolStripMenuItem Autocheck;
             public ToolStripMenuItem Behaviour;
 
-            // Last WotH
+            // WotH
+            public ToolStripMenuItem EnableDuplicateWoth;
             public ToolStripMenuItem EnableLastWoth;
             public ToolStripMenuItem LastWothColor;
         }
@@ -175,8 +176,14 @@ namespace GSTHD
                 }
                 optionMenu.DropDownItems.Add(songMarkersSubMenu);
 
-                ToolStripMenuItem lastWothSubMenu = new ToolStripMenuItem("Last WotH");
+                ToolStripMenuItem lastWothSubMenu = new ToolStripMenuItem("WotH");
                 {
+                    Items.EnableDuplicateWoth = new ToolStripMenuItem("Enable Duplicate WotH", null, new EventHandler(menuBar_ToggleEnableDuplicateWotH))
+                    {
+                        CheckOnClick = true,
+                    };
+                    lastWothSubMenu.DropDownItems.Add(Items.EnableDuplicateWoth);
+
                     Items.EnableLastWoth = new ToolStripMenuItem("Enable Last WotH", null, new EventHandler(menuBar_ToggleEnableLastWotH))
                     {
                         CheckOnClick = true,
@@ -223,6 +230,7 @@ namespace GSTHD
             //Items.Autocheck.Checked = Settings.AutoCheckSongs;
             SongMarkerBehaviourOptions[Settings.SongMarkerBehaviour].Checked = true;
 
+            Items.EnableDuplicateWoth.Checked = Settings.EnableDuplicateWoth;
             Items.EnableLastWoth.Checked = Settings.EnableLastWoth;
             LastWothColorOptions[Settings.LastWothColor].Checked = true;
         }
@@ -357,6 +365,14 @@ namespace GSTHD
         //{
         //    throw new NotImplementedException();
         //}
+
+        private void menuBar_ToggleEnableDuplicateWotH(object sender, EventArgs e)
+        {
+            // Items.EnableLastWoth.Enabled = !Items.EnableLastWoth.Enabled;
+            Settings.EnableDuplicateWoth = Items.EnableDuplicateWoth.Checked;
+            Settings.Write();
+            Form.UpdateLayoutFromSettings();
+        }
 
         private void menuBar_ToggleEnableLastWotH(object sender, EventArgs e)
         {

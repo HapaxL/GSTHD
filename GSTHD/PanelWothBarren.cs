@@ -202,8 +202,9 @@ namespace GSTHD
                     if (textbox.Text != string.Empty)
                     {
                         var selectedPlace = textbox.Text.ToUpper().Trim();
-                        var find = ListWotH.Where(x => x.Name == selectedPlace);
-                        if(find.Count() <= 0)
+
+                        // add woth if duplicates are allowed or if there aren't any duplicates
+                        if(Settings.EnableDuplicateWoth || !ListWotH.Any(x => x.Name == selectedPlace))
                         {
                             WotH newWotH = null;
                             if (ListWotH.Count <= 0)
