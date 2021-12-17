@@ -16,7 +16,6 @@ namespace GSTHD
         public List<Barren> ListBarren = new List<Barren>();
 
         public TextBoxCustom textBoxCustom;
-        private int NbMaxWothItems;
         private string[] ListImage_WothItemsOption;
         private int NbMaxGoals;
         private string[] ListImage_GoalsOption;
@@ -95,7 +94,6 @@ namespace GSTHD
 
         public void PanelWoth(Dictionary<string, string> PlacesWithTag, ObjectPanelWotH data)
         {
-            NbMaxWothItems = data.GossipStoneCount;
             ListImage_WothItemsOption = data.GossipStoneImageCollection;
             NbMaxGoals = data.PathGoalCount;
             ListImage_GoalsOption = data.GoalImageCollection;
@@ -213,11 +211,11 @@ namespace GSTHD
                         {
                             WotH newWotH = null;
                             if (ListWotH.Count <= 0)
-                                newWotH = new WotH(Settings, selectedPlace, NbMaxWothItems, ListImage_WothItemsOption, NbMaxGoals, ListImage_GoalsOption, new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
+                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, NbMaxGoals, ListImage_GoalsOption, new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
                             else
                             {
                                 var lastLocation = ListWotH.Last().LabelPlace.Location;
-                                newWotH = new WotH(Settings, selectedPlace, NbMaxWothItems, ListImage_WothItemsOption, NbMaxGoals, ListImage_GoalsOption, lastLocation, LabelSettings, GossipStoneSize);
+                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, NbMaxGoals, ListImage_GoalsOption, lastLocation, LabelSettings, GossipStoneSize);
                                
                             }
                             ListWotH.Add(newWotH);

@@ -20,7 +20,7 @@ namespace GSTHD
         private int ColorIndex;
         private int MinIndex;
 
-        public WotH(Settings settings, string selectedPlace, int wothItemCount, string[] wothItemImageList, int pathGoalCount, string[] pathGoalImageList, Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
+        public WotH(Settings settings, string selectedPlace, string[] wothItemImageList, int pathGoalCount, string[] pathGoalImageList, Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
         {
             Settings = settings;
             Name = selectedPlace;
@@ -50,7 +50,7 @@ namespace GSTHD
 
             if (wothItemImageList.Length > 0)
             {
-                for (int i = 0; i < wothItemCount; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     GossipStone newGossipStone = new GossipStone(Settings, Name + "_GossipStone" + i, 0, 0, wothItemImageList, gossipStoneSize);
                     newGossipStone.Location =

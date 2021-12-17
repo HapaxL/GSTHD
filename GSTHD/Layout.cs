@@ -557,7 +557,6 @@ namespace GSTHD
         public int LabelHeight { get; set; }
 
         public Size GossipStoneSize { get; set; }
-        public int GossipStoneCount { get; set; } = 4;
         public string[] GossipStoneImageCollection { get; set; }
 
         public int PathGoalCount { get; set; } = 0;
