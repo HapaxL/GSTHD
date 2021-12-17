@@ -78,7 +78,14 @@ namespace GSTHD
 
         public static Settings Read()
         {
-            return JsonConvert.DeserializeObject<Settings>(File.ReadAllText(SettingsFileName));
+            if (File.Exists(SettingsFileName))
+                return JsonConvert.DeserializeObject<Settings>(File.ReadAllText(SettingsFileName));
+            else
+            {
+                var settings = new Settings();
+                settings.Write();
+                return settings;
+            }
         }
 
         public void Write()

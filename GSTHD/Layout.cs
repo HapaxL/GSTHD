@@ -559,7 +559,7 @@ namespace GSTHD
         public Size GossipStoneSize { get; set; }
         public string[] GossipStoneImageCollection { get; set; }
 
-        public int PathGoalCount { get; set; } = 0;
+        public int PathGoalCount { get; set; }
         public string[] GoalImageCollection { get; set; }
     }
 
