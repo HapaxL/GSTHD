@@ -17,6 +17,8 @@ namespace GSTHD
 
         public TextBoxCustom textBoxCustom;
         private string[] ListImage_WothItemsOption;
+        private int NbMaxGoals;
+        private string[] ListImage_GoalsOption;
         Size GossipStoneSize;
         int NbMaxRows;
         Label LabelSettings = new Label();
@@ -93,6 +95,8 @@ namespace GSTHD
         public void PanelWoth(Dictionary<string, string> PlacesWithTag, ObjectPanelWotH data)
         {
             ListImage_WothItemsOption = data.GossipStoneImageCollection;
+            NbMaxGoals = data.PathGoalCount;
+            ListImage_GoalsOption = data.GoalImageCollection;
             NbMaxRows = data.NbMaxRows;
 
             LabelSettings = new Label
@@ -208,11 +212,11 @@ namespace GSTHD
                         {
                             WotH newWotH = null;
                             if (ListWotH.Count <= 0)
-                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
+                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, NbMaxGoals, ListImage_GoalsOption, new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
                             else
                             {
                                 var lastLocation = ListWotH.Last().LabelPlace.Location;
-                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, lastLocation, LabelSettings, GossipStoneSize);
+                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, NbMaxGoals, ListImage_GoalsOption, lastLocation, LabelSettings, GossipStoneSize);
                                
                             }
                             ListWotH.Add(newWotH);
@@ -265,12 +269,13 @@ namespace GSTHD
             for (int i = 0; i < ListWotH.Count; i++)
             {
                 var wothLabel = ListWotH[i].LabelPlace;
-                wothLabel.Location = new Point(2, (i * wothLabel.Height));
+                var newY = i * wothLabel.Height;
+                wothLabel.Location = new Point(wothLabel.Left, newY);
 
                 for (int j = 0; j < ListWotH[i].listGossipStone.Count; j++)
                 {
-                    ListWotH[i].listGossipStone[j].Location = 
-                        new Point(wothLabel.Width + 5 + (j * (ListWotH[i].listGossipStone[j].Width+2)), wothLabel.Location.Y);
+                    var newX = ListWotH[i].listGossipStone[j].Location.X;
+                    ListWotH[i].listGossipStone[j].Location = new Point(newX, newY);
                 }
             }
             textBoxCustom.newLocation(new Point(2, ListWotH.Count * woth.LabelPlace.Height), this.Location);

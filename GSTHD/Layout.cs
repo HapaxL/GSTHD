@@ -558,6 +558,9 @@ namespace GSTHD
 
         public Size GossipStoneSize { get; set; }
         public string[] GossipStoneImageCollection { get; set; }
+
+        public int PathGoalCount { get; set; } = 0;
+        public string[] GoalImageCollection { get; set; }
     }
 
     public class ObjectPanelBarren
