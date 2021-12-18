@@ -32,9 +32,9 @@ namespace GSTHD
             public ToolStripMenuItem Behaviour;
 
             // WotH
-            public ToolStripMenuItem EnableDuplicateWoth;
             public ToolStripMenuItem EnableLastWoth;
             public ToolStripMenuItem LastWothColor;
+            public ToolStripMenuItem EnableDuplicateWoth;
         }
 
         private readonly Dictionary<Settings.DragButtonOption, string> DragButtonNames = new Dictionary<Settings.DragButtonOption, string>
@@ -178,12 +178,6 @@ namespace GSTHD
 
                 ToolStripMenuItem lastWothSubMenu = new ToolStripMenuItem("WotH");
                 {
-                    Items.EnableDuplicateWoth = new ToolStripMenuItem("Enable Duplicate WotH", null, new EventHandler(menuBar_ToggleEnableDuplicateWotH))
-                    {
-                        CheckOnClick = true,
-                    };
-                    lastWothSubMenu.DropDownItems.Add(Items.EnableDuplicateWoth);
-
                     Items.EnableLastWoth = new ToolStripMenuItem("Enable Last WotH", null, new EventHandler(menuBar_ToggleEnableLastWotH))
                     {
                         CheckOnClick = true,
@@ -205,6 +199,12 @@ namespace GSTHD
 
                     Items.LastWothColor = new ToolStripMenuItem("Last WotH color", null, LastWothColorOptions.Values.ToArray());
                     lastWothSubMenu.DropDownItems.Add(Items.LastWothColor);
+
+                    Items.EnableDuplicateWoth = new ToolStripMenuItem("Allow Duplicate WotH Entries", null, new EventHandler(menuBar_ToggleEnableDuplicateWotH))
+                    {
+                        CheckOnClick = true,
+                    };
+                    lastWothSubMenu.DropDownItems.Add(Items.EnableDuplicateWoth);
                 }
                 optionMenu.DropDownItems.Add(lastWothSubMenu);
             }

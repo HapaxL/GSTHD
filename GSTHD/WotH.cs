@@ -12,7 +12,7 @@ namespace GSTHD
     {
         public Settings Settings;
 
-        public Label LabelPlace;
+        public LabelExtended LabelPlace;
         public List<GossipStone> listGossipStone = new List<GossipStone>();
         public string Name;
 
@@ -20,21 +20,27 @@ namespace GSTHD
         private int ColorIndex;
         private int MinIndex;
 
-        public WotH(Settings settings, string selectedPlace, string[] wothItemImageList, int pathGoalCount, string[] pathGoalImageList, Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
+        public WotH(Settings settings,
+            string selectedPlace,
+            int gossipStoneCount, string[] wothItemImageList, int gossipStoneSpacing,
+            int pathGoalCount, string[] pathGoalImageList, int pathGoalSpacing,
+            Point lastLabelLocation, Label labelSettings, Size gossipStoneSize)
         {
             Settings = settings;
             Name = selectedPlace;
 
-            int goalStoneStartX = 2;
-            int labelStartX = 2;
-            int labelWidth = labelSettings.Width;
+            var labelStartX = 0;
+
             if (pathGoalCount > 0)
             {
-                labelStartX += pathGoalCount * gossipStoneSize.Width + 4;
+                labelStartX += pathGoalCount * (gossipStoneSize.Width + pathGoalSpacing) - pathGoalSpacing;
             }
-            int gossipStoneStartX = labelStartX + labelWidth + 3;
+            int panelWidth = labelSettings.Width;
+            int labelWidth = panelWidth - labelStartX - gossipStoneCount * (gossipStoneSize.Width + gossipStoneSpacing) + gossipStoneSpacing;
 
-            LabelPlace = new Label
+            var gossipStoneStartX = panelWidth - gossipStoneCount * (gossipStoneSize.Width + gossipStoneSpacing) + gossipStoneSpacing;
+
+            LabelPlace = new LabelExtended
             {
                 Name = Guid.NewGuid().ToString(),
                 Text = selectedPlace,
@@ -44,28 +50,29 @@ namespace GSTHD
                 Width = labelWidth,
                 Height = labelSettings.Height,
                 TextAlign = ContentAlignment.MiddleLeft,
+                AutoEllipsis = true,
             };
             LabelPlace.Location = new Point(labelStartX, lastLabelLocation.Y + LabelPlace.Height);
             LabelPlace.MouseDown += new MouseEventHandler(label_woth_MouseDown);
 
             if (wothItemImageList.Length > 0)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < gossipStoneCount; i++)
                 {
                     GossipStone newGossipStone = new GossipStone(Settings, Name + "_GossipStone" + i, 0, 0, wothItemImageList, gossipStoneSize);
                     newGossipStone.Location =
-                        new Point(gossipStoneStartX + ((newGossipStone.Width + 2) * i), LabelPlace.Location.Y);
+                        new Point(gossipStoneStartX + (newGossipStone.Width + gossipStoneSpacing) * i, LabelPlace.Location.Y);
                     listGossipStone.Add(newGossipStone);
                 }
             }
 
-            if (pathGoalImageList?.Length > 0)
+            if (pathGoalImageList != null && pathGoalImageList.Length > 0)
             {
                 for (int i = 0; i < pathGoalCount; i++)
                 {
                     GossipStone newGossipStone = new GossipStone(Settings, Name + "_GoalGossipStone" + i, 0, 0, pathGoalImageList, gossipStoneSize);
                     newGossipStone.Location =
-                        new Point(goalStoneStartX + ((newGossipStone.Width + 2) * i), LabelPlace.Location.Y);
+                        new Point((newGossipStone.Width + pathGoalSpacing) * i, LabelPlace.Location.Y);
                     listGossipStone.Add(newGossipStone);
                 }
             }

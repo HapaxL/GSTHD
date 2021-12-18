@@ -28,7 +28,7 @@ namespace GSTHD
                 Height = labelSettings.Height,
                 TextAlign = ContentAlignment.MiddleLeft
             };
-            LabelPlace.Location = new Point(2, lastLabelLocation.Y + LabelPlace.Height);
+            LabelPlace.Location = new Point(0, lastLabelLocation.Y + LabelPlace.Height);
         }
 
         public void UpdateFromSettings() { }

@@ -97,6 +97,9 @@
     <Compile Include="EditorObjects\JSONItem.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LabelExtended.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1_ListImage.cs">
       <SubType>Form</SubType>
     </Compile>

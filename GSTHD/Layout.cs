@@ -193,6 +193,18 @@ namespace GSTHD
                 {
                     settings.DefaultGossipStoneImages = App_Settings.DefaultGossipStoneImages;
                 }
+                if (App_Settings.DefaultPathGoalImages != null)
+                {
+                    settings.DefaultPathGoalImages = App_Settings.DefaultPathGoalImages;
+                }
+                if (App_Settings.DefaultPathGoalCount.HasValue)
+                {
+                    settings.DefaultPathGoalCount = App_Settings.DefaultPathGoalCount.Value;
+                }
+                if (App_Settings.DefaultWothGossipStoneCount.HasValue)
+                {
+                    settings.DefaultWothGossipStoneCount = App_Settings.DefaultWothGossipStoneCount.Value;
+                }
                 if (App_Settings.WothColors != null)
                 {
                     settings.DefaultWothColors = App_Settings.WothColors;
@@ -544,7 +556,6 @@ namespace GSTHD
         public string TextBoxFontName { get; set; }
         public int TextBoxFontSize { get; set; }
         public FontStyle TextBoxFontStyle { get; set; }
-        public int TextBoxWidth { get; set; }
         public int TextBoxHeight { get; set; }
         public string TextBoxText { get; set; }
 
@@ -553,14 +564,16 @@ namespace GSTHD
         public string LabelFontName { get; set; }
         public int LabelFontSize { get; set; }
         public FontStyle LabelFontStyle { get; set; }
-        public int LabelWidth { get; set; }
         public int LabelHeight { get; set; }
 
         public Size GossipStoneSize { get; set; }
+        public int? GossipStoneCount { get; set; }
         public string[] GossipStoneImageCollection { get; set; }
+        public int GossipStoneSpacing { get; set; }
 
-        public int PathGoalCount { get; set; }
-        public string[] GoalImageCollection { get; set; }
+        public int? PathGoalCount { get; set; }
+        public string[] PathGoalImageCollection { get; set; }
+        public int PathGoalSpacing { get; set; }
     }
 
     public class ObjectPanelBarren
@@ -628,6 +641,9 @@ namespace GSTHD
         public Color? BackgroundColor { get;set; }
         public string[] DefaultSongMarkerImages { get; set; } = null;
         public string[] DefaultGossipStoneImages { get; set; } = null;
+        public string[] DefaultPathGoalImages { get; set; } = null; 
+        public int? DefaultWothGossipStoneCount { get; set; } = null;
+        public int? DefaultPathGoalCount { get; set; } = null;
         public string[] WothColors { get; set; }
         public int? DefaultWothColorIndex { get; set; }
         public MedallionLabel DefaultDungeonNames { get; set; } = null;

@@ -16,10 +16,13 @@ namespace GSTHD
         public List<Barren> ListBarren = new List<Barren>();
 
         public TextBoxCustom textBoxCustom;
+        private int GossipStoneCount;
         private string[] ListImage_WothItemsOption;
-        private int NbMaxGoals;
+        private int PathGoalCount;
         private string[] ListImage_GoalsOption;
         Size GossipStoneSize;
+        int GossipStoneSpacing;
+        int PathGoalSpacing;
         int NbMaxRows;
         Label LabelSettings = new Label();
 
@@ -32,6 +35,10 @@ namespace GSTHD
             this.Location = new Point(data.X, data.Y);
             this.Name = data.Name;
             this.Size = new Size(data.Width, data.Height);
+            this.GossipStoneCount = data.GossipStoneCount.HasValue ? data.GossipStoneCount.Value : settings.DefaultWothGossipStoneCount;
+            this.PathGoalCount = data.PathGoalCount.HasValue ? data.PathGoalCount.Value : settings.DefaultPathGoalCount;
+            this.GossipStoneSpacing = data.GossipStoneSpacing;
+            this.PathGoalSpacing = data.PathGoalSpacing;
             this.TabStop = false;
             if(data.IsScrollable)
                 this.MouseWheel += Panel_MouseWheel;
@@ -94,9 +101,8 @@ namespace GSTHD
 
         public void PanelWoth(Dictionary<string, string> PlacesWithTag, ObjectPanelWotH data)
         {
-            ListImage_WothItemsOption = data.GossipStoneImageCollection;
-            NbMaxGoals = data.PathGoalCount;
-            ListImage_GoalsOption = data.GoalImageCollection;
+            ListImage_WothItemsOption = data.GossipStoneImageCollection ?? Settings.DefaultGossipStoneImages;
+            ListImage_GoalsOption = data.PathGoalImageCollection ?? Settings.DefaultPathGoalImages;
             NbMaxRows = data.NbMaxRows;
 
             LabelSettings = new Label
@@ -104,20 +110,20 @@ namespace GSTHD
                 ForeColor = data.LabelColor,
                 BackColor = data.LabelBackColor,
                 Font = new Font(data.LabelFontName, data.LabelFontSize, data.LabelFontStyle),
-                Width = data.LabelWidth,
-                Height = data.LabelHeight
+                Width = data.Width,
+                Height = data.LabelHeight,
             };
 
             textBoxCustom = new TextBoxCustom
-                (
-                    PlacesWithTag,
-                    new Point(0, 0),
-                    data.TextBoxBackColor,
-                    new Font(data.TextBoxFontName, data.TextBoxFontSize, data.TextBoxFontStyle),
-                    data.TextBoxName,
-                    new Size(data.TextBoxWidth, data.TextBoxHeight),
-                    data.TextBoxText
-                );
+            (
+                PlacesWithTag,
+                new Point(0, 0),
+                data.TextBoxBackColor,
+                new Font(data.TextBoxFontName, data.TextBoxFontSize, data.TextBoxFontStyle),
+                data.TextBoxName,
+                new Size(data.Width, data.TextBoxHeight),
+                data.TextBoxText
+            );
             textBoxCustom.TextBoxField.KeyDown += textBoxCustom_KeyDown_WotH;
             textBoxCustom.TextBoxField.MouseClick += textBoxCustom_MouseClick;
             this.Controls.Add(textBoxCustom.TextBoxField);
@@ -177,7 +183,7 @@ namespace GSTHD
                     {
                         Barren newBarren = null;
                         if(ListBarren.Count <= 0)
-                            newBarren = new Barren(selectedPlace, new Point(2, -LabelSettings.Height), LabelSettings);
+                            newBarren = new Barren(selectedPlace, new Point(0, -LabelSettings.Height), LabelSettings);
                         else
                         {
                             var lastLocation = ListBarren.Last().LabelPlace.Location;
@@ -186,7 +192,7 @@ namespace GSTHD
                         ListBarren.Add(newBarren);
                         this.Controls.Add(newBarren.LabelPlace);
                         newBarren.LabelPlace.MouseClick += LabelPlace_MouseClick_Barren;
-                        textBoxCustom.newLocation(new Point(2, newBarren.LabelPlace.Location.Y + newBarren.LabelPlace.Height), this.Location);
+                        textBoxCustom.newLocation(new Point(0, newBarren.LabelPlace.Location.Y + newBarren.LabelPlace.Height), this.Location);
                     }
                 }
                 textbox.Text = string.Empty;
@@ -212,12 +218,17 @@ namespace GSTHD
                         {
                             WotH newWotH = null;
                             if (ListWotH.Count <= 0)
-                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, NbMaxGoals, ListImage_GoalsOption, new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
+                                newWotH = new WotH(Settings, selectedPlace,
+                                    GossipStoneCount, ListImage_WothItemsOption, GossipStoneSpacing, 
+                                    PathGoalCount, ListImage_GoalsOption, PathGoalSpacing,
+                                    new Point(2, -LabelSettings.Height), LabelSettings, GossipStoneSize);
                             else
                             {
                                 var lastLocation = ListWotH.Last().LabelPlace.Location;
-                                newWotH = new WotH(Settings, selectedPlace, ListImage_WothItemsOption, NbMaxGoals, ListImage_GoalsOption, lastLocation, LabelSettings, GossipStoneSize);
-                               
+                                newWotH = new WotH(Settings, selectedPlace,
+                                    GossipStoneCount, ListImage_WothItemsOption, GossipStoneSpacing,
+                                    PathGoalCount, ListImage_GoalsOption, PathGoalSpacing,
+                                    lastLocation, LabelSettings, GossipStoneSize);
                             }
                             ListWotH.Add(newWotH);
                             this.Controls.Add(newWotH.LabelPlace);
@@ -228,7 +239,7 @@ namespace GSTHD
                                 this.Controls.Add(gossipStone);
                             }
                             //Move TextBoxCustom
-                            textBoxCustom.newLocation(new Point(2, newWotH.LabelPlace.Location.Y + newWotH.LabelPlace.Height), this.Location);
+                            textBoxCustom.newLocation(new Point(0, newWotH.LabelPlace.Location.Y + newWotH.LabelPlace.Height), this.Location);
                         }
                     }
                 }
