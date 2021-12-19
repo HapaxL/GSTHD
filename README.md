@@ -35,7 +35,10 @@ ___
 - It is now possible to add generic (no autofill) text boxes to a layout.
 - Layouts can now set the order of dungeon names under medallions, as well as the starting value.
 - Different behaviours for Song Markers are now available (`None`, `CheckOnly`, `DropOnly`, `DropAndCheck`, `DragAndDrop`, `Full`).
-- New Path indicators in WOTH pannel. Gossip Stones can be configured to automatically populated to the left of a WOTH location to indicate the path the location is one.
+- Path Goal boss icons (for the newly-introduced Goal Hints) have been added. It is possible to change the amount of Path Goals that will be displayed per WotH line. Thanks to Baelnog#5969 for the code and Damien#8474 for the boss icons.
+- The amount of Gossip Stones per WotH line can now also be changed.
+- It is now possible to set the same WotH location more than once (thanks to GOGETA#0968).
+- Majora's Mask icons have been added to a `mm` subfolder (thanks to Acrophobic#6464 and lolaway#4521).
 
 #### Other changes and fixes
 - Fixed small issues with collected items' number display.
@@ -62,4 +65,5 @@ ___
 ### Special thanks
 - Drekorig, for his genius drag & drop idea, and his nice tracker base.
 - ArthurOudini, for inspiring me to add some of the features in this project.
+- Baelnog, GOGETA, Damien, Acrophobic, lolaway, for various features and resources that were added to the project.
 - Everyone who submitted, and will submit, suggestions and bug fixes for the project.
