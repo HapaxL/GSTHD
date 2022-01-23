@@ -213,7 +213,7 @@ namespace GSTHD
 
                 ToolStripMenuItem barrenSubMenu = new ToolStripMenuItem("Barren");
                 {
-                    Items.EnableBarrenColors = new ToolStripMenuItem("Enable Barren Song Color", null, new EventHandler(menuBar_ToggleEnableBarrenColors))
+                    Items.EnableBarrenColors = new ToolStripMenuItem("Enable Barren Colors", null, new EventHandler(menuBar_ToggleEnableBarrenColors))
                     {
                         CheckOnClick = true,
                     };
