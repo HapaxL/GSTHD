@@ -10,12 +10,18 @@ namespace GSTHD
 {
     class Barren
     {
+        public Settings Settings;
+
         public Label LabelPlace;
         public string Name;
 
-        public Barren(string selectedPlace, Point lastLabelLocation, Label labelSettings)
+        private Color[] Colors;
+        private int ColorIndex;
+
+        public Barren(Settings settings, string selectedPlace, Point lastLabelLocation, Label labelSettings)
         {
-            this.Name = selectedPlace;
+            Settings = settings;
+            Name = selectedPlace;
 
             LabelPlace = new Label
             {
@@ -26,11 +32,45 @@ namespace GSTHD
                 Font = labelSettings.Font,
                 Width = labelSettings.Width,
                 Height = labelSettings.Height,
-                TextAlign = ContentAlignment.MiddleLeft
+                TextAlign = ContentAlignment.MiddleLeft,
+                AutoEllipsis = true,
             };
             LabelPlace.Location = new Point(0, lastLabelLocation.Y + LabelPlace.Height);
+            LabelPlace.MouseDown += new MouseEventHandler(Mouse_ClickDown);
+
+            Colors = new Color[Settings.DefaultBarrenColors.Length];
+            for (int i = 0; i < Settings.DefaultBarrenColors.Length; i++)
+            {
+                Colors[i] = Color.FromName(Settings.DefaultBarrenColors[i]);
+            }
+            ColorIndex = 0;
+            UpdateFromSettings();
         }
 
-        public void UpdateFromSettings() { }
+        public void UpdateFromSettings()
+        {
+            UpdateColor();
+        }
+
+        public void UpdateColor()
+        {
+            LabelPlace.ForeColor = Colors[Settings.EnableBarrenColors ? ColorIndex : 0];
+        }
+
+        private void Mouse_ClickDown(object sender, MouseEventArgs e)
+        {
+            if (!Settings.EnableBarrenColors)
+                return;
+
+            if (e.Button == MouseButtons.Left && ColorIndex < Colors.Length - 1)
+            {
+                ColorIndex++;
+            }
+            else if (e.Button == MouseButtons.Right && ColorIndex > 0)
+            {
+                ColorIndex--;
+            }
+            UpdateColor();
+        }
     }
 }

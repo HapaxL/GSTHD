@@ -35,6 +35,9 @@ namespace GSTHD
             public ToolStripMenuItem EnableLastWoth;
             public ToolStripMenuItem LastWothColor;
             public ToolStripMenuItem EnableDuplicateWoth;
+
+            // Barren
+            public ToolStripMenuItem EnableBarrenColors;
         }
 
         private readonly Dictionary<Settings.DragButtonOption, string> DragButtonNames = new Dictionary<Settings.DragButtonOption, string>
@@ -176,13 +179,13 @@ namespace GSTHD
                 }
                 optionMenu.DropDownItems.Add(songMarkersSubMenu);
 
-                ToolStripMenuItem lastWothSubMenu = new ToolStripMenuItem("WotH");
+                ToolStripMenuItem wothSubMenu = new ToolStripMenuItem("WotH");
                 {
                     Items.EnableLastWoth = new ToolStripMenuItem("Enable Last WotH", null, new EventHandler(menuBar_ToggleEnableLastWotH))
                     {
                         CheckOnClick = true,
                     };
-                    lastWothSubMenu.DropDownItems.Add(Items.EnableLastWoth);
+                    wothSubMenu.DropDownItems.Add(Items.EnableLastWoth);
 
 
                     LastWothColorOptions = new Dictionary<KnownColor, ToolStripMenuItem>();
@@ -197,16 +200,26 @@ namespace GSTHD
                         i++;
                     }
 
-                    Items.LastWothColor = new ToolStripMenuItem("Last WotH color", null, LastWothColorOptions.Values.ToArray());
-                    lastWothSubMenu.DropDownItems.Add(Items.LastWothColor);
+                    Items.LastWothColor = new ToolStripMenuItem("Last WotH Color", null, LastWothColorOptions.Values.ToArray());
+                    wothSubMenu.DropDownItems.Add(Items.LastWothColor);
 
                     Items.EnableDuplicateWoth = new ToolStripMenuItem("Allow Duplicate WotH Entries", null, new EventHandler(menuBar_ToggleEnableDuplicateWotH))
                     {
                         CheckOnClick = true,
                     };
-                    lastWothSubMenu.DropDownItems.Add(Items.EnableDuplicateWoth);
+                    wothSubMenu.DropDownItems.Add(Items.EnableDuplicateWoth);
                 }
-                optionMenu.DropDownItems.Add(lastWothSubMenu);
+                optionMenu.DropDownItems.Add(wothSubMenu);
+
+                ToolStripMenuItem barrenSubMenu = new ToolStripMenuItem("Barren");
+                {
+                    Items.EnableBarrenColors = new ToolStripMenuItem("Enable Barren Song Color", null, new EventHandler(menuBar_ToggleEnableBarrenColors))
+                    {
+                        CheckOnClick = true,
+                    };
+                    barrenSubMenu.DropDownItems.Add(Items.EnableBarrenColors);
+                }
+                optionMenu.DropDownItems.Add(barrenSubMenu);
             }
             MenuStrip.Items.Add(optionMenu);
         }
@@ -233,6 +246,8 @@ namespace GSTHD
             Items.EnableDuplicateWoth.Checked = Settings.EnableDuplicateWoth;
             Items.EnableLastWoth.Checked = Settings.EnableLastWoth;
             LastWothColorOptions[Settings.LastWothColor].Checked = true;
+
+            Items.EnableBarrenColors.Checked = Settings.EnableBarrenColors;
         }
 
         public void SetRenderer()
@@ -378,6 +393,14 @@ namespace GSTHD
         {
             // Items.EnableLastWoth.Enabled = !Items.EnableLastWoth.Enabled;
             Settings.EnableLastWoth = Items.EnableLastWoth.Checked;
+            Settings.Write();
+            Form.UpdateLayoutFromSettings();
+        }
+
+        private void menuBar_ToggleEnableBarrenColors(object sender, EventArgs e)
+        {
+            // Items.EnableBarrenColors.Enabled = !Items.EnableBarrenColors.Enabled;
+            Settings.EnableBarrenColors = Items.EnableBarrenColors.Checked;
             Settings.Write();
             Form.UpdateLayoutFromSettings();
         }

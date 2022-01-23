@@ -56,9 +56,15 @@ namespace GSTHD
             "Orange",
             "Crimson",
         };
+        public string[] DefaultBarrenColors { get; set; } = new string[]
+        {
+            "White",
+            "Gold",
+        };
         public int DefaultWothColorIndex { get; set; } = 0;
         public bool EnableDuplicateWoth { get; set; } = true;
         public bool EnableLastWoth { get; set; } = false;
+        public bool EnableBarrenColors { get; set; } = true;
         public KnownColor LastWothColor { get; set; } = KnownColor.BlueViolet;
 
         public MedallionLabel DefaultDungeonNames { get; set; } = new MedallionLabel()

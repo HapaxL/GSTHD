@@ -209,6 +209,10 @@ namespace GSTHD
                 {
                     settings.DefaultWothColors = App_Settings.WothColors;
                 }
+                if (App_Settings.BarrenColors != null)
+                {
+                    settings.DefaultBarrenColors = App_Settings.BarrenColors;
+                }
                 if (App_Settings.DefaultWothColorIndex.HasValue)
                 {
                     settings.DefaultWothColorIndex = App_Settings.DefaultWothColorIndex.Value;
@@ -409,11 +413,12 @@ namespace GSTHD
                     {
                         if (item.Visible)
                         {
-                            var newPanel = new PanelWothBarren(item, settings);
-                            newPanel.PanelBarren(listPlacesWithTag, item);
-                            panelLayout.Controls.Add(newPanel);
-                            panelLayout.Controls.Add(newPanel.textBoxCustom.SuggestionContainer);
-                            newPanel.SetSuggestionContainer();
+                            var panel = new PanelWothBarren(item, settings);
+                            panel.PanelBarren(listPlacesWithTag, item);
+                            panelLayout.Controls.Add(panel);
+                            panelLayout.Controls.Add(panel.textBoxCustom.SuggestionContainer);
+                            ListUpdatables.Add(panel);
+                            panel.SetSuggestionContainer();
                         }
                     }
                 }
@@ -645,6 +650,7 @@ namespace GSTHD
         public int? DefaultWothGossipStoneCount { get; set; } = null;
         public int? DefaultPathGoalCount { get; set; } = null;
         public string[] WothColors { get; set; }
+        public string[] BarrenColors { get; set; }
         public int? DefaultWothColorIndex { get; set; }
         public MedallionLabel DefaultDungeonNames { get; set; } = null;
     }
