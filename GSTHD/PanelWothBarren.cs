@@ -183,11 +183,11 @@ namespace GSTHD
                     {
                         Barren newBarren = null;
                         if(ListBarren.Count <= 0)
-                            newBarren = new Barren(selectedPlace, new Point(0, -LabelSettings.Height), LabelSettings);
+                            newBarren = new Barren(Settings, selectedPlace, new Point(0, -LabelSettings.Height), LabelSettings);
                         else
                         {
                             var lastLocation = ListBarren.Last().LabelPlace.Location;
-                            newBarren = new Barren(selectedPlace, lastLocation, LabelSettings);
+                            newBarren = new Barren(Settings, selectedPlace, lastLocation, LabelSettings);
                         }
                         ListBarren.Add(newBarren);
                         this.Controls.Add(newBarren.LabelPlace);

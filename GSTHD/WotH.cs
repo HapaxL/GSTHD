@@ -53,7 +53,7 @@ namespace GSTHD
                 AutoEllipsis = true,
             };
             LabelPlace.Location = new Point(labelStartX, lastLabelLocation.Y + LabelPlace.Height);
-            LabelPlace.MouseDown += new MouseEventHandler(label_woth_MouseDown);
+            LabelPlace.MouseDown += new MouseEventHandler(Mouse_ClickDown);
 
             if (wothItemImageList.Length > 0)
             {
@@ -98,7 +98,7 @@ namespace GSTHD
             LabelPlace.ForeColor = Colors[ColorIndex];
         }
 
-        private void label_woth_MouseDown(object sender, MouseEventArgs e)
+        private void Mouse_ClickDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && ColorIndex < Colors.Length - 1)
             {
