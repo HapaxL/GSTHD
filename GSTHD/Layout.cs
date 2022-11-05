@@ -629,7 +629,9 @@ namespace GSTHD
         public int Y { get; set; }
         public Size Size { get; set; }
         public Size CountPosition { get; set; }
-        public int CountMax { get; set; }
+        public int CountMin { get; set; }
+        public int? CountMax { get; set; }
+        public int DefaultValue { get; set; }
         public int Step { get; set; }
         public bool Visible { get; set; }
         public string[] ImageCollection { get; set; }

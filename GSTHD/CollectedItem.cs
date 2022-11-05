@@ -18,7 +18,9 @@ namespace GSTHD
         private Label ItemCount;
         private Size CollectedItemSize;
         private Size CollectedItemCountPosition;
+        private readonly int CollectedItemMin;
         private readonly int CollectedItemMax;
+        private readonly int CollectedItemDefault;
         private int CollectedItems;
         private readonly int Step;
 
@@ -31,8 +33,12 @@ namespace GSTHD
             else
                 ImageNames = data.ImageCollection;
 
+            CollectedItemMin = data.CountMin;
+            CollectedItemMax = data.CountMax.HasValue ? data.CountMax.Value : 100;
+            CollectedItemDefault = data.DefaultValue;
+            CollectedItems = System.Math.Min(System.Math.Max(CollectedItemMin, CollectedItemDefault), CollectedItemMax);
+            Step = data.Step == 0 ? 1 : data.Step;
             CollectedItemSize = data.Size;
-            CollectedItems = 0;
 
             if (ImageNames.Length > 0)
             {
@@ -47,8 +53,6 @@ namespace GSTHD
 
             Location = new Point(data.X, data.Y);
             CollectedItemCountPosition = data.CountPosition.IsEmpty ? new Size(0, -7) : data.CountPosition;
-            CollectedItemMax = data.CountMax == 0 ? 100 : data.CountMax;
-            Step = data.Step == 0 ? 1 : data.Step;
             BackColor = Color.Transparent;
             TabStop = false;
 
@@ -57,7 +61,7 @@ namespace GSTHD
             {
                 BackColor = Color.Transparent,
                 BorderStyle = BorderStyle.None,
-                Text = "0",
+                Text = CollectedItems.ToString(),
                 Font = new Font(data.LabelFontName, data.LabelFontSize, data.LabelFontStyle),
                 ForeColor = data.LabelColor,
                 AutoSize = false,
@@ -87,7 +91,7 @@ namespace GSTHD
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
                 CollectedItems += Step * (Settings.InvertScrollWheel ? scrolls : -scrolls);
-                if (CollectedItems < 0) CollectedItems = 0;
+                if (CollectedItems < CollectedItemMin) CollectedItems = CollectedItemMin;
                 else if (CollectedItems > CollectedItemMax) CollectedItems = CollectedItemMax;
                 UpdateCount();
             }
@@ -119,13 +123,13 @@ namespace GSTHD
         public void DecrementState()
         {
             CollectedItems -= Step;
-            if (CollectedItems < 0) CollectedItems = 0;
+            if (CollectedItems < CollectedItemMin) CollectedItems = CollectedItemMin;
             UpdateCount();
         }
 
         public void ResetState()
         {
-            CollectedItems = 0;
+            CollectedItems = CollectedItemDefault;
             UpdateCount();
         }
 
