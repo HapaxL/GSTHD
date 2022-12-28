@@ -136,7 +136,7 @@ namespace GSTHD
             {
                 var scrolls = e.Delta / SystemInformation.MouseWheelScrollDelta;
                 var newIndex = DungeonIndex + (Settings.InvertScrollWheel ? scrolls : -scrolls);
-                DungeonIndex = Math.EMod(newIndex, DungeonNames.Length);
+                DungeonIndex = Util.Math.EMod(newIndex, DungeonNames.Length);
                 SelectedDungeon.Text = DungeonNames[DungeonIndex];
                 SetSelectedDungeonLocation();
             }

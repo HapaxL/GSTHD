@@ -2,7 +2,7 @@
 
 namespace GSTHD
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace GSTHD
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.SuspendLayout();
             // 
             // Form1
@@ -47,7 +47,7 @@ namespace GSTHD
             this.Name = "Form1";
             this.Text = "Gossip Stones Tracker v1.7 (Standard Edition)";
             this.Load += new System.EventHandler(this.LoadAll);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(Form1_KeyDown);
+            // this.KeyDown += new System.Windows.Forms.KeyEventHandler(MainForm_KeyDown);
             this.ResumeLayout(false);
 
         }

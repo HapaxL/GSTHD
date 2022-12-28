@@ -81,6 +81,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppData\AppData.cs" />
+    <Compile Include="AppData\UserData.cs" />
     <Compile Include="Barren.cs" />
     <Compile Include="Chronometer.cs" />
     <Compile Include="CollectedItem.cs">
@@ -94,22 +96,19 @@
     <Compile Include="Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditorObjects\JSONItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="EditorObjects\JSONItem.cs" />
     <Compile Include="LabelExtended.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Form1_ListImage.cs">
+    <Compile Include="LayoutUpdater\LayoutUpdater.cs" />
+    <Compile Include="MainForm_ListImage.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1_MenuBar.cs">
+    <Compile Include="MainForm_MenuBar.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GoMode.cs">
@@ -127,8 +126,10 @@
     <Compile Include="DoubleItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Layout.cs" />
-    <Compile Include="Math.cs" />
+    <Compile Include="Layout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Util\Math.cs" />
     <Compile Include="Medallion.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -184,8 +185,8 @@
     <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -12,44 +12,44 @@ using System.Windows.Forms;
 
 namespace GSTHD
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         Dictionary<string, string> ListPlacesWithTag = new Dictionary<string, string>();
         SortedSet<string> ListPlaces = new SortedSet<string>();
         SortedSet<string> ListSometimesHintsSuggestions = new SortedSet<string>();
 
-        Form1_MenuBar MenuBar;
-        Layout CurrentLayout;
-        Panel LayoutContent;
+        MainForm_MenuBar MenuBar;
+        Layout ActiveLayout;
 
-        PictureBox pbox_collectedSkulls;
+        //PictureBox pbox_collectedSkulls;
+
 
         Settings Settings;
         
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            //if (e.Control && e.KeyCode == Keys.R)
-            //{
-            //    this.Controls.Clear();
-            //    e.Handled = true;
-            //    e.SuppressKeyPress = true;
-            //    this.Form1_Load(sender, new EventArgs());
-            //}
+        //private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    //if (e.Control && e.KeyCode == Keys.R)
+        //    //{
+        //    //    this.Controls.Clear();
+        //    //    e.Handled = true;
+        //    //    e.SuppressKeyPress = true;
+        //    //    this.Form1_Load(sender, new EventArgs());
+        //    //}
 
-            /*
-            if(e.KeyCode == Keys.F2)
-            {
-                var window = new Editor(CurrentLayout);
-                window.Show();
-            }
-            */
-        }
+        //    /*
+        //    if(e.KeyCode == Keys.F2)
+        //    {
+        //        var window = new Editor(CurrentLayout);
+        //        window.Show();
+        //    }
+        //    */
+        //}
 
         private void LoadAll(object sender, EventArgs e)
         {
@@ -60,9 +60,9 @@ namespace GSTHD
 
             LoadSettings();
             
-            MenuBar = new Form1_MenuBar(this, Settings);
+            MenuBar = new MainForm_MenuBar(this, Settings);
 
-            LoadLayout();
+            LoadLayout(Settings.ActiveLayout);
             SetMenuBar();
 
             this.KeyPreview = true;
@@ -72,7 +72,7 @@ namespace GSTHD
         private void Reload()
         {
             LoadSettings();
-            LoadLayout();
+            LoadLayout(Settings.ActiveLayout);
             SetMenuBar();
         }
 
@@ -106,37 +106,54 @@ namespace GSTHD
             MenuBar.SetRenderer();
         }
 
-        private void LoadLayout()
+        private string FixLayoutPath(string layoutPath)
         {
+            if (File.Exists(layoutPath))
+            {
+                return layoutPath;
+            }
+
+            var fixedPath = $@"Layouts\{layoutPath}.json";
+            if (File.Exists(fixedPath))
+            {
+                return fixedPath;
+            }
+            else throw new FileNotFoundException($"Layout file \"{layoutPath}\" was not found. Layout file \"{fixedPath}\" was not found.");
+        }
+
+        public void LoadLayout(string layoutPath)
+        {
+            var path = FixLayoutPath(layoutPath);
+
             Controls.Clear();
-            LayoutContent = new Panel();
-            CurrentLayout = new Layout();
-            CurrentLayout.LoadLayout(LayoutContent, Settings, ListSometimesHintsSuggestions, ListPlacesWithTag, this);
-            Size = new Size(LayoutContent.Size.Width, LayoutContent.Size.Height + MenuBar.Size.Height);
-            LayoutContent.Dock = DockStyle.Top;
-            Controls.Add(LayoutContent);
+            ActiveLayout = GSTHD.Layout.Load(path, Settings, ListSometimesHintsSuggestions, ListPlacesWithTag, this);
+            Size = new Size(ActiveLayout.Size.Width, ActiveLayout.Size.Height + MenuBar.Size.Height);
+            ActiveLayout.Dock = DockStyle.Top;
+            Controls.Add(ActiveLayout);
             MenuBar.Dock = DockStyle.Top;
             Controls.Add(MenuBar);
+            Settings.ActiveLayout = path;
+            Settings.Write();
         }
 
         public void UpdateLayoutFromSettings()
         {
-            CurrentLayout.UpdateFromSettings();
+            ActiveLayout.UpdateFromSettings();
         }
 
-        private void changeCollectedSkulls(object sender, KeyEventArgs k)
-        {
-            if (k.KeyCode == Keys.F9) { }
-            //button_chrono_Click(sender, new EventArgs());
-            if (k.KeyCode == Keys.F11) { }
-            //label_collectedSkulls_MouseDown(pbox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
-            if (k.KeyCode == Keys.F12) { }
-            //label_collectedSkulls_MouseDown(pbox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Right, 1, 0, 0, 0));
-        }
+        //private void changeCollectedSkulls(object sender, KeyEventArgs k)
+        //{
+        //    if (k.KeyCode == Keys.F9) { }
+        //    //button_chrono_Click(sender, new EventArgs());
+        //    if (k.KeyCode == Keys.F11) { }
+        //    //label_collectedSkulls_MouseDown(pbox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
+        //    if (k.KeyCode == Keys.F12) { }
+        //    //label_collectedSkulls_MouseDown(pbox_collectedSkulls.Controls[0], new MouseEventArgs(MouseButtons.Right, 1, 0, 0, 0));
+        //}
 
         public void Reset(object sender)
         {
-            ControlExtensions.ClearAndDispose(LayoutContent);
+            ControlExtensions.ClearAndDispose(ActiveLayout);
             Reload();
             Process.GetCurrentProcess().Refresh();
         }

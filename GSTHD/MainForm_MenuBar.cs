@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +9,13 @@ using System.Windows.Forms;
 
 namespace GSTHD
 {
-    public class Form1_MenuBar : Panel
+    public class MainForm_MenuBar : Panel
     {
         private struct MenuItems
         {
             // Layout
             public ToolStripMenuItem Reset;
-            // public ToolStripMenuItem LoadLayout;
+            public ToolStripMenuItem LoadLayout;
             public ToolStripMenuItem ShowMenuBar;
 
             // Options
@@ -59,7 +60,7 @@ namespace GSTHD
             { Settings.SongMarkerBehaviourOption.Full, "Full Drag && Drop, Click to Check" },
         };
 
-        Form1 Form;
+        MainForm Form;
         Settings Settings;
         MenuStrip MenuStrip;
         MenuItems Items;
@@ -68,8 +69,9 @@ namespace GSTHD
         Dictionary<Settings.SongMarkerBehaviourOption, ToolStripMenuItem> SongMarkerBehaviourOptions;
         Dictionary<KnownColor, ToolStripMenuItem> LastWothColorOptions;
         Size SavedSize;
+        OpenFileDialog OpenLayoutDialog;
 
-        public Form1_MenuBar(Form1 form, Settings settings)
+        public MainForm_MenuBar(MainForm form, Settings settings)
         {
             Form = form;
             Settings = settings;
@@ -78,6 +80,13 @@ namespace GSTHD
 
             Size = MenuStrip.Size;
             SavedSize = MenuStrip.Size;
+
+            OpenLayoutDialog = new OpenFileDialog()
+            {
+                FileName = "Select a layout to load",
+                Filter = "Layout files (*.json)|*.json|All files (*.*)|*.*",
+                Title = "Open layout"
+            };
 
             ReadSettings();
 
@@ -98,15 +107,19 @@ namespace GSTHD
                 };
                 layoutMenu.DropDownItems.Add(Items.Reset);
 
-                //Items.LoadLayout = new ToolStripMenuItem("Load Layout", null, new EventHandler(menuBar_LoadLayout));
-                //layoutMenu.DropDownItems.Add(Items.LoadLayout);
+                Items.LoadLayout = new ToolStripMenuItem("Load Layout", null, new EventHandler(menuBar_LoadLayout))
+                {
+                    ShortcutKeys = Keys.Control | Keys.L,
+                    ShowShortcutKeys = true,
+                };
+                layoutMenu.DropDownItems.Add(Items.LoadLayout);
 
                 Items.ShowMenuBar = new ToolStripMenuItem("Show Menu Bar", null, new EventHandler(menuBar_Enable))
                 {
                     ShortcutKeys = Keys.F10,
                     ShowShortcutKeys = true,
                     CheckOnClick = true,
-            };
+                };
                 layoutMenu.DropDownItems.Add(Items.ShowMenuBar);
                 
             }
@@ -376,10 +389,24 @@ namespace GSTHD
             Form.UpdateLayoutFromSettings();
         }
 
-        //private void menuBar_LoadLayout(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private void menuBar_LoadLayout(object sender, EventArgs e)
+        {
+            if (OpenLayoutDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var filePath = OpenLayoutDialog.FileName;
+                    var previous_layout = Settings.ActiveLayout;
+                    Form.LoadLayout(OpenLayoutDialog.FileName);
+                    // todo test if file is valid, switch back to previous layout if not
+                }
+                catch (System.Security.SecurityException ex)
+                {
+                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
+                    $"Details:\n\n{ex.StackTrace}");
+                }
+            }
+        }
 
         private void menuBar_ToggleEnableDuplicateWotH(object sender, EventArgs e)
         {
