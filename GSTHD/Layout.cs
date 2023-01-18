@@ -19,9 +19,26 @@ namespace GSTHD
 
     public class Layout : Panel
     {
-        public List<UpdatableFromSettings> ListUpdatables = new List<UpdatableFromSettings>();
+        public List<UpdatableFromSettings> ListUpdatables;
+        public string FilePath;
+        public JObject Json;
+        public LayoutSettings Settings;
 
-        public LayoutSettings Settings = new LayoutSettings();
+        public Layout(string filePath)
+        {
+            ListUpdatables = new List<UpdatableFromSettings>();
+            FilePath = filePath;
+            try
+            {
+                Json = JObject.Parse(File.ReadAllText(FilePath));
+            }
+            catch (JsonReaderException ex)
+            {
+                throw new InvalidLayoutFileException(FilePath, "invalid JSON, or not a JSON file", ex);
+            }
+            LoadSettings();
+            SetSizeFromSettings();
+        }
 
         public void UpdateFromSettings()
         {
@@ -31,304 +48,250 @@ namespace GSTHD
             }
         }
 
-        public static Layout Load(string layoutPath, Settings settings, SortedSet<string> listSometimesHintsSuggestions, Dictionary<string, string> listPlacesWithTag, MainForm form)
+        private void LoadSettings()
         {
-            var layout = new Layout();
-
-            if (settings.ActiveLayout != string.Empty)
+            JToken settingsToken;
+            if (Json.ContainsKey("LayoutSettings"))
             {
-                JObject json_layout = JObject.Parse(File.ReadAllText(layoutPath));
+                settingsToken = Json.GetValue("LayoutSettings");
+            }
+            else if (Json.ContainsKey("AppSize"))
+            {
+                settingsToken = Json.GetValue("AppSize");
+            }
+            else
+            {
+                throw new InvalidLayoutFileException(FilePath, "no LayoutSettings section");
+            }
+            Settings = JsonConvert.DeserializeObject<LayoutSettings>(settingsToken.ToString());
+        }
 
-                JToken settingsToken;
-                if (json_layout.ContainsKey("LayoutSettings"))
-                {
-                    settingsToken = json_layout.GetValue("LayoutSettings");
-                }
-                else if (json_layout.ContainsKey("AppSize"))
-                {
-                    settingsToken = json_layout.GetValue("AppSize");
-                }
-                else
-                {
-                    throw new ArgumentException($"File \"{layoutPath}\" provided is not a valid layout file.");
-                }
+        private void SetSizeFromSettings()
+        {
+            if (Settings.Width == 0 || Settings.Height == 0)
+            {
+                throw new InvalidLayoutFileException(FilePath, "invalid size");
+            }
+            Size = new Size(Math.Max(144, Settings.Width), Math.Max(80, Settings.Height));
+        }
 
-                layout.Settings = JsonConvert.DeserializeObject<LayoutSettings>(settingsToken.ToString());
+        public void LoadContents(Settings activeSettings, SortedSet<string> listSometimesHintsSuggestions, Dictionary<string, string> listPlacesWithTag, MainForm form)
+        {
+            activeSettings.SetLayoutSettings(Settings);
 
-                if (layout.Settings.Width == 0 || layout.Settings.Height == 0)
+            foreach (var category in Json)
+            {
+                switch (category.Key)
                 {
-                    throw new ArgumentException($"File \"{layoutPath}\" provided is not a valid layout file.");
-                }
-                layout.Size = new Size(Math.Max(144, layout.Settings.Width), Math.Max(80, layout.Settings.Height));
+                    case "Labels":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<GenericLabel>(element.ToString());
 
-                if (layout.Settings.BackgroundColor.HasValue)
-                    form.BackColor = layout.Settings.BackgroundColor.Value;
-                layout.BackColor = form.BackColor;
-
-                if (layout.Settings.DefaultSongMarkerImages != null)
-                {
-                    settings.DefaultSongMarkerImages = layout.Settings.DefaultSongMarkerImages;
-                }
-                if (layout.Settings.DefaultGossipStoneImages != null)
-                {
-                    settings.DefaultGossipStoneImages = layout.Settings.DefaultGossipStoneImages;
-                }
-                if (layout.Settings.DefaultPathGoalImages != null)
-                {
-                    settings.DefaultPathGoalImages = layout.Settings.DefaultPathGoalImages;
-                }
-                if (layout.Settings.DefaultPathGoalCount.HasValue)
-                {
-                    settings.DefaultPathGoalCount = layout.Settings.DefaultPathGoalCount.Value;
-                }
-                if (layout.Settings.DefaultWothGossipStoneCount.HasValue)
-                {
-                    settings.DefaultWothGossipStoneCount = layout.Settings.DefaultWothGossipStoneCount.Value;
-                }
-                if (layout.Settings.WothColors != null)
-                {
-                    settings.DefaultWothColors = layout.Settings.WothColors;
-                }
-                if (layout.Settings.BarrenColors != null)
-                {
-                    settings.DefaultBarrenColors = layout.Settings.BarrenColors;
-                }
-                if (layout.Settings.DefaultWothColorIndex.HasValue)
-                {
-                    settings.DefaultWothColorIndex = layout.Settings.DefaultWothColorIndex.Value;
-                }
-                if (layout.Settings.DefaultDungeonNames != null)
-                {
-                    if (layout.Settings.DefaultDungeonNames.TextCollection != null)
-                        settings.DefaultDungeonNames.TextCollection = layout.Settings.DefaultDungeonNames.TextCollection;
-                    if (layout.Settings.DefaultDungeonNames.DefaultValue.HasValue)
-                        settings.DefaultDungeonNames.DefaultValue = layout.Settings.DefaultDungeonNames.DefaultValue;
-                    if (layout.Settings.DefaultDungeonNames.Wraparound.HasValue)
-                        settings.DefaultDungeonNames.Wraparound = layout.Settings.DefaultDungeonNames.Wraparound;
-                    if (layout.Settings.DefaultDungeonNames.FontName != null)
-                        settings.DefaultDungeonNames.FontName = layout.Settings.DefaultDungeonNames.FontName;
-                    if (layout.Settings.DefaultDungeonNames.FontSize.HasValue)
-                        settings.DefaultDungeonNames.FontSize = layout.Settings.DefaultDungeonNames.FontSize;
-                    if (layout.Settings.DefaultDungeonNames.FontStyle.HasValue)
-                        settings.DefaultDungeonNames.FontStyle = layout.Settings.DefaultDungeonNames.FontStyle;
-                }
-
-                foreach (var category in json_layout)
-                {
-                    switch (category.Key)
-                    {
-                        case "Labels":
-                            foreach (var element in category.Value)
+                            if (obj.Visible)
                             {
-                                var obj = JsonConvert.DeserializeObject<GenericLabel>(element.ToString());
-
-                                if (obj.Visible)
+                                Controls.Add(new Label()
                                 {
-                                    layout.Controls.Add(new Label()
+                                    Text = obj.Text,
+                                    Left = obj.X,
+                                    Top = obj.Y,
+                                    Font = new Font(new FontFamily(obj.FontName), obj.FontSize, obj.FontStyle),
+                                    ForeColor = Color.FromName(obj.Color),
+                                    BackColor = Color.Transparent,
+                                    AutoSize = true,
+                                });
+                            }
+                        }
+                        break;
+
+                    case "TextBoxes":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<GenericTextBox>(element.ToString());
+
+                            if (obj.Visible)
+                            {
+                                Controls.Add(new TextBox()
+                                {
+                                    BackColor = obj.BackColor,
+                                    Font = new Font(obj.FontName, obj.FontSize, obj.FontStyle),
+                                    ForeColor = obj.FontColor,
+                                    Size = new Size(obj.Width, obj.Height),
+                                    Location = new Point(obj.X, obj.Y),
+                                });
+                            }
+                        }
+                        break;
+
+                    case "Items":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPoint>(element.ToString());
+
+                            if (obj.Visible)
+                            {
+                                Controls.Add(new Item(obj, activeSettings));
+                            }
+                        }
+                        break;
+
+                    case "Songs":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPointSong>(element.ToString());
+                            if (obj.Visible)
+                            {
+                                var song = new Song(obj, activeSettings);
+                                Controls.Add(song);
+                                ListUpdatables.Add(song);
+                            }
+                        }
+                        break;
+
+                    case "DoubleItems":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPoint>(element.ToString());
+                            if (obj.Visible)
+                                Controls.Add(new DoubleItem(obj));
+                        }
+                        break;
+
+                    case "CollectedItems":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPointCollectedItem>(element.ToString());
+                            if (obj.Visible)
+                                Controls.Add(new CollectedItem(obj, activeSettings));
+                        }
+                        break;
+
+                    case "Medallions":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPointMedallion>(element.ToString());
+                            if (obj.Visible)
+                            {
+                                var medallion = new Medallion(obj, activeSettings);
+                                Controls.Add(medallion);
+                                Controls.Add(medallion.SelectedDungeon);
+                                ListUpdatables.Add(medallion);
+                                medallion.SetSelectedDungeonLocation();
+                                medallion.SelectedDungeon.BringToFront();
+                            }
+                        }
+                        break;
+
+                    case "GuaranteedHints":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPoint>(element.ToString());
+                            if (obj.Visible)
+                                Controls.Add(new GuaranteedHint(obj));
+                        }
+                        break;
+
+                    case "GossipStones":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPoint>(element.ToString());
+                            if (obj.Visible)
+                                Controls.Add(new GossipStone(obj, activeSettings));
+                        }
+                        break;
+
+                    case "GossipStoneGrids":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPointGrid>(element.ToString());
+                            if (obj.Visible)
+                            {
+                                for (int j = 0; j < obj.Rows; j++)
+                                {
+                                    for (int i = 0; i < obj.Columns; i++)
                                     {
-                                        Text = obj.Text,
-                                        Left = obj.X,
-                                        Top = obj.Y,
-                                        Font = new Font(new FontFamily(obj.FontName), obj.FontSize, obj.FontStyle),
-                                        ForeColor = Color.FromName(obj.Color),
-                                        BackColor = Color.Transparent,
-                                        AutoSize = true,
-                                    });
-                                }
-                            }
-                            break;
-
-                        case "TextBoxes":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<GenericTextBox>(element.ToString());
-
-                                if (obj.Visible)
-                                {
-                                    layout.Controls.Add(new TextBox()
-                                    {
-                                        BackColor = obj.BackColor,
-                                        Font = new Font(obj.FontName, obj.FontSize, obj.FontStyle),
-                                        ForeColor = obj.FontColor,
-                                        Size = new Size(obj.Width, obj.Height),
-                                        Location = new Point(obj.X, obj.Y),
-                                    });
-                                }
-                            }
-                            break;
-
-                        case "Items":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<ObjectPoint>(element.ToString());
-
-                                if (obj.Visible)
-                                {
-                                    layout.Controls.Add(new Item(obj, settings));
-                                }
-                            }
-                            break;
-
-                        case "Songs":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<ObjectPointSong>(element.ToString());
-                                if (obj.Visible)
-                                {
-                                    var song = new Song(obj, settings);
-                                    layout.Controls.Add(song);
-                                    layout.ListUpdatables.Add(song);
-                                }
-                            }
-                            break;
-
-                        case "DoubleItems":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<ObjectPoint>(element.ToString());
-                                if (obj.Visible)
-                                    layout.Controls.Add(new DoubleItem(obj));
-                            }
-                            break;
-
-                        case "CollectedItems":
-                            foreach (var element in category.Value)
-                            {
-                             var obj = JsonConvert.DeserializeObject<ObjectPointCollectedItem>(element.ToString());
-                                if (obj.Visible)
-                                    layout.Controls.Add(new CollectedItem(obj, settings));
-                            }
-                            break;
-
-                        case "Medallions":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<ObjectPointMedallion>(element.ToString());
-                                if (obj.Visible)
-                                {
-                                    var medallion = new Medallion(obj, settings);
-                                    layout.Controls.Add(medallion);
-                                    layout.Controls.Add(medallion.SelectedDungeon);
-                                    layout.ListUpdatables.Add(medallion);
-                                    medallion.SetSelectedDungeonLocation();
-                                    medallion.SelectedDungeon.BringToFront();
-                                }
-                            }
-                            break;
-
-                        case "GuaranteedHints":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<ObjectPoint>(element.ToString());
-                                if (obj.Visible)
-                                    layout.Controls.Add(new GuaranteedHint(obj));
-                            }
-                            break;
-
-                        case "GossipStones":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<ObjectPoint>(element.ToString());
-                                if (obj.Visible)
-                                    layout.Controls.Add(new GossipStone(obj, settings));
-                            }
-                            break;
-
-                        case "GossipStoneGrids":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<ObjectPointGrid>(element.ToString());
-                                if (obj.Visible)
-                                {
-                                    for (int j = 0; j < obj.Rows; j++)
-                                    {
-                                        for (int i = 0; i < obj.Columns; i++)
+                                        var gs = new ObjectPoint()
                                         {
-                                            var gs = new ObjectPoint()
-                                            {
-                                                Id = obj.Id,
-                                                Name = obj.Name,
-                                                X = obj.X + i * (obj.Size.Width + obj.Spacing.Width),
-                                                Y = obj.Y + j * (obj.Size.Height + obj.Spacing.Height),
-                                                Size = obj.Size,
-                                                ImageCollection = obj.ImageCollection,
-                                                TinyImageCollection = obj.TinyImageCollection,
-                                                Visible = obj.Visible,
-                                            };
-                                            layout.Controls.Add(new GossipStone(gs, settings));
-                                        }
+                                            Id = obj.Id,
+                                            Name = obj.Name,
+                                            X = obj.X + i * (obj.Size.Width + obj.Spacing.Width),
+                                            Y = obj.Y + j * (obj.Size.Height + obj.Spacing.Height),
+                                            Size = obj.Size,
+                                            ImageCollection = obj.ImageCollection,
+                                            TinyImageCollection = obj.TinyImageCollection,
+                                            Visible = obj.Visible,
+                                        };
+                                        Controls.Add(new GossipStone(gs, activeSettings));
                                     }
                                 }
                             }
-                            break;
+                        }
+                        break;
 
-                        case "SometimesHints":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<AutoFillTextBox>(element.ToString());
-                                if (obj.Visible)
-                                    layout.Controls.Add(new SometimesHint(listSometimesHintsSuggestions, obj));
-                            }
-                            break;
+                    case "SometimesHints":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<AutoFillTextBox>(element.ToString());
+                            if (obj.Visible)
+                                Controls.Add(new SometimesHint(listSometimesHintsSuggestions, obj));
+                        }
+                        break;
 
-                        case "Chronometers":
-                            foreach (var element in category.Value)
-                            {
-                                var obj = JsonConvert.DeserializeObject<AutoFillTextBox>(element.ToString());
-                                if (obj.Visible)
-                                    layout.Controls.Add(new Chronometer(obj).ChronoLabel);
-                            }
-                            break;
+                    case "Chronometers":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<AutoFillTextBox>(element.ToString());
+                            if (obj.Visible)
+                                Controls.Add(new Chronometer(obj).ChronoLabel);
+                        }
+                        break;
 
-                        case "PanelWoth":
-                            foreach (var element in category.Value)
+                    case "PanelWoth":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPanelWotH>(element.ToString());
+                            if (obj.Visible)
                             {
-                                var obj = JsonConvert.DeserializeObject<ObjectPanelWotH>(element.ToString());
-                                if (obj.Visible)
-                                {
-                                    var panel = new PanelWothBarren(obj, settings);
-                                    panel.PanelWoth(listPlacesWithTag, obj);
-                                    layout.Controls.Add(panel);
-                                    layout.Controls.Add(panel.textBoxCustom.SuggestionContainer);
-                                    layout.ListUpdatables.Add(panel);
-                                    panel.SetSuggestionContainer();
-                                }
+                                var panel = new PanelWothBarren(obj, activeSettings);
+                                panel.PanelWoth(listPlacesWithTag, obj);
+                                Controls.Add(panel);
+                                Controls.Add(panel.textBoxCustom.SuggestionContainer);
+                                ListUpdatables.Add(panel);
+                                panel.SetSuggestionContainer();
                             }
-                            break;
+                        }
+                        break;
 
-                        case "PanelBarren":
-                            foreach (var element in category.Value)
+                    case "PanelBarren":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPanelBarren>(element.ToString());
+                            if (obj.Visible)
                             {
-                                var obj = JsonConvert.DeserializeObject<ObjectPanelBarren>(element.ToString());
-                                if (obj.Visible)
-                                {
-                                    var panel = new PanelWothBarren(obj, settings);
-                                    panel.PanelBarren(listPlacesWithTag, obj);
-                                    layout.Controls.Add(panel);
-                                    layout.Controls.Add(panel.textBoxCustom.SuggestionContainer);
-                                    layout.ListUpdatables.Add(panel);
-                                    panel.SetSuggestionContainer();
-                                }
+                                var panel = new PanelWothBarren(obj, activeSettings);
+                                panel.PanelBarren(listPlacesWithTag, obj);
+                                Controls.Add(panel);
+                                Controls.Add(panel.textBoxCustom.SuggestionContainer);
+                                ListUpdatables.Add(panel);
+                                panel.SetSuggestionContainer();
                             }
-                            break;
+                        }
+                        break;
 
-                        case "GoMode":
-                            foreach (var element in category.Value)
+                    case "GoMode":
+                        foreach (var element in category.Value)
+                        {
+                            var obj = JsonConvert.DeserializeObject<ObjectPointGoMode>(element.ToString());
+                            if (obj.Visible)
                             {
-                                var obj = JsonConvert.DeserializeObject<ObjectPointGoMode>(element.ToString());
-                                if (obj.Visible)
-                                {
-                                    var gomode = new GoMode(obj);
-                                    layout.Controls.Add(gomode);
-                                    gomode.SetLocation();
-                                }
+                                var gomode = new GoMode(obj);
+                                Controls.Add(gomode);
+                                gomode.SetLocation();
                             }
-                            break;
-                    }
+                        }
+                        break;
                 }
             }
-
-            return layout;
         }
     }
 
@@ -548,5 +511,25 @@ namespace GSTHD
         public string[] BarrenColors { get; set; }
         public int? DefaultWothColorIndex { get; set; }
         public MedallionLabel DefaultDungeonNames { get; set; } = null;
+    }
+
+    public class InvalidLayoutFileException : GSTHDException
+    {
+        private static string GetMessagePrefix(string filePath)
+        {
+            return $"Provided file \"{filePath}\" is not a valid layout file";
+        }
+
+        private static string GenericMessagePrefix = $"Provided file is not a valid layout file";
+
+        public InvalidLayoutFileException(string fileName, string message)
+            : base(Config.LayoutFileExceptionTitle, $"{GetMessagePrefix(fileName)}: {message}.") { }
+        public InvalidLayoutFileException(string fileName, string message, Exception inner)
+            : base(Config.LayoutFileExceptionTitle, $"{GetMessagePrefix(fileName)}: {message}.", inner) { }
+
+        public InvalidLayoutFileException(string message)
+            : base(Config.LayoutFileExceptionTitle, $"{GenericMessagePrefix}: {message}.") { }
+        public InvalidLayoutFileException(string message, Exception inner)
+            : base(Config.LayoutFileExceptionTitle, $"{GenericMessagePrefix}: {message}.", inner) { }
     }
 }

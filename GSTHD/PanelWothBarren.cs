@@ -35,8 +35,8 @@ namespace GSTHD
             this.Location = new Point(data.X, data.Y);
             this.Name = data.Name;
             this.Size = new Size(data.Width, data.Height);
-            this.GossipStoneCount = data.GossipStoneCount.HasValue ? data.GossipStoneCount.Value : settings.DefaultWothGossipStoneCount;
-            this.PathGoalCount = data.PathGoalCount.HasValue ? data.PathGoalCount.Value : settings.DefaultPathGoalCount;
+            this.GossipStoneCount = data.GossipStoneCount.GetValueOrDefault(settings.DefaultWothGossipStoneCount);
+            this.PathGoalCount = data.PathGoalCount.GetValueOrDefault(settings.DefaultPathGoalCount);
             this.GossipStoneSpacing = data.GossipStoneSpacing;
             this.PathGoalSpacing = data.PathGoalSpacing;
             this.TabStop = false;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GSTHD.Util;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -13,31 +14,37 @@ namespace GSTHD
     {
         private struct MenuItems
         {
-            // Layout
+            // File
             public ToolStripMenuItem Reset;
             public ToolStripMenuItem LoadLayout;
             public ToolStripMenuItem ShowMenuBar;
 
-            // Options
-            // Scroll Wheel
+            // Settings
+                // Layout Settings
+                    // BackgroundColor?
+                    // Default Woth Gossip Stone Count?
+                    // Default Path Goal Count?
+                    // Default Woth Color Index?
+            
+                // Scroll Wheel
             public ToolStripMenuItem InvertScrollWheel;
             public ToolStripMenuItem Wraparound;
 
-            // Drag & Drop
+                // Drag & Drop
             public ToolStripMenuItem DragButton;
             public ToolStripMenuItem AutocheckDragButton;
 
-            // Song Markers
+                // Song Markers
             public ToolStripMenuItem MoveLocation;
-            // public ToolStripMenuItem Autocheck;
+                // public ToolStripMenuItem Autocheck;
             public ToolStripMenuItem Behaviour;
 
-            // WotH
+                // WotH
             public ToolStripMenuItem EnableLastWoth;
             public ToolStripMenuItem LastWothColor;
             public ToolStripMenuItem EnableDuplicateWoth;
 
-            // Barren
+                // Barren
             public ToolStripMenuItem EnableBarrenColors;
         }
 
@@ -61,7 +68,8 @@ namespace GSTHD
         };
 
         MainForm Form;
-        Settings Settings;
+        LocalSettings LocalSettings;
+        Layout ActiveLayout;
         MenuStrip MenuStrip;
         MenuItems Items;
         Dictionary<Settings.DragButtonOption, ToolStripMenuItem> DragButtonOptions;
@@ -71,10 +79,10 @@ namespace GSTHD
         Size SavedSize;
         OpenFileDialog OpenLayoutDialog;
 
-        public MainForm_MenuBar(MainForm form, Settings settings)
+        public MainForm_MenuBar(MainForm form, LocalSettings localSettings)
         {
             Form = form;
-            Settings = settings;
+            LocalSettings = localSettings;
 
             MakeMenu();
 
@@ -83,9 +91,8 @@ namespace GSTHD
 
             OpenLayoutDialog = new OpenFileDialog()
             {
-                FileName = "Select a layout to load",
                 Filter = "Layout files (*.json)|*.json|All files (*.*)|*.*",
-                Title = "Open layout"
+                Title = "Load Layout"
             };
 
             ReadSettings();
@@ -93,12 +100,23 @@ namespace GSTHD
             Controls.Add(MenuStrip);
         }
 
+        public void SetActiveLayout(Layout activeLayout)
+        {
+            ActiveLayout = activeLayout;
+            UpdateLayoutSettings();
+        }
+
+        private void UpdateLayoutSettings()
+        {
+            // TODO
+        }
+
         private void MakeMenu()
         {
             MenuStrip = new MenuStrip();
             Items = new MenuItems();
 
-            var layoutMenu = new ToolStripMenuItem("Layout");
+            var layoutMenu = new ToolStripMenuItem("File");
             {
                 Items.Reset = new ToolStripMenuItem("Reset", null, new EventHandler(menuBar_Reset))
                 {
@@ -125,8 +143,10 @@ namespace GSTHD
             }
             MenuStrip.Items.Add(layoutMenu);
 
-            var optionMenu = new ToolStripMenuItem("Options");
+            var optionMenu = new ToolStripMenuItem("Settings");
             {
+
+
                 var scrollWheelSubMenu = new ToolStripMenuItem("Scroll Wheel");
                 {
                     Items.InvertScrollWheel = new ToolStripMenuItem("Invert Scroll Wheel", null, new EventHandler(menuBar_ToggleInvertScrollWheel))
@@ -239,28 +259,28 @@ namespace GSTHD
 
         public void ReadSettings()
         {
-            Items.ShowMenuBar.Checked = Settings.ShowMenuBar;
-            Enabled = Settings.ShowMenuBar;
+            Items.ShowMenuBar.Checked = LocalSettings.ShowMenuBar;
+            Enabled = LocalSettings.ShowMenuBar;
             if (Enabled)
                 menuBar_Show();
             else
                 menuBar_Hide();
 
-            Items.InvertScrollWheel.Checked = Settings.InvertScrollWheel;
-            Items.Wraparound.Checked = Settings.WraparoundDungeonNames;
+            Items.InvertScrollWheel.Checked = LocalSettings.InvertScrollWheel;
+            Items.Wraparound.Checked = LocalSettings.DefaultDungeonNames.Wraparound.Value;
 
-            DragButtonOptions[Settings.DragButton].Checked = true;
-            AutocheckDragButtonOptions[Settings.AutocheckDragButton].Checked = true;
+            DragButtonOptions[LocalSettings.DragButton].Checked = true;
+            AutocheckDragButtonOptions[LocalSettings.AutocheckDragButton].Checked = true;
 
-            Items.MoveLocation.Checked = Settings.MoveLocationToSong;
+            Items.MoveLocation.Checked = LocalSettings.MoveLocationToSong;
             //Items.Autocheck.Checked = Settings.AutoCheckSongs;
-            SongMarkerBehaviourOptions[Settings.SongMarkerBehaviour].Checked = true;
+            SongMarkerBehaviourOptions[LocalSettings.SongMarkerBehaviour].Checked = true;
 
-            Items.EnableDuplicateWoth.Checked = Settings.EnableDuplicateWoth;
-            Items.EnableLastWoth.Checked = Settings.EnableLastWoth;
-            LastWothColorOptions[Settings.LastWothColor].Checked = true;
+            Items.EnableDuplicateWoth.Checked = LocalSettings.EnableDuplicateWoth;
+            Items.EnableLastWoth.Checked = LocalSettings.EnableLastWoth;
+            LastWothColorOptions[LocalSettings.LastWothColor].Checked = true;
 
-            Items.EnableBarrenColors.Checked = Settings.EnableBarrenColors;
+            Items.EnableBarrenColors.Checked = LocalSettings.EnableBarrenColors;
         }
 
         public void SetRenderer()
@@ -300,9 +320,10 @@ namespace GSTHD
                 Enabled = true;
             }
 
-            Settings.ShowMenuBar = Enabled;
+            LocalSettings.ShowMenuBar = Enabled;
             Items.ShowMenuBar.Checked = Enabled;
-            Settings.Write();
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         public void menuBar_Show()
@@ -322,42 +343,45 @@ namespace GSTHD
         private void menuBar_ToggleInvertScrollWheel(object sender, EventArgs e)
         {
             // Items.InvertScrollWheel.Checked = !Items.InvertScrollWheel.Checked;
-            Settings.InvertScrollWheel = Items.InvertScrollWheel.Checked;
-            Settings.Write();
+            LocalSettings.InvertScrollWheel = Items.InvertScrollWheel.Checked;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private void menuBar_ToggleWraparound(object sender, EventArgs e)
         {
             // Items.Wraparound.Checked = !Items.Wraparound.Checked;
-            Settings.WraparoundDungeonNames = Items.Wraparound.Checked;
-            Settings.Write();
-            Form.UpdateLayoutFromSettings();
+            LocalSettings.DefaultDungeonNames.Wraparound = Items.Wraparound.Checked;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private void menuBar_SetDragButton(object sender, EventArgs e)
         {
             var choice = (ToolStripMenuItem)sender;
 
-            DragButtonOptions[Settings.DragButton].Checked = false;
+            DragButtonOptions[LocalSettings.DragButton].Checked = false;
             choice.Checked = true;
 
             var option = DragButtonOptions.FirstOrDefault((x) => x.Value == choice);
             if (option.Value == null) throw new NotImplementedException();
-            Settings.DragButton = option.Key;
-            Settings.Write();
+            LocalSettings.DragButton = option.Key;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private void menuBar_SetAutocheckDragButton(object sender, EventArgs e)
         {
             var choice = (ToolStripMenuItem)sender;
 
-            AutocheckDragButtonOptions[Settings.AutocheckDragButton].Checked = false;
+            AutocheckDragButtonOptions[LocalSettings.AutocheckDragButton].Checked = false;
             choice.Checked = true;
 
             var option = AutocheckDragButtonOptions.FirstOrDefault((x) => x.Value == choice);
             if (option.Value == null) throw new NotImplementedException();
-            Settings.AutocheckDragButton = option.Key;
-            Settings.Write();
+            LocalSettings.AutocheckDragButton = option.Key;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         //private void menuBar_ToggleAutocheckSongs(object sender, EventArgs e)
@@ -370,80 +394,70 @@ namespace GSTHD
         private void menuBar_ToggleMoveLocation(object sender, EventArgs e)
         {
             // Items.MoveLocation.Checked = !Items.MoveLocation.Checked;
-            Settings.MoveLocationToSong = Items.MoveLocation.Checked;
-            Settings.Write();
-            Form.UpdateLayoutFromSettings();
+            LocalSettings.MoveLocationToSong = Items.MoveLocation.Checked;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private void menuBar_SetSongMarkerBehaviour(object sender, EventArgs e)
         {
             var choice = (ToolStripMenuItem)sender;
 
-            SongMarkerBehaviourOptions[Settings.SongMarkerBehaviour].Checked = false;
+            SongMarkerBehaviourOptions[LocalSettings.SongMarkerBehaviour].Checked = false;
             choice.Checked = true;
 
             var option = SongMarkerBehaviourOptions.FirstOrDefault((x) => x.Value == choice);
             if (option.Value == null) throw new NotImplementedException();
-            Settings.SongMarkerBehaviour = option.Key;
-            Settings.Write();
-            Form.UpdateLayoutFromSettings();
+            LocalSettings.SongMarkerBehaviour = option.Key;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private void menuBar_LoadLayout(object sender, EventArgs e)
         {
             if (OpenLayoutDialog.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    var filePath = OpenLayoutDialog.FileName;
-                    var previous_layout = Settings.ActiveLayout;
-                    Form.LoadLayout(OpenLayoutDialog.FileName);
-                    // todo test if file is valid, switch back to previous layout if not
-                }
-                catch (System.Security.SecurityException ex)
-                {
-                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
-                    $"Details:\n\n{ex.StackTrace}");
-                }
+                var filePath = OpenLayoutDialog.FileName;
+                Form.LoadLayout(filePath);
             }
         }
 
         private void menuBar_ToggleEnableDuplicateWotH(object sender, EventArgs e)
         {
             // Items.EnableLastWoth.Enabled = !Items.EnableLastWoth.Enabled;
-            Settings.EnableDuplicateWoth = Items.EnableDuplicateWoth.Checked;
-            Settings.Write();
-            Form.UpdateLayoutFromSettings();
+            LocalSettings.EnableDuplicateWoth = Items.EnableDuplicateWoth.Checked;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private void menuBar_ToggleEnableLastWotH(object sender, EventArgs e)
         {
             // Items.EnableLastWoth.Enabled = !Items.EnableLastWoth.Enabled;
-            Settings.EnableLastWoth = Items.EnableLastWoth.Checked;
-            Settings.Write();
-            Form.UpdateLayoutFromSettings();
+            LocalSettings.EnableLastWoth = Items.EnableLastWoth.Checked;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private void menuBar_ToggleEnableBarrenColors(object sender, EventArgs e)
         {
             // Items.EnableBarrenColors.Enabled = !Items.EnableBarrenColors.Enabled;
-            Settings.EnableBarrenColors = Items.EnableBarrenColors.Checked;
-            Settings.Write();
-            Form.UpdateLayoutFromSettings();
+            LocalSettings.EnableBarrenColors = Items.EnableBarrenColors.Checked;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private void menuBar_SetLastWothColor(object sender, EventArgs e)
         {
             var choice = (ToolStripMenuItem)sender;
 
-            LastWothColorOptions[Settings.LastWothColor].Checked = false;
+            LastWothColorOptions[LocalSettings.LastWothColor].Checked = false;
             choice.Checked = true;
 
             var option = LastWothColorOptions.FirstOrDefault((x) => x.Value == choice);
             if (option.Value == null) throw new NotImplementedException();
-            Settings.LastWothColor = option.Key;
-            Settings.Write();
-            Form.UpdateLayoutFromSettings();
+            LocalSettings.LastWothColor = option.Key;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            Form.UpdateSettings();
         }
 
         private class Form1_MenuBar_ColorTable_LightTheme : ProfessionalColorTable

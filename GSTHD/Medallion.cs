@@ -100,7 +100,7 @@ namespace GSTHD
             SelectedDungeon.MouseWheel -= Mouse_Wheel;
             SelectedDungeon.MouseWheel -= Mouse_Wheel_WithWraparound;
 
-            if (Settings.WraparoundDungeonNames)
+            if (Settings.DefaultDungeonNames.Wraparound.Value)
             {
                 MouseWheel += Mouse_Wheel_WithWraparound;
                 SelectedDungeon.MouseWheel += Mouse_Wheel_WithWraparound;

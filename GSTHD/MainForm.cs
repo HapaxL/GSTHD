@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GSTHD.Util;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 
 namespace GSTHD
@@ -19,13 +20,12 @@ namespace GSTHD
         SortedSet<string> ListSometimesHintsSuggestions = new SortedSet<string>();
 
         MainForm_MenuBar MenuBar;
+        LocalSettings LocalSettings;
         Layout ActiveLayout;
+        Settings ActiveSettings;
 
         //PictureBox pbox_collectedSkulls;
 
-
-        Settings Settings;
-        
         public MainForm()
         {
             InitializeComponent();
@@ -51,32 +51,106 @@ namespace GSTHD
         //    */
         //}
 
-        private void LoadAll(object sender, EventArgs e)
+        private void Initialize(object sender, EventArgs e)
         {
-            var assembly = Assembly.GetEntryAssembly().GetName();
-            this.Text = $"{Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title} v{assembly.Version.Major}.{assembly.Version.Minor}";
-            this.AcceptButton = null;
-            this.MaximizeBox = false;
-
-            LoadSettings();
-            
-            MenuBar = new MainForm_MenuBar(this, Settings);
-
-            LoadLayout(Settings.ActiveLayout);
-            SetMenuBar();
-
-            this.KeyPreview = true;
+            //this.AcceptButton = null;
+            //this.MaximizeBox = false;
+            //this.KeyPreview = true;
             //this.KeyDown += changeCollectedSkulls;
-        }
 
-        private void Reload()
-        {
             LoadSettings();
-            LoadLayout(Settings.ActiveLayout);
-            SetMenuBar();
+            LoadMenuBar();
+            LoadActiveLayout();
         }
 
         private void LoadSettings()
+        {
+            LocalSettings = LoadLocalSettings();
+            ActiveSettings = new Settings(LocalSettings);
+        }
+
+        private void LoadMenuBar()
+        {
+            MenuBar = new MainForm_MenuBar(this, LocalSettings);
+            MenuBar.Dock = DockStyle.Top;
+            MenuBar.SetRenderer();
+        }
+
+        private void LoadActiveLayout()
+        {
+            Layout layout;
+            try
+            {
+                layout = PreloadLayout(LocalSettings.ActiveLayout);
+            }
+            catch (GSTHDException ex) when (
+                ex is FilesNotFoundException ||
+                ex is InvalidLayoutFileException)
+            {
+                // do nothing, application will open in an empty no-layout state
+                ShowErrorMessage(ex);
+                return;
+            }
+
+            ActiveLayout = layout;
+            PostloadLayout();
+        }
+
+        public void LoadLayout(string layoutPath)
+        {
+            Layout layout;
+            try
+            {
+                layout = PreloadLayout(layoutPath);
+            }
+            catch (GSTHDException ex) when (
+                ex is FilesNotFoundException ||
+                ex is InvalidLayoutFileException)
+            {
+                // do nothing, stay on previous layout state
+                ShowErrorMessage(ex);
+                return;
+            }
+
+            Controls.Clear();
+            ActiveLayout = layout;
+            LocalSettings.ActiveLayout = layoutPath;
+            JsonIO.Write(LocalSettings, LocalSettings.LocalSettingsFileName);
+            PostloadLayout();
+        }
+
+        public void ReloadActiveLayout()
+        {
+            Layout layout;
+            try
+            {
+                layout = PreloadLayout(LocalSettings.ActiveLayout);
+            }
+            catch (GSTHDException ex)  when (
+                ex is FilesNotFoundException ||
+                ex is InvalidLayoutFileException)
+            {
+                // do nothing, stay on previous layout state
+                ShowErrorMessage(ex);
+                return;
+            }
+
+            Controls.Clear();
+            ActiveLayout = layout;
+            PostloadLayout();
+        }
+
+        //public SaveState()
+        //{
+        //    // TODO
+        //}
+
+        //public void LoadSavedState()
+        //{
+        //    // TODO
+        //}
+
+        private LocalSettings LoadLocalSettings()
         {
             ListPlaces.Clear();
             ListPlaces.Add("");
@@ -98,12 +172,7 @@ namespace GSTHD
                 }
             }
 
-            Settings = Settings.Read();
-        }
-
-        private void SetMenuBar()
-        {
-            MenuBar.SetRenderer();
+            return JsonIO.Read<LocalSettings>(LocalSettings.LocalSettingsFileName);
         }
 
         private string FixLayoutPath(string layoutPath)
@@ -118,26 +187,46 @@ namespace GSTHD
             {
                 return fixedPath;
             }
-            else throw new FileNotFoundException($"Layout file \"{layoutPath}\" was not found. Layout file \"{fixedPath}\" was not found.");
+            else throw new FilesNotFoundException(layoutPath, fixedPath);
         }
 
-        public void LoadLayout(string layoutPath)
+        private Layout PreloadLayout(string layoutPath)
         {
             var path = FixLayoutPath(layoutPath);
 
-            Controls.Clear();
-            ActiveLayout = GSTHD.Layout.Load(path, Settings, ListSometimesHintsSuggestions, ListPlacesWithTag, this);
-            Size = new Size(ActiveLayout.Size.Width, ActiveLayout.Size.Height + MenuBar.Size.Height);
-            ActiveLayout.Dock = DockStyle.Top;
-            Controls.Add(ActiveLayout);
-            MenuBar.Dock = DockStyle.Top;
-            Controls.Add(MenuBar);
-            Settings.ActiveLayout = path;
-            Settings.Write();
+            var layout = new Layout(path);
+            layout.LoadContents(ActiveSettings, ListSometimesHintsSuggestions, ListPlacesWithTag, this);
+            return layout;
         }
 
-        public void UpdateLayoutFromSettings()
+        private void SetSize()
         {
+            Size = new Size(ActiveLayout.Size.Width, ActiveLayout.Size.Height + MenuBar.Size.Height);
+        }
+
+        private void SetBackColor()
+        {
+            if (ActiveLayout.Settings.BackgroundColor.HasValue)
+                BackColor = ActiveLayout.Settings.BackgroundColor.Value;
+            ActiveLayout.BackColor = BackColor;
+        }
+
+        private void PostloadLayout()
+        {
+            ActiveLayout.Dock = DockStyle.Top;
+            SetSize();
+            SetBackColor();
+
+            MenuBar.SetActiveLayout(ActiveLayout);
+            ActiveSettings.SetLayoutSettings(ActiveLayout.Settings);
+
+            Controls.Add(ActiveLayout);
+            Controls.Add(MenuBar);
+        }
+
+        public void UpdateSettings()
+        {
+            ActiveSettings.Update();
             ActiveLayout.UpdateFromSettings();
         }
 
@@ -154,8 +243,37 @@ namespace GSTHD
         public void Reset(object sender)
         {
             ControlExtensions.ClearAndDispose(ActiveLayout);
-            Reload();
+            ReloadActiveLayout();
             Process.GetCurrentProcess().Refresh();
         }
+        
+        public void ShowErrorMessage(GSTHDException ex)
+        {
+            MessageBox.Show(ex.Message, $"{Config.ErrorMessageTitlePrefix}: {ex.Title}");
+        }
+    }
+
+    public class FilesNotFoundException : GSTHDException
+    {
+        private static string GetMessage(string[] filePaths)
+        {
+            if (filePaths.Length == 0)
+                return GenericMessage;
+
+            var sb = new StringBuilder();
+            foreach (var filePath in filePaths)
+            {
+                sb.Append($"File \"{filePath}\" not found. ");
+            }
+
+            return sb.ToString();
+        }
+
+        private static string GenericMessage = $"File(s) not found.";
+
+        public FilesNotFoundException(params string[] fileNames)
+            : base(Config.LayoutFileExceptionTitle, GetMessage(fileNames)) { }
+        public FilesNotFoundException(string[] fileNames, Exception inner)
+            : base(Config.LayoutFileExceptionTitle, GetMessage(fileNames), inner) { }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace GSTHD
 {
@@ -45,8 +46,11 @@ namespace GSTHD
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Gossip Stones Tracker v1.7 (Standard Edition)";
-            this.Load += new System.EventHandler(this.LoadAll);
+            // this.Text = "Gossip Stones Tracker HD v0.3";
+            var assembly = Assembly.GetEntryAssembly().GetName();
+            this.Text = $"{Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title} v{assembly.Version.Major}.{assembly.Version.Minor}";
+
+            this.Load += new System.EventHandler(this.Initialize);
             // this.KeyDown += new System.Windows.Forms.KeyEventHandler(MainForm_KeyDown);
             this.ResumeLayout(false);
 

@@ -24,9 +24,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>0.3.2.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.4.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup>
@@ -63,6 +64,18 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>FF733924710DA462BE4F34D1090C8865256AF2CA</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>GSTHD_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -81,6 +94,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="GSTHDException.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="AppData\AppData.cs" />
     <Compile Include="AppData\UserData.cs" />
     <Compile Include="Barren.cs" />
@@ -129,6 +145,7 @@
     <Compile Include="Layout.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Util\JsonIO.cs" />
     <Compile Include="Util\Math.cs" />
     <Compile Include="Medallion.cs">
       <SubType>Component</SubType>
@@ -144,7 +161,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
+    <Compile Include="LocalSettings.cs" />
     <Compile Include="SometimesHint.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -155,6 +172,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WotH.cs" />
+    <None Include="GSTHD_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
